@@ -1,0 +1,115 @@
+{% assign diary_pages = product.metafields.custom.diary_pages.value %}
+
+{%- paginate diary_pages by 128 -%}
+
+    {% assign diary_pages = diary_pages | reverse | reverse %}
+    <script>
+        let diary_pages = [];
+        {% for diary_page in diary_pages %}
+            {% assign page_type = 'day' %}
+            {% if forloop.first or forloop.last %}
+                {% assign page_type = 'cover' %}
+            {% endif %}
+            diary_pages.push({page_type: {{ page_type | json }}, page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
+        {% endfor %}
+    </script>
+{%- endpaginate -%}
+
+<div class="diary-wrapper">
+  
+  <div class="diary-flip">
+
+        {% for index in (1..370) %}
+            
+                
+        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 370 | minus: index }};" data-pageindex="{{index}}"> 
+                    <div class="diary-flip_back">
+                        <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/blank-page.jpg?v=1716241450" class="back-page">
+                        <label class="diary-flip_back-btn">Prev</label>
+                    </div>
+                    <div class="diary-flip_front">
+                        <img src="{{ diary_pages[0] | image_url: width: diary_pages[0].width }}" class="front-page">
+                        <label class="diary-flip_next-btn">NEXT</label>
+                    </div>
+        </div>
+                
+        {% endfor %}
+       
+  </div>
+
+</div>
+
+
+<script>
+    function renderPages(){
+        let old_last_page = document.querySelector(".diary-flip_page.last__page");
+        old_last_page?.classList.remove('last__page');
+        let old_second_last_page = document.querySelector(".diary-flip_page.second_last__page");
+        old_second_last_page?.classList.remove('second_last__page');
+        let pages_preview = document.querySelectorAll(".diary-flip_page");
+        let pages_length = diary_pages.length/2;
+        let last_page = pages_preview[pages_length - 1];
+        let second_last_page = pages_preview[pages_length - 2];
+        last_page.classList.add("last__page");
+        second_last_page.classList.add("second_last__page");
+        let side_index = 0;
+        for(var i=0;i<pages_length;++i){
+            let page = pages_preview[i];
+            page.querySelector(".front-page").setAttribute("src", diary_pages[side_index].page_url);
+            page.querySelector(".back-page").setAttribute("src", diary_pages[side_index + 1].page_url);
+            side_index += 2;
+        }
+    }
+    if(diary_pages.length % 2 != 0){
+        diary_pages.splice(diary_pages.length-1, 0, {page_type:"blank", page_url:"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/blank-page.jpg?v=1716241450" });
+    }
+
+    renderPages();
+
+    function extraPages(){
+        let page_type = this.event.target.closest(".planner-custom-pages_wrapper").getAttribute("data-pagetype");
+        
+        if(page_type == "between_week"){
+            inBetweenWeekPages(this.event.target);
+        }
+    }
+
+    function inBetweenWeekPages(element){
+        let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
+        let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
+        let pages_length = diary_pages.length;
+        let updated_pages = [];
+        if(element.checked){
+            // for 2025 year starts at Wednesday so starting day number is 2
+            let day_page_counter = 2; 
+            for(var i=0;i<pages_length;++i){
+                if(day_page_counter == 7 && diary_pages[i].page_type != "week"){
+                    updated_pages.push({page_type: "week", page_url: image_front });
+                    if(image_back){
+                        updated_pages.push({page_type: "week", page_url: image_back });
+                    }
+                    day_page_counter = 0;
+                }
+
+                updated_pages.push(diary_pages[i]);
+
+                if(diary_pages[i].page_type == 'day'){
+                    ++day_page_counter;
+                }
+            }
+           
+        }else{
+            for(var i=0;i<pages_length;++i){
+                if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'week'){
+                    continue
+                }else{
+                    updated_pages.push(diary_pages[i]);
+                }
+            
+            }
+        }
+        diary_pages = updated_pages;
+        renderPages();
+    }
+
+</script>

@@ -1,0 +1,163 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-planner-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "text_4WehDr": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Choose extra pages<\/strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "planner_custom_pages_AJbVAC": {
+          "type": "planner_custom_pages",
+          "settings": {
+            "title": "Front Pages",
+            "page_type": "front_cover",
+            "page_1_image": "shopify:\/\/shop_images\/2025_Goals_FRONT-1.jpg",
+            "page_2_image": "shopify:\/\/shop_images\/2025_Goals_FRONT-2.jpg",
+            "page_3_image": "shopify:\/\/shop_images\/2024_Reflection_FRONT.jpg",
+            "page_4_image": "shopify:\/\/shop_images\/Birthday_Planner_FRONT.jpg"
+          }
+        },
+        "planner_custom_pages_99BLGD": {
+          "type": "planner_custom_pages",
+          "settings": {
+            "title": "Inbetween each week:",
+            "page_type": "between_week",
+            "page_1_image": "shopify:\/\/shop_images\/Vertical_Weekly-2-Front.jpg",
+            "page_1_image_back": "shopify:\/\/shop_images\/Vertical_Weekly-2-Back.jpg",
+            "page_2_image": "shopify:\/\/shop_images\/Week_to_2_page_VERTICAL-1.jpg",
+            "page_2_image_back": "shopify:\/\/shop_images\/Week_to_2_page_VERTICAL-2.jpg",
+            "page_3_image": "shopify:\/\/shop_images\/Weekly_Tasks_Insert_WEEK.jpg",
+            "page_4_image": "shopify:\/\/shop_images\/Notes_1_column_WEEK_and_MONTH_1b23db37-24fd-4dc5-bd2e-c06d98bc441f.jpg"
+          }
+        },
+        "planner_custom_pages_Rp4CUJ": {
+          "type": "planner_custom_pages",
+          "settings": {
+            "title": "Inbetween each month:",
+            "page_type": "between_month",
+            "page_1_image": "shopify:\/\/shop_images\/Monthly_view_MONTH-01-Front.jpg",
+            "page_1_image_back": "shopify:\/\/shop_images\/Monthly_view_MONTH-01-Back.jpg",
+            "page_2_image": "shopify:\/\/shop_images\/Monthly_Reflection_MONTH.jpg",
+            "page_3_image": "shopify:\/\/shop_images\/Monthly_Tasks_MONTH.jpg",
+            "page_4_image": "shopify:\/\/shop_images\/Notes_1_column_WEEK_and_MONTH.jpg"
+          }
+        },
+        "planner_custom_pages_gdPx3i": {
+          "type": "planner_custom_pages",
+          "settings": {
+            "title": "Back Pages",
+            "page_type": "back_cover",
+            "page_1_image": "shopify:\/\/shop_images\/2026_Important_Dates_BACK.jpg",
+            "page_2_image": "shopify:\/\/shop_images\/Notes_1_column_WEEK_and_MONTH_1b23db37-24fd-4dc5-bd2e-c06d98bc441f.jpg"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "text_4WehDr",
+        "planner_custom_pages_AJbVAC",
+        "planner_custom_pages_99BLGD",
+        "planner_custom_pages_Rp4CUJ",
+        "planner_custom_pages_gdPx3i",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "custom_css": [
+        ".product__text.inline-richtext.subtitle {font-size: 27px; color: black; font-weight: 500;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products"
+  ]
+}

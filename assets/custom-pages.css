@@ -1,0 +1,257 @@
+.planner-custom-pages_images{
+    display: flex;
+}
+
+.display__none{
+  display: none;
+}
+
+.planner-custom-pages_images .page_item{
+    max-width: 85px;
+    border: 2px solid black;
+    margin: 0 2px;
+    cursor: pointer;
+    max-height: 109px;
+    position: relative;
+}
+
+.planner-custom-pages_images .page_item img{
+    width: 100%;
+    height: 100%;
+}
+
+.diary-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 85px;
+}
+
+.diary-flip {
+  width: 371px;
+  height: 497px;
+  position: relative;
+  perspective: 1500px;
+}
+
+.diary-flip_page {
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: .5s;
+  color: #000;
+}
+
+.diary-flip_page img{
+  height: 100%;
+  width: 100%;
+}
+
+.diary-flip_front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: yellow;
+  box-sizing: border-box;
+}
+
+.diary-flip_back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 376;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  background-color: orange;
+}
+
+.diary-flip_next-btn, .diary-flip_back-btn{
+  position: absolute;
+  bottom: 13px;
+  right: 13px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.diary-flip_next-btn:hover, .diary-flip_back-btn:hover{
+  opacity: 0.7;
+}
+
+.flipped{
+  transform: rotateY(-180deg);
+}
+
+  /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Sit on top */
+  padding-top: 54px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%;
+  max-width: 458px;
+  padding: 20px;
+  background-color: black;
+  display: flex;
+  border-radius: 6px;
+  position: relative;
+}
+
+.modal-content img{
+  width: 100%;
+}
+
+/* The Close Button */
+.close {
+  color: red;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: -14px;
+  right: 3px;
+}
+
+.close:hover,
+.close:focus {
+  color: pink;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product__title h1{
+  font-weight: bold;
+}
+
+.text__logo{
+  font-weight: bold;
+}
+
+.product__text.inline-richtext.subtitle{
+  font-size: 24px !important;
+}
+
+.planner-custom_pages h2{
+  font-weight: bold;
+  font-size: 17px !important;
+}
+
+input.checkbox{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+img.preview-icon{
+  width: 30px !important;
+  height: 30px !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+img.preview-icon:hover{
+  opacity: 0.7;
+}
+
+@media(max-width: 1024px){
+  .grid__item.product__media-wrapper {
+    overflow-x: scroll;
+    padding: 10px 0;
+    height: 530px;
+  }
+
+  .diary-flip{
+    width: 273px;
+    height: 388px;
+  }
+
+  .diary-wrapper{
+    width: 546px;
+  }
+
+  .modal-content{
+    max-width: 391px;
+  }
+}
+
+@media (max-width: 768px) {
+  .diary-flip {
+      width: 259px;
+      height: 394px;
+  }
+}
+
+@media (max-width: 749px) {
+  .diary-flip {
+      width: 355px;
+      height: 426px;
+  }
+  .diary-wrapper{
+    width: 710px;
+  }
+}
+
+@media (max-width: 535px) {
+  .diary-flip {
+      width: 319px;
+      height: 425px;
+  }
+  .diary-wrapper{
+    width: 641px;
+  }
+}
+
+@media (max-width: 425px) {
+  .diary-flip {
+      width: 309px;
+      height: 412px;
+  }
+}
+
+@media (max-width: 375px) {
+  .diary-flip {
+      width: 275px;
+      height: 373px;
+  }
+  .diary-wrapper{
+    width: 457px;
+  }
+}
+
+@media (max-width: 320px) {
+  .diary-flip {
+      width: 213px;
+      height: 284px;
+  }
+}
