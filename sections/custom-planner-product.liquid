@@ -25,6 +25,23 @@
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
 
+    .diary-update__button{
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      border-radius: 3px;
+      padding: 5px 15px;
+    }
+
+    .diary-update__button:hover{
+      opacity: 0.7;
+    }
+
+    .date-range__note{
+      font-size: 14px;
+      color: black;
+    }
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -84,6 +101,18 @@
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
+              {% when 'planner_date_range' %}
+                <div class="planner-date__range" data-startdate="{{ block.settings.start_date }}" data-enddate="{{ block.settings.end_date }}">
+                  <p class="date-range-error__message" style="color:red;display:none;"></p>
+                  <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
+                  <input type="date" id="start_date" name="start_date" min="{{ block.settings.start_date }}" max="{{ block.settings.end_date }}" onchange="handleDateRangeChange()">
+                  <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
+                  <input type="date" id="end_date" name="end_date" min="{{ block.settings.start_date }}" max="{{ block.settings.end_date }}" onchange="handleDateRangeChange()">
+                  <br>
+                  <span class="date-range__note">NOTE: Default dates are from 01/01/2025 to 12/31/2025</span>
+                  <p style="font-weight:bold;font-size:15px;color:blue;">After you have done selecting dates, then please click below button to update diary pages. Thanks!</p>
+                  <button class="diary-update__button" onclick="updateDiaryPages()">Update Diary</button>
+                </div>
               {% when 'planner_custom_pages' %}
                 <div class="planner-custom-pages_wrapper" data-pagetype="{{ block.settings.page_type }}">
                     <div class="planner-custom_pages">
@@ -162,7 +191,7 @@
               {%- when 'price' -%}
                 <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
-                    product: product,
+                    product: product, 
                     use_variant: true,
                     show_badges: true,
                     price_class: 'price--large'
@@ -1008,6 +1037,27 @@ function bigImg() {
           ],
           "default": "body",
           "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "planner_date_range",
+      "name": "Planner Date Range",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "start_date",
+          "label": "Start Date",
+          "default": "2025-01-01",
+          "info": "Please enter date in format 'YYYY-MM-DD'"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "End Date",
+          "default": "2025-12-31",
+          "info": "Please enter date in format 'YYYY-MM-DD'"
         }
       ]
     },
@@ -2323,6 +2373,22 @@ function bigImg() {
     }
   ],
   "settings": [
+    {
+      "type": "header",
+      "content": "Custom Planner Attributes"
+    },
+    {
+      "type": "text",
+      "id": "unit_page_price",
+      "label": "Unit page price",
+      "default": "0.16"
+    },
+    {
+      "type": "text",
+      "id": "fixed_added_price",
+      "label": "Fixed added price",
+      "default": "25"
+    },
     {
       "type": "checkbox",
       "id": "enable_sticky_info",

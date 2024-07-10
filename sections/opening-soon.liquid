@@ -1,0 +1,77 @@
+{{ 'opening-soon.css' | asset_url | stylesheet_tag }}
+
+{% style %} 
+    .opening-soon__background-{{ section.id }}{
+        background-image: url({{ section.settings.desktop_image | image_url: width: 1920, height: 1080 }});
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 20px 0;
+        background-position-x: center;
+    }
+
+    @media(max-width: 768px){
+        .opening-soon__background-{{ section.id }}{
+            background-image: url({{ section.settings.mobile_image | image_url: width: 1080, height: 1920 }});
+        }
+    }
+{% endstyle %}
+
+<div class="section-opening__soon">
+    <div class="opening-soon__background-{{ section.id }} opening-soon__background">
+        <div class="opening-soon__logo">{{ section.settings.logo |  image_url: width: 1501 | image_tag }}</div>
+        <div class="opening-soon-title__background"><h2>{{ section.settings.title }}</h2></div>
+        <h2 class="opening-soon__subtitle">{{ section.settings.subtitle }}</h2>
+        <div class="opening-soon-form__wrapper">
+            <form class="opening-soon__form">
+                <input type="text" placeholder="NAME">
+                <input type="email" placeholder="EMAIL">
+                <button>SUBSCRIBE!</button>
+            </form>
+        </div>
+        <h2 class="opening-soon-mobile__subtitle">{{ section.settings.mobile_subtitle }}</h2>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Opening Soon",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Background"
+    },
+    {
+      "type": "text",
+      "id": "mobile_subtitle",
+      "label": "Mobile Subtitle 2"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Opening Soon"
+    }
+  ]
+}
+{% endschema %}
