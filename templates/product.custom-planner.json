@@ -18,6 +18,20 @@
         "text_4WehDr": {
           "type": "text",
           "settings": {
+            "text": "<strong>Choose planner dates<\/strong>",
+            "text_style": "subtitle"
+          }
+        },
+        "planner_date_range_jYQgGa": {
+          "type": "planner_date_range",
+          "settings": {
+            "start_date": "2025-01-01",
+            "end_date": "2025-12-31"
+          }
+        },
+        "text_G7CHiV": {
+          "type": "text",
+          "settings": {
             "text": "<strong>Choose extra pages<\/strong>",
             "text_style": "subtitle"
           }
@@ -107,6 +121,8 @@
         "vendor",
         "title",
         "text_4WehDr",
+        "planner_date_range_jYQgGa",
+        "text_G7CHiV",
         "planner_custom_pages_AJbVAC",
         "planner_custom_pages_99BLGD",
         "planner_custom_pages_Rp4CUJ",
@@ -122,6 +138,8 @@
         ".product__text.inline-richtext.subtitle {font-size: 27px; color: black; font-weight: 500;}"
       ],
       "settings": {
+        "unit_page_price": "0.16",
+        "fixed_added_price": "25",
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "medium",
