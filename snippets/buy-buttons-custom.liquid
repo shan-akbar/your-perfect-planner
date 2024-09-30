@@ -89,6 +89,7 @@
           class="product-variant-id"
         >
         <input type="hidden" id="custom_price" name="properties[_custom_price]" value="">
+        <input type="hidden" id="pages_limit_property" name="properties[_pages_limit_property]" value="false">
         
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
@@ -192,11 +193,12 @@
             'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-            'items':[
+            'items':[ 
                 {
                 "id": {{ product.selected_or_first_available_variant.id }},
                 "quantity": document.querySelector('.quantity__input').value,
-                "properties": { 
+                "properties": {
+                    "_split_pages": document.getElementById("pages_limit_property").value,
                     "_custom_price": document.getElementById("custom_price").value,
                     "_custom_pages": diary_pages
                  }

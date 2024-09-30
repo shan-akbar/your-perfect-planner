@@ -151,6 +151,16 @@
             "page_11_image": "shopify:\/\/shop_images\/2026_IMPORTANT_DATES.png"
           }
         },
+        "pages_limit_8BWTKq": {
+          "type": "pages_limit",
+          "settings": {
+            "pages_limit": "386",
+            "split_planner_price": 10,
+            "pages_limit_note": "You have reached the maximum number of pages available in one planner. To keep all your great page selections, are you happy for your planner to be split in two (Jan-June and July-Dec)?",
+            "checkbox_label": "Yes, split my planner into two ($10)",
+            "other_note": "<p><strong>If you don't want your planner split, please remove some pages or consider a weekly layout, see <\/strong><a href=\"\/products\/weekly-planner\" target=\"_blank\" title=\"Weekly Planner\"><strong>here<\/strong><\/a><strong>.<\/strong><\/p><p><strong>If you have any questions or concerns please reach out <\/strong><a href=\"\/pages\/contact\" target=\"_blank\" title=\"Contact\"><strong>here<\/strong><\/a><strong> or email <\/strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\"><strong>hello@yourperfectplanner.com.au<\/strong><\/a><\/p>"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
@@ -334,6 +344,7 @@
         "planner_custom_pages_99BLGD",
         "planner_custom_pages_Rp4CUJ",
         "planner_custom_pages_gdPx3i",
+        "pages_limit_8BWTKq",
         "price",
         "afterpay_on_site_messaging_payments_messaging_Bgziik",
         "variant_picker",

@@ -74,6 +74,38 @@
       max-width: 460px;
     }
 
+    #split_diary{
+      height: 16px;
+      width: 16px;
+      accent-color: #FF4545;
+      margin-left: 0;
+      cursor: pointer;
+    }
+
+    .pages-limit__description{
+      background-color: hsl(0, 89%, 96%);
+      border: 1px solid hsl(0, 90%, 92%);
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .pages-limit__description p{
+      margin-top: 0;
+    }
+
+    .pages-limit__content p{
+      font-weight: bold;
+    }
+
+    .pages-limit__content label{
+      font-weight: bold;
+    }
+
+    .danger-icon img{
+      max-width: 30px;
+    }
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -331,6 +363,20 @@
                         </div>
                     </div>
                 </div>
+                {%- when 'pages_limit' -%}
+                  <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
+                    <div class="danger-icon">
+                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1727215383">
+                    </div>
+                    <div class="pages-limit__content">
+                      <p>{{ block.settings.pages_limit_note }}</p>
+                      <input type="checkbox" id="split_diary" name="split_diary" value="false" onclick="splitDiary()">
+                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
+                      <br>
+                      {{ block.settings.other_note }}
+                    </div>
+                    
+                  </div>
               {%- when 'monthly_double_pages'-%}
                 <script>
                   let monthly_double_pages = [];
@@ -2814,6 +2860,39 @@ function bigImg() {
           "default": "Heading",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+    {
+      "type": "pages_limit",
+      "name": "Pages Limit",
+      "settings": [
+        {
+          "type": "number",
+          "label": "Pages Limit",
+          "id": "pages_limit",
+          "default": 386
+        },
+        {
+          "type": "number",
+          "id": "split_planner_price",
+          "label": "Split planner price",
+          "default": 10
+        },
+        {
+          "type": "text",
+          "label": "Pages Limit Note",
+          "id": "pages_limit_note"
+        },
+        {
+          "type": "text",
+          "id": "checkbox_label",
+          "label": "Checkbox Label"
+        },
+        {
+          "type": "richtext",
+          "id": "other_note",
+          "label": "Other Note"
         }
       ]
     }

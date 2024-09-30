@@ -155,7 +155,7 @@
           "type": "accordion",
           "settings": {
             "question": "What shipping company do you use?",
-            "answer": "<p>All orders are shipped with Australia Post, Sendle, Aramex or Couriers Please (whatever is most economical for the product and receiver location). <\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+            "answer": "<p>Australia Post.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
           }
         },
         "accordion_NjjfzD": {
