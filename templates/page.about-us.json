@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "about_me_section_echxcL": {
+      "type": "about-me-section",
+      "settings": {
+        "about_heading_txt": "MEET OUR FOUNDER; JESS",
+        "about_txt": "I STARTED THIS BUSINESS BECAUSE I COULDN'T FIND A PLANNER THAT PERFECTLY SUITED MY LIFE. THEY ALL HAD PAGES I DIDN'T USE AND WERE MISSING PAGES I WANTED TO USE. INSTEAD OF CREATING MY PERFECT PLANNER AND TRYING TO SELL THAT TO YOU, I WANTED TO CREATE A BUSINESS THAT ALLOWED YOU TO BUILD YOUR PERFECT PLANNER.",
+        "about_image": "shopify:\/\/shop_images\/DSC_7010copy.jpg",
+        "about_check": false,
+        "about_btn_check": false,
+        "about_button": "Enter Button Text",
+        "about_button_url": ""
+      }
+    },
+    "about_me_section_H8RdeA": {
+      "type": "about-me-section",
+      "settings": {
+        "about_heading_txt": "",
+        "about_txt": "EVERYONE HAS A DIFFERENT LIFE, DIFFERENT ROUTINES, DIFFERENT HABITS AND DIFFERENT NEEDS. A PLANNER SHOULDN'T BE A \"ONE SIZE FITS ALL\" PRODUCT. YOU DESERVE A PLANNER AS UNIQUE AS YOU",
+        "about_image": "shopify:\/\/shop_images\/DSC_7170copy.jpg",
+        "about_check": true,
+        "about_btn_check": false,
+        "about_button": "Enter Button Text",
+        "about_button_url": ""
+      }
+    },
+    "about_me_section_93aTMA": {
+      "type": "about-me-section",
+      "settings": {
+        "about_heading_txt": "",
+        "about_txt": "",
+        "about_image": "shopify:\/\/shop_images\/DSC_7085copy.jpg",
+        "about_check": false,
+        "about_btn_check": true,
+        "about_button": "Start Building",
+        "about_button_url": "shopify:\/\/products\/daily-planner"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_me_section_echxcL",
+    "about_me_section_H8RdeA",
+    "about_me_section_93aTMA"
+  ]
+}

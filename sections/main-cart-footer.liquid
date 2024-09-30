@@ -16,7 +16,7 @@
     }
   }
 {%- endstyle -%}
-
+{% assign custom_total_price = 0 %}
 <div
   class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
   id="main-cart-footer"
@@ -36,6 +36,20 @@
           >{{ cart.note }}</textarea>
         </cart-note>
       {%- endif -%}
+      
+      {% for item in cart.items %}
+        {% assign custom_price = 0 %}
+        {% for property in item.properties %}
+          {% if property.first == "_custom_price" %}
+            {% assign custom_price = property.last | times: item.quantity | times: 100 %}
+          {% endif %}
+        {% endfor %}
+        {% if custom_price == 0 %}
+          {% assign custom_total_price = custom_total_price | plus: item.original_line_price %}
+        {% else %}
+          {% assign custom_total_price = custom_total_price | plus: custom_price %}
+        {% endif %}
+      {% endfor %}
 
       <div class="cart__blocks">
         {% for block in section.blocks %}
@@ -60,7 +74,7 @@
 
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  <p class="totals__total-value">{{ custom_total_price | money_with_currency }}</p>
                 </div>
 
                 <small class="tax-note caption-large rte">
@@ -84,9 +98,10 @@
                 </noscript>
 
                 <button
-                  type="submit"
+                  type="button"
                   id="checkout"
                   class="cart__checkout-button button"
+                  onclick="customCheckout()"
                   name="checkout"
                   {% if cart == empty %}
                     disabled
@@ -130,6 +145,8 @@
       document.querySelector('#cart').submit();
     });
   });
+ 
+ 
 </script>
 
 {% schema %}

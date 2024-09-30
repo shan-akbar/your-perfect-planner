@@ -1,15 +1,30 @@
 .planner-custom-pages_images{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .display__none{
   display: none;
 }
 
+.rotate-icon{
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-width: 50px;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+.rotate-icon:hover{
+  opacity: 0.7;
+}
+
 .planner-custom-pages_images .page_item{
     max-width: 85px;
     border: 2px solid black;
-    margin: 0 2px;
+    margin: 3px 2px;
     cursor: pointer;
     max-height: 109px;
     position: relative;
@@ -29,7 +44,7 @@
 
 .diary-flip {
   width: 371px;
-  height: 497px;
+  height: 444px;
   position: relative;
   perspective: 1500px;
 }
@@ -184,6 +199,38 @@ img.preview-icon:hover{
   opacity: 0.7;
 }
 
+input.page-qty__input{
+  max-width: 23px;
+  text-align: center;
+  position: absolute;
+  right: 16px;
+  z-index: 1;
+  bottom: 2px;
+}
+
+input.page-qty-input__button{
+  position: absolute;
+  cursor: pointer;
+}
+
+input.plus-button{
+  bottom: 2px;
+  right: 0px;
+  width: 18px;
+}
+
+input.minus-button{
+  right: 36px;
+  bottom: 2px;
+  width: 18px;
+}
+
+input.page-qty__input::-webkit-outer-spin-button,
+input.page-qty__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media(max-width: 1024px){
   .grid__item.product__media-wrapper {
     overflow-x: scroll;
@@ -193,7 +240,7 @@ img.preview-icon:hover{
 
   .diary-flip{
     width: 273px;
-    height: 388px;
+    height: 327px;
   }
 
   .diary-wrapper{
@@ -208,14 +255,14 @@ img.preview-icon:hover{
 @media (max-width: 768px) {
   .diary-flip {
       width: 259px;
-      height: 394px;
+      height: 310px;
   }
 }
 
 @media (max-width: 749px) {
   .diary-flip {
       width: 355px;
-      height: 426px;
+      height: 425px;
   }
   .diary-wrapper{
     width: 710px;
@@ -223,9 +270,14 @@ img.preview-icon:hover{
 }
 
 @media (max-width: 535px) {
+  img.preview-icon{
+    width: 25px !important;
+    height: 25px !important;
+  }
+  
   .diary-flip {
       width: 319px;
-      height: 425px;
+      height: 382px;
   }
   .diary-wrapper{
     width: 641px;
@@ -235,14 +287,14 @@ img.preview-icon:hover{
 @media (max-width: 425px) {
   .diary-flip {
       width: 309px;
-      height: 412px;
+      height: 370px;
   }
 }
 
 @media (max-width: 375px) {
   .diary-flip {
       width: 275px;
-      height: 373px;
+      height: 329px;
   }
   .diary-wrapper{
     width: 457px;
@@ -252,6 +304,6 @@ img.preview-icon:hover{
 @media (max-width: 320px) {
   .diary-flip {
       width: 213px;
-      height: 284px;
+      height: 255px;
   }
 }

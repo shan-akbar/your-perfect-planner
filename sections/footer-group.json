@@ -4,14 +4,41 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_cEGQqp": {
+          "type": "link_list",
+          "settings": {
+            "heading": "",
+            "menu": "footer"
+          }
+        },
+        "brand_information_B9Vp9R": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "text_eXjzTz": {
+          "type": "text",
+          "settings": {
+            "heading": "<strong>ABOUT US<\/strong>",
+            "subtext": "<p>HEY, I’M JESS<\/p><p>I STARTED THIS BUSINESS BECAUSE I COULDN’T FIND A<br\/>PLANNER THAT PERFECTLY SUITED MY LIFE. THEY ALL HAD<br\/>PAGES I DIDN’T USE AND WERE MISSING PAGES I WANTED<br\/>TO USE...<\/p><p><a href=\"\/pages\/about-us\" target=\"_blank\" title=\"About US\">FIND OUT MORE<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_cEGQqp",
+        "brand_information_B9Vp9R",
+        "text_eXjzTz"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
+        "color_scheme": "scheme-29c2d075-8ae6-4172-89d3-747c4dff1b70",
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_follow_on_shop": false,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "payment_enable": true,
         "show_policy": false,
         "margin_top": 0,

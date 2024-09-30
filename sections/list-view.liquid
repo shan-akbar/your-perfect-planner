@@ -1,0 +1,62 @@
+{{ 'list-view.css' | asset_url | stylesheet_tag }}
+
+<div class="view-list">
+  <div class="list-container">
+  {% assign section_blocks = section.blocks %}
+
+  {% for block in section_blocks %}
+   <div class="list-item">
+     <p> {{ forloop.index }}</p>
+    <p>{{ block.settings.textItem }}</p>
+   </div>
+  {% endfor %}
+     <div class="list-bottom-btn">
+     <div class="btn">
+      <a href="{{section.settings.button_link}}">{{ section.settings.btn }}</a>
+     </div>
+    </div>
+</div>
+</div>
+{% schema %}
+  {
+    "name": "List view",
+    "settings": [
+      {
+        "type": "text",
+        "id": "btn",
+        "label": "Button text",
+        "default": "Please enter  text"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "list-item",
+        "name": "List Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "textItem",
+            "label": "List Item Text",
+            "default": "Please Enter text"
+          },
+          {
+            "type": "color",
+            "id": "list_text_color",
+            "label": "List Text Color",
+            "default": "#000000"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "List view"
+      }
+    ]
+  }
+{% endschema %}

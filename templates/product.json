@@ -15,9 +15,40 @@
           "settings": {
           }
         },
+        "judge_me_reviews_preview_badge_XF9MTp": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
+          }
+        },
+        "afterpay_on_site_messaging_payments_messaging_DPwmnt": {
+          "type": "shopify:\/\/apps\/afterpay-on-site-messaging\/blocks\/payments-messaging\/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "inherit",
+            "margin_top": 16,
+            "margin_bottom": 16,
+            "color": "",
+            "size": "md",
+            "intro_text": "or",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": true,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
           }
         },
         "variant_picker": {
@@ -44,8 +75,48 @@
           "settings": {
           }
         },
+        "collapsible_tab_9gUFHt": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping",
+            "icon": "box",
+            "content": "<p>We offer standard shipping from $5.50 and express from $11.95 within Australia. Prices will increase based on the weight of your order. Or spend over $120 to get free shipping within Australia.<\/p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.<\/p><p>See our full shipping policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a>.<\/p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_QTEC3y": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Care",
+            "icon": "bottle",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_eHyF8d": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Garment Bag",
+            "icon": "heart",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_ciA8Ah": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Pre Order",
+            "icon": "price_tag",
+            "content": "",
+            "page": ""
+          }
+        },
         "share": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
@@ -54,11 +125,17 @@
       "block_order": [
         "vendor",
         "title",
+        "judge_me_reviews_preview_badge_XF9MTp",
         "price",
+        "afterpay_on_site_messaging_payments_messaging_DPwmnt",
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "description",
+        "collapsible_tab_9gUFHt",
+        "collapsible_tab_QTEC3y",
+        "collapsible_tab_eHyF8d",
+        "collapsible_tab_ciA8Ah",
         "share"
       ],
       "settings": {
@@ -67,7 +144,7 @@
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail_slider",
         "media_position": "left",
         "image_zoom": "lightbox",
         "mobile_thumbnails": "hide",
@@ -75,6 +152,22 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
+      }
+    },
+    "1725168709b44473d7": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_H48Wb8": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_H48Wb8"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "related-products": {
@@ -98,6 +191,7 @@
   },
   "order": [
     "main",
+    "1725168709b44473d7",
     "related-products"
   ]
 }

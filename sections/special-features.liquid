@@ -1,0 +1,49 @@
+{{ 'special-features.css' | asset_url | stylesheet_tag }}
+
+<div class="special-featured__container">
+   <div class="items">
+      {% assign section_blocks = section.blocks %}
+      {% for block in section_blocks %}
+         <div class="item">
+            <div class="img">
+               <img src="{{ block.settings.item-image | img_url: 'master' }}">
+            </div>
+            <div class="txt">
+               <h3>{{ block.settings.item-text }}</h3>
+            </div>
+         </div>
+      {% endfor %}
+   </div>
+</div>
+
+{% schema %}
+{
+  "name": "special-features",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "item-image",
+          "label": "Image",
+          "info": "Select an image"
+        },
+        {
+          "type": "text",
+          "id": "item-text",
+          "label": "Text",
+          "default": "Please enter text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Special Features"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+@font-face {
+    font-family: YesevaOneRegular;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414);
+  }
+  
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  
+  .only_mobile{
+    display: none;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .text-container .text1 {
+    text-align: center;
+  }
+  
+  .text-container .text2 {
+    text-align: center;
+    padding: 0 15px;
+  }
+  
+  .text-container .text1 h1 {
+    color: #FF4545;
+    font-family: Poppins;
+    font-size: 66px;
+  }
+  
+  .text-container .text2 h2 {
+    font-family: wild_mango;
+    color: #FF4545;
+    font-size: 40px;
+    margin: 7px 0;
+  }
+
+  @media ( max-width: 425px ){
+    .only_mobile{
+      display: block;
+    }
+
+    .only_desktop{
+      display: none;
+    }
+  }
+  
+  @media (max-width: 609px) {
+    .text-container .text1 h1 {
+      font-size: 40px;
+    }
+  
+    .text-container .text2 h2 {
+      font-size: 21px;
+    }
+  }
+  
+  @media (min-width: 610px) and (max-width: 900px) {
+    .text-container .text1 h1 {
+      font-size: 55px;
+    }
+  
+    .text-container .text2 h2 {
+      font-size: 34px;
+    }
+  }

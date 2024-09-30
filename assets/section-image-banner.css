@@ -6,16 +6,23 @@
   isolation: isolate;
 }
 
-.banner__box {
-  text-align: center;
-}
-
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
 .banner__box.gradient {
   transform: perspective(0);
 }
 
 @media only screen and (max-width: 749px) {
+  .banner__content{
+    justify-content: left !important;
+  }
+  .banner__box {
+    text-align: center;
+    padding: 20px 15px !important;
+  }
+  
+  .banner__box h2{
+    margin: 0 !important;
+  }
   .banner--content-align-mobile-right .banner__box {
     text-align: right;
   }

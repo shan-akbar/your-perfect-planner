@@ -1,0 +1,59 @@
+@font-face {
+    font-family: YesevaOneRegular;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414);
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  .custum-text{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+  }
+  .text-heading2{
+    background-color: rgb(250,216,218);
+    text-align: center;
+    padding: 10px 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: rgb(255,69,69);
+    font-size: 53px; 
+    font-family: wild_mango;
+    width: 100%;
+
+  }
+  .text-heading{
+    color: #f87c92;
+    text-align: center;
+    font-size: 42px;
+    font-family: Poppins;
+    font-weight: bold;
+    max-width: 1220px;
+    padding: 10px 20px;
+    margin: 0;
+  }
+  .text-heading3{
+    background-color: rgb(246,183,138);
+    text-align: center;
+    color: rgb(255,255,255);
+    font-size: 54px;
+    padding: 10px 20px;
+    font-family:  'wild_mango';
+    width:100%;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .text-heading {
+      font-size: 18px;
+    }
+    .text-heading2 {
+      font-size: 24px;
+    }
+    .text-heading3 {
+      font-size: 20px; 
+    }
+  }
+  
+  

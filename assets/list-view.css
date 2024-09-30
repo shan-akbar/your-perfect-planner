@@ -1,0 +1,135 @@
+@font-face {
+    font-family: YesevaOneRegular;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414);
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  .view-list{
+     background-color: #FDF1F0;
+  }
+  .list-container{
+    margin-left: 5px;
+    padding-left: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    max-width: 930px;
+    margin: auto;
+  }
+  .list-container .list-item{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .list-container .list-item p{
+    margin: 0;
+  }
+
+  .list-container .list-item p:first-child{
+      height: 35px;
+      width: 35px;
+      background-color: #ff4545;
+      border: transparent;
+      border-radius: 50%;
+      font-family: wild-mango;
+      text-align: center;
+      font-weight: 700;
+      color: #fff;
+      padding: 2px 0;
+      font-size: 18px;
+  }
+  
+  .list-container .list-item p:nth-child(2){
+    color: #FF4545;
+    font-size: 25px;
+    font-family: Poppins;
+  }
+  
+  .list-bottom-btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 27px;
+  }
+
+  .list-bottom-btn .btn a{
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: Poppins;
+    background-color:#FF4545;
+    border-radius:100px;
+    font-size:30px;
+    border: 2px solid #FF4545;
+    cursor: pointer;
+    transition:all ease-in-out 0.4s;
+    text-decoration: none;
+  }
+  
+  .list-bottom-btn .btn a:hover{
+     background-color: white;
+     color: #FF4545;
+  }
+  
+  @media (min-width: 579px) and (max-width: 902px){
+    .list-container {
+      gap: 13px;
+    }
+    .list-container .list-item {
+      gap: 11px;
+      
+    }
+    .list-container .list-item p:first-child {
+      font-size: 13px;
+      padding: 3px 0px;
+      height: 30px;
+      width: 30px;
+    }
+    .list-container .list-item p:nth-child(2) {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .list-bottom-btn .btn a {
+      padding-left: 25px;
+      padding-right: 25px;
+      font-size: 16px;
+    }
+  }
+
+  
+  
+  @media (max-width: 578px){
+    .list-bottom-btn{
+      margin-top: 10px;
+    }
+    .list-container {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+    
+    .list-container .list-item{
+      margin-bottom: 11px;
+    }
+
+    .list-container .list-item p:nth-child(2) {
+      font-size: 11px; 
+      line-height: 1.4;
+    }
+    
+    .list-container .list-item p:first-child { 
+      padding: 3px 0;
+      font-size: 13px;
+      height: 30px;
+      max-width: 30px;
+      max-height: 30px; 
+    }
+    
+    .list-bottom-btn .btn a{
+      font-size: 12px;
+        padding: 3px 15px;
+    }
+    
+}

@@ -76,9 +76,15 @@
                   </th>
                 </tr>
               </thead>
-
+             
               <tbody>
                 {%- for item in cart.items -%}
+                  {% assign custom_price = 0 %}
+                  {% for property in item.properties %}
+                  {% if property.first == "_custom_price" %}
+                    {% assign custom_price = property.last | times: 100 %}
+                  {% endif %}
+                {% endfor %}
                   <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                     <td class="cart-item__media">
                       {% if item.image %}
@@ -121,7 +127,11 @@
                         </div>
                       {%- else -%}
                         <div class="product-option">
-                          {{ item.original_price | money }}
+                          {% if custom_price == 0 %}
+                            {{ item.original_price | money }}
+                          {% else %}
+                            {{ custom_price | money_with_currency }}
+                          {% endif %}
                         </div>
                       {%- endif -%}
 
@@ -138,8 +148,9 @@
                               </div>
                             {%- endfor -%}
                           {%- endif -%}
-
+                     
                           {%- for property in item.properties -%}
+                           
                             {%- assign property_first_char = property.first | slice: 0 -%}
                             {%- if property.last != blank and property_first_char != '_' -%}
                               <div class="product-option">
@@ -193,7 +204,11 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% if custom_price == 0 %}
+                              {{ item.original_line_price | money }}
+                            {% else %}
+                              {{ custom_price | times: item.quantity | money_with_currency }}
+                            {% endif %}
                           </span>
                         {%- endif -%}
 
@@ -408,7 +423,11 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% if custom_price == 0 %}
+                              {{ item.original_line_price | money }}
+                            {% else %}
+                              {{ custom_price | times: item.quantity | money_with_currency }}
+                            {% endif %}
                           </span>
                         {%- endif -%}
 

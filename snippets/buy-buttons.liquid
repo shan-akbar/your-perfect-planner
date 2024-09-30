@@ -24,6 +24,34 @@
       endif
     -%}
 
+    <style>
+      .custom-pages__button{
+        background-color: #FF4545;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 7px;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .custom-pages__button:hover{
+        opacity: 0.7;
+      }
+
+      .button:after, .shopify-challenge__button:after, .customer button:after, .shopify-payment-button__button--unbranded:after{
+        box-shadow: none !important;
+      }
+
+      .button:not([disabled]):hover:after, .shopify-challenge__button:hover:after, .customer button:hover:after, .shopify-payment-button__button--unbranded:hover:after{
+        box-shadow: none !important;
+      }
+
+      .shopify-cleanslate > div{
+        border-radius: 7px !important;
+      }
+    </style>
+
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -60,7 +88,7 @@
           {% endif %}
           class="product-variant-id"
         >
-
+      
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
@@ -79,7 +107,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            class="custom-pages__button product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
               disabled
             {% endif %}

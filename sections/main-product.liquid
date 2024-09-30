@@ -9,6 +9,7 @@
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-product-description.css' | asset_url | stylesheet_tag }}
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
@@ -19,9 +20,24 @@
   {%- endif -%}
 
   {%- style -%}
+  @font-face {
+      font-family: 'poopins-regular'; 
+      src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
+  }
+
+    @font-face {
+        font-family: 'poopins-bold'; 
+        src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
+    }
+    .product__title h1{
+      font-weight: bold;
+    }
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    .product__accordion.accordion{
+      max-width: 460px;
     }
 
     @media screen and (min-width: 750px) {
@@ -185,11 +201,7 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                    {{ product.description }}
-                  </div>
-                {%- endif -%}
+                {{ product.description }}
               {%- when 'sku' -%}
                 <p
                   class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: wild_mango;
+  src: url("https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Wild_Mango.otf?v=1724702103");
+}
+
 .collection-hero__inner {
   display: flex;
   flex-direction: column;
@@ -37,6 +42,10 @@
 
 .collection-hero__title {
   margin: 2.5rem 0;
+  background-color: #fad8da;
+  color: #ff4545;
+  font-family: wild_mango;
+  padding: 10px 20px;
 }
 
 .collection-hero__title + .collection-hero__description {

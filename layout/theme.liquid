@@ -252,6 +252,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'home-page.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -280,6 +281,9 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+<script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "nwcpydlqqg"); </script>
+
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -349,5 +353,44 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script>
+      
+     async function customCheckout(){
+      let responce = await fetch('/cart.js', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+      });
+      let cart = await responce.json();
+      
+      
+      let callCustomCheckout = false;
+      for(var i=0;i<cart.items.length;++i){
+        if(cart.items[i].id == 48218174325042 || cart.items[i].id == 49152979730738){
+          callCustomCheckout = true;
+        }
+      }
+      if(callCustomCheckout){
+        let responce = await fetch('https://api.yourperfectplanner.com.au/checkoutLink', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cart: cart
+            }),
+            mode: 'cors'
+        });
+  
+        let data = await responce.json();
+        let invoice_url = data.invoice_url;
+        window.location.href = invoice_url;
+      }else{
+        window.location.href = "/checkout";
+      }
+    }
+  </script>
   </body>
 </html>

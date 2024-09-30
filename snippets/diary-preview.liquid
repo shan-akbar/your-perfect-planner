@@ -15,13 +15,30 @@
     }
 </script>
 
+<style>
+
+    .diary-loading-spinner_hidden{
+        display: none !important;
+    }
+
+    .diary-loading_spinner{
+        width: 100px !important;
+        position: absolute;
+        top: 6%;
+        /* margin: 0 auto; */
+        right: 4%;    
+    }
+
+</style>
+
+
 {% for i in (1..3) %}
     {% if i == 1 %}
-        {% assign diary_pages_temp = product.metafields.custom.diary_pages.value %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_default_set_1.value %}
     {% elsif i == 2 %}
-        {% assign diary_pages_temp = product.metafields.custom.diary_pages_2.value %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_default_set_2.value %}
     {% elsif i == 3 %}
-        {% assign diary_pages_temp = product.metafields.custom.diary_pages_3.value %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_default_set_3.value %} 
     {% endif %}
 
     {%- paginate diary_pages_temp by 128 -%}
@@ -31,44 +48,187 @@
     
 {% endfor %}
 
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_1_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_1_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_1_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_1 = diary_pages_layout_1 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_2_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_2_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_2_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_2 = diary_pages_layout_2 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_3_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_3_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_3_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_3 = diary_pages_layout_3 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_4_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_4_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_4_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_4 = diary_pages_layout_4 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_5_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_5_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_5_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_5 = diary_pages_layout_5 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_6_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_6_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_6_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_6 = diary_pages_layout_6 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_7_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_7_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_7_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_7 = diary_pages_layout_7 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
+{% for i in (1..3) %}
+    {% if i == 1 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_8_set_1.value %}
+    {% elsif i == 2 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_8_set_2.value %}
+    {% elsif i == 3 %}
+        {% assign diary_pages_temp = product.metafields.custom.planner_pages_layout_8_set_3.value %} 
+    {% endif %}
+
+    {%- paginate diary_pages_temp by 128 -%}
+        {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
+        {%  assign diary_pages_layout_8 = diary_pages_layout_8 | concat: diary_pages_temp %}
+    {%- endpaginate -%}
+    
+{% endfor %}
+
    {% assign date_range_block = blocks | where: "type", "planner_date_range" %}
     <script>
+        let currently_selected_layout = 1;
+        let all_layouts = [];
+        let all_monthly_double_pages = [];
+        all_layouts.push({{ diary_pages_layout_1 | json}});
+        all_layouts.push({{ diary_pages_layout_2 | json}});
+        all_layouts.push({{ diary_pages_layout_3 | json}});
+        all_layouts.push({{ diary_pages_layout_4 | json}});
+        all_layouts.push({{ diary_pages_layout_5 | json}});
+        all_layouts.push({{ diary_pages_layout_6 | json}});
+        all_layouts.push({{ diary_pages_layout_7 | json}});
+        all_layouts.push({{ diary_pages_layout_8 | json}});
         let start_date = {{ date_range_block[0].settings.start_date | json }};
         let current_date = new Date(start_date);
         let diary_pages = [];
         let diary_pages_backup = [];
-        {% for diary_page in diary_pages %}
-
-            {% assign page_type = 'day' %}
-            {% if forloop.first or forloop.last %}
-                {% assign page_type = 'outer_cover' %}
-                diary_pages.push({page_type: {{ page_type | json }}, date: '' ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                diary_pages_backup.push({page_type: {{ page_type | json }}, date: '' ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-            {% else %}
+        
+        diary_pages.push({page_type: 'outer_cover', date: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1712317285"});
+        diary_pages_backup.push({page_type: 'outer_cover', date: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1712317285" });
+        {% assign page_type = 'day' %}
+        {% for diary_page in diary_pages_layout_1 %}
+        
                 diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date) ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
                 diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date) ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
                 current_date.setDate(current_date.getDate() + 1);
-            {% endif %}
-            
            
         {% endfor %}
+
+        diary_pages.push({page_type: 'outer_cover', date: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1712386693"});
+        diary_pages_backup.push({page_type: 'outer_cover', date: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1712386693" });
     </script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
 <div class="diary-wrapper">
-  
+    <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
+        <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
   <div class="diary-flip">
 
-        {% for index in (1..1000) %}
+        
+        {% for index in (1..3000) %}
             
                 
-        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 1000 | minus: index }};" data-pageindex="{{index}}"> 
+        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 3000 | minus: index }};" data-pageindex="{{index}}"> 
                     <div class="diary-flip_back">
-                        <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/blank-page.jpg?v=1716241450" class="back-page">
+                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES_58c38999-93f0-4c1b-b0c1-76bdfce1beeb.png?v=1724967707" class="back-page" loading="lazy">
                         <label class="diary-flip_back-btn">Prev</label>
                     </div>
                     <div class="diary-flip_front">
-                        <img src="{{ diary_pages[0] | image_url: width: diary_pages[0].width }}" class="front-page">
+                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1712317285" class="front-page" loading="lazy">
                         <label class="diary-flip_next-btn">NEXT</label>
                     </div>
         </div>
@@ -114,10 +274,10 @@
 
         diary_pages = updated_pages;
 
-            let inputs = document.querySelectorAll('input[type=checkbox]');
+            let inputs = document.querySelectorAll('input[type=number].page-qty__input ');
  
             for (let i = 0; i < inputs.length; i++) {
-                inputs[i].checked = false;
+                inputs[i].value = 0;
             }
 
         renderPages();
@@ -131,6 +291,11 @@
         let end_date_element = document.getElementById("end_date");
         let start_date = start_date_element.value;
         let end_date = end_date_element.value;
+
+        let start_date_fixed = document.querySelector('.planner-date__range').getAttribute('data-startdate');
+        let end_date_fixed = document.querySelector('.planner-date__range').getAttribute('data-enddate');
+
+
         if(!start_date){
             start_date = document.querySelector('.planner-date__range').getAttribute('data-startdate');
         }
@@ -141,8 +306,11 @@
 
         let start_date_obj = new Date(start_date);
         let end_date_obj = new Date(end_date);
+        let start_date_fixed_obj = new Date(start_date_fixed);
+        let end_date_fixed_obj = new Date(end_date_fixed);
+        
         let error__message = document.querySelector(".date-range-error__message");
-        if(start_date_obj > end_date_obj){
+        if(start_date_obj > end_date_obj || start_date_obj < start_date_fixed_obj || end_date_obj > end_date_fixed_obj){
             
             error__message.style.display = "block";
             if(target.isSameNode(start_date_element)){
@@ -152,6 +320,18 @@
                 end_date_element.value = start_date_element.value;
                 error__message.innerHTML = "End Date canot be before the start date!"
             }
+
+            if(start_date_obj < start_date_fixed_obj){
+                start_date_element.value = start_date_fixed;
+                error__message.innerHTML = "Start Date cannot be older then " + start_date_fixed;
+            }
+
+            if(end_date_obj > end_date_fixed_obj){
+                end_date_element.value = end_date_fixed;
+                error__message.innerHTML = "End Date cannot be larger then " + end_date_fixed;
+            }
+
+            
 
             setTimeout(
                 function(error__message) {
@@ -165,12 +345,55 @@
 
     }
 
+    function isEvenNumber(number){
+        if(number % 2 == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function remove_neutral_pages(){
+        let pages_length = diary_pages.length;
+        let updated_pages = [];
+        for(var i=0;i<pages_length;++i){
+            if(diary_pages[i].page_type != 'neutral_page'){
+                updated_pages.push(diary_pages[i]);
+            }
+        }
+
+        diary_pages = updated_pages;
+    }
     
+    function neutralize_pages(){
+       
+        let new_updated_pages = [];
+        let new_index = 0;
+        let pages_length = diary_pages.length;
+        for(var i=0; i<pages_length; ++i){
+            
+            if(isEvenNumber(new_index) && diary_pages[i].page_side == 1){
+                new_updated_pages.push({
+                    page_type: 'neutral_page', 
+                    date: '' ,
+                    page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES_58c38999-93f0-4c1b-b0c1-76bdfce1beeb.png?v=1724967707"
+                });
+
+                ++new_index;
+            }
+
+            new_updated_pages.push(diary_pages[i]);
+            ++new_index;
+        }
+        diary_pages = new_updated_pages;
+    }
    
     function renderPages(){
-
+        remove_neutral_pages();
+        neutralize_pages();
+        diary_pages.splice(diary_pages.length-1, 0, {page_type:"copyright", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024_2f27d5bd-036f-4e40-8402-801876859e9e.png?v=1724968018" });
         if(diary_pages.length % 2 != 0){
-            diary_pages.splice(diary_pages.length-1, 0, {page_type:"blank", page_url:"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/blank-page.jpg?v=1716241450" });
+            diary_pages.splice(diary_pages.length-2, 0, {page_type:"blank", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES_58c38999-93f0-4c1b-b0c1-76bdfce1beeb.png?v=1724967707" });
         }
 
         let old_last_page = document.querySelector(".diary-flip_page.last__page");
@@ -182,7 +405,7 @@
         let last_page = pages_preview[pages_length - 1];
         let second_last_page = pages_preview[pages_length - 2];
         last_page.classList.add("last__page"); 
-        second_last_page.classList.add("second_last__page");
+        second_last_page?.classList.add("second_last__page");
         let side_index = 0;
         let run_pointer_fix = true;
         for(var i=0; i<pages_length; ++i){    
@@ -213,7 +436,7 @@
                     if(after_next_page.classList.contains('flipped')){
                         after_next_page.classList.remove('flipped');
                         let current_zindex = after_next_page.style.zIndex;
-                        after_next_page.style.zIndex = 1000-Number(current_zindex);
+                        after_next_page.style.zIndex = 3000-Number(current_zindex);
                     }
                     
                 }
@@ -224,7 +447,7 @@
                     if(after_after_next_page.classList.contains('flipped')){
                         after_after_next_page.classList.remove('flipped');
                         let current_zindex = after_after_next_page.style.zIndex;
-                        after_after_next_page.style.zIndex =  1000-Number(current_zindex);
+                        after_after_next_page.style.zIndex =  3000-Number(current_zindex);
                     }
                 }
             }
@@ -240,7 +463,7 @@
                 reverse_fix = true;
                 page.classList.remove("flipped");
                 let current_zindex = page.style.zIndex;
-                page.style.zIndex =  1000-Number(current_zindex);
+                page.style.zIndex =  3000-Number(current_zindex);
             }
         }
 
@@ -249,19 +472,19 @@
             if(last_page.classList.contains('flipped')){
                 last_page.classList.remove('flipped');
                 let current_zindex = last_page.style.zIndex;
-                last_page.style.zIndex =  1000-Number(current_zindex);
+                last_page.style.zIndex =  3000-Number(current_zindex);
             }
-            if(!second_last_page.classList.contains('flipped')){
+            if(!second_last_page?.classList.contains('flipped')){
                 second_last_page.classList.add('flipped');
                 let current_zindex = second_last_page.style.zIndex;
-                second_last_page.style.zIndex =  1000-Number(current_zindex);
+                second_last_page.style.zIndex =  3000-Number(current_zindex);
             }
-            second_last_page.classList.remove('display__none');
+            second_last_page?.classList.remove('display__none');
             let third_last_page = pages_preview[pages_length - 3];
             if(!third_last_page.classList.contains('flipped')){
                 third_last_page.classList.add('flipped');
                 let current_zindex = third_last_page.style.zIndex;
-                third_last_page.style.zIndex =  1000-Number(current_zindex);
+                third_last_page.style.zIndex =  3000-Number(current_zindex);
             }
             third_last_page.classList.remove('display__none');
         }
@@ -278,7 +501,9 @@
                 let unitPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-unitprice"));
                 let fixedAddedPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-fixedprice"));
                 let totalPrice = ((noOfPages * unitPrice) + fixedAddedPrice).toFixed(2);
-                priceTarget.innerHTML = "$" + totalPrice;
+                priceTarget.innerHTML = "$" + totalPrice + " AUD";
+                let customPriceProperty = document.getElementById("custom_price");
+                customPriceProperty.value = totalPrice;
                 clearInterval(myInterval);
             }
         }, 100);
@@ -291,7 +516,7 @@
 
     function extraPages(){
         let page_type = this.event.target.closest(".planner-custom-pages_wrapper").getAttribute("data-pagetype");
-
+        
         if(page_type == "front_cover"){
             frontCoverPages(this.event.target);
         }
@@ -301,12 +526,67 @@
         }
 
         if(page_type == "between_month"){
-            inBetweenMonthPages(this.event.target);
+            let element = this.event.target;
+            let double_pages_index = Number(element.closest('.page_item').getAttribute('data-index'));
+            let double_monthly_pages = all_monthly_double_pages[double_pages_index];
+            if(double_monthly_pages){
+                inBetweenMonthPagesDouble(this.event.target);
+            }else{
+                inBetweenMonthPages(this.event.target);
+            }
+            
         }
 
         if(page_type == "back_cover"){
             backCoverPages(this.event.target);
         }
+    }
+
+
+    function changePageLayout(){
+        
+        let target = this.event.target;
+        let layout_position = Number(target.getAttribute("data-layoutposition"));
+        if(layout_position != currently_selected_layout){
+            let diary_loading_spinner = document.querySelector('.diary-loading_spinner');
+            diary_loading_spinner.classList.remove('diary-loading-spinner_hidden');
+            let layout_pages = all_layouts[layout_position-1];
+            let page_index = 0;
+            let diary_pages_length = diary_pages.length;
+            for(var i=0;i<diary_pages_length;++i){
+                if(diary_pages[i].page_type == "day"){
+                    diary_pages[i].page_url = layout_pages[page_index];
+                    ++page_index;
+                }
+            }
+            
+            page_index = 0;
+            for(var i=0;i<diary_pages_backup.length;++i){
+                if(diary_pages_backup[i].page_type == "day"){
+                    diary_pages_backup[i].page_url = layout_pages[page_index];
+                    ++page_index;
+                }
+            }
+
+            let start_date_element = document.getElementById("start_date");
+            let end_date_element = document.getElementById("end_date");
+            let start_date = start_date_element.value;
+            let end_date = end_date_element.value;
+
+            if(start_date || end_date){
+                updateDiaryPages();
+            }else{
+                renderPages();
+            }
+
+            setTimeout(function(){
+                let diary_loading_spinner = document.querySelector('.diary-loading_spinner');
+                diary_loading_spinner.classList.add('diary-loading-spinner_hidden');
+            }, 14000);
+            
+            currently_selected_layout = layout_position;
+        }
+
     }
 
     function frontCoverPages(element){
@@ -315,8 +595,9 @@
         let pages_length = diary_pages.length;
         let updated_pages = [];
         let cover_added = false;
-        if(element.checked){
-            for(var i=0;i<pages_length;++i){
+        let updateType = element.getAttribute('data-updatetype');
+        if(updateType == 'plus'){
+            for(var i=0; i<pages_length; ++i){
                 if(diary_pages[i].page_type != "outer_cover" && diary_pages[i].page_type != "inner_cover_front" && !cover_added){
                     cover_added = true;
                     updated_pages.push({page_type: "inner_cover_front", page_url: image_front });
@@ -325,22 +606,32 @@
                     }
                 }
 
-                if(diary_pages[i].page_type != "blank"){
+                if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                     updated_pages.push(diary_pages[i]);
                 }
 
             }
         }else{
-            for(var i=0;i<pages_length;++i){
-                if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'inner_cover_front'){
-                    continue;
+            let noOfRemoved = 0;
+            let needToRemove = 1;
+            if(image_back){
+                needToRemove = 2;
+            }
+            for(var i=0; i<pages_length; ++i){
+                if(noOfRemoved < needToRemove){
+                    if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'inner_cover_front'){
+                    ++noOfRemoved;
+                    }else{
+                        
+                        if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                            updated_pages.push(diary_pages[i]);
+                        }
+                    }
                 }else{
-                    
-                    if(diary_pages[i].page_type != "blank"){
+                    if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                         updated_pages.push(diary_pages[i]);
                     }
                 }
-            
             }
         }
 
@@ -352,8 +643,9 @@
         let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
         let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
         let pages_length = diary_pages.length;
+        let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
-        if(element.checked){
+        if(updateType == 'plus'){
             let day_page_counter = -1; 
             for(var i=0 ; i < pages_length ; ++i){
                 if(day_page_counter == 7 && diary_pages[i].page_type != "week"){
@@ -364,7 +656,7 @@
                     day_page_counter = 0;
                 }
 
-                if(diary_pages[i].page_type != "blank"){
+                if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                     updated_pages.push(diary_pages[i]);
                 }
 
@@ -380,16 +672,30 @@
             }
            
         }else{
-            for(var i=0;i<pages_length;++i){
-                if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'week'){
-                    continue;
-                }else{
-                    if(diary_pages[i].page_type != "blank"){
-                        updated_pages.push(diary_pages[i]);
+            let noOfRemoved = 0;
+            let needToRemove = 1;
+            if(image_back){
+                needToRemove = 2;
+            }
+           
+                for(var i=0; i<pages_length; ++i){
+                    if(noOfRemoved < needToRemove){
+                        if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'week'){
+                            ++noOfRemoved;
+                        }else{
+                            if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                                updated_pages.push(diary_pages[i]);
+                            }
+                        }
+                    }else{
+                        if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                            updated_pages.push(diary_pages[i]);
+                        }
+                        if(diary_pages[i].page_type != "week"){
+                            noOfRemoved = 0;
+                        }
                     }
                 }
-            
-            }
         }
         diary_pages = updated_pages;
         renderPages();
@@ -403,13 +709,14 @@
         let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
         let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
         let pages_length = diary_pages.length;
+        let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
-        if(element.checked){
+        if(updateType == "plus"){
             let current_month = 1;
             let day_counter = -1;
             let days_in_current_month = 30;
             let current_year = 0;
-            for(var i=0;i<pages_length;++i){
+            for(var i=0; i<pages_length; ++i){
                 
                 if(day_counter == days_in_current_month){
                     if(diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month"){
@@ -424,7 +731,7 @@
                     }
                 }
 
-                if(diary_pages[i].page_type != "blank"){
+                if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                     updated_pages.push(diary_pages[i]);
                 }
 
@@ -443,15 +750,87 @@
                 }
             }
         }else{
-            for(var i=0;i<pages_length;++i){
-                if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'month'){
-                    continue;
+            let noOfRemoved = 0;
+            let needToRemove = 1;
+            if(image_back){
+                needToRemove = 2;
+            }
+            
+            for(var i=0; i<pages_length; ++i){
+                if(noOfRemoved < needToRemove){
+                    if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'month'){
+                        ++noOfRemoved;
+                    }else{
+                        if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                            updated_pages.push(diary_pages[i]);
+                        }
+                    }
                 }else{
-                    if(diary_pages[i].page_type != "blank"){
+                    if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                         updated_pages.push(diary_pages[i]);
                     }
+                    if(diary_pages[i].page_type != "month"){
+                        noOfRemoved = 0;
+                    }
                 }
-            
+            }
+        }
+        diary_pages = updated_pages;
+        renderPages();
+    }
+
+    function inBetweenMonthPagesDouble(element){
+        let double_pages_index = Number(element.closest('.page_item').getAttribute('data-index'));
+        let double_monthly_pages = all_monthly_double_pages[double_pages_index];
+       
+        let access_index = 0;
+        let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
+        let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
+        let pages_length = diary_pages.length;
+        let updateType = element.getAttribute('data-updatetype');
+        let updated_pages = [];
+        if(updateType == "plus"){
+            let current_month = 1;
+            let day_counter = 1;
+            let days_in_current_month = 30;
+            let current_year = 0;
+            for(var i=0; i<pages_length; ++i){
+                let current_date = new Date(diary_pages[i].date);
+                day_counter = current_date.getDate();
+                if(day_counter == 1){
+                   
+                        image_front = double_monthly_pages[access_index];
+                        image_back = double_monthly_pages[access_index + 1];
+                        access_index = access_index + 2;
+                        updated_pages.push({page_type: "month", page_url: image_front, page_side: 1 });
+                        if(image_back){
+                            updated_pages.push({page_type: "month", page_url: image_back, page_side: 2 });
+                        }
+                        
+                    
+                }
+
+                if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                    updated_pages.push(diary_pages[i]);
+                }
+
+            }
+        }else{
+            let front_removed = false;
+            let back_removed = false;
+            for(var i=0; i<pages_length; ++i){
+                    
+                    image_front = double_monthly_pages[access_index];
+                    image_back = double_monthly_pages[access_index + 1];
+
+                    if((diary_pages[i].page_url == image_front && diary_pages[i+1].page_url == image_back) && diary_pages[i].page_type == 'month'){
+                        access_index = access_index + 2;
+                        ++i;
+                    }else{
+                        if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                            updated_pages.push(diary_pages[i]);
+                        }
+                    }
             }
         }
         diary_pages = updated_pages;
@@ -462,35 +841,49 @@
         let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
         let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
         let pages_length = diary_pages.length;
+        let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
-
-        if(element.checked){
-            if(diary_pages[pages_length-2].page_type == "blank"){
-                diary_pages[pages_length-2] = {page_type:"inner_cover_back", page_url: image_front };
-                if(image_back){
-                    diary_pages[pages_length-2] = {page_type:"inner_cover_back", page_url: image_back };
-                }
-            }else{
-                diary_pages.splice(diary_pages.length-1, 0, {page_type:"inner_cover_back", page_url: image_front });
-                if(image_back){
-                    diary_pages.splice(diary_pages.length-1, 0, {page_type:"inner_cover_back", page_url: image_back });
+        
+        if(updateType == "plus"){
+            let page_added = false;
+            for(var i=0;i<pages_length;++i){
+                if(diary_pages[i].page_type !='blank' && diary_pages[i].page_type !='copyright'){
+                    updated_pages.push(diary_pages[i]);
+                }else{
+                    if(!page_added){
+                        updated_pages.push({page_type:"inner_cover_back", page_url: image_front });
+                        if(image_back){
+                            updated_pages.push({page_type:"inner_cover_back", page_url: image_back });
+                        }
+                        page_added = true;
+                    }
                 }
             }
         }else{
+            let noOfRemoved = 0;
+            let needToRemove = 1;
+            if(image_back){
+                needToRemove = 2;
+            }
             for(var i=0;i<pages_length;++i){
-                if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'inner_cover_back'){
-                    continue;
+                if(noOfRemoved < needToRemove){
+                    if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'inner_cover_back'){
+                        ++noOfRemoved;
+                    }else{
+                        if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
+                            updated_pages.push(diary_pages[i]);
+                        }
+                    }
                 }else{
-                    if(diary_pages[i].page_type != "blank"){
+                    if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                         updated_pages.push(diary_pages[i]);
                     }
                 }
-            
             }
-            diary_pages = updated_pages;
+            
         }
         
-        
+        diary_pages = updated_pages;
         renderPages();
     }
 

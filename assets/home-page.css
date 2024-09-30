@@ -1,0 +1,21 @@
+@font-face {
+    font-family: wild_mango;
+    src: url("https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Wild_Mango.otf?v=1724702103");
+}
+h2.banner__heading.inline-richtext{
+    font-family: 'wild_mango'!important;
+    max-width: 491px;
+}
+
+
+@media (max-width: 768px){
+    h2.banner__heading.inline-richtext{
+        font-size: 30px;
+        margin: 0 auto;
+        max-width: 230px;
+    }
+
+    .banner__media.media img{
+        object-position: center right;
+    }
+}

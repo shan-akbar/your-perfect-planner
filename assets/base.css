@@ -2278,11 +2278,18 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 .announcement-bar__message {
+  font-size: 30px;
   text-align: center;
   padding: 1rem 0;
   margin: 0;
   letter-spacing: 0.1rem;
   min-height: 3.8rem;
+}
+
+@media (max-width: 768px){
+  .announcement-bar__message{
+    font-size: 19px;
+  }
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,

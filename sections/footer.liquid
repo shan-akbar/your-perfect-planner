@@ -6,6 +6,17 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .copyright__contact p{
+    color: white !important;
+    font-size: 18px;
+    word-break: break-word;
+  }
+  @media (max-width: 600px){
+    .copyright__contact p{
+      font-size: 14px;
+    }
+  }
+
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
@@ -100,6 +111,10 @@
                         {%- endfor -%}
                       </ul>
                     {%- endif -%}
+                    <div class="copyright__contact">
+                      <p style="margin-bottom:0;">{{ section.settings.contact_email }}</p>
+                      <p style="margin-bottom:0;margin-top:0">Copyright &copy; {{ 'now' | date: '%Y' }}, {{ shop.name -}}.</p>
+                    </div>
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_image != blank -%}
@@ -350,10 +365,10 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
-        <small class="copyright__content"
+        {% comment %} <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
+        <small class="copyright__content">{{ powered_by_link }}</small> {% endcomment %}
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
@@ -490,6 +505,12 @@
       "type": "header",
       "content": "t:sections.footer.settings.header__1.content",
       "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email",
+      "default": "HELLO@YOURPERFECTPLANNER.COM.AU"
     },
     {
       "type": "checkbox",

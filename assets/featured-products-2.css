@@ -1,0 +1,131 @@
+@font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    column-gap: 135px;
+  }
+
+  .container .item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .container .item .btn{
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 308px;
+  }
+
+  .container .item .btn a{
+      background-color: #ff4545;
+      color: #fdf1f0;
+      border-radius: 100px;
+      font-size: 28px;
+      font-family: Poppins;
+      font-weight: bold;
+      text-align: center;
+      padding: 7px 30px;
+      border:2px solid #ff4545;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+  }
+
+  .container .item .btn a:hover{
+    cursor: pointer;
+     background-color: white;
+    color: #ff4545;
+    transition: linear ease-in-out 0.4s;
+   
+  }
+  
+  .container .item .product{
+    position: relative;
+    max-width: 400px;
+  }
+
+  .container .item .product img{
+    width: 100%;
+    height: 100%;
+  }
+
+  .container .item .product .product-text{
+    position: absolute;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index:1;
+      width: 360px;
+  }
+
+  .container .item .product .product-text h2{
+    font-size: 26px;
+    color: rgb(255,69,69);
+    font-family: Poppins;
+    font-weight: bold;
+  }
+
+  @media(max-width: 867px){
+    .container{
+      column-gap: 20px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .container .item .btn{
+      max-width: 133px;
+    }
+    .container {
+      padding: 15px 15px;
+  }
+    
+   .container .item {
+      width: 50%;
+  }
+    
+  .container .item .product .product-text {
+    width: 63%;
+    top: 38%;
+    left: 46%;
+  }  
+  
+  .container .item .product .product-text h2 {
+      font-size: 13px;
+  }
+
+   .container .item .btn a {
+       font-size: 16px;
+       padding: 5px;
+  }
+  
+  }
+
+  
+  @media (min-width: 601px) and (max-width: 900px) {
+     
+    .container .item {
+    width: 50%;
+  }
+    .container .item .product .product-text {
+    width: 63%;
+    top: 38%;
+    left: 46%;
+    }  
+    .container .item .product .product-text h2 {
+      font-size: 13px;
+  }
+   .container .item .btn a {
+       font-size: 20px;
+    }
+  }
+  
+  

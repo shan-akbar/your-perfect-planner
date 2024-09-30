@@ -2,17 +2,203 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "form": {
+    "contact_form_2_sec1_WeHrWp": {
+      "type": "contact-form-2-sec1",
+      "blocks": {
+        "accordion_fWzTHY": {
+          "type": "accordion",
+          "settings": {
+            "question": "Is there different covers to choose from?",
+            "answer": "<p>At this stage; no. It’s definitely something that’s on the list for the near future. For full transparency, the planner hard covers are one of very few things manufactured overseas. Unlike the planner pages, the covers require a very high minimum order quantity and take a long time to arrive at our office so it’s not something that easily customisable like our planners themselves. We do offer vinyl decals to personalise your planner, you can find them <a href=\"\/products\/custom-sticker\" title=\"Custom Sticker\">here<\/a>. Otherwise, make sure you’re subscribed to our email list to be the first to know when new cover designs are available.<\/p>"
+          }
+        },
+        "accordion_4xLKyK": {
+          "type": "accordion",
+          "settings": {
+            "question": "I’d really like an extra page for _____. Can you make one?",
+            "answer": "<p>Yes!* We’re open to custom page requests. If it’s something we believe other people will want, we’re more than happy to create it for you. If it’s something that’s extremely niche and\/or we don’t see other customers wanting this sort of page, there may be a small design fee that you’ll need to pay.<\/p><p>To request a new page design please email us at hello@yourperfectplanner.com.au<\/p>"
+          }
+        },
+        "accordion_78FNrW": {
+          "type": "accordion",
+          "settings": {
+            "question": "Can I provide my own page designs for you to make my planner with?",
+            "answer": "<p>Yes! If you want to provide your own design for your planner, you’re welcome to. If you can provide it in a PDF, sized correctly, suitable margins and it’s ready to print, there will be no extra fees, you’ll just be charged the normally planner price based off how many pages you have. If your design requires any design alterations such as rearranging pages, size adjustments etc, there will be a small fee for you to cover.<\/p><p>Email us at hello@yourperfectplanner.com.au<\/p>"
+          }
+        },
+        "accordion_EcWt94": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do I have to get a planner that covers a whole year or can it have a custom date range?",
+            "answer": "<p>You can choose exactly when your planner starts and ends! When you click on the planner product, you have the option to select the start date and end date of your planner.<\/p>"
+          }
+        },
+        "accordion_7dYzTE": {
+          "type": "accordion",
+          "settings": {
+            "question": "How thick are the planner pages? If I use highlighters on one page, can you see the ink on the back?",
+            "answer": "<p>The pages in our planners are 100gsm which is thicker than standard printer paper (usually 70-80gsm). Through our trialling process we found that ink from highlighters or gel pens do not show on the back of the page. Please note that this outcome could vary depending on your specific highlighter\/pen and colour.<\/p>"
+          }
+        },
+        "accordion_jgLgda": {
+          "type": "accordion",
+          "settings": {
+            "question": "When I choose one extra page to add in between each week, why does it automatically add another lined page? - for Weekly Planner",
+            "answer": "<p>Most Weekly Planner layouts are across a two page spread.That means if you're going to have one page inbetween each week, it will make the layout uneven. Therefore there needs to be an even number of insert pages.<\/p>"
+          }
+        },
+        "accordion_dfhFdt": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do you sell gift cards?",
+            "answer": "<p>Yes! Find them <a href=\"\/products\/your-perfect-planner-gift-card\" title=\"Your Perfect Planner Gift Card\">here<\/a><\/p>"
+          }
+        },
+        "accordion_LmGNVd": {
+          "type": "accordion",
+          "settings": {
+            "question": "Can I buy a 2024 planner?",
+            "answer": "<p>2024 planners are not available to purchase on our website, however if you'd like one that covers the last few months of the year, please email us at hello@yourperfectplanner.com.au and we can explain your options<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_fWzTHY",
+        "accordion_4xLKyK",
+        "accordion_78FNrW",
+        "accordion_EcWt94",
+        "accordion_7dYzTE",
+        "accordion_jgLgda",
+        "accordion_dfhFdt",
+        "accordion_LmGNVd"
+      ],
+      "settings": {
+        "Heading_text_1": "You're Welcome To Contact Us",
+        "Heading_text_2": "BUT WE MAY ALREADY HAVE YOUR ANSWER IN OUR",
+        "Heading_text_3": "Frequently Asked Questions"
+      }
+    },
+    "contact_form2_sec2_JDrXMz": {
+      "type": "contact-form2-sec2",
+      "blocks": {
+        "accordion_W3baDf": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do you offer refunds?",
+            "answer": "<p>We offer refunds on our full priced non-customisable products such as our adhesive pen loops, pens, standard year sticker and monthly tab stickers that were purchased at full price. If you ordered a product on sale or using a discount code, you will be eligible for a store credit. We do not accept refunds on our planners due to the custom nature of them. Our planners are made to order exactly as you’ve built it on our website so we can’t resell them. This also applies to custom stickers and any other customisable products.<\/p><p>Read the full details of our Refund Policy <a href=\"\/policies\/refund-policy\" title=\"Refund Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_hMTRzr": {
+          "type": "accordion",
+          "settings": {
+            "question": "If I don’t like my planner, can I return it and get a refund?",
+            "answer": "<p>Due to the custom nature of our planners, we do not except refunds on or planners. Our planners are made to order exactly as you’ve built it on our website so we can’t resell them.<\/p><p>Read the full details of our Refund Policy <a href=\"\/policies\/refund-policy\" title=\"Refund Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_dnQzgY": {
+          "type": "accordion",
+          "settings": {
+            "question": "What do I do if I have received a faulty product?",
+            "answer": "<p>Please contact us at hello@yourperfectplanner.com.au or via the contact form below and please include your order number<\/p>"
+          }
+        },
+        "accordion_hMBUMK": {
+          "type": "accordion",
+          "settings": {
+            "question": "How long is your return period?",
+            "answer": "<p>Once your parcel arrives at your shipping address you have 30 days to send it back to us for a return.<\/p><p>Read the full details of our Refund Policy <a href=\"\/policies\/refund-policy\" title=\"Refund Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_EXnF8A": {
+          "type": "accordion",
+          "settings": {
+            "question": "Who pays the shipping cost for my return?",
+            "answer": "<p>Customers are responsible for paying the shipping cost if you choose to return your items.<\/p><p>Read the full details of our Refund Policy <a href=\"\/policies\/refund-policy\" title=\"Refund Policy\">here<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_W3baDf",
+        "accordion_hMTRzr",
+        "accordion_dnQzgY",
+        "accordion_hMBUMK",
+        "accordion_EXnF8A"
+      ],
+      "settings": {
+        "Heading_text_1": "Returns & Refunds"
+      }
+    },
+    "contact_form2_sec2_YXDUar": {
+      "type": "contact-form2-sec2",
+      "blocks": {
+        "accordion_A6NDnm": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do you offer free shipping?",
+            "answer": "<p>At this stage, we offer free shipping for all orders over $120 that are being shipped within Australia. If your order is under $120 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from$11.95.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_JETnYg": {
+          "type": "accordion",
+          "settings": {
+            "question": "How long after ordering will my order be shipped?",
+            "answer": "<p>We aim to get your order out within 14 business days. During busy sale periods or new product launches it may take us a little longer to get orders out due to the volume of orders. Please also remember that lots of our products are custom made to order, not just grabbed off a shelf so the dispatch time can vary.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_btriKd": {
+          "type": "accordion",
+          "settings": {
+            "question": "What shipping company do you use?",
+            "answer": "<p>All orders are shipped with Australia Post, Sendle, Aramex or Couriers Please (whatever is most economical for the product and receiver location). <\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_NjjfzD": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do you offer express shipping?",
+            "answer": "<p>Yes. Express shipping is available on all orders, just select the option at checkout.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+          }
+        },
+        "accordion_xbrX4k": {
+          "type": "accordion",
+          "settings": {
+            "question": "How much does international shipping cost?",
+            "answer": "<p>Shipping cost is based off both your order weight and shipping address. Please add the items to your cart and enter your shipping address to receive an accurate price.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_A6NDnm",
+        "accordion_JETnYg",
+        "accordion_btriKd",
+        "accordion_NjjfzD",
+        "accordion_xbrX4k"
+      ],
+      "settings": {
+        "Heading_text_1": "Shipping & Production Time"
+      }
+    },
+    "custom_text_section_PjPjAj": {
+      "type": "custom-text-section",
+      "settings": {
+        "first_heading": "",
+        "second_heading": "Contact Us",
+        "third_heading": "",
+        "third_heading_mobile": ""
+      }
+    },
+    "contact_form_fi8mQP": {
       "type": "contact-form",
       "settings": {
         "heading": "",
         "heading_size": "h1",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-4f744f48-1706-40e1-86f1-1685e592e315",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -20,6 +206,10 @@
   },
   "order": [
     "main",
-    "form"
+    "contact_form_2_sec1_WeHrWp",
+    "contact_form2_sec2_JDrXMz",
+    "contact_form2_sec2_YXDUar",
+    "custom_text_section_PjPjAj",
+    "contact_form_fi8mQP"
   ]
 }

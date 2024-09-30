@@ -10,6 +10,7 @@
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'custom-pages.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-product-description.css' | asset_url | stylesheet_tag }}
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
     {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
@@ -20,6 +21,15 @@
   {%- endif -%}
 
   {%- style -%}
+  @font-face {
+      font-family: 'poopins-regular'; 
+      src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
+  }
+
+    @font-face {
+        font-family: 'poopins-bold'; 
+        src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
+    }
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -27,10 +37,13 @@
 
     .diary-update__button{
       cursor: pointer;
-      background-color: black;
+      background-color: #FF4545;
       color: white;
       border-radius: 3px;
-      padding: 5px 15px;
+      padding: 8px 15px;
+      font-weight: bold;
+      border: none;
+      font-size: 15px;
     }
 
     .diary-update__button:hover{
@@ -40,6 +53,25 @@
     .date-range__note{
       font-size: 14px;
       color: black;
+    }
+
+    .hide-custom__element{
+      display: none !important;
+    }
+
+    .layout-page__checkbox{
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+
+    .planner-custom-pages_wrapper{
+      max-width: 400px;
+    }
+
+    .product__accordion.accordion{
+      max-width: 460px;
     }
 
     @media screen and (min-width: 750px) {
@@ -53,6 +85,8 @@
   <script src="{{ 'custom-pages.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+  
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -109,73 +143,233 @@
                   <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
                   <input type="date" id="end_date" name="end_date" min="{{ block.settings.start_date }}" max="{{ block.settings.end_date }}" onchange="handleDateRangeChange()">
                   <br>
-                  <span class="date-range__note">NOTE: Default dates are from 01/01/2025 to 12/31/2025</span>
-                  <p style="font-weight:bold;font-size:15px;color:blue;">After you have done selecting dates, then please click below button to update diary pages. Thanks!</p>
-                  <button class="diary-update__button" onclick="updateDiaryPages()">Update Diary</button>
+                  <span class="date-range__note">{{ block.settings.date_note }}</span>
+                  <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
+                  <button class="diary-update__button" onclick="updateDiaryPages()" >Update Diary</button>
                 </div>
+                <script>
+                 
+                  const startDate = document.querySelector('#start_date');
+                  startDate.value = {{ block.settings.start_date | json }};
+                  const endDate = document.querySelector('#end_date');
+                  endDate.value = {{ block.settings.end_date | json }};
+                  
+                </script>
               {% when 'planner_custom_pages' %}
                 <div class="planner-custom-pages_wrapper" data-pagetype="{{ block.settings.page_type }}">
                     <div class="planner-custom_pages">
                         <h2>{{ block.settings.title }}</h2>
+                        {% if block.settings.page_type == "layout_page" %}
+                          <label for="layout-page"></label>
+                        {% endif %}
+                        
                         <div class="planner-custom-pages_images">
                             {% if block.settings.page_1_image %}
-                              <div class="page_item" >
+                            <div class="page_item" data-index="0">
                                 
                                 {{ block.settings.page_1_image |  image_url: width: block.settings.page_1_image.width | image_tag : class: 'extra-image'}}
-                                <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="1" >
+                            
+                                {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" checked="checked" data-layoutposition="1" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                 <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_1_image_back %} data-backimage="{{ block.settings.page_1_image_back |  image_url: width: block.settings.page_1_image_back.width }}" {% endif %}>
+                              
                               </div>
                             {% endif %}   
                             {% if block.settings.page_2_image %}
-                              <div class="page_item" >
+                              <div class="page_item" data-index="1">
                                   
                                       {{ block.settings.page_2_image |  image_url: width: block.settings.page_2_image.width | image_tag : class: 'extra-image' }}
-                                      <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="2" >
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="2" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_2_image_back %} data-backimage="{{ block.settings.page_2_image_back |  image_url: width: block.settings.page_2_image_back.width }}" {% endif %}>
                               </div>
                             {% endif %}
                             {% if block.settings.page_3_image %}
-                            <div class="page_item" >
+                            <div class="page_item" data-index="2">
                                 
                                     {{ block.settings.page_3_image |  image_url: width: block.settings.page_3_image.width | image_tag : class: 'extra-image' }}
-                                    <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="3" >
+                                    {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="3" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_3_image_back %} data-backimage="{{ block.settings.page_3_image_back |  image_url: width: block.settings.page_3_image_back.width }}" {% endif %}>
                             </div>
                             {% endif %}
                             {% if block.settings.page_4_image %}
-                            <div class="page_item" >
+                            <div class="page_item" data-index="3">
                                 
                                     {{ block.settings.page_4_image |  image_url: width: block.settings.page_4_image.width | image_tag : class: 'extra-image' }}
-                                    <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="4" >
+                                    {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="4" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_4_image_back %} data-backimage="{{ block.settings.page_4_image_back |  image_url: width: block.settings.page_4_image_back.width }}" {% endif %}>
                             </div>
                             {% endif %}
                             {% if block.settings.page_5_image %}
-                            <div class="page_item" >
+                            <div class="page_item" data-index="4">
                                 
                                     {{ block.settings.page_5_image |  image_url: width: block.settings.page_5_image.width | image_tag : class: 'extra-image' }}
-                                    <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="5" >
+                                    {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="5" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_5_image_back %} data-backimage="{{ block.settings.page_5_image_back |  image_url: width: block.settings.page_5_image_back.width }}" {% endif %}>
                             </div>
                             {% endif %}
                             {% if block.settings.page_6_image %}
-                            <div class="page_item" >
+                            <div class="page_item" data-index="5">
                                 
                                     {{ block.settings.page_6_image |  image_url: width: block.settings.page_6_image.width | image_tag : class: 'extra-image' }}
-                                    <input class="checkbox" type="checkbox" onclick="extraPages()" data-index="6" >
+                                    {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="6" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_6_image_back %} data-backimage="{{ block.settings.page_6_image_back |  image_url: width: block.settings.page_6_image_back.width }}" {% endif %}>
                                     
                             </div>
                             {% endif %}
+                            {% if block.settings.page_7_image %}
+                              <div class="page_item" data-index="6">
+                                  
+                                      {{ block.settings.page_7_image |  image_url: width: block.settings.page_7_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="7" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_7_image_back %} data-backimage="{{ block.settings.page_7_image_back |  image_url: width: block.settings.page_7_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_8_image %}
+                              <div class="page_item" data-index="7">
+                                  
+                                      {{ block.settings.page_8_image |  image_url: width: block.settings.page_8_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="8" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_8_image_back %} data-backimage="{{ block.settings.page_8_image_back |  image_url: width: block.settings.page_8_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_9_image %}
+                              <div class="page_item" data-index="8">
+                                  
+                                      {{ block.settings.page_9_image |  image_url: width: block.settings.page_9_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="9" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_9_image_back %} data-backimage="{{ block.settings.page_9_image_back |  image_url: width: block.settings.page_9_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_10_image %}
+                              <div class="page_item" data-index="9">
+                                  
+                                      {{ block.settings.page_10_image |  image_url: width: block.settings.page_10_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="10" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_10_image_back %} data-backimage="{{ block.settings.page_10_image_back |  image_url: width: block.settings.page_10_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_11_image %}
+                              <div class="page_item" data-index="10">
+                                  
+                                      {{ block.settings.page_11_image |  image_url: width: block.settings.page_11_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="11" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_11_image_back %} data-backimage="{{ block.settings.page_11_image_back |  image_url: width: block.settings.page_11_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_12_image %}
+                              <div class="page_item" data-index="11">
+                                  
+                                      {{ block.settings.page_12_image |  image_url: width: block.settings.page_12_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="12" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1715452674" onclick="bigImg()" {% if block.settings.page_12_image_back %} data-backimage="{{ block.settings.page_12_image_back |  image_url: width: block.settings.page_12_image_back.width }}" {% endif %}>
+                                      
+                              </div>
+                            {% endif %}
+
                         </div>
                     </div>
                 </div>
+                {%- when 'monthly_double_pages'-%}
+                  <script>
+                    let monthly_double_pages = [];
+                    monthly_double_pages.push({{block.settings.page_1_image | image_url: width: block.settings.page_1_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_1_image_back | image_url: width: block.settings.page_1_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_2_image | image_url: width: block.settings.page_2_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_2_image_back | image_url: width: block.settings.page_2_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_3_image | image_url: width: block.settings.page_3_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_3_image_back | image_url: width: block.settings.page_3_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_4_image | image_url: width: block.settings.page_4_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_4_image_back | image_url: width: block.settings.page_4_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_5_image | image_url: width: block.settings.page_5_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_5_image_back | image_url: width: block.settings.page_5_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_6_image | image_url: width: block.settings.page_6_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_6_image_back | image_url: width: block.settings.page_6_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_7_image | image_url: width: block.settings.page_7_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_7_image_back | image_url: width: block.settings.page_7_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_8_image | image_url: width: block.settings.page_8_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_8_image_back | image_url: width: block.settings.page_8_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_9_image | image_url: width: block.settings.page_9_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_9_image_back | image_url: width: block.settings.page_9_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_10_image | image_url: width: block.settings.page_10_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_10_image_back | image_url: width: block.settings.page_10_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_11_image | image_url: width: block.settings.page_11_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_11_image_back | image_url: width: block.settings.page_11_image_back.width | json }});
+                    monthly_double_pages.push({{block.settings.page_12_image | image_url: width: block.settings.page_12_image.width | json }});
+                    monthly_double_pages.push({{block.settings.page_12_image_back | image_url: width: block.settings.page_12_image_back.width | json }});
+                    all_monthly_double_pages.push(monthly_double_pages);
+                    
+                  </script>
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'text' -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
+                  style="color:{{ block.settings.body_text_color }};font-family:poopins-bold;"
                 >
                   {{- block.settings.text -}}
                 </p>
@@ -273,11 +467,7 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                    {{ product.description }}
-                  </div>
-                {%- endif -%}
+                {{ product.description }}
               {%- when 'sku' -%}
                 <p
                   class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -543,7 +733,7 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons',
+                {%- render 'buy-buttons-custom',
                   block: block,
                   product: product,
                   product_form_id: product_form_id,
@@ -867,7 +1057,8 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <img src="">
+    <img class="main-image" src="">
+    <img class="rotate-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/rotate-icon.png?v=1721642942" onclick="alternateImage()">
   </div>
 
 </div>
@@ -895,12 +1086,55 @@ window.onclick = function(event) {
 function bigImg() {
     
     let imageUrl = this.event.target.closest('.page_item').querySelector('img.extra-image').getAttribute('src');
-    let targetImage = modal.querySelector('img');
+    let backImage = this.event.target.getAttribute("data-backimage");
+    
+    let targetImage = modal.querySelector('img.main-image');
+    let rotateIcon = modal.querySelector('img.rotate-icon');
+    if(backImage){
+      rotateIcon.setAttribute("data-alternateimage", backImage);
+      rotateIcon.style.display = "block";
+    }else{
+      rotateIcon.setAttribute("data-alternateimage", "");
+      rotateIcon.style.display = "none";
+    }
+    
     targetImage.setAttribute('src', imageUrl);
     modal.style.display = "block";
   }
 
+  function alternateImage(){
+    let rotateIcon = this.event.target;
+    let secondImage = rotateIcon.getAttribute("data-alternateimage");
+    let targetImage = modal.querySelector('img.main-image');
+    let firstImage = targetImage.getAttribute("src");
+    rotateIcon.setAttribute("data-alternateimage", firstImage);
+    targetImage.setAttribute("src", secondImage);
+  }
+
+  function updateQty(){
+    let updateSign = this.event.target.value;
+    let qtyInput = this.event.target.closest(".page_item").querySelector('.page-qty__input');
+    let maxValue = Number(qtyInput.getAttribute("max"));
+    let minValue = Number(qtyInput.getAttribute("min"));
+    var event = new Event('change');
+
+    if(updateSign == "+"){
+      if(Number(qtyInput.value) < maxValue){
+        qtyInput.value = Number(qtyInput.value) + 1;
+        qtyInput.setAttribute("data-updatetype", "plus");
+        qtyInput.dispatchEvent(event);
+      }
+    }else{
+      if(Number(qtyInput.value) > minValue){
+        qtyInput.value = Number(qtyInput.value) - 1;
+        qtyInput.setAttribute("data-updatetype", "minus");
+        qtyInput.dispatchEvent(event);
+      }
+    }
+  }
+
 </script>
+
 
 
 {% schema %}
@@ -942,6 +1176,10 @@ function bigImg() {
                     {
                     "value": "back_cover",
                     "label": "Back of planner"
+                    },
+                    {
+                      "value": "layout_page",
+                      "label": "Layout Page"
                     }
                 ],
                 "default": "front_cover"
@@ -1005,7 +1243,193 @@ function bigImg() {
                 "type": "image_picker",
                 "id": "page_6_image_back",
                 "label": "Page 6 Back"
-            }          
+            },
+            {
+                "type": "image_picker",
+                "id": "page_7_image",
+                "label": "Page 7 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_7_image_back",
+                "label": "Page 7 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_8_image",
+                "label": "Page 8 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_8_image_back",
+                "label": "Page 8 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_9_image",
+                "label": "Page 9 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_9_image_back",
+                "label": "Page 9 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_10_image",
+                "label": "Page 10 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_10_image_back",
+                "label": "Page 10 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_11_image",
+                "label": "Page 11 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_11_image_back",
+                "label": "Page 11 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_12_image",
+                "label": "Page 12 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_12_image_back",
+                "label": "Page 12 Back"
+            }   
+       ]
+    },
+    {
+       "type": "monthly_double_pages",
+       "name": "Monthly Double Pages",
+       "settings":[
+            {
+                "type": "image_picker",
+                "id": "page_1_image",
+                "label": "Page 1 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_1_image_back",
+                "label": "Page 1 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_2_image",
+                "label": "Page 2 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_2_image_back",
+                "label": "Page 2 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_3_image",
+                "label": "Page 3 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_3_image_back",
+                "label": "Page 3 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_4_image",
+                "label": "Page 4 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_4_image_back",
+                "label": "Page 4 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_5_image",
+                "label": "Page 5 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_5_image_back",
+                "label": "Page 5 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_6_image",
+                "label": "Page 6 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_6_image_back",
+                "label": "Page 6 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_7_image",
+                "label": "Page 7 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_7_image_back",
+                "label": "Page 7 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_8_image",
+                "label": "Page 8 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_8_image_back",
+                "label": "Page 8 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_9_image",
+                "label": "Page 9 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_9_image_back",
+                "label": "Page 9 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_10_image",
+                "label": "Page 10 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_10_image_back",
+                "label": "Page 10 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_11_image",
+                "label": "Page 11 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_11_image_back",
+                "label": "Page 11 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_12_image",
+                "label": "Page 12 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_12_image_back",
+                "label": "Page 12 Back"
+            }   
        ]
     },
     {
@@ -1017,6 +1441,12 @@ function bigImg() {
           "id": "text",
           "default": "Text block",
           "label": "t:sections.main-product.blocks.text.settings.text.label"
+        },
+        {
+          "type": "color",
+          "id": "body_text_color",
+          "label": "Text Color",
+          "default": "#000000"
         },
         {
           "type": "select",
@@ -1058,7 +1488,26 @@ function bigImg() {
           "label": "End Date",
           "default": "2025-12-31",
           "info": "Please enter date in format 'YYYY-MM-DD'"
+        },
+        {
+          "type": "text",
+          "id": "date_note",
+          "label": "Date Note",
+          "default": "NOTE: Default dates are from 01/01/2025 to 12/31/2025"
+        },
+        {
+          "type": "text",
+          "id": "text_message",
+          "label": "Text Message",
+          "default": "After you have selected your dates, please click the button below to update your planner."
+        },
+        {
+          "type": "color",
+          "id": "body_text_color",
+          "label": "Text Color",
+          "default": "#000000"
         }
+
       ]
     },
     {

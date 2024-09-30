@@ -1,0 +1,185 @@
+@font-face {
+    font-family: poppinsbold;
+    src: url("https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414");
+  }
+  @font-face {
+    font-family: yesevaoneregular;
+    src: url("https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414");
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  
+  .container {
+    margin-top: 0;
+  }
+  
+  .container .heading-text {
+    text-align: center;
+    background-color: #fad8d9;
+  }
+
+  .container .heading-text h1 {
+    color: #ff4545;
+    font-family: wild_mango;
+  }
+  
+  .faq_box {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    padding: 0 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .container .FAQ-sec1 {
+    height: 100%;
+    width: 49%;
+    margin: 12px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: #fdf1f0;
+  }
+  
+  .c-faqs__item-question {
+    position: relative;
+  }
+  .c-faqs__item-question h2 {
+    width: 90%;
+    color: #ff9cae;
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .c-faqs__item-question .icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+  }
+  
+  .c-faqs__item-question .icon .sub-icon,
+  .c-faqs__item-question .icon .plus-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .c-faqs__item-question .icon .plus-icon {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .c-faqs__item[open] .c-faqs__item-question .icon .sub-icon {
+    transform: rotate(0deg);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .c-faqs__item[open] .c-faqs__item-question .icon .plus-icon {
+    transform: rotate(90deg);
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .c-faqs__item:not([open]) .c-faqs__item-question .icon .sub-icon {
+    transform: rotate(-90deg);
+  }
+  
+  .c-faqs__item {
+    width: 100%;
+    padding: 15px 20px 15px 20px;
+    background-color: var(--color-medium);
+    border-radius: 4px;
+  }
+  
+  .c-faqs__item-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  
+  /* For smooth height and opacity transition */
+  .c-faqs__item-answer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-10px); /* Start position above */
+    transition: max-height 1.5s ease-in-out, opacity 1.5s ease-in-out,
+      transform 1.5s ease-in-out;
+    line-height: 1.6;
+    color: #ff9cae;
+    font-family: Poppins;
+    font-size:26px;
+    line-height: 30px;
+    margin-top: 10px;
+  }
+  
+  .c-faqs__item[open] .c-faqs__item-answer {
+    max-height: none; /* Adjust to match content height */
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+  
+  }
+    
+
+  @media (max-width: 499px){
+    .container .heading-text >div {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+    @media screen and (max-width:650px)
+  {
+    .container .heading-text {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+   .faq_box {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+}
+    @media screen and (max-width:650px)
+  {
+    .faq_box {
+      padding: 0 15px;
+    }
+    .container .heading-text {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+   .faq_box {
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+  .c-faqs__item-answer {
+    font-size:20px;
+  }
+   .c-faqs__item-question h2 {
+    font-size:26px;
+  }  
+}
+
+@media screen and (max-width:650px){
+  .faq_box{
+    flex-direction: column !important;
+  }
+  .container .FAQ-sec1 {
+    width: 100% !important;
+  }
+}

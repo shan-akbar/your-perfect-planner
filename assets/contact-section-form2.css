@@ -1,0 +1,146 @@
+@font-face {
+    font-family: Poppinsbold;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold_f5fe7eb1-3256-4496-9f85-65be9fc030e4.ttf?v=1721556396);
+  }
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  @font-face {
+    font-family: yesevaoneregular;
+    src: url("https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular_dc8f9cca-6870-4a03-a151-960e1771f562.ttf?v=1721383414");
+  }
+  .contact-heading {
+    background-color: #fad8da;
+    width: 100%;
+    text-align: center;
+    margin-bottom:-25.9px;
+  }
+  .contact-heading h1 {
+    font-family: wild_mango;
+    color: #ff4545;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .form{
+    background-color:#FDF1F0;
+    border: transparent;
+    border-radius: 10px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  .form form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    gap:15px;
+  }
+  .form form input{
+     border: 4px solid #ff4545;
+    font-family: Poppins;
+    border-radius: 100px;
+    font-size: 25px;
+    width: 400px;
+    padding-left:17px;
+  }
+  .form form input::placeholder{
+    color: #ff9cae;
+    padding-left: 10px;
+  }
+  .form form  textarea{
+    border: 4px solid #ff4545;
+    font-family: Poppins;
+    border-radius: 22px;
+    font-size: 25px;
+    margin-top: 12px;
+    width: 400px;
+    height: 200px;
+    padding-left:17px;
+  }
+  .form form  textarea::placeholder {
+    color: #ff9cae;
+    padding-left: 10px;
+  }
+  .form form button {
+    background-color: #ff4545;
+    color: #fff;
+    font-family: Poppins;
+    border: transparent;
+    border-radius: 100px;
+    text-align: center;
+    width: 409px;
+    padding: 10px;
+    font-size: 23px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 4px solid #ff4545;
+  }
+  .form form button:hover {
+    background-color: #fff;
+    color: #ff4545;
+    transition: all ease-in-out 0.4s;
+  }
+  @media (min-width: 601px) and (max-width: 900px) {
+    .form{
+      width: calc(100% - 5rem);
+      margin-right: 2.5rem;
+      margin-left: 2.5rem;
+      box-sizing: border-box; 
+    }
+    .form form button {
+      width: 359px;
+      font-size: 19px;
+    }
+    .form form input {
+      font-size: 17px;
+      width: 330px;
+    }
+    .form form textarea {
+      font-size: 17px;
+      width: 330px;
+    }
+     .contact-heading {
+      width: calc(100% - 5rem);
+      margin-right: 2.5rem;
+      margin-left: 2.5rem;
+      box-sizing: border-box; 
+  }
+  }
+  @media screen and (max-width:743px){
+     .form{
+    margin-top: 26px;
+  }
+  }
+  @media (max-width: 600px) {
+   .form form button {
+      width: 260px;
+      font-size: 14px;
+      padding: 5px;
+    }
+    .form form input {
+      font-size: 15px;
+      width: 294px;
+    }
+    .form form textarea {
+      font-size: 15px;
+      width: 294px;
+    }
+    .contact-heading {
+      width: calc(100% - 5rem);
+      margin-right: 2.5rem;
+      margin-left: 2.5rem;
+      box-sizing: border-box; 
+  }
+      .form{
+      width: calc(100% - 5rem);
+      margin-right: 2.5rem;
+      margin-left: 2.5rem;
+      box-sizing: border-box; 
+    }
+  }
+  
+  
+  

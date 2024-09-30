@@ -1,0 +1,92 @@
+{{ 'section-contact-form2-sec2.css' | asset_url | stylesheet_tag }}
+<style>
+  .c-faqs__item-answer p{
+    margin: 0;
+  }
+</style>
+<div class="container">
+  <div class="heading-text">
+   <div class="text">
+      <h1>{{ section.settings.Heading_text_1 }}</h1>
+   </div>
+  </div>
+  <div class="faq_box">
+    {% assign section_blocks = section.blocks %}
+
+  {% for block in section_blocks %}
+   <div class="FAQ-sec1 ">
+    <div class="c-faqs__items">
+    <details class="c-faqs__item">
+      <summary class="c-faqs__item-question">
+        <h2>{{ block.settings.question}}</h2>
+        <div class="icon">
+           <img class="plus-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/add-line.png?v=1723399424 | image_url: width: 600 | image_tag">
+           <img class="sub-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/subtract-line.png?v=1723397503 | image_url: width: 600 | image_tag">
+        </div>
+      </summary>
+      
+      <h3 class="c-faqs__item-answer">
+       {{ block.settings.answer }}
+      </h3>
+    </details>
+  </div>
+  </div>
+       
+    <p>{{ block.settings.textItem }}</p>
+  {% endfor %}
+  </div>  
+</div>
+ <script>
+    document.querySelectorAll('.c-faqs__item').forEach((item) => {
+  item.addEventListener('toggle', function() {
+    if (this.open) {
+      // Close all other open details
+      document.querySelectorAll('.c-faqs__item[open]').forEach((openItem) => {
+        if (openItem !== this) {
+          openItem.open = false;
+        }
+      });
+    }
+  });
+});
+ </script>
+ 
+{% schema %}
+  {
+    "name": "contact form 2 section 2",
+    "settings": [
+       {
+          "type": "text",
+          "id": "Heading_text_1",
+          "label": "Heading text 1",
+          "info": "Please enter text",
+       }
+      
+    ],
+    "blocks": [
+      {
+        "type": "accordion",
+        "name": "accordion",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question",
+            "default": "Please Enter text"
+          },
+          {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer",
+            "default": "<p>Please Enter text</p>"
+          },
+        ]
+      }
+    ],
+    "presets": [
+    {
+      "name": "contact form 2 section2"
+    }
+  ]
+  }
+{% endschema %}

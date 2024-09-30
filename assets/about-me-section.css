@@ -1,0 +1,135 @@
+@font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular_e94d337e-791d-4c21-8368-fd5fd396adc4.ttf?v=1721390311);
+  }
+  @font-face {
+    font-family: Poppinsbold;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold_f5fe7eb1-3256-4496-9f85-65be9fc030e4.ttf?v=1721556396);
+  }
+  .about-me-conatiner{
+    margin: 0 auto;
+    background-color:rgb(253,241,240);
+    padding-top:12px;
+  }
+  .about-me-conatiner .about-me-heading h1{
+     font-family: Poppinsbold;
+     color: rgb(255,69,69);
+    text-align: center;
+    font-size:50px;
+  }
+  .about-me-conatiner .about_box{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .about-me-conatiner .about_box_revrse{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+  
+  .about-me-conatiner .about_box .left img{
+    object-fit: cover;
+    object-position: center;
+    width: 49vw;
+    height: 100vh;
+  }
+  .about-me-conatiner .about_box .right{
+    text-align: left;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width:50vw;
+  }
+  .about-me-conatiner .about_box .right h4{
+    font-size: 30px;
+    font-family: Poppins;
+    color: rgb(255,69,69);
+    margin-top:0;
+    margin-left:25px;
+    margin-right:25px;
+  }
+  .none_btn{
+    display: none;
+  }
+  .about_btn button{
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 9px;
+      padding-bottom: 9px;
+      font-size: 40px;
+      border-radius: 100px;
+      width: 100%;
+      background-color: rgb(255,69,69);
+      border:1px solid rgb(255,69,69);
+     transition:all 0.5s ease-in-out;
+     cursor:pointer;
+  }
+  .about_btn button a{
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family: Poppinsbold;
+    color:white;
+  }
+  .about_btn button:hover{
+    background-color:white;
+  }
+  .about_btn button:hover a{
+    color:rgb(255,69,69);
+  }
+  @media screen and (max-width:992px){
+    .about-me-conatiner .about_box{
+      flex-direction:column
+    }
+    .about-me-conatiner .about_box_revrse{
+      flex-direction:column;
+    }
+    .about-me-conatiner .about_box .left img{
+    object-fit: cover;
+    object-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
+    .about-me-conatiner .about_box .right{
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width:100vw;
+    height: fit-content;
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+    .about_btn{
+      padding-top:10px;
+  padding-bottom:50px;
+  }
+    .about-me-conatiner .about-me-heading h1{
+    font-size:40px;
+  }
+  }
+  @media screen and (max-width:600px){
+    .about-me-conatiner .about_box .right h4{
+    font-size: 20px;
+  }
+    .about_btn button{
+      font-size:30px;
+    }
+    .about-me-conatiner .about_box .left{
+      width:100%;
+    }
+      .about-me-conatiner .about_box .left img{
+     width:100%;
+    height: unset;
+  }
+      .about-me-conatiner .about-me-heading h1{
+    font-size:25px;
+    padding: 0 15px;
+  }
+    .about_btn button{
+      font-size: 23px;
+      
+  }
+    
+  }
