@@ -489,6 +489,35 @@
             third_last_page.classList.remove('display__none');
         }
 
+        let pages_limit_div = document.querySelector('.pages-limit__description');
+        let pages_limit = Number(pages_limit_div.getAttribute("data-pageslimit"));
+        if(diary_pages.length > pages_limit){
+            pages_limit_div.style.display = 'block';
+        }else{
+            pages_limit_div.style.display = 'none';
+        }
+
+        updatePrice();
+    }
+
+    function splitDiary(){
+        let checked = this.event.target.checked;
+        let fixedprice = Number(document.querySelector(".custom-planner__price").getAttribute("data-fixedprice"));
+        let pageLimitProperty = document.getElementById("pages_limit_property");
+        pageLimitProperty.value = checked;
+        let pages_limit_div = document.querySelector('.pages-limit__description');
+        let split_price = Number(pages_limit_div.getAttribute("data-splitprice"));
+        
+        if(split_price > 0){
+            if(checked){
+                fixedprice = fixedprice + split_price;
+            }else{
+                fixedprice = fixedprice - split_price;
+            }
+        }
+        
+
+        document.querySelector(".custom-planner__price").setAttribute("data-fixedprice", fixedprice);
         updatePrice();
     }
 
