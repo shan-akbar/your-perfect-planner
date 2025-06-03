@@ -8,7 +8,14 @@
         "announcement_AhVCg9": {
           "type": "announcement",
           "settings": {
-            "text": "ORDERS PLACED AFTER MAY 1ST WILL BE MADE ON MAY 13TH BECAUSE WE'RE ON HOLIDAYS",
+            "text": "2026 LAYOUTS AVAILABLE NOW FOR FINANCIAL YEAR PLANNERS",
+            "link": ""
+          }
+        },
+        "announcement_Tmkret": {
+          "type": "announcement",
+          "settings": {
+            "text": "CURRENT PROCESSING TIME: 1-3 DAYS",
             "link": ""
           }
         },
@@ -22,6 +29,7 @@
       },
       "block_order": [
         "announcement_AhVCg9",
+        "announcement_Tmkret",
         "announcement-bar-0"
       ],
       "settings": {

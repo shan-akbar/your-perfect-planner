@@ -1,10 +1,43 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            $('.slideshow__slide').on('click', function() {
+      var textareaContent = $(this).attr('data-link');
+              if(textareaContent != '') {
+                 window.location.href = textareaContent;
+              }
+    
+    });
+          })
 
+        </script>
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
+    .banner__media:after, .banner:after {
+      display: none;
+    }
+    #Slider-{{ section.id }} .slideshow__slide {
+      cursor: pointer;
+    }
+    #Slider-{{ section.id }} a {
+     text-decoration: none !important;
+    }
+    #Slider-{{ section.id }} .media a {
+      width: 100%;
+      height: 100%;
+    }
+     #Slider-{{ section.id }} .media a img {
+      width: 100%;
+      height: 100%;
+    }
     @media screen and (max-width: 749px) {
+
+      #Slider-{{ section.id }} .banner__content {
+      position: absolute;
+      }
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before,
       #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
@@ -12,15 +45,41 @@
         content: '';
         display: block;
       }
+     
+     #Slider-{{ section.id }} .media img {
+    display: none;
+}
+      #Slider-{{ section.id }} .media {
+         position: initial !important; 
+      }
+       #Slider-{{ section.id }} .media img.mobile_image {
+    display: block !important;
+    position: initial !important;
+    
+}
+   #Slider-{{ section.id }} .media:before, #Slider-{{ section.id }} .banner__content:before {
+     display: none !important;
+   }
     }
 
     @media screen and (min-width: 750px) {
+      .slideshow__text.slideshow__text--left {
+        padding-left: 0;
+      }
+      .slideshow__text-wrapper.banner__content {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before {
         padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
       }
+     #Slider-{{ section.id }} .media .mobile_image {
+    display: none;
+}
     }
   {%- endstyle -%}
 {%- endif -%}
@@ -125,10 +184,12 @@
         role="group"
         aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-        tabindex="-1"
+        tabindex="-1" data-link="{{ block.settings.link }}"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-          {%- if block.settings.image -%}
+         
+        <div  class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+    
+      {%- if block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
@@ -164,7 +225,14 @@
               {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
           {%- endif -%}
+           {% if block.settings.mob_image != blank %}
+            <img src="{{ block.settings.mob_image | img_url: 'master' }}" class="mobile_image" width="" height="">
+          {% endif %}
+     
         </div>
+       
+          
+      
         <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
@@ -193,6 +261,7 @@
             {%- endif -%}
           </div>
         </div>
+       
       </div>
     {%- endfor -%}
   </div>
@@ -411,7 +480,12 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+          "label": "Desktop Image"
+        },
+          {
+          "type": "image_picker",
+          "id": "mob_image",
+          "label": "Mobile Image"
         },
         {
           "type": "inline_richtext",

@@ -139,16 +139,10 @@
                     {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                   {%- endif -%}
                 </div>
-                <div {{ block.shopify_attributes }}>
-                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {{ form | payment_terms }}
-                  {%- endform -%}
-                </div>
-              
-
-          <div class="product-form__input">
+                <div {{ block.shopify_attributes }} class="custom_area">
+                  
+                   
+                    <div class="product-form__input">
   <label class="form__label" for="prompts-questions">Prompts/Questions:</label>
   <p class="form__label">
     Use a new line per prompt and include how many lines you'd like printed underneath each prompt.
@@ -157,13 +151,14 @@
     class="field__input required" 
     required 
     id="prompts-questions" 
-    form="{{ product_form_id }}"
     name="properties[Prompts/Questions]" 
     style="border: 1px solid #ccc; padding: 10px; border-radius: 4px; width: 100%; min-height: 120px; box-sizing: border-box;"
   ></textarea>
 </div>
-
-
+                    
+                   
+                </div>
+              
               
               {%- when 'inventory' -%}
                 <p
