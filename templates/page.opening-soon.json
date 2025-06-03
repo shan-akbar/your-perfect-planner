@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "opening_soon_UQf99J": {
+      "type": "opening-soon",
+      "settings": {
+        "title": "You Deserve A Planner As Unique As You",
+        "subtitle": "BE THE FIRST TO KNOW WHEN WE LAUNCH!",
+        "desktop_image": "shopify:\/\/shop_images\/2_4e3514cb-7b25-448c-8438-ecd80fc02814.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/3_cfa6002c-bdac-426e-ab22-c962d50623ce.jpg",
+        "mobile_subtitle": "A FULLY CUSTOMISABLE PLANNER SO YOU ONLY CARRY THE PAGES YOU USE AND DITCH THE ONES YOU DON’T"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "opening_soon_UQf99J"
+  ]
+}

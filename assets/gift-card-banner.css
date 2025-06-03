@@ -1,0 +1,84 @@
+.gift-card__wrapper{
+    background-color: #fdf1f0;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-around;
+    column-gap: 10px;
+}
+
+.gift-cars__content{
+    max-width: 660px;
+}
+
+.gift-cars__content h2{
+    font-family: Poppinsbold;
+    color: #f87c92;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.gift-cars__content p{
+    font-family: Poppins;
+    color: #f87c92;
+    font-size: 32px;
+    line-height: 1.4;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.gift-cars__content a{
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+    background-color: #ff4545;
+    padding: 5px 20px;
+    border-radius: 50px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.gift-cars__content a:hover{
+    opacity: 0.7;
+}
+
+.gift-card__image img{
+    max-width: 500px;
+    max-height: 340px;
+    width: 100%;
+    height: 100%;
+}
+
+@media(max-width: 720px){
+    .gift-cars__content h2{
+        font-size: 22px;
+    }
+    .gift-cars__content p{
+        font-size: 22px;
+    }
+    .gift-cars__content a{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 473px){
+    .gift-card__wrapper{
+        padding: 20px 10px;
+    }
+
+    .gift-cars__content h2{ 
+        font-size: 17px;
+        margin-top: 0;
+    }
+    .gift-cars__content p{
+        font-size: 17px;
+    }
+    .gift-cars__content a{
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 397px){
+    .gift-cars__content a{
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,293 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built by you. For you.",
+            "heading_size": "h0"
+          }
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/hero_image_small_d4b666e5-98fb-46c9-9485-af0413862305.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "desktop_content_position": "middle-left",
+        "show_text_box": false,
+        "desktop_content_alignment": "left",
+        "color_scheme": "scheme-94c07810-bfa7-4b32-ba80-abde70d9c130",
+        "image_behavior": "none",
+        "mobile_content_alignment": "left",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "custom_text_section_zJUVNW": {
+      "type": "custom-text-section",
+      "settings": {
+        "first_heading": "A FULLY CUSTOMISABLE PLANNER SO YOU ONLY CARRY THE PAGES YOU USE AND DITCH THE ONES YOU DON’T",
+        "second_heading": "You Deserve A Planner As Unique As You",
+        "third_heading": "Start Building Your Perfect Planner",
+        "third_heading_mobile": "Start Building Your Perfect Planner"
+      }
+    },
+    "featured_products_2_dQ3QTQ": {
+      "type": "featured-products-2",
+      "settings": {
+        "button-text-1": "BUILD DAILY",
+        "button_1_link": "shopify:\/\/products\/daily-planner",
+        "product_1_image": "shopify:\/\/shop_images\/DAILYBUILTBYYOUcoverimage.png",
+        "button-text-2": "BUILD WEEKLY",
+        "button_2_link": "shopify:\/\/products\/weekly-planner",
+        "product_2_image": "shopify:\/\/shop_images\/WEEKLYBUILTBYYOUcoverimage.png"
+      }
+    },
+    "list_view_7F98EF": {
+      "type": "list-view",
+      "blocks": {
+        "list_item_hdJtEU": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "CHOOSE A DAILY OR WEEKLY LAYOUT",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_6xbJbY": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "SELECT WHAT DATE RANGE YOU’D LIKE YOUR PLANNER TO COVER",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_YpnCRH": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "SELECT WHAT PAGES YOU WANT AT THE START OF YOUR PLANNER",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_eEcBAV": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "SELECT WHAT PAGES YOU WANT IN BETWEEN EACH WEEK",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_HBV773": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "SELECT WHAT PAGES YOU WANT IN BETWEEN EACH MONTH",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_UzHgDc": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "SELECT WHAT PAGES YOU WANT AT THE END OF YOUR PLANNER",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_GBw63m": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "CHOOSE YOUR ADD ONS\/ACCESSORIES",
+            "list_text_color": "#000000"
+          }
+        },
+        "list_item_yFERH8": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "ADD TO CART AND CHECKOUT!",
+            "list_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "list_item_hdJtEU",
+        "list_item_6xbJbY",
+        "list_item_YpnCRH",
+        "list_item_eEcBAV",
+        "list_item_HBV773",
+        "list_item_UzHgDc",
+        "list_item_GBw63m",
+        "list_item_yFERH8"
+      ],
+      "settings": {
+        "btn": "START BUILDING YOURS",
+        "button_link": "https:\/\/yourperfectplanner.com.au\/collections\/planners"
+      }
+    },
+    "custom_heading_NfGnxf": {
+      "type": "custom-heading",
+      "settings": {
+        "first_heading": "",
+        "second_heading": "Specially Made Just For You",
+        "text_color-1": "#ff4545",
+        "text_color-2": "#ff4545",
+        "background_color_1": "#ff9cae",
+        "background_color_2": "#fad8da"
+      }
+    },
+    "special_features_LFrGFd": {
+      "type": "special-features",
+      "blocks": {
+        "item_xkDcYh": {
+          "type": "item",
+          "settings": {
+            "item-image": "shopify:\/\/shop_images\/FSC_paper_symbol.png",
+            "item-text": "PRINTED ON FSC CERTIFIED PAPER"
+          }
+        },
+        "item_bqwC3J": {
+          "type": "item",
+          "settings": {
+            "item-image": "shopify:\/\/shop_images\/fully_customisable.png",
+            "item-text": "FULLY CUSTOMISABLE"
+          }
+        },
+        "item_QtPVYJ": {
+          "type": "item",
+          "settings": {
+            "item-image": "shopify:\/\/shop_images\/afterpay.png",
+            "item-text": "BUY NOW PAY LATER WITH AFTERPAY"
+          }
+        },
+        "item_ktxMUy": {
+          "type": "item",
+          "settings": {
+            "item-image": "shopify:\/\/shop_images\/handmade_symbol.png",
+            "item-text": "HANDMADE IN AUSTRALIA"
+          }
+        },
+        "item_gcLaaM": {
+          "type": "item",
+          "settings": {
+            "item-image": "shopify:\/\/shop_images\/free_shipping_truck.png",
+            "item-text": "FREE SHIPPING ON ORDERS OVER $120"
+          }
+        }
+      },
+      "block_order": [
+        "item_xkDcYh",
+        "item_bqwC3J",
+        "item_QtPVYJ",
+        "item_ktxMUy",
+        "item_gcLaaM"
+      ],
+      "settings": {}
+    },
+    "about_us_section_dWd7GB": {
+      "type": "about-us-section",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/about_me.jpg",
+        "heading2": "MEET OUR FOUNDER; JESS",
+        "heading3": "I STARTED THIS BUSINESS BECAUSE I COULDN’T FIND A PLANNER THAT PERFECTLY SUITED MY LIFE. THEY ALL HAD PAGES I DIDN’T USE AND WERE MISSING PAGES I WANTED TO USE...",
+        "button_link": "shopify:\/\/pages\/about-us"
+      }
+    },
+    "1730439458d5f2a585": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_9bNb4R": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1000
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_9bNb4R"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "gift_card_banner_xfPJ49": {
+      "type": "gift-card-banner",
+      "settings": {
+        "heading": "WANT TO BUY SOMEONE THEIR PERFECT PLANNER?",
+        "description": "<p>GIVE THE GIFT OF CHOICE WITH A GIFT CARD!<\/p>",
+        "gift_card_image": "shopify:\/\/shop_images\/eGIFT_CARD_crop.png",
+        "button_label": "SHOP GIFT CARDS",
+        "button_link": "shopify:\/\/products\/your-perfect-planner-gift-card"
+      }
+    },
+    "signup_form_cBWbKw": {
+      "type": "signup-form",
+      "settings": {
+        "heading": "UNLOCK 10% OFF YOUR FIRST ORDER WHEN YOU SIGN UP TO EMAIL MARKETING",
+        "btn-Text": "YES PLEASE!"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "All Products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "1728790333c53c7779": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_zALP6e": {
+          "type": "shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "alignment": "center",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_zALP6e"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "custom_text_section_zJUVNW",
+    "featured_products_2_dQ3QTQ",
+    "list_view_7F98EF",
+    "custom_heading_NfGnxf",
+    "special_features_LFrGFd",
+    "about_us_section_dWd7GB",
+    "1730439458d5f2a585",
+    "gift_card_banner_xfPJ49",
+    "signup_form_cBWbKw",
+    "featured_collection",
+    "1728790333c53c7779"
+  ]
+}

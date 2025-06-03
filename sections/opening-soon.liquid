@@ -1,0 +1,156 @@
+{{ 'opening-soon.css' | asset_url | stylesheet_tag }}
+
+{% style %} 
+    .opening-soon__background-{{ section.id }}{
+        background-image: url({{ section.settings.desktop_image | image_url: width: 1920, height: 1080 }});
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0 0 20px 0;
+        background-position-x: center;
+    }
+
+    @media(max-width: 768px){
+        .opening-soon__background-{{ section.id }}{
+            background-image: url({{ section.settings.mobile_image | image_url: width: 1080, height: 1920 }});
+        }
+    }
+{% endstyle %}
+
+<div class="section-opening__soon">
+    <div class="opening-soon__background-{{ section.id }} opening-soon__background">
+        <div class="opening-soon-title__background"><h2>{{ section.settings.title }}</h2></div>
+        <h2 class="opening-soon__subtitle">{{ section.settings.subtitle }}</h2>
+        <div class="opening-soon-form__wrapper">
+            <form class="opening-soon__form">
+                <span id="successMessage" style="color: green;">You have successfully subscribed. We will email you once site goes live!</span>
+                <span id="errorMessage" style="color: red;">Some error occurred, please try again!</span>
+                <input type="text" placeholder="NAME" id="nameInput" oninput="clearErrorName()">
+                <input type="email" placeholder="EMAIL" id="emailInput" oninput="clearErrorEmail()">
+                <button type="button" onclick="subscribeToList()">SUBSCRIBE!</button>
+                <span id="nameFeedback" style="color: red;"></span>
+                <span id="emailFeedback" style="color: red;"></span>
+            </form>
+        </div>
+        <h2 class="opening-soon-mobile__subtitle">{{ section.settings.mobile_subtitle }}</h2>
+    </div>
+</div>
+
+<script>
+  function clearErrorName(){
+    const feedbackElementName = document.getElementById('nameFeedback');
+    feedbackElementName.textContent = "";
+  }
+
+  function clearErrorEmail(){
+    const feedbackElementEmail = document.getElementById('emailFeedback');
+    feedbackElementEmail.textContent = "";
+  }
+
+  function subscribeToList(){
+      const emailInput = document.getElementById('emailInput').value;
+      const nameInput = document.getElementById('nameInput').value;
+      const feedbackElementEmail = document.getElementById('emailFeedback');
+      const feedbackElementName = document.getElementById('nameFeedback');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if(nameInput){
+        feedbackElementName.textContent = ""; // Email is valid
+      }else{
+        feedbackElementName.textContent = "Please enter a valid name.";
+      }
+
+      if (emailRegex.test(emailInput)) {
+        feedbackElementEmail.textContent = ""; // Email is valid
+      } else {
+        feedbackElementEmail.textContent = "Please enter a valid email address.";
+      }
+
+      if(!nameInput || !emailRegex.test(emailInput)){
+        return;
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {revision: '2024-06-15', 'content-type': 'application/json'},
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              custom_source: 'Opening Soon Landing Page Sign Up!',
+              profile: {
+                data: {
+                  type: 'profile',
+                  attributes: {
+                    email: emailInput,
+                    first_name: nameInput
+                  }
+                }
+              }
+            },
+            relationships: {list: {data: {type: 'list', id: 'XBvaMq'}}}
+          }
+        })
+      };
+
+      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WL27eL', options)
+        .then(response => {
+          if(response.status >=200 && response.status < 300){
+              let successMessage = document.getElementById('successMessage');
+              successMessage.style.display = 'block';
+              setTimeout(
+                function() {
+                  document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+          }else{
+            let errorMessage = document.getElementById('errorMessage');
+              errorMessage.style.display = 'block';
+              setTimeout(
+                function() {
+                  document.getElementById('errorMessage').style.display = 'none';
+                }, 5000);
+          }
+
+        })
+        .catch(err => console.error(err));
+  }
+
+</script>
+
+{% schema %}
+{
+  "name": "Opening Soon",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Background"
+    },
+    {
+      "type": "text",
+      "id": "mobile_subtitle",
+      "label": "Mobile Subtitle 2"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Opening Soon"
+    }
+  ]
+}
+{% endschema %}

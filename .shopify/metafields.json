@@ -1,0 +1,785 @@
+{
+  "article": [],
+  "blog": [],
+  "collection": [],
+  "company": [],
+  "company_location": [],
+  "location": [],
+  "market": [],
+  "order": [],
+  "page": [],
+  "product": [
+    {
+      "key": "color-pattern",
+      "namespace": "shopify",
+      "name": "Color",
+      "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "calendar-format",
+      "namespace": "shopify",
+      "name": "Calendar format",
+      "description": "Specifies the time frame of a calendar product, such as daily or monthly",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_1_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 1 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_1_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 1 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_1_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 1 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_2_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 2 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_2_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 2 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_2_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 2 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_3_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 3 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_3_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 3 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_3_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 3 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_4_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 4 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_4_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 4 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_4_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 4 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_5_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 5 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_5_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 5 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_5_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 5 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_6_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 6 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_6_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 6 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_8_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 8 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_8_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 8 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_8_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 8 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_7_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 7 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_7_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 7 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_7_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 7 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_6_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 6 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "rating",
+      "namespace": "reviews",
+      "name": "Product rating",
+      "description": "Average rating from customers",
+      "type": {
+        "name": "rating",
+        "category": "RATING"
+      }
+    },
+    {
+      "key": "rating_count",
+      "namespace": "reviews",
+      "name": "Product rating count",
+      "description": "Total number of ratings from customers",
+      "type": {
+        "name": "number_integer",
+        "category": "NUMBER"
+      }
+    },
+    {
+      "key": "planner_pages_layout_9_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 9 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_9_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 9 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_12_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 12 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_12_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 12 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_12_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 12 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_11_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 11 Set 3",
+      "description": "",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_11_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 11 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_11_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 11 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_10_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 10 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_10_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 10 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_10_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 10 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_layout_9_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages Layout 9 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "weekends_single_pages",
+      "namespace": "custom",
+      "name": "Weekends Single Pages",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_12_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 12 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_12_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 12 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_12_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 12 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_11_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 11 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_11_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 11 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_11_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 11 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_10_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 10 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_10_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 10 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_10_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 10 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_9_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 9 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_9_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 9 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_9_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 9 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_8_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 8 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_8_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 8 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_8_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 8 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_7_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 7 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_7_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 7 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_7_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 7 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_6_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 6 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_6_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 6 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_6_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 6 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_5_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 5 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_5_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 5 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_5_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 5 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_4_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 4 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_4_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 4 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_4_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 4 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_3_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 3 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_3_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 3 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_3_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 3 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_2_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 2 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_2_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 2 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_2_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 2 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_1_set_3",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 1 Set 3",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_1_set_2",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 1 Set 2",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "planner_pages_2_layout_1_set_1",
+      "namespace": "custom",
+      "name": "Planner Pages 2 Layout 1 Set 1",
+      "description": "",
+      "type": {
+        "name": "list.file_reference",
+        "category": "REFERENCE"
+      }
+    }
+  ],
+  "variant": [],
+  "shop": []
+}

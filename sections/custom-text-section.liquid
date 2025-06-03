@@ -1,0 +1,48 @@
+{{ 'custom-text-section.css' | asset_url | stylesheet_tag }}
+
+<!-- stat your html code here -->
+
+<div class="custum-text">
+  <h1 class="text-heading">{{ section.settings.first_heading }}</h1>
+<h1 class="text-heading2">{{ section.settings.second_heading }}</h1>
+<h1 class="text-heading3 only_desktop">{{ section.settings.third_heading }}</h1>
+<h1 class="text-heading3 only_mobile">{{ section.settings.third_heading_mobile }}</h1>
+</div>
+<!-- end your html code here -->
+
+{% schema %}
+  {
+    "name": "Custom Text Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "first_heading",
+        "label": "Heading 1",
+        "default": "Please enter first heading"
+      },
+       {
+        "type": "text",
+        "id": "second_heading",
+        "label": "Heading 2",
+        "default": "Please enter Second heading"
+      },
+      {
+        "type": "text",
+        "id": "third_heading",
+        "label": "Heading 3",
+        "default": "Please enter Third heading"
+      },
+      {
+        "type": "text",
+        "id": "third_heading_mobile",
+        "label": "Heading 3 Mobile",
+        "default": "Please enter Third heading"
+      }
+    ],
+    "presets": [
+    {
+      "name": "Custom Text Section"
+    }
+  ]
+  }
+{% endschema %}

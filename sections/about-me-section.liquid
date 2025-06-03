@@ -1,0 +1,83 @@
+{{ 'about-me-section.css' | asset_url | stylesheet_tag }}
+<div class="about-me-conatiner">
+  <div class="about-me-heading">
+    <h1>{{ section.settings.about_heading_txt }}</h1>
+    </div>
+   {% if  section.settings.about_check %}
+   <div class="about_box about_box_revrse">
+    {% else %}
+    <div class="about_box">
+     {% endif %}
+      <div class='left'> 
+        <img src={{ section.settings.about_image | image_url: width: 600 | image_tag }}
+      </div>
+      <div class='right'>
+        <h4>{{ section.settings.about_txt }}</h4>
+        {% if section.settings.about_btn_check %}
+        <div class="about_btn">
+          {% else %}
+          <div class="about_btn none_btn">
+            {% endif %}
+          <button type="button"><a href={{ section.settings.about_button_url }}>{{section.settings.about_button  }}</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% schema %}
+  {
+    "name": "about me",
+    "settings": [
+       {
+  "type": "text",
+  "id": "about_heading_txt",
+  "label": "About Heading",
+  "default": "Enter Text"
+     },
+
+  {
+  "type": "text",
+  "id": "about_txt",
+  "label": "About Text",
+  "default": "Enter Text"
+     },
+            {
+          "type": "image_picker",
+          "id": "about_image",
+          "label": "Image",
+          "info": "Select an image",
+           
+        },
+      {
+  "type": "checkbox",
+  "id": "about_check",
+  "label": "Image Second",
+  "default": false
+},
+            {
+  "type": "checkbox",
+  "id": "about_btn_check",
+  "label": "include Button",
+  "default": false
+},
+{
+  "type": "text",
+  "id": "about_button",
+  "label": "Button Text",
+  "default": "Enter Button Text"
+},
+{
+  "type": "url",
+  "id": "about_button_url",
+  "label": "Button URL",
+},
+    ],
+     "presets": [
+    {
+      "name": "about me"
+    }
+  ]
+  }
+{% endschema %}

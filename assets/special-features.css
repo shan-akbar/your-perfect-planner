@@ -1,0 +1,61 @@
+@font-face {
+    font-family: YesevaOneRegular;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular.ttf?v=1732747747);
+  }
+  
+  @font-face {
+    font-family: Poppins;
+    src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1732747766);
+  }
+  .special-featured__container{
+    width: 100%;
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+  .special-featured__container .items{
+    display:flex;
+    align-items:baseline;
+    column-gap: 50px;
+    justify-content: center;
+  }
+
+  .special-featured__container .items .item{
+    text-align: center;
+  }
+
+  .special-featured__container .items .item .img img{
+    width:100%;
+    object-fit:cover;
+    object-position:center;
+    max-width: 130px;
+  }
+  .special-featured__container .items .item .txt{
+    text-align:center;
+    max-width: 217px;
+  }
+  .special-featured__container .items .item .txt h3{
+      font-family: Poppins;
+      color:#FF4545;
+      font-size:20px;
+      margin-bottom: 0;
+  }
+  @media (min-width:674px) and (max-width:900px){
+    .special-featured__container .items .item .txt h3 {
+      font-size: 13px;
+  }
+  }
+  @media (max-width:680px){
+    .special-featured__container .items{
+      column-gap: 30px;
+      flex-wrap: wrap;
+    }
+    .special-featured__container .items .item{
+      margin-bottom: 20px;
+      max-width: 76px;
+    }
+    .special-featured__container .items .item .txt h3 {
+      font-size: 12px;
+  }
+  }
+  
+  

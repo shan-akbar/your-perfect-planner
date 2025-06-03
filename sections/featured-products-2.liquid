@@ -1,0 +1,65 @@
+{{ 'featured-products-2.css' | asset_url | stylesheet_tag }}
+
+ <div class="container">
+   <div class="item">
+    <div class="btn">
+      <a href="{{ section.settings.button_1_link }}">{{section.settings.button-text-1}}</a>
+    </div>
+     <div class="product">
+       {{ section.settings.product_1_image |  image_url: width: section.settings.product_1_image.width | image_tag }}
+     </div>
+   </div>
+    <div class="item">
+    <div class="btn">
+      <a href="{{ section.settings.button_2_link }}">{{ section.settings.button-text-2 }}</a>
+    </div>
+     <div class="product">
+      {{ section.settings.product_2_image |  image_url: width: section.settings.product_2_image.width | image_tag }}
+     </div>
+   </div>
+ </div>
+
+{% schema %}
+{
+  "name": "Featured Products 2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button-text-1",
+      "label": "Button 1",
+      "default": "Please enter Button Text 1"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_1_image",
+      "label": "Product 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "button-text-2",
+      "label": "Button 2",
+      "default": "Please enter Button Text 2"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_2_image",
+      "label": "Product 2 Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products 2"
+    }
+  ]
+}
+{% endschema %}
