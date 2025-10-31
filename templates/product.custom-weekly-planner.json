@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -16,7 +25,7 @@
           "settings": {}
         },
         "judge_me_reviews_preview_badge_fJaBiR": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "text_kznVcK": {
@@ -33,6 +42,7 @@
         },
         "text_EJV8iG": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "For the best experience in creating your planner, we recommend using a computer, where you can easily see the preview and customise your design. However, feel free to use your mobile device if that’s more convenient for you.",
             "body_text_color": "#ff4545",
@@ -42,7 +52,7 @@
         "text_4WehDr": {
           "type": "text",
           "settings": {
-            "text": "<strong>Step 1: Choose planner dates<\/strong>",
+            "text": "<strong>Step 1: Choose planner dates</strong>",
             "body_text_color": "#000000",
             "text_style": "subtitle"
           }
@@ -50,15 +60,17 @@
         "planner_date_range_jYQgGa": {
           "type": "planner_date_range",
           "settings": {
-            "start_date": "2025-01-01",
+            "additional_information": "<p>To view planner details, click <a href=\"/pages/custom-planner-details\" title=\"Custom Planner Details\">here</a></p><p><strong>Choose your date range</strong></p>",
+            "start_date": "2026-01-01",
             "end_date": "2026-12-31",
-            "date_note": "NOTE: Default dates are from 01\/01\/2025 to 31\/12\/2025",
-            "text_message": "After you have selected your dates, please click the button below to update your planner preview.",
+            "date_note": "NOTE: Default dates are from 01/01/2026 to 31/12/2026",
+            "text_message": "",
             "body_text_color": "#ff4545"
           }
         },
         "text_ikgVmi": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "To view each page in full screen, click on the eye button in the bottom left corner of the page options below",
             "body_text_color": "#ff4545",
@@ -67,6 +79,7 @@
         },
         "text_LiE7VN": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "All of our planners come with our branded hardcover as shown.",
             "body_text_color": "#ff9cae",
@@ -76,7 +89,7 @@
         "text_deWihk": {
           "type": "text",
           "settings": {
-            "text": "<strong>Step 2: Choose page layout<\/strong>",
+            "text": "<strong>Step 2: Choose page layout</strong>",
             "body_text_color": "#000000",
             "text_style": "subtitle"
           }
@@ -84,109 +97,139 @@
         "planner_custom_pages_ACUF3N": {
           "type": "planner_custom_pages",
           "settings": {
-            "title": "Layout Page Types",
+            "title": "Page Layout Types",
+            "additional_information": "<p>Choose your layout</p>",
             "page_type": "layout_page",
-            "page_1_image": "shopify:\/\/shop_images\/FINAL_Vertical_Weekly_2025_LINED_02.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/FINAL_Vertical_Weekly_2025_LINED_03.png",
+            "page_1_image": "shopify://shop_images/2026_Weekly_Vertical_LINED1_b147c547-5b22-4da1-8d01-a0de31ca3ffb.png",
+            "page_1_image_back": "shopify://shop_images/2026_Weekly_Vertical_LINED2_44278367-d483-4027-a70b-362a169de972.png",
             "has_more_than_1_year_pages_1": true,
-            "page_2_image": "shopify:\/\/shop_images\/FINAL_Vertical_Weekly_UNLINED_02.png",
-            "page_2_image_back": "shopify:\/\/shop_images\/FINAL_Vertical_Weekly_UNLINED_03.png",
+            "page_2_image": "shopify://shop_images/2026_Weekly_Vertical_UNLINED1_149ab817-1634-4d3b-ba7a-5da121cf1663.png",
+            "page_2_image_back": "shopify://shop_images/2026_Weekly_Vertical_UNLINED2_d1d95fb2-3173-4dee-864c-11f031b0f5ca.png",
             "has_more_than_1_year_pages_2": true,
-            "page_3_image": "shopify:\/\/shop_images\/FINAL_Week_1_to_a_page_LINED_01.png",
+            "page_3_image": "shopify://shop_images/2026_Week_1_to_a_page_LINED.png",
             "has_more_than_1_year_pages_3": true,
-            "page_4_image": "shopify:\/\/shop_images\/FINAL_Week_1_to_a_page_UNLINED_01.png",
+            "page_4_image": "shopify://shop_images/2026_Week_1_to_a_page_UNLINED1_0227ddda-5dea-402e-923b-b9f472f1cd35.png",
             "has_more_than_1_year_pages_4": true,
-            "page_5_image": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_3_4_2025_LINED_01.png",
-            "page_5_image_back": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_3_4_2025_LINED_02.png",
+            "page_5_image": "shopify://shop_images/2026_Week_to_2_page_3_4_LINED1_dc350c69-4158-4853-b99a-8e61994bee33.png",
+            "page_5_image_back": "shopify://shop_images/2026_Week_to_2_page_3_4_LINED2_e7e7a30d-6456-4a3c-a051-19f7d5cf75e1.png",
             "has_more_than_1_year_pages_5": true,
-            "page_6_image": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_3_4_UNLINED_01.png",
-            "page_6_image_back": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_3_4_UNLINED_02.png",
+            "page_6_image": "shopify://shop_images/2026_Week_to_2_page_3_4_UNLINED1_7008b278-5ad0-401b-8626-92168aa8107b.png",
+            "page_6_image_back": "shopify://shop_images/2026_Week_to_2_page_3_4_UNLINED2_4db65558-a07f-4835-a358-6921e5f95dc2.png",
             "has_more_than_1_year_pages_6": true,
-            "page_7_image": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_4_4_LINED_01.png",
-            "page_7_image_back": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_4_4_LINED_02.png",
+            "page_7_image": "shopify://shop_images/2026_Week_to_2_page_4_4_LINED1_4bf9ee94-89d7-48bd-893c-cdb3ced03ce5.png",
+            "page_7_image_back": "shopify://shop_images/2026_Week_to_2_page_4_4_LINED2_b5a1f8f6-f276-46b8-a590-adc8d5c2ed89.png",
             "has_more_than_1_year_pages_7": true,
-            "page_8_image": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_4_4_UNLINED_01.png",
-            "page_8_image_back": "shopify:\/\/shop_images\/FINAL_Week_to_2_page_4_4_UNLINED_02.png",
+            "page_8_image": "shopify://shop_images/2026_Week_to_2_page_4_4_UNLINED1_af16baab-7a6a-49f8-b924-88201c801f87.png",
+            "page_8_image_back": "shopify://shop_images/2026_Week_to_2_page_4_4_UNLINED2_66c81592-b787-4593-8434-3c9b4a2fe903.png",
             "has_more_than_1_year_pages_8": true,
-            "page_9_image": "shopify:\/\/shop_images\/1_Sunday_-_Saturday_layout_cover_image.png",
-            "page_9_image_back": "shopify:\/\/shop_images\/FINAL_Sun-Sat_Week_02.png",
+            "page_9_image": "shopify://shop_images/1_Cover.png",
+            "page_9_image_back": "shopify://shop_images/2026_Sun-Sat_Week_to_2_page_4_4_LINED2_ee41f505-7525-4c67-8a8f-407b9ed5e101.png",
             "has_more_than_1_year_pages_9": true,
-            "page_10_image": "shopify:\/\/shop_images\/TEACHER_PLANNER_01.png",
-            "page_10_image_back": "shopify:\/\/shop_images\/TEACHER_PLANNER_02.png",
+            "page_10_image": "shopify://shop_images/2026_Teacher_Planner_LINED1.png",
+            "page_10_image_back": "shopify://shop_images/2026_Teacher_Planner_LINED2.png",
             "has_more_than_1_year_pages_10": false,
             "has_more_than_1_year_pages_11": false,
-            "has_more_than_1_year_pages_12": false
+            "has_more_than_1_year_pages_12": false,
+            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_14": false,
+            "has_more_than_1_year_pages_15": false,
+            "has_more_than_1_year_pages_16": false,
+            "has_more_than_1_year_pages_17": false,
+            "has_more_than_1_year_pages_18": false,
+            "has_more_than_1_year_pages_19": false,
+            "has_more_than_1_year_pages_20": false
           }
         },
         "text_G7CHiV": {
           "type": "text",
           "settings": {
-            "text": "<strong>Step 3: Choose extra pages<\/strong>",
+            "text": "<strong>Step 3: Choose extra pages</strong>",
             "body_text_color": "#000000",
             "text_style": "subtitle"
           }
         },
         "planner_custom_pages_AJbVAC": {
           "type": "planner_custom_pages",
+          "name": "Add Pages Before Dates Start",
           "settings": {
-            "title": "3A: Before dates start",
+            "title": "Before dates start",
+            "additional_information": "<p>Add any extra pages</p>",
             "page_type": "front_cover",
-            "page_1_image": "shopify:\/\/shop_images\/THIS_PLANNER_BELONGS_TO.png",
+            "page_1_image": "shopify://shop_images/THIS_PLANNER_BELONGS_TO.png",
             "has_more_than_1_year_pages_1": false,
-            "page_2_image": "shopify:\/\/shop_images\/2024_REFLECTION.png",
-            "has_more_than_1_year_pages_2": true,
-            "page_3_image": "shopify:\/\/shop_images\/2025_GOALS_1.png",
-            "has_more_than_1_year_pages_3": true,
-            "page_4_image": "shopify:\/\/shop_images\/2025_GOALS_2.png",
-            "has_more_than_1_year_pages_4": true,
-            "page_5_image": "shopify:\/\/shop_images\/52_WEEK_SAVINGS_CHALLENGE_d4d59f27-f947-43ae-af31-8db55b11e1be.png",
+            "page_2_image": "shopify://shop_images/2025_REFLECTION_1a7a61c8-0c71-4ec2-a06a-954d003327cf.png",
+            "has_more_than_1_year_pages_2": false,
+            "page_3_image": "shopify://shop_images/2026_GOALS_1_fe063ae2-521d-4010-9b3b-f666d3f8915b.png",
+            "has_more_than_1_year_pages_3": false,
+            "page_4_image": "shopify://shop_images/2026_GOALS_2_34bb6534-6ff4-4b16-81e5-bd518f1b6c00.png",
+            "has_more_than_1_year_pages_4": false,
+            "page_5_image": "shopify://shop_images/52_WEEK_SAVINGS_CHALLENGE_d4d59f27-f947-43ae-af31-8db55b11e1be.png",
             "has_more_than_1_year_pages_5": false,
-            "page_6_image": "shopify:\/\/shop_images\/BIRTHDAY_PLANNER_f14a17d7-97b3-41c0-874a-7961d48e325f.png",
+            "page_6_image": "shopify://shop_images/BIRTHDAY_PLANNER_f14a17d7-97b3-41c0-874a-7961d48e325f.png",
             "has_more_than_1_year_pages_6": false,
-            "page_7_image": "shopify:\/\/shop_images\/GIFT_PLANNER_28a2eb4c-b74c-44b6-91b9-f982d6f65f2e.png",
+            "page_7_image": "shopify://shop_images/GIFT_PLANNER_28a2eb4c-b74c-44b6-91b9-f982d6f65f2e.png",
             "has_more_than_1_year_pages_7": false,
-            "page_8_image": "shopify:\/\/shop_images\/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
+            "page_8_image": "shopify://shop_images/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
             "has_more_than_1_year_pages_8": false,
-            "page_9_image": "shopify:\/\/shop_images\/BULLET_PAGE.png",
+            "page_9_image": "shopify://shop_images/BULLET_PAGE.png",
             "has_more_than_1_year_pages_9": false,
-            "page_10_image": "shopify:\/\/shop_images\/LITTLE-MONTHS-2025.png",
+            "page_10_image": "shopify://shop_images/LITTLE_MONTHS_2026_cc00866f-bc1b-40d4-a490-53e9d3c9b647.png",
             "has_more_than_1_year_pages_10": true,
-            "page_11_image": "shopify:\/\/shop_images\/YEARLY_VIEW_1-6.png",
-            "page_11_image_back": "shopify:\/\/shop_images\/YEARLY_VIEW_7-12.png",
+            "page_11_image": "shopify://shop_images/YEARLY_VIEW_1-6.png",
+            "page_11_image_back": "shopify://shop_images/YEARLY_VIEW_7-12.png",
             "has_more_than_1_year_pages_11": false,
-            "page_12_image": "shopify:\/\/shop_images\/LITTLE-MONTHS-2026.png",
-            "has_more_than_1_year_pages_12": true
+            "page_12_image": "shopify://shop_images/2026_INS_AND_OUTS.png",
+            "has_more_than_1_year_pages_12": true,
+            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_14": false,
+            "has_more_than_1_year_pages_15": false,
+            "has_more_than_1_year_pages_16": false,
+            "has_more_than_1_year_pages_17": false,
+            "has_more_than_1_year_pages_18": false,
+            "has_more_than_1_year_pages_19": false,
+            "has_more_than_1_year_pages_20": false
           }
         },
         "planner_custom_pages_99BLGD": {
           "type": "planner_custom_pages",
+          "name": "Add Pages each week",
           "settings": {
-            "title": "3B: In between each week:",
+            "title": "In between each week:",
+            "additional_information": "<p>1 page = 52 pages (if your planner covers an entire year)</p>",
             "page_type": "between_week",
-            "page_1_image": "shopify:\/\/shop_images\/WEEKLY_TASKS_a40294b7-9aa8-4479-ab75-5a10c440fb1d.png",
+            "page_1_image": "shopify://shop_images/WEEKLY_TASKS_a40294b7-9aa8-4479-ab75-5a10c440fb1d.png",
             "has_more_than_1_year_pages_1": false,
-            "page_2_image": "shopify:\/\/shop_images\/WEEKLY_REFLECTION_7e9d230e-79b1-4693-862b-9163e9917005.png",
+            "page_2_image": "shopify://shop_images/WEEKLY_REFLECTION_a9498d8d-585d-47de-a017-2a5441ef11fd.png",
             "has_more_than_1_year_pages_2": false,
-            "page_3_image": "shopify:\/\/shop_images\/WEEKLY_BUDGET_1PG.png",
+            "page_3_image": "shopify://shop_images/WEEKLY_BUDGET_1PG.png",
             "has_more_than_1_year_pages_3": false,
-            "page_4_image": "shopify:\/\/shop_images\/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
+            "page_4_image": "shopify://shop_images/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
             "has_more_than_1_year_pages_4": false,
-            "page_5_image": "shopify:\/\/shop_images\/BULLET_PAGE.png",
+            "page_5_image": "shopify://shop_images/BULLET_PAGE.png",
             "has_more_than_1_year_pages_5": false,
-            "page_6_image": "shopify:\/\/shop_images\/TO_DO_LISTS_14655640-ffba-41b0-b990-22253265e6b3.png",
+            "page_6_image": "shopify://shop_images/TO_DO_LISTS_14655640-ffba-41b0-b990-22253265e6b3.png",
             "has_more_than_1_year_pages_6": false,
-            "page_7_image": "shopify:\/\/shop_images\/MEAL_PLAN_1abb304d-c92f-43ed-a1c2-45ac9616d384.png",
+            "page_7_image": "shopify://shop_images/MEAL_PLAN_1abb304d-c92f-43ed-a1c2-45ac9616d384.png",
             "has_more_than_1_year_pages_7": false,
-            "page_8_image": "shopify:\/\/shop_images\/HOME_AND_WORK_TO_DO_LIST.png",
+            "page_8_image": "shopify://shop_images/HOME_AND_WORK_TO_DO_LIST.png",
             "has_more_than_1_year_pages_8": false,
             "has_more_than_1_year_pages_9": false,
             "has_more_than_1_year_pages_10": false,
             "has_more_than_1_year_pages_11": false,
-            "has_more_than_1_year_pages_12": false
+            "has_more_than_1_year_pages_12": false,
+            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_14": false,
+            "has_more_than_1_year_pages_15": false,
+            "has_more_than_1_year_pages_16": false,
+            "has_more_than_1_year_pages_17": false,
+            "has_more_than_1_year_pages_18": false,
+            "has_more_than_1_year_pages_19": false,
+            "has_more_than_1_year_pages_20": false
           }
         },
         "text_tdaPPz": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "3B: 1 page = 52 pages (if your planner covers an entire year)",
             "body_text_color": "#ff4545",
@@ -195,39 +238,51 @@
         },
         "planner_custom_pages_Rp4CUJ": {
           "type": "planner_custom_pages",
+          "name": "Add pages each month",
           "settings": {
-            "title": "3C: In between each month:",
+            "title": "In between each month:",
+            "additional_information": "<p>1 page = 12 pages (if your planner covers an entire year)</p>",
             "page_type": "between_month",
-            "page_1_image": "shopify:\/\/shop_images\/JAN_1.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/JAN_2_5f126690-163a-4d41-8dfb-6e34964e8f1c.png",
+            "page_1_image": "shopify://shop_images/2026_Monthly_view1_JAN1_e5607afe-c805-4975-8161-6aedc63135c5.png",
+            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2_2ca09002-9251-4b1b-9eda-fdfd4b5d7feb.png",
             "has_more_than_1_year_pages_1": true,
-            "page_2_image": "shopify:\/\/shop_images\/MONTHLY_TASKS_155763c9-7ac7-479e-9088-65490ac9c022.png",
+            "page_2_image": "shopify://shop_images/MONTHLY_TASKS_1455b997-8488-488d-89c8-405437b05221.png",
             "has_more_than_1_year_pages_2": false,
-            "page_3_image": "shopify:\/\/shop_images\/THIS_MONTH_2a23a86d-f098-4655-aacc-b404aaad6a97.png",
+            "page_3_image": "shopify://shop_images/THIS_MONTH_259a512f-5983-467b-8f8f-af041f5ba5ef.png",
             "has_more_than_1_year_pages_3": false,
-            "page_4_image": "shopify:\/\/shop_images\/MONTHLY_REFLECTION_12c78029-e518-466b-b129-c41fce4c3be0.png",
+            "page_4_image": "shopify://shop_images/MONTHLY_REFLECTION_2a52a247-8486-4738-9ce2-c6cd1e3bd6d1.png",
             "has_more_than_1_year_pages_4": false,
-            "page_5_image": "shopify:\/\/shop_images\/MONTHLY_BUDGET_1_124dff64-e5f8-4848-948f-357f783858aa.png",
-            "page_5_image_back": "shopify:\/\/shop_images\/MONTHLY_BUDGET_2_44b27c74-cec6-41a7-8928-53378463012a.png",
+            "page_5_image": "shopify://shop_images/MONTHLY_BUDGET_1_124dff64-e5f8-4848-948f-357f783858aa.png",
+            "page_5_image_back": "shopify://shop_images/MONTHLY_BUDGET_2_44b27c74-cec6-41a7-8928-53378463012a.png",
             "has_more_than_1_year_pages_5": false,
-            "page_6_image": "shopify:\/\/shop_images\/HABIT_TRACKER_da8b73eb-127a-4bf9-a391-bbf3a2997a11.png",
+            "page_6_image": "shopify://shop_images/HABIT_TRACKER_3ca7d2ad-a2d0-4c23-baac-2b5520f39c1a.png",
             "has_more_than_1_year_pages_6": false,
-            "page_7_image": "shopify:\/\/shop_images\/MEETING_NOTES_b6e96363-1d34-4ef4-8aff-da1f43bfef08.png",
+            "page_7_image": "shopify://shop_images/MEETING_NOTES_b6e96363-1d34-4ef4-8aff-da1f43bfef08.png",
             "has_more_than_1_year_pages_7": false,
-            "page_8_image": "shopify:\/\/shop_images\/MOOD_TRACKER_6f4bcd70-1f06-4cbe-81ec-7578293ad108.png",
+            "page_8_image": "shopify://shop_images/MOOD_TRACKER_5c790fa5-8ebe-4853-8511-7b2767a66aaf.png",
             "has_more_than_1_year_pages_8": false,
-            "page_9_image": "shopify:\/\/shop_images\/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
+            "page_9_image": "shopify://shop_images/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
             "has_more_than_1_year_pages_9": false,
-            "page_10_image": "shopify:\/\/shop_images\/BULLET_PAGE.png",
+            "page_10_image": "shopify://shop_images/BULLET_PAGE.png",
             "has_more_than_1_year_pages_10": false,
-            "page_11_image": "shopify:\/\/shop_images\/HOME_AND_WORK_TO_DO_LIST.png",
+            "page_11_image": "shopify://shop_images/HOME_AND_WORK_TO_DO_LIST.png",
             "has_more_than_1_year_pages_11": false,
-            "page_12_image": "shopify:\/\/shop_images\/TO_DO_LISTS_14655640-ffba-41b0-b990-22253265e6b3.png",
-            "has_more_than_1_year_pages_12": false
+            "page_12_image": "shopify://shop_images/TO_DO_LISTS_14655640-ffba-41b0-b990-22253265e6b3.png",
+            "has_more_than_1_year_pages_12": false,
+            "page_13_image": "shopify://shop_images/BUSINESS_MONTHLY_OVERVIEW.png",
+            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_14": false,
+            "has_more_than_1_year_pages_15": false,
+            "has_more_than_1_year_pages_16": false,
+            "has_more_than_1_year_pages_17": false,
+            "has_more_than_1_year_pages_18": false,
+            "has_more_than_1_year_pages_19": false,
+            "has_more_than_1_year_pages_20": false
           }
         },
         "text_Th7YxN": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "3C: 1 page = 12 pages (if your planner covers an entire year)",
             "body_text_color": "#ff4545",
@@ -236,41 +291,47 @@
         },
         "planner_custom_pages_gdPx3i": {
           "type": "planner_custom_pages",
+          "name": "Add Pages after dates end",
           "settings": {
-            "title": "3D: After dates end",
+            "title": "After dates end",
+            "additional_information": "<p>Add any extra pages</p>",
             "page_type": "back_cover",
-            "page_1_image": "shopify:\/\/shop_images\/52_WEEK_SAVINGS_CHALLENGE_d4d59f27-f947-43ae-af31-8db55b11e1be.png",
+            "page_1_image": "shopify://shop_images/52_WEEK_SAVINGS_CHALLENGE_d4d59f27-f947-43ae-af31-8db55b11e1be.png",
             "has_more_than_1_year_pages_1": false,
-            "page_2_image": "shopify:\/\/shop_images\/CLEANING_PLANNER_ce0b50b3-99dd-40cf-a4b1-3e6c2e48e72a.png",
+            "page_2_image": "shopify://shop_images/CLEANING_PLANNER_ce0b50b3-99dd-40cf-a4b1-3e6c2e48e72a.png",
             "has_more_than_1_year_pages_2": false,
-            "page_3_image": "shopify:\/\/shop_images\/MEAL_IDEAS_faee3474-0f24-43ef-a1a1-319204c88077.png",
+            "page_3_image": "shopify://shop_images/MEAL_IDEAS_faee3474-0f24-43ef-a1a1-319204c88077.png",
             "has_more_than_1_year_pages_3": false,
-            "page_4_image": "shopify:\/\/shop_images\/RECIPE_41f7740b-fd86-4606-90d3-931133604c2b.png",
+            "page_4_image": "shopify://shop_images/RECIPE_41f7740b-fd86-4606-90d3-931133604c2b.png",
             "has_more_than_1_year_pages_4": false,
-            "page_5_image": "shopify:\/\/shop_images\/HABIT_TRACKER_da8b73eb-127a-4bf9-a391-bbf3a2997a11.png",
+            "page_5_image": "shopify://shop_images/HABIT_TRACKER_3ca7d2ad-a2d0-4c23-baac-2b5520f39c1a.png",
             "has_more_than_1_year_pages_5": false,
-            "page_6_image": "shopify:\/\/shop_images\/READING_LOG_cd9a827f-b9be-4e7d-b081-5d1f150a02b7.png",
+            "page_6_image": "shopify://shop_images/READING_LOG_cd9a827f-b9be-4e7d-b081-5d1f150a02b7.png",
             "has_more_than_1_year_pages_6": false,
-            "page_7_image": "shopify:\/\/shop_images\/MEETING_NOTES_cfa780b1-99a4-4c6f-8f9e-200eea368d44.png",
+            "page_7_image": "shopify://shop_images/MEETING_NOTES_cfa780b1-99a4-4c6f-8f9e-200eea368d44.png",
             "has_more_than_1_year_pages_7": false,
-            "page_8_image": "shopify:\/\/shop_images\/MOOD_TRACKER_6f4bcd70-1f06-4cbe-81ec-7578293ad108.png",
+            "page_8_image": "shopify://shop_images/MOOD_TRACKER_5c790fa5-8ebe-4853-8511-7b2767a66aaf.png",
             "has_more_than_1_year_pages_8": false,
-            "page_9_image": "shopify:\/\/shop_images\/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
+            "page_9_image": "shopify://shop_images/NOTES_4e143f07-dcb2-47b0-b17d-98950cfd3f94.png",
             "has_more_than_1_year_pages_9": false,
-            "page_10_image": "shopify:\/\/shop_images\/SEMESTER_TIMETABLE_68ab0945-6482-41e7-8da3-1a100f02bbd9.png",
+            "page_10_image": "shopify://shop_images/SEMESTER_TIMETABLE_68ab0945-6482-41e7-8da3-1a100f02bbd9.png",
             "has_more_than_1_year_pages_10": false,
-            "page_11_image": "shopify:\/\/shop_images\/2026_IMPORTANT_DATES.png",
+            "page_11_image": "shopify://shop_images/2027_IMPORTANT_DATES_496032c3-d214-498d-aa65-165aefbd8cd0.png",
             "has_more_than_1_year_pages_11": true,
-            "page_12_image": "shopify:\/\/shop_images\/LITTLE-MONTHS-2026.png",
-            "has_more_than_1_year_pages_12": true
+            "page_12_image": "shopify://shop_images/LITTLE_MONTHS_2027_ba369a4e-8931-462d-b541-8bfc3fce0938.png",
+            "has_more_than_1_year_pages_12": true,
+            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_14": false,
+            "has_more_than_1_year_pages_15": false,
+            "has_more_than_1_year_pages_16": false,
+            "has_more_than_1_year_pages_17": false,
+            "has_more_than_1_year_pages_18": false,
+            "has_more_than_1_year_pages_19": false,
+            "has_more_than_1_year_pages_20": false
           }
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "afterpay_on_site_messaging_payments_messaging_eHk3jC": {
-          "type": "shopify:\/\/apps\/afterpay-on-site-messaging\/blocks\/payments-messaging\/f45a5524-d177-4475-bf59-281efd2215a8",
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
           "settings": {
             "text_align": "inherit",
             "margin_top": 16,
@@ -302,10 +363,6 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "text_Vtn6Fp": {
           "type": "text",
           "settings": {
@@ -321,14 +378,20 @@
             "split_planner_price": 10,
             "pages_limit_note": "You have reached the maximum number of pages available in one planner. To keep all your great page selections, are you happy for your planner to be split in two (Jan-June and July-Dec)?",
             "checkbox_label": "Yes, split my planner into two ($10)",
-            "other_note": "<p><strong>If you have any questions or concerns please reach out here or email <\/strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\"><strong>hello@yourperfectplanner.com.au<\/strong><\/a><\/p>"
+            "other_note": "<p><strong>If you have any questions or concerns please reach out here or email </strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\"><strong>hello@yourperfectplanner.com.au</strong></a></p>"
           }
         },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "additional_information": "",
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
+            "show_gift_card_recipient": true,
+            "pages_limit": 386,
+            "split_planner_price": 10,
+            "pages_limit_note": "You have reached the maximum number of pages available in one planner. To keep all your great page selections, are you happy for your planner to be split in two (Jan-June and July-Dec)?",
+            "checkbox_label": "Yes, split my planner into two ($10)",
+            "other_note": "<p><strong>If you have any questions or concerns please reach out here or email </strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\"><strong>hello@yourperfectplanner.com.au</strong></a></p>"
           }
         },
         "collapsible_tab_kBfjnj": {
@@ -336,7 +399,7 @@
           "settings": {
             "heading": "Features",
             "icon": "star",
-            "content": "<ul><li>Front and back hardcover (Your Perfect Planner branded design)<\/li><li>Printed on FSC certified paper<\/li><li>Cover: 195x235mm<\/li><li>Pages: 176x230mm<\/li><li>100gsm paper<\/li><li>All pages inside the planner are black and white<\/li><li>One light pink ribbon bookmark<\/li><li>White ring wire binding<\/li><li>Thickness of planner and size of coil will vary depending on how many pages you select<\/li><\/ul>",
+            "content": "<ul><li>Front and back hardcover (Your Perfect Planner branded design)</li><li>Printed on FSC certified paper</li><li>Cover: 195x235mm</li><li>Pages: 176x230mm</li><li>100gsm paper</li><li>All pages inside the planner are black and white</li><li>One light pink ribbon bookmark</li><li>White ring wire binding</li><li>Thickness of planner and size of coil will vary depending on how many pages you select</li></ul>",
             "page": ""
           }
         },
@@ -345,7 +408,7 @@
           "settings": {
             "heading": "How To Build Your Perfect Planner",
             "icon": "clipboard",
-            "content": "<p>If you have access to a computer, we recommend building your<br\/>planner using that instead of on your mobile as you can view the preview and<br\/>extra pages easier<\/p><ol><li>Select your start and end date using the calendar<br\/>selection above<\/li><li>Click “update diary” button so you can view your date selection on the planner preview<\/li><li>Choose the layout you’d like your planner to have<br\/>Select all your extra pages by clicking the preview button (little eye) in the bottom left corner of each page to view the page. If you’d like to add that page to your planner, click the + button to increase the quantity<\/li><li>Check the preview to make sure it’s looking how you wish<\/li><li>Add to cart!<\/li><\/ol><p>While this custom feature is the exact reason Your Perfect<br\/>Planner exists, the process is quite complex. If you’re confused about<br\/>something or have a question, please don’t hesitate to contact us, we’d be happy to help. <\/p>",
+            "content": "<p>If you have access to a computer, we recommend building your<br/>planner using that instead of on your mobile as you can view the preview and<br/>extra pages easier</p><ol><li>Select your start and end date using the calendar<br/>selection above</li><li>Click “update diary” button so you can view your date selection on the planner preview</li><li>Choose the layout you’d like your planner to have<br/>Select all your extra pages by clicking the preview button (little eye) in the bottom left corner of each page to view the page. If you’d like to add that page to your planner, click the + button to increase the quantity</li><li>Check the preview to make sure it’s looking how you wish</li><li>Add to cart!</li></ol><p>While this custom feature is the exact reason Your Perfect<br/>Planner exists, the process is quite complex. If you’re confused about<br/>something or have a question, please don’t hesitate to contact us, we’d be happy to help. </p>",
             "page": ""
           }
         },
@@ -354,7 +417,7 @@
           "settings": {
             "heading": "Shipping",
             "icon": "box",
-            "content": "<p>We offer standard shipping from $7.95 and express from<br\/>$11.95 within Australia. Prices will increase based on the weight of your order.<\/p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.<\/p><p>See our full shipping policy <a href=\"\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">here<\/a><\/p><p><strong>Turnaround Time<\/strong><\/p><p>Please allow 2-14 business days for your order to be shipped. <\/p><p>Due to our planners being custom made to order, it takes much longer to fulfil orders compared to a stocked product, but we work very hard to get them out within 14 days. If you've ordered during a busy sale period, please allow some extra time.<\/p>",
+            "content": "<p>We offer standard shipping from $7.95 and express from<br/>$11.95 within Australia. Prices will increase based on the weight of your order.</p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.</p><p>See our full shipping policy <a href=\"/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">here</a></p><p><strong>Turnaround Time</strong></p><p>Please allow 2-14 business days for your order to be shipped. </p><p>Due to our planners being custom made to order, it takes much longer to fulfil orders compared to a stocked product, but we work very hard to get them out within 14 days. If you've ordered during a busy sale period, please allow some extra time.</p>",
             "page": ""
           }
         },
@@ -363,7 +426,7 @@
           "settings": {
             "heading": "FAQ",
             "icon": "question_mark",
-            "content": "<p>Click <a href=\"\/pages\/contact\" target=\"_blank\" title=\"Contact\">here<\/a> to view our FAQ page<\/p>",
+            "content": "<p>Click <a href=\"/pages/contact\" target=\"_blank\" title=\"Contact\">here</a> to view our FAQ page</p>",
             "page": ""
           }
         },
@@ -372,16 +435,16 @@
           "settings": {
             "heading": "Buying a Gift?",
             "icon": "heart",
-            "content": "<p>If you're not sure what the recipient would like in their planner, give them the gift of choice with a gift card and allow them to build their own planner. Find gift cards <a href=\"\/products\/your-perfect-planner-gift-card\" title=\"Your Perfect Planner Gift Card\">here<\/a><\/p>",
+            "content": "<p>If you're not sure what the recipient would like in their planner, give them the gift of choice with a gift card and allow them to build their own planner. Find gift cards <a href=\"/products/your-perfect-planner-gift-card\" title=\"Your Perfect Planner Gift Card\">here</a></p>",
             "page": ""
           }
         },
         "collapsible_tab_btKwBj": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Add Ons\/Accessories",
+            "heading": "Add Ons/Accessories",
             "icon": "return",
-            "content": "<p>Shop:<\/p><ul><li><a href=\"\/products\/adhesive-pen-loop\" title=\"Adhesive Pen Loop\">Adhesive Pen Loop<\/a><\/li><li><a href=\"\/products\/erasable-pen\" title=\"Erasable Pen\">Erasable Pen<\/a><\/li><li><a href=\"\/products\/2025-sticker\" title=\"2025 Sticker\">2025 Sticker<\/a><\/li><li><a href=\"\/products\/custom-sticker\" title=\"Custom Sticker\">Custom Sticker<\/a><\/li><li><a href=\"\/products\/monthly-tab-stickers\" title=\"Monthly Tab Stickers\">Monthly Tab Stickers<\/a><\/li><li><a href=\"\/products\/additional-pages\" title=\"Additional Pages\">Additional Pages<\/a><\/li><\/ul>",
+            "content": "<p>Shop:</p><ul><li><a href=\"/products/adhesive-pen-loop\" title=\"Adhesive Pen Loop\">Adhesive Pen Loop</a></li><li><a href=\"/products/erasable-pen\" title=\"Erasable Pen\">Erasable Pen</a></li><li><a href=\"/products/2025-sticker\" title=\"2025 Sticker\">2025 Sticker</a></li><li><a href=\"/products/custom-sticker\" title=\"Custom Sticker\">Custom Sticker</a></li><li><a href=\"/products/monthly-tab-stickers\" title=\"Monthly Tab Stickers\">Monthly Tab Stickers</a></li><li><a href=\"/products/additional-pages\" title=\"Additional Pages\">Additional Pages</a></li></ul>",
             "page": ""
           }
         },
@@ -390,7 +453,7 @@
           "settings": {
             "heading": "Note from the Founder",
             "icon": "chat_bubble",
-            "content": "<p>I love using the Weekly Planner to view my whole week across the spread. I use the checkbox on the side or bottom (depending on what layout you choose) to plan my meals and write important notes.<\/p><p>I also have a Daily Planner to write out exactly what I'm doing in the morning of each day such as my to-do list, meetings, appointments etc.<\/p>",
+            "content": "<p>I love using the Weekly Planner to view my whole week across the spread. I use the checkbox on the side or bottom (depending on what layout you choose) to plan my meals and write important notes.</p><p>I also have a Daily Planner to write out exactly what I'm doing in the morning of each day such as my to-do list, meetings, appointments etc.</p>",
             "page": ""
           }
         },
@@ -399,7 +462,7 @@
           "settings": {
             "heading": "Pricing",
             "icon": "price_tag",
-            "content": "<p>The price of your planner depends on how many pages it contains. There's a fixed price of $25 then it will increase based on your page choices.<\/p>",
+            "content": "<p>The price of your planner depends on how many pages it contains. There's a fixed price of $25 then it will increase based on your page choices.</p>",
             "page": ""
           }
         },
@@ -421,59 +484,59 @@
         "monthly_double_pages_DFdyEj": {
           "type": "monthly_double_pages",
           "settings": {
-            "page_1_image": "shopify:\/\/shop_images\/JAN_1_01fc0676-a4ee-49dd-a6e5-e65950ea525a.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/JAN_2_5f126690-163a-4d41-8dfb-6e34964e8f1c.png",
-            "page_2_image": "shopify:\/\/shop_images\/FEB_1.png",
-            "page_2_image_back": "shopify:\/\/shop_images\/FEB_2.png",
-            "page_3_image": "shopify:\/\/shop_images\/MAR_1.png",
-            "page_3_image_back": "shopify:\/\/shop_images\/MAR_2.png",
-            "page_4_image": "shopify:\/\/shop_images\/APR_1.png",
-            "page_4_image_back": "shopify:\/\/shop_images\/APR_2.png",
-            "page_5_image": "shopify:\/\/shop_images\/MAY_1.png",
-            "page_5_image_back": "shopify:\/\/shop_images\/MAY_2.png",
-            "page_6_image": "shopify:\/\/shop_images\/JUNE_1.png",
-            "page_6_image_back": "shopify:\/\/shop_images\/JUNE_2.png",
-            "page_7_image": "shopify:\/\/shop_images\/JULY_1.png",
-            "page_7_image_back": "shopify:\/\/shop_images\/JULY_2.png",
-            "page_8_image": "shopify:\/\/shop_images\/AUG_1.png",
-            "page_8_image_back": "shopify:\/\/shop_images\/AUG_2.png",
-            "page_9_image": "shopify:\/\/shop_images\/SEP_1.png",
-            "page_9_image_back": "shopify:\/\/shop_images\/SEP_2.png",
-            "page_10_image": "shopify:\/\/shop_images\/OCT_1.png",
-            "page_10_image_back": "shopify:\/\/shop_images\/OCT_2.png",
-            "page_11_image": "shopify:\/\/shop_images\/NOV_1.png",
-            "page_11_image_back": "shopify:\/\/shop_images\/NOV_2.png",
-            "page_12_image": "shopify:\/\/shop_images\/DEC_1.png",
-            "page_12_image_back": "shopify:\/\/shop_images\/DEC_2.png"
+            "page_1_image": "shopify://shop_images/JAN_1_01fc0676-a4ee-49dd-a6e5-e65950ea525a.png",
+            "page_1_image_back": "shopify://shop_images/JAN_2_5f126690-163a-4d41-8dfb-6e34964e8f1c.png",
+            "page_2_image": "shopify://shop_images/FEB_1.png",
+            "page_2_image_back": "shopify://shop_images/FEB_2.png",
+            "page_3_image": "shopify://shop_images/MAR_1.png",
+            "page_3_image_back": "shopify://shop_images/MAR_2.png",
+            "page_4_image": "shopify://shop_images/APR_1.png",
+            "page_4_image_back": "shopify://shop_images/APR_2.png",
+            "page_5_image": "shopify://shop_images/MAY_1.png",
+            "page_5_image_back": "shopify://shop_images/MAY_2.png",
+            "page_6_image": "shopify://shop_images/JUNE_1.png",
+            "page_6_image_back": "shopify://shop_images/JUNE_2.png",
+            "page_7_image": "shopify://shop_images/JULY_1.png",
+            "page_7_image_back": "shopify://shop_images/JULY_2.png",
+            "page_8_image": "shopify://shop_images/AUG_1.png",
+            "page_8_image_back": "shopify://shop_images/AUG_2.png",
+            "page_9_image": "shopify://shop_images/SEP_1.png",
+            "page_9_image_back": "shopify://shop_images/SEP_2.png",
+            "page_10_image": "shopify://shop_images/OCT_1.png",
+            "page_10_image_back": "shopify://shop_images/OCT_2.png",
+            "page_11_image": "shopify://shop_images/NOV_1.png",
+            "page_11_image_back": "shopify://shop_images/NOV_2.png",
+            "page_12_image": "shopify://shop_images/DEC_1.png",
+            "page_12_image_back": "shopify://shop_images/DEC_2.png"
           }
         },
         "monthly_double_pages_MpULX8": {
           "type": "monthly_double_pages",
           "settings": {
-            "page_1_image": "shopify:\/\/shop_images\/2026_Monthly_view1_JAN1.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/2026_Monthly_view2_JAN2.png",
-            "page_2_image": "shopify:\/\/shop_images\/2026_Monthly_view3_FEB1.png",
-            "page_2_image_back": "shopify:\/\/shop_images\/2026_Monthly_view4_FEB2.png",
-            "page_3_image": "shopify:\/\/shop_images\/2026_Monthly_view5_MAR1.png",
-            "page_3_image_back": "shopify:\/\/shop_images\/2026_Monthly_view6_MAR2.png",
-            "page_4_image": "shopify:\/\/shop_images\/2026_Monthly_view7_APR1.png",
-            "page_4_image_back": "shopify:\/\/shop_images\/2026_Monthly_view8_APR2.png",
-            "page_5_image": "shopify:\/\/shop_images\/2026_Monthly_view9_MAY1.png",
-            "page_5_image_back": "shopify:\/\/shop_images\/2026_Monthly_view10_MAY2.png",
-            "page_6_image": "shopify:\/\/shop_images\/2026_Monthly_view11_JUN1.png",
-            "page_6_image_back": "shopify:\/\/shop_images\/2026_Monthly_view12_JUN2.png",
-            "page_7_image": "shopify:\/\/shop_images\/2026_Monthly_view13_JUL1.png",
-            "page_7_image_back": "shopify:\/\/shop_images\/2026_Monthly_view14_JUL2.png",
-            "page_8_image": "shopify:\/\/shop_images\/2026_Monthly_view15_AUG1.png",
-            "page_8_image_back": "shopify:\/\/shop_images\/2026_Monthly_view16_AUG2.png",
-            "page_9_image": "shopify:\/\/shop_images\/2026_Monthly_view17_SEP1.png",
-            "page_9_image_back": "shopify:\/\/shop_images\/2026_Monthly_view18_SEP2.png",
-            "page_10_image": "shopify:\/\/shop_images\/2026_Monthly_view19_OCT1.png",
-            "page_10_image_back": "shopify:\/\/shop_images\/2026_Monthly_view20_OCT2.png",
-            "page_11_image": "shopify:\/\/shop_images\/2026_Monthly_view21_NOV1.png",
-            "page_11_image_back": "shopify:\/\/shop_images\/2026_Monthly_view22_NOV2.png",
-            "page_12_image": "shopify:\/\/shop_images\/2026_Monthly_view23_DEC1.png",
-            "page_12_image_back": "shopify:\/\/shop_images\/2026_Monthly_view24_DEC2.png"
+            "page_1_image": "shopify://shop_images/2026_Monthly_view1_JAN1.png",
+            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2.png",
+            "page_2_image": "shopify://shop_images/2026_Monthly_view3_FEB1.png",
+            "page_2_image_back": "shopify://shop_images/2026_Monthly_view4_FEB2.png",
+            "page_3_image": "shopify://shop_images/2026_Monthly_view5_MAR1.png",
+            "page_3_image_back": "shopify://shop_images/2026_Monthly_view6_MAR2.png",
+            "page_4_image": "shopify://shop_images/2026_Monthly_view7_APR1.png",
+            "page_4_image_back": "shopify://shop_images/2026_Monthly_view8_APR2.png",
+            "page_5_image": "shopify://shop_images/2026_Monthly_view9_MAY1.png",
+            "page_5_image_back": "shopify://shop_images/2026_Monthly_view10_MAY2.png",
+            "page_6_image": "shopify://shop_images/2026_Monthly_view11_JUN1.png",
+            "page_6_image_back": "shopify://shop_images/2026_Monthly_view12_JUN2.png",
+            "page_7_image": "shopify://shop_images/2026_Monthly_view13_JUL1.png",
+            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2.png",
+            "page_8_image": "shopify://shop_images/2026_Monthly_view15_AUG1.png",
+            "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2.png",
+            "page_9_image": "shopify://shop_images/2026_Monthly_view17_SEP1.png",
+            "page_9_image_back": "shopify://shop_images/2026_Monthly_view18_SEP2.png",
+            "page_10_image": "shopify://shop_images/2026_Monthly_view19_OCT1.png",
+            "page_10_image_back": "shopify://shop_images/2026_Monthly_view20_OCT2.png",
+            "page_11_image": "shopify://shop_images/2026_Monthly_view21_NOV1.png",
+            "page_11_image_back": "shopify://shop_images/2026_Monthly_view22_NOV2.png",
+            "page_12_image": "shopify://shop_images/2026_Monthly_view23_DEC1.png",
+            "page_12_image_back": "shopify://shop_images/2026_Monthly_view24_DEC2.png"
           }
         },
         "multiyear_page_7FaH8F": {
@@ -481,22 +544,22 @@
           "settings": {
             "year_selected": "2026",
             "page_type": "layout_page",
-            "page_1_image": "shopify:\/\/shop_images\/2026_Weekly_Vertical_LINED1.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/2026_Weekly_Vertical_LINED2.png",
-            "page_2_image": "shopify:\/\/shop_images\/2026_Weekly_Vertical_UNLINED1.png",
-            "page_2_image_back": "shopify:\/\/shop_images\/2026_Weekly_Vertical_UNLINED2.png",
-            "page_3_image": "shopify:\/\/shop_images\/2026_Week_1_to_a_page_LINED1.png",
-            "page_4_image": "shopify:\/\/shop_images\/2026_Week_1_to_a_page_UNLINED1.png",
-            "page_5_image": "shopify:\/\/shop_images\/2026_Week_to_2_page_3_4_LINED1.png",
-            "page_5_image_back": "shopify:\/\/shop_images\/2026_Week_to_2_page_3_4_LINED2.png",
-            "page_6_image": "shopify:\/\/shop_images\/2026_Week_to_2_page_3_4_UNLINED1.png",
-            "page_6_image_back": "shopify:\/\/shop_images\/2026_Week_to_2_page_3_4_UNLINED2.png",
-            "page_7_image": "shopify:\/\/shop_images\/2026_Week_to_2_page_4_4_LINED1.png",
-            "page_7_image_back": "shopify:\/\/shop_images\/2026_Week_to_2_page_4_4_LINED2.png",
-            "page_8_image": "shopify:\/\/shop_images\/2026_Week_to_2_page_4_4_UNLINED1.png",
-            "page_8_image_back": "shopify:\/\/shop_images\/2026_Week_to_2_page_4_4_UNLINED2.png",
-            "page_9_image": "shopify:\/\/shop_images\/2026_Sun-Sat_Week_to_2_page_4_4_LINED1.png",
-            "page_9_image_back": "shopify:\/\/shop_images\/2026_Sun-Sat_Week_to_2_page_4_4_LINED2.png"
+            "page_1_image": "shopify://shop_images/2026_Weekly_Vertical_LINED1.png",
+            "page_1_image_back": "shopify://shop_images/2026_Weekly_Vertical_LINED2.png",
+            "page_2_image": "shopify://shop_images/2026_Weekly_Vertical_UNLINED1.png",
+            "page_2_image_back": "shopify://shop_images/2026_Weekly_Vertical_UNLINED2.png",
+            "page_3_image": "shopify://shop_images/2026_Week_1_to_a_page_LINED1.png",
+            "page_4_image": "shopify://shop_images/2026_Week_1_to_a_page_UNLINED1.png",
+            "page_5_image": "shopify://shop_images/2026_Week_to_2_page_3_4_LINED1.png",
+            "page_5_image_back": "shopify://shop_images/2026_Week_to_2_page_3_4_LINED2.png",
+            "page_6_image": "shopify://shop_images/2026_Week_to_2_page_3_4_UNLINED1.png",
+            "page_6_image_back": "shopify://shop_images/2026_Week_to_2_page_3_4_UNLINED2.png",
+            "page_7_image": "shopify://shop_images/2026_Week_to_2_page_4_4_LINED1.png",
+            "page_7_image_back": "shopify://shop_images/2026_Week_to_2_page_4_4_LINED2.png",
+            "page_8_image": "shopify://shop_images/2026_Week_to_2_page_4_4_UNLINED1.png",
+            "page_8_image_back": "shopify://shop_images/2026_Week_to_2_page_4_4_UNLINED2.png",
+            "page_9_image": "shopify://shop_images/2026_Sun-Sat_Week_to_2_page_4_4_LINED1.png",
+            "page_9_image_back": "shopify://shop_images/2026_Sun-Sat_Week_to_2_page_4_4_LINED2.png"
           }
         },
         "multiyear_page_8FFgwy": {
@@ -504,11 +567,11 @@
           "settings": {
             "year_selected": "2026",
             "page_type": "front_cover",
-            "page_2_image": "shopify:\/\/shop_images\/24-25_REFLECTION.png",
-            "page_3_image": "shopify:\/\/shop_images\/2026_GOALS_1_b4a19d61-817d-46e0-ac81-8cf9e2d81954.png",
-            "page_4_image": "shopify:\/\/shop_images\/2026_GOALS_2_8eee47e2-ef82-4944-b6a2-fe6d4c1f43fa.png",
-            "page_10_image": "shopify:\/\/shop_images\/LITTLE_MONTHS_2026_ab1e2e2d-1901-41ba-94ff-0f506496f4d8.png",
-            "page_12_image": "shopify:\/\/shop_images\/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
+            "page_2_image": "shopify://shop_images/24-25_REFLECTION.png",
+            "page_3_image": "shopify://shop_images/2026_GOALS_1_b4a19d61-817d-46e0-ac81-8cf9e2d81954.png",
+            "page_4_image": "shopify://shop_images/2026_GOALS_2_8eee47e2-ef82-4944-b6a2-fe6d4c1f43fa.png",
+            "page_10_image": "shopify://shop_images/LITTLE_MONTHS_2026_ab1e2e2d-1901-41ba-94ff-0f506496f4d8.png",
+            "page_12_image": "shopify://shop_images/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
           }
         },
         "multiyear_page_y9g9nd": {
@@ -516,8 +579,8 @@
           "settings": {
             "year_selected": "2026",
             "page_type": "between_month",
-            "page_1_image": "shopify:\/\/shop_images\/2026_Monthly_view1_JAN1_384ca065-feca-47ee-821f-7909f33cc2a8.png",
-            "page_1_image_back": "shopify:\/\/shop_images\/2026_Monthly_view2_JAN2_0886bfc7-6d30-4127-a9c4-18e20a2f601f.png"
+            "page_1_image": "shopify://shop_images/2026_Monthly_view1_JAN1_384ca065-feca-47ee-821f-7909f33cc2a8.png",
+            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2_0886bfc7-6d30-4127-a9c4-18e20a2f601f.png"
           }
         },
         "multiyear_page_mkH4LT": {
@@ -525,8 +588,8 @@
           "settings": {
             "year_selected": "2026",
             "page_type": "back_cover",
-            "page_11_image": "shopify:\/\/shop_images\/2027_IMPORTANT_DATES_d11d728b-e448-456b-97e8-a068a1831324.png",
-            "page_12_image": "shopify:\/\/shop_images\/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
+            "page_11_image": "shopify://shop_images/2027_IMPORTANT_DATES_d11d728b-e448-456b-97e8-a068a1831324.png",
+            "page_12_image": "shopify://shop_images/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
           }
         }
       },
@@ -550,10 +613,8 @@
         "planner_custom_pages_Rp4CUJ",
         "text_Th7YxN",
         "planner_custom_pages_gdPx3i",
-        "price",
         "afterpay_on_site_messaging_payments_messaging_eHk3jC",
         "variant_picker",
-        "quantity_selector",
         "text_Vtn6Fp",
         "pages_limit_6GEzq3",
         "buy_buttons",
@@ -579,7 +640,9 @@
       ],
       "settings": {
         "unit_page_price": "0.34",
-        "fixed_added_price": "25",
+        "text_below_price": "<strong>“$0.27 per day” </strong>but the price needs to change based on the price of the custom planner and the date range it covers. So it’s the planner price divided by the amount of days it covers.",
+        "fixed_added_price": "28",
+        "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, place your order first, then reply to the order confirmation email with what edits you'd like and Jess will be in touch.",
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "medium",
@@ -599,8 +662,13 @@
       "type": "apps",
       "blocks": {
         "judge_me_reviews_review_widget_AB7jfL": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [

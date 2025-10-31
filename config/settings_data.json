@@ -1,19 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
-    "logo": "shopify://shop_images/Your_Perfect_Planner___Primary_Logo_Red_72.png",
+    "logo": "shopify:\/\/shop_images\/Your_Perfect_Planner___Primary_Logo_Red_72.png",
     "logo_width": 180,
-    "second_logo": "shopify://shop_images/Your_Perfect_Planner___Secondary_Logo_Red_72.png",
+    "second_logo": "shopify:\/\/shop_images\/Your_Perfect_Planner___Secondary_Logo_Red_72.png",
     "second_logo_width": 300,
-    "favicon": "shopify://shop_images/Perfect_Planner_Submark_circle.png",
+    "favicon": "shopify:\/\/shop_images\/Perfect_Planner_Submark_circle.png",
     "type_header_font": "poppins_n4",
     "heading_scale": 120,
     "type_body_font": "poppins_n4",
@@ -48,7 +39,7 @@
     "card_style": "standard",
     "card_image_padding": 0,
     "card_text_alignment": "left",
-    "card_color_scheme": "scheme-2",
+    "card_color_scheme": "scheme-4f744f48-1706-40e1-86f1-1685e592e315",
     "card_border_thickness": 0,
     "card_border_opacity": 10,
     "card_corner_radius": 0,
@@ -109,11 +100,11 @@
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-4",
     "sold_out_badge_color_scheme": "scheme-3",
-    "brand_headline": "<strong>FOLLOW US</strong>",
-    "brand_description": "<p></p>",
+    "brand_headline": "<strong>FOLLOW US<\/strong>",
+    "brand_description": "<p><\/p>",
     "brand_image_width": 100,
     "social_facebook_link": "facebook.com",
-    "social_instagram_link": "https://www.instagram.com/yourperfectplanner/",
+    "social_instagram_link": "https:\/\/www.instagram.com\/yourperfectplanner\/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -148,33 +139,33 @@
     "content_for_index": [],
     "blocks": {
       "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       },
-      "15683396631634586217": {
-        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
-        "disabled": false,
-        "settings": {
-          "button_color": "#ff4545",
-          "secondary_color": "#FFFFFF",
-          "ternary_color": "#6A6A6A",
-          "button_icon": "chat_bubble",
-          "button_text": "live_chat",
-          "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "Hey! If you have any questions, please feel free to message us. We try to respond almost instantly! You'll be chatting with Jess, this is NOT Ai)"
-        }
-      },
       "855628211100114053": {
-        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "2102808784413787648": {
-        "type": "shopify://apps/kb-back-in-stock/blocks/main-app-embed/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
-        "disabled": false,
+        "type": "shopify:\/\/apps\/kbite-back-in-stock-notify-me\/blocks\/main-app-embed\/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
+        "disabled": true,
         "settings": {}
+      },
+      "15683396631634586217": {
+        "type": "shopify:\/\/apps\/inbox\/blocks\/chat\/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": true,
+        "settings": {
+          "button_color": "#ff4545",
+          "secondary_color": "#ffffff",
+          "ternary_color": "#6a6a6a",
+          "button_icon": "chat_bubble",
+          "button_text": "live_chat",
+          "button_horizontal_position": "bottom_right",
+          "button_vertical_position": "lowest",
+          "greeting_message": "Welcome to Your Perfect Planner! If you have any questions, please feel free to message us. We try to respond almost instantly! You'll be chatting with Jess, (this is NOT AI)"
+        }
       }
     },
     "color_schemes": {
@@ -446,7 +437,7 @@
       "sale_badge_color_scheme": "scheme-4",
       "sold_out_badge_color_scheme": "scheme-3",
       "brand_headline": "",
-      "brand_description": "<p></p>",
+      "brand_description": "<p><\/p>",
       "brand_image_width": 100,
       "social_twitter_link": "",
       "social_facebook_link": "",

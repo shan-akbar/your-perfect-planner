@@ -88,7 +88,7 @@
     <script>
 
         let sat_sun_half = {{ sat_sun_half | json}};
-        let start_date = {{ date_range_block[0].settings.start_date | json }};
+        let start_date = "2025-01-01";
         let current_date = new Date(start_date);
         let diary_pages = [];
         let diary_pages_no_weekends = [];
@@ -97,8 +97,8 @@
         let sat_sun_half_with_dates = [];
         let days_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         
-        diary_pages.push({page_type: 'outer_cover', date: '', year: '2025' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '2025' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" });
+        diary_pages.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+        diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" });
         {% assign page_type = 'day' %}
         let sat_sun_half_iterate = 0;
         {% for diary_page in diary_pages_layout_1 %}
@@ -119,7 +119,10 @@
     </script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
+
+<p class="final-step__note">{{ section.settings.final_step_note }}</p>
 <div class="diary-wrapper">
+    
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
         <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
@@ -133,11 +136,11 @@
                 
         <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 6000 | minus: index }};" data-pageindex="{{index}}"> 
                     <div class="diary-flip_back">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" class="back-page" loading="lazy">
+                        <img alt="ypp" src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" class="back-page" loading="lazy">
                         <label class="diary-flip_back-btn">Prev</label>
                     </div>
                     <div class="diary-flip_front">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" class="front-page" loading="lazy">
+                        <img alt="ypp" src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" class="front-page" loading="lazy">
                         <label class="diary-flip_next-btn">NEXT</label>
                     </div>
         </div>
@@ -454,9 +457,7 @@
             diary_pages_half_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original_2));
         }
-
-        console.log(diary_pages);
-        
+    
     }
 
   function switchWeekendsPages(){
@@ -916,7 +917,7 @@
     function backCoverPages(element){
         let page_wrapper = element.closest(".page_item");
         let main_page_wrapper = element.closest(".planner-custom-pages_wrapper");
-        let current_year = main_page_wrapper.getAttribute('data-defaultyear');
+        let current_year = '2026';
         let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
         let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
         let preview_icon = page_wrapper.querySelector(".preview-icon");
@@ -927,20 +928,26 @@
         
         if(updateType == "plus"){
             let page_added = true;
+            let page_added_2 = false;
+            let year_was_changed = false;
             for(var i=0;i<pages_length;++i){
                 
                 let page_year = diary_pages[i].year;
-
-                if((multiyear == "true" && page_year && page_year != current_year) || (page_year && page_year != current_year) || i == diary_pages.length - 1 ){
-                    page_added = false;
-                }
+              
+                
+                    if((multiyear == "true" && page_year && page_year != current_year) || (page_year && page_year != current_year) || i == diary_pages.length - 1 ){
+                        page_added = false;
+                        year_was_changed = true;
+                    }
+                
 
                 if(!page_added){
-                        updated_pages.push({page_type:"inner_cover_back", page_url: image_front, year: diary_pages[i-1].year });
+                        updated_pages.push({page_type:"inner_cover_back", page_url: image_front, year: diary_pages[i-1]?.year });
                         if(image_back){
-                            updated_pages.push({page_type:"inner_cover_back", page_url: image_back, year: diary_pages[i-1].year });
+                            updated_pages.push({page_type:"inner_cover_back", page_url: image_back, year: diary_pages[i-1]?.year });
                         }
                         page_added = true;
+                        page_added_2 = true;
                 }
 
                 if(multiyear == "true" && page_year != current_year){
@@ -958,6 +965,13 @@
 
                 current_year = page_year; 
                 
+            }
+
+            if(!page_added_2){
+                updated_pages.push({page_type:"inner_cover_back", page_url: image_front, year: diary_pages[diary_pages.length-1].year });
+                if(image_back){
+                    updated_pages.push({page_type:"inner_cover_back", page_url: image_back, year: diary_pages[diary_pages.length-1].year });
+                }
             }
         }else{
             let noOfRemoved = 0;

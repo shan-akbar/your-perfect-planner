@@ -21,6 +21,11 @@
   {%- endif -%}
 
   {%- style -%}
+
+  body{
+    overflow: hidden;
+  }
+  
   @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
@@ -33,6 +38,24 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .view-cart__button{
+      background: black;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .planner-custom-pages_images {
+      scrollbar-width: none;        
+      -ms-overflow-style: none;     
+    }
+
+    .planner-custom-pages_imagess::-webkit-scrollbar {
+      display: none;                
     }
 
     .diary-update__button{
@@ -64,6 +87,8 @@
       top: 0;
       right: 0;
       cursor: pointer;
+      height: 30px;
+      width: 30px;
     }
 
     .planner-custom-pages_wrapper{
@@ -72,6 +97,11 @@
 
     .product__accordion.accordion{
       max-width: 460px;
+    }
+
+    .cart-notification__links{
+      max-width: 44rem;
+      margin: 0 auto;
     }
 
     #split_diary{
@@ -88,6 +118,7 @@
       padding: 10px 20px;
       border-radius: 10px;
       display: none;
+      margin-bottom: 20px;
     }
 
     .pages-limit__description p{
@@ -109,6 +140,16 @@
     .danger-icon img{
       max-width: 30px;
     }
+
+    .exclude_weekends{
+      margin-bottom: 20px;
+    }
+
+    .product-form__input{
+      max-width: 14rem;
+    }
+
+    
 
     .exclude_weekends, .switch_weekends{
       background-color: hsl(0, 89%, 96%);
@@ -162,6 +203,54 @@
       display: none;
     }
 
+    .additional-information{
+      color: #FF4545 !important;
+    }
+
+    .step-price__wrapper{
+      display: flex;
+      column-gap: 20px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .price-label{
+      color: black;
+      font-size: 19px;
+    }
+
+    .extra-pages__navigation{
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      left: 13%;
+      display: flex;
+      justify-content: space-between;
+      max-width: 600px;
+    }
+
+    .ep-nav__button{
+      background: transparent;
+      border: unset;
+      cursor: pointer;
+    }
+
+    .ep-nav__button img{
+      max-width: 50px;
+    }
+
+    .build-step__wrapper{
+      position: relative;
+    }
+
+    @media(max-width: 769px){
+      .extra-pages__navigation{
+        left: 0;
+
+      }
+    }
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -206,10 +295,22 @@
     >
   {%- endif -%}
 
+
+
   <script>
     let monthly_double_pages = [];
     let multiyear_pages = [];
   </script>
+
+  {% assign switch_weekends_block = blank %}
+
+  {% for block in section.blocks %}
+    {% if block.type == 'switch_weekends_pages' %}
+      {% assign switch_weekends_block = block %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign custom_pages_step =  1 %}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
@@ -228,114 +329,90 @@
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
-              {% when 'multiyear_page' %}
-                <script>
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "1",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_1_image != blank %}{{ block.settings.page_1_image |  image_url: width: block.settings.page_1_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_1_image_back != blank %}{{ block.settings.page_1_image_back |  image_url: width: block.settings.page_1_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "2",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_2_image != blank %}{{ block.settings.page_2_image |  image_url: width: block.settings.page_2_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_2_image_back != blank %}{{ block.settings.page_2_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "3",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_3_image != blank %}{{ block.settings.page_3_image |  image_url: width: block.settings.page_3_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_3_image_back != blank %}{{ block.settings.page_3_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "4",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_4_image != blank %}{{ block.settings.page_4_image |  image_url: width: block.settings.page_4_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_4_image_back != blank %}{{ block.settings.page_4_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "5",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_5_image != blank %}{{ block.settings.page_5_image |  image_url: width: block.settings.page_5_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_5_image_back != blank %}{{ block.settings.page_5_image_back |  image_url: width: block.settings.page_5_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "6",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_6_image != blank %}{{ block.settings.page_6_image |  image_url: width: block.settings.page_6_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_6_image_back != blank %}{{ block.settings.page_6_image_back |  image_url: width: block.settings.page_6_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "7",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_7_image != blank %}{{ block.settings.page_7_image |  image_url: width: block.settings.page_7_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_7_image_back != blank %}{{ block.settings.page_7_image_back |  image_url: width: block.settings.page_7_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "8",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_8_image != blank %}{{ block.settings.page_8_image |  image_url: width: block.settings.page_8_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_8_image_back != blank %}{{ block.settings.page_8_image_back |  image_url: width: block.settings.page_8_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "9",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_9_image != blank %}{{ block.settings.page_9_image |  image_url: width: block.settings.page_9_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_9_image_back != blank %}{{ block.settings.page_9_image_back |  image_url: width: block.settings.page_9_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "10",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_10_image != blank %}{{ block.settings.page_10_image |  image_url: width: block.settings.page_10_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_10_image_back != blank %}{{ block.settings.page_10_image_back |  image_url: width: block.settings.page_10_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "11",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_11_image != blank %}{{ block.settings.page_11_image |  image_url: width: block.settings.page_11_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_11_image_back != blank %}{{ block.settings.page_11_image_back |  image_url: width: block.settings.page_11_image_back.width }}{% endif %}"
-                  });
-                  multiyear_pages.push({
-                    "year": "{{ block.settings.year_selected }}",
-                    "page_number": "12",
-                    "page_type": "{{ block.settings.page_type }}",
-                    "front_image": "{% if block.settings.page_12_image != blank %}{{ block.settings.page_12_image |  image_url: width: block.settings.page_12_image.width }}{% endif %}",
-                    "back_image": "{% if block.settings.page_12_image_back != blank %}{{ block.settings.page_12_image_back |  image_url: width: block.settings.page_12_image_back.width }}{% endif %}"
-                  });
-                  
-                </script>
+
+              {% when 'disclaimer_text' %}
+                <div class="disclaimer-text__wrapper build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                  <div class="disclaimer-text disclaimer-text-info__1">{{ block.settings.info_1 }}</div>
+                  <div class="disclaimer-text disclaimer-text-info__2">{{ block.settings.info_2 }}</div>
+                  <div class="disclaimer-text disclaimer-text-info__3">{{ block.settings.info_3 }}</div>
+                </div>
+                {% assign custom_pages_step = custom_pages_step | plus: 1 %}
               {% when 'planner_date_range' %}
-                <div class="planner-date__range" data-startdate="{{ block.settings.start_date }}" data-enddate="{{ block.settings.end_date }}" >
+                <div class="planner-date__range build-step__{{ custom_pages_step }} build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
+                  <div class="additional-information">{{ block.settings.additional_information }}</div>
                   <p class="date-range-error__message" style="color:red;display:none;"></p>
                   <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
-                  <input type="date" id="start_date" name="start_date" min="{{ block.settings.start_date }}" max="{{ block.settings.end_date }}" onchange="handleDateRangeChange()">
+                  <input type="date" id="start_date" name="start_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
                   <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
-                  <input type="date" id="end_date" name="end_date" min="{{ block.settings.start_date }}" max="{{ block.settings.end_date }}" value="2025-12-31" onchange="handleDateRangeChange()">
+                  <input type="date" id="end_date" name="end_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
                   <br>
                   <span class="date-range__note">{{ block.settings.date_note }}</span>
                   <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
-                  <button class="diary-update__button" onclick="updateDiaryPages()" >Update Diary</button>
+                  <button class="diary-update__button" style="display:none;" onclick="updateDiaryPages()" >Update Diary</button>
                 </div>
+                {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                 <script>
                  
                   const startDate = document.querySelector('#start_date');
                   startDate.value = {{ block.settings.start_date | json }};
-                  const endDate = document.querySelector('#end_date');        
+                  const endDate = document.querySelector('#end_date');   
+                  endDate.value = {{ block.settings.end_date | json }};
                 </script>
-              {% when 'planner_custom_pages' %}
-                <div class="planner-custom-pages_wrapper" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
+              {%- when 'exclude_weekends' -%}
+                <div class="build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                  <div class="exclude_weekends">
+                    {% if block.settings.heading != blank %}
+                      <h3>{{ block.settings.heading }}</h3>
+                    {% endif %}
+                    <div class="exclude-weekends__checkbox">
+                      <input type="checkbox" id="exclude_weekends" name="exclude_weekends" value="false" autocomplete='off' onclick="excludeWeekends()">
+                      <label for="exclude_weekends">{{ block.settings.checkbox_label }}</label><br>
+                    </div>
+                    {% if block.settings.other_note != blank %}
+                      <div class="exclude-weekends__description">
+                        <span>&#62;</span> {{ block.settings.other_note }}
+                      </div>
+                    {% endif %}
+                  </div>
+                    {% if switch_weekends_block != blank %}
+                       <div class="switch_weekends build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                        {% if switch_weekends_block.settings.heading != blank %}
+                          <h3>{{ switch_weekends_block.settings.heading }}</h3>
+                        {% endif %}
+                        <div class="switch-weekends__checkbox">
+                          <input type="checkbox" id="switch_weekends" name="switch_weekends" value="false" autocomplete='off' onclick="switchWeekendsPages()">
+                          <label for="switch_weekends">{{ switch_weekends_block.settings.checkbox_label }}</label><br>
+                        </div>
+                        {% if switch_weekends_block.settings.other_note != blank %}
+                          <div class="switch-weekends__description">
+                            <span>&#62;</span> {{ switch_weekends_block.settings.other_note }}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                    </div>
+                  {% assign custom_pages_step = custom_pages_step | plus: 1 %}
+                  {%- when 'switch_weekends_pages' -%}
+                    {% comment %} <div class="switch_weekends build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                      {% if block.settings.heading != blank %}
+                        <h3>{{ block.settings.heading }}</h3>
+                      {% endif %}
+                      <div class="switch-weekends__checkbox">
+                        <input type="checkbox" id="switch_weekends" name="switch_weekends" value="false" autocomplete='off' onclick="switchWeekendsPages()">
+                        <label for="switch_weekends">{{ block.settings.checkbox_label }}</label><br>
+                      </div>
+                      {% if block.settings.other_note != blank %}
+                        <div class="switch-weekends__description">
+                          <span>&#62;</span> {{ block.settings.other_note }}
+                        </div>
+                      {% endif %}
+                    </div> {% endcomment %}
+
+                    {% comment %} {% assign custom_pages_step = custom_pages_step | plus: 1 %} {% endcomment %}
+                  
+                {% when 'planner_custom_pages' %}
+                  <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
+                   <div class="additional-information">{{ block.settings.additional_information }}</div>
                     <div class="planner-custom_pages">
                         <h2>{{ block.settings.title }}</h2>
                         {% if block.settings.page_type == "layout_page" %}
@@ -352,7 +429,7 @@
                                     <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" checked="checked" data-layoutposition="1" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="1" min="0" readonly onchange="extraPages()">
                                 <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                 <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_1_image_back %} data-backimage="{{ block.settings.page_1_image_back |  image_url: width: block.settings.page_1_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_1 }}" data-pagenumber="1" data-pagetype="{{ block.settings.page_type }}">
                                 
@@ -363,10 +440,10 @@
                                   
                                       {{ block.settings.page_2_image |  image_url: width: block.settings.page_2_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="2" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="2" data-layoutposition="2" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="2" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_2_image_back %} data-backimage="{{ block.settings.page_2_image_back |  image_url: width: block.settings.page_2_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_2 }}" data-pagenumber="2" data-pagetype="{{ block.settings.page_type }}">
                               </div>
@@ -376,10 +453,10 @@
                                 
                                     {{ block.settings.page_3_image |  image_url: width: block.settings.page_3_image.width | image_tag : class: 'extra-image' }}
                                     {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="3" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="3" data-layoutposition="3" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="3" min="0" readonly onchange="extraPages()">
                                     <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_3_image_back %} data-backimage="{{ block.settings.page_3_image_back |  image_url: width: block.settings.page_3_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_3 }}" data-pagenumber="3" data-pagetype="{{ block.settings.page_type }}">
                             </div>
@@ -389,10 +466,10 @@
                                 
                                     {{ block.settings.page_4_image |  image_url: width: block.settings.page_4_image.width | image_tag : class: 'extra-image' }}
                                     {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="4" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="4" data-layoutposition="4" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="4" min="0" readonly onchange="extraPages()">
                                     <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_4_image_back %} data-backimage="{{ block.settings.page_4_image_back |  image_url: width: block.settings.page_4_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_4 }}" data-pagenumber="4" data-pagetype="{{ block.settings.page_type }}">
                             </div>
@@ -402,10 +479,10 @@
                                 
                                     {{ block.settings.page_5_image |  image_url: width: block.settings.page_5_image.width | image_tag : class: 'extra-image' }}
                                     {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="5" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="5" data-layoutposition="5" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="5" min="0" readonly onchange="extraPages()">
                                     <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_5_image_back %} data-backimage="{{ block.settings.page_5_image_back |  image_url: width: block.settings.page_5_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_5 }}" data-pagenumber="5" data-pagetype="{{ block.settings.page_type }}">
                             </div>
@@ -415,10 +492,10 @@
                                 
                                     {{ block.settings.page_6_image |  image_url: width: block.settings.page_6_image.width | image_tag : class: 'extra-image' }}
                                     {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="6" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="6" data-layoutposition="6" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="6" min="0" readonly onchange="extraPages()">
                                     <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                     <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_6_image_back %} data-backimage="{{ block.settings.page_6_image_back |  image_url: width: block.settings.page_6_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_6 }}" data-pagenumber="6" data-pagetype="{{ block.settings.page_type }}">
                                     
@@ -429,10 +506,10 @@
                                   
                                       {{ block.settings.page_7_image |  image_url: width: block.settings.page_7_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="7" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="7" data-layoutposition="7" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="7" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_7_image_back %} data-backimage="{{ block.settings.page_7_image_back |  image_url: width: block.settings.page_7_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_7 }}" data-pagenumber="7" data-pagetype="{{ block.settings.page_type }}">
                                       
@@ -443,10 +520,10 @@
                                   
                                       {{ block.settings.page_8_image |  image_url: width: block.settings.page_8_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="8" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="8" data-layoutposition="8" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="8" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_8_image_back %} data-backimage="{{ block.settings.page_8_image_back |  image_url: width: block.settings.page_8_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_8 }}" data-pagenumber="8" data-pagetype="{{ block.settings.page_type }}">
                                       
@@ -457,10 +534,10 @@
                                   
                                       {{ block.settings.page_9_image |  image_url: width: block.settings.page_9_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="9" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="9" data-layoutposition="9" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="9" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_9_image_back %} data-backimage="{{ block.settings.page_9_image_back |  image_url: width: block.settings.page_9_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_9 }}" data-pagenumber="9" data-pagetype="{{ block.settings.page_type }}">
                                       
@@ -471,10 +548,10 @@
                                   
                                       {{ block.settings.page_10_image |  image_url: width: block.settings.page_10_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="10" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="10" data-layoutposition="10" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="10" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_10_image_back %} data-backimage="{{ block.settings.page_10_image_back |  image_url: width: block.settings.page_10_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_10 }}" data-pagenumber="10" data-pagetype="{{ block.settings.page_type }}">
                                       
@@ -485,10 +562,10 @@
                                   
                                       {{ block.settings.page_11_image |  image_url: width: block.settings.page_11_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="11" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="11" data-layoutposition="11" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="11" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_11_image_back %} data-backimage="{{ block.settings.page_11_image_back |  image_url: width: block.settings.page_11_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_11 }}" data-pagenumber="11" data-pagetype="{{ block.settings.page_type }}">
                                       
@@ -499,231 +576,143 @@
                                   
                                       {{ block.settings.page_12_image |  image_url: width: block.settings.page_12_image.width | image_tag : class: 'extra-image' }}
                                       {% if block.settings.page_type == "layout_page" %}
-                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="12" />
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="12" data-layoutposition="12" />
                                 {% endif %}
                                 <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
-                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12"  data-numberindex="12" min="0" readonly onchange="extraPages()">
                                       <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
                                       <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_12_image_back %} data-backimage="{{ block.settings.page_12_image_back |  image_url: width: block.settings.page_12_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_12 }}" data-pagenumber="12" data-pagetype="{{ block.settings.page_type }}">
                                       
                               </div>
                             {% endif %}
+                            {% if block.settings.page_13_image %}
+                              <div class="page_item" data-index="12">
+                                  
+                                      {{ block.settings.page_13_image |  image_url: width: block.settings.page_13_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="13" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="13">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_13_image_back %} data-backimage="{{ block.settings.page_13_image_back |  image_url: width: block.settings.page_13_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_13 }}" data-pagenumber="13" data-pagetype="{{ block.settings.page_type }}">
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_14_image %}
+                              <div class="page_item" data-index="13">
+                                  
+                                      {{ block.settings.page_14_image |  image_url: width: block.settings.page_14_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="14" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="14">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_14_image_back %} data-backimage="{{ block.settings.page_14_image_back |  image_url: width: block.settings.page_14_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_14 }}" data-pagenumber="14" data-pagetype="{{ block.settings.page_type }}">
+                                      
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_15_image %}
+                              <div class="page_item" data-index="14">
+                                  
+                                      {{ block.settings.page_15_image |  image_url: width: block.settings.page_15_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="15" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="15">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_15_image_back %} data-backimage="{{ block.settings.page_15_image_back |  image_url: width: block.settings.page_15_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_15 }}" data-pagenumber="15" data-pagetype="{{ block.settings.page_type }}"> 
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_16_image %}
+                              <div class="page_item" data-index="15">
+                                  
+                                      {{ block.settings.page_16_image |  image_url: width: block.settings.page_16_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                    <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="16" />
+                                {% endif %}
+                                <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="16">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_16_image_back %} data-backimage="{{ block.settings.page_16_image_back |  image_url: width: block.settings.page_16_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_16 }}" data-pagenumber="16" data-pagetype="{{ block.settings.page_type }}"> 
+                              </div>
+                            {% endif %}
+                            {% if block.settings.page_17_image %}
+                              <div class="page_item" data-index="16">
+                                  
+                                      {{ block.settings.page_17_image |  image_url: width: block.settings.page_17_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                  <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="17" />
+                              {% endif %}
+                              <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="17">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_17_image_back %} data-backimage="{{ block.settings.page_17_image_back |  image_url: width: block.settings.page_17_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_17 }}" data-pagenumber="17" data-pagetype="{{ block.settings.page_type }}"> 
+                              </div>
+                          {% endif %}
+                          {% if block.settings.page_18_image %}
+                              <div class="page_item" data-index="17">
+                                  
+                                      {{ block.settings.page_18_image |  image_url: width: block.settings.page_18_image.width | image_tag : class: 'extra-image' }}
+                                      {% if block.settings.page_type == "layout_page" %}
+                                  <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="18" />
+                              {% endif %}
+                              <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                      <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="18">
+                                      <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                      <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_18_image_back %} data-backimage="{{ block.settings.page_18_image_back |  image_url: width: block.settings.page_18_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_18 }}" data-pagenumber="18" data-pagetype="{{ block.settings.page_type }}"> 
+                              </div>
+                          {% endif %}
+                          {% if block.settings.page_19_image %}
+                            <div class="page_item" data-index="18">
+                                
+                                    {{ block.settings.page_19_image |  image_url: width: block.settings.page_19_image.width | image_tag : class: 'extra-image' }}
+                                    {% if block.settings.page_type == "layout_page" %}
+                                <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="19" />
+                            {% endif %}
+                            <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                    <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="19">
+                                    <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                    <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_19_image_back %} data-backimage="{{ block.settings.page_19_image_back |  image_url: width: block.settings.page_19_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_19 }}" data-pagenumber="19" data-pagetype="{{ block.settings.page_type }}"> 
+                            </div>
+                        {% endif %}
+                        {% if block.settings.page_20_image %}
+                          <div class="page_item" data-index="19">
+                              
+                                  {{ block.settings.page_20_image |  image_url: width: block.settings.page_20_image.width | image_tag : class: 'extra-image' }}
+                                  {% if block.settings.page_type == "layout_page" %}
+                              <input type="radio" name="layout-page" class="layout-page__checkbox" onclick="changePageLayout()" data-layoutposition="20" />
+                          {% endif %}
+                          <input class="plus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="+" onclick="updateQty()">
+                                  <input class="page-qty__input {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="number" value="0" max="12" min="0" readonly onchange="extraPages()" data-numberindex="20">
+                                  <input class="minus-button page-qty-input__button {% if block.settings.page_type == 'layout_page' %}hide-custom__element{% endif %}" type="button" value="-" onclick="updateQty()">
+                                  <img class="preview-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/icons8-preview-30.png?v=1732746232" onclick="bigImg()" {% if block.settings.page_20_image_back %} data-backimage="{{ block.settings.page_20_image_back |  image_url: width: block.settings.page_20_image_back.width }}" {% endif %} data-multiyear="{{ block.settings.has_more_than_1_year_pages_20 }}" data-pagenumber="20" data-pagetype="{{ block.settings.page_type }}"> 
+                          </div>
+                      {% endif %}
 
                         </div>
-                    </div>
-                </div>
-                {%- when 'pages_limit' -%}
-                  <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
-                    <div class="danger-icon">
-                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
-                    </div>
-                    <div class="pages-limit__content">
-                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
-                      <p>{{ block.settings.pages_limit_note }}</p>
-                      <input type="checkbox" id="split_diary" name="split_diary" autocomplete='off' value="false" onclick="splitDiary()">
-                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
-                      <br>
-                      {{ block.settings.other_note }}
-                    </div>
 
-                  </div>
-                {%- when 'exclude_weekends' -%}
-                  <div class="exclude_weekends">
-                    {% if block.settings.heading != blank %}
-                      <h3>{{ block.settings.heading }}</h3>
-                    {% endif %}
-                    <div class="exclude-weekends__checkbox">
-                      <input type="checkbox" id="exclude_weekends" name="exclude_weekends" value="false" autocomplete='off' onclick="excludeWeekends()">
-                      <label for="exclude_weekends">{{ block.settings.checkbox_label }}</label><br>
-                    </div>
-                    {% if block.settings.other_note != blank %}
-                      <div class="exclude-weekends__description">
-                        <span>&#62;</span> {{ block.settings.other_note }}
-                      </div>
-                    {% endif %}
-                  </div>
-                  {%- when 'switch_weekends_pages' -%}
-                    <div class="switch_weekends">
-                      {% if block.settings.heading != blank %}
-                        <h3>{{ block.settings.heading }}</h3>
-                      {% endif %}
-                      <div class="switch-weekends__checkbox">
-                        <input type="checkbox" id="switch_weekends" name="switch_weekends" value="false" autocomplete='off' onclick="switchWeekendsPages()">
-                        <label for="switch_weekends">{{ block.settings.checkbox_label }}</label><br>
-                      </div>
-                      {% if block.settings.other_note != blank %}
-                        <div class="switch-weekends__description">
-                          <span>&#62;</span> {{ block.settings.other_note }}
+                        <div class="extra-pages__navigation">
+                            <button onclick="epSlidePrev()" class="ep-nav__prev ep-nav__button"><img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/previous.png?v=1753442264"></button>
+                            <button onclick="epSlideNext()" class="ep-nav__next ep-nav__button"><img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Next.png?v=1753442264"></button>
                         </div>
-                      {% endif %}
                     </div>
-                {%- when 'monthly_double_pages'-%}
-                  <script>
-                    
-                    monthly_double_pages.push({{block.settings.page_1_image | image_url: width: block.settings.page_1_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_1_image_back | image_url: width: block.settings.page_1_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_2_image | image_url: width: block.settings.page_2_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_2_image_back | image_url: width: block.settings.page_2_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_3_image | image_url: width: block.settings.page_3_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_3_image_back | image_url: width: block.settings.page_3_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_4_image | image_url: width: block.settings.page_4_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_4_image_back | image_url: width: block.settings.page_4_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_5_image | image_url: width: block.settings.page_5_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_5_image_back | image_url: width: block.settings.page_5_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_6_image | image_url: width: block.settings.page_6_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_6_image_back | image_url: width: block.settings.page_6_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_7_image | image_url: width: block.settings.page_7_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_7_image_back | image_url: width: block.settings.page_7_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_8_image | image_url: width: block.settings.page_8_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_8_image_back | image_url: width: block.settings.page_8_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_9_image | image_url: width: block.settings.page_9_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_9_image_back | image_url: width: block.settings.page_9_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_10_image | image_url: width: block.settings.page_10_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_10_image_back | image_url: width: block.settings.page_10_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_11_image | image_url: width: block.settings.page_11_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_11_image_back | image_url: width: block.settings.page_11_image_back.width | json }});
-                    monthly_double_pages.push({{block.settings.page_12_image | image_url: width: block.settings.page_12_image.width | json }});
-                    monthly_double_pages.push({{block.settings.page_12_image_back | image_url: width: block.settings.page_12_image_back.width | json }});
-                    
-                    
-                  </script>
-              {%- when '@app' -%}
-                {% render block %}
-              {%- when 'text' -%}
-                <p
-                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
-                  {{ block.shopify_attributes }}
-                  style="color:{{ block.settings.body_text_color }};font-family:poopins-bold;"
-                >
-                  {{- block.settings.text -}}
-                </p>
-              {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
-                  <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
-                      {{ product.title | escape }}
-                    </h2>
-                  </a>
+                    {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                 </div>
-              {%- when 'price' -%}
-                <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product, 
-                    use_variant: true,
-                    show_badges: true,
-                    price_class: 'price--large'
-                  -%}
-                </div>
-                {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                <div class="product__tax caption rte">
-                  {%- if cart.taxes_included -%}
-                    {{ 'products.product.include_taxes' | t }}
-                  {%- endif -%}
-                  {%- if shop.shipping_policy.body != blank -%}
-                    {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- endif -%}
-                </div>
-                <div {{ block.shopify_attributes }}>
-                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {{ form | payment_terms }}
-                  {%- endform -%}
-                </div>
-              {%- when 'inventory' -%}
-                <p
-                  class="product__inventory no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
-                  {{ block.shopify_attributes }}
-                  id="Inventory-{{ section.id }}"
-                  role="status"
-                >
-                  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
-                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                      {%- if product.selected_or_first_available_variant.inventory_quantity
-                          <= block.settings.inventory_threshold
+                {%- when 'buy_buttons' -%}
+                  
+                  <div class="build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                    <div class="step-price__wrapper no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                      <span class="price-label">Price: </span>
+                      {%- render 'price',
+                        product: product, 
+                        use_variant: true,
+                        show_badges: true,
+                        price_class: 'price--large'
                       -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(238,148,65, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(238,148,65)"/>
-                        </svg>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_low_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_low_stock' | t -}}
-                        {%- endif -%}
-                      {%- else -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-                        </svg>
-                        {%- if block.settings.show_inventory_quantity -%}
-                          {{-
-                            'products.product.inventory_in_stock_show_count'
-                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
-                          -}}
-                        {%- else -%}
-                          {{- 'products.product.inventory_in_stock' | t -}}
-                        {%- endif -%}
-                      {%- endif -%}
-                    {%- else -%}
-                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
-                        </svg>
-                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
-                      {%- else -%}
-                        <svg width="15" height="15" aria-hidden="true">
-                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
-                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
-                        </svg>
-                        {{- 'products.product.inventory_out_of_stock' | t -}}
-                      {%- endif -%}
-                    {%- endif -%}
-                  {%- endif -%}
-                </p>
-              {%- when 'description' -%}
-                {{ product.description }}
-              {%- when 'sku' -%}
-                <p
-                  class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
-                  id="Sku-{{ section.id }}"
-                  role="status"
-                  {{ block.shopify_attributes }}
-                >
-                  <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
-                  {{- product.selected_or_first_available_variant.sku -}}
-                </p>
-              {%- when 'custom_liquid' -%}
-                {{ block.settings.custom_liquid }}
-              {%- when 'collapsible_tab' -%}
-                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                  <details id="Details-{{ block.id }}-{{ section.id }}">
-                    <summary>
-                      <div class="summary__title">
-                        {% render 'icon-accordion', icon: block.settings.icon %}
-                        <h2 class="h4 accordion__title inline-richtext">
-                          {{ block.settings.heading | default: block.settings.page.title | escape }}
-                        </h2>
-                      </div>
-                      {% render 'icon-caret' %}
-                    </summary>
-                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
-                    </div>
-                  </details>
-                </div>
-              {%- when 'quantity_selector' -%}
-                <div
+                      <div
                   id="Quantity-Form-{{ section.id }}"
                   class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
                   {{ block.shopify_attributes }}
@@ -932,6 +921,489 @@
                     </volume-pricing>
                   {%- endif -%}
                 </div>
+                    </div>
+                    <p class="text-below__price">{{ section.settings.text_below_price }}</p>
+                    <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
+                    <div class="danger-icon">
+                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
+                    </div>
+                    <div class="pages-limit__content">
+                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
+                      <p>{{ block.settings.pages_limit_note }}</p>
+                      <input type="checkbox" id="split_diary" name="split_diary" autocomplete='off' value="false" onclick="splitDiary()">
+                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
+                      <br>
+                      {{ block.settings.other_note }}
+                    </div>
+
+                  </div>
+                   <div class="additional-information">{{ block.settings.additional_information }}</div>
+                    {%- render 'buy-buttons-custom',
+                      block: block,
+                      product: product,
+                      product_form_id: product_form_id,
+                      section_id: section.id,
+                      show_pickup_availability: false
+                    -%}
+
+                    <div class="cart-notification__links">
+                      <a
+                        href="{{ routes.cart_url }}"
+                        id="cart-notification-button"
+                        class="view-cart__button button button--secondary button--full-width"
+                      >
+                        {{- 'general.cart.view_empty_cart' | t -}}
+                      </a>
+                      
+                        
+                      
+                      <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+                    </div>
+                  </div>
+
+                  
+                  
+              {% when 'multiyear_page' %}
+                <script>
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "1",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_1_image != blank %}{{ block.settings.page_1_image |  image_url: width: block.settings.page_1_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_1_image_back != blank %}{{ block.settings.page_1_image_back |  image_url: width: block.settings.page_1_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "2",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_2_image != blank %}{{ block.settings.page_2_image |  image_url: width: block.settings.page_2_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_2_image_back != blank %}{{ block.settings.page_2_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "3",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_3_image != blank %}{{ block.settings.page_3_image |  image_url: width: block.settings.page_3_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_3_image_back != blank %}{{ block.settings.page_3_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "4",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_4_image != blank %}{{ block.settings.page_4_image |  image_url: width: block.settings.page_4_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_4_image_back != blank %}{{ block.settings.page_4_image_back |  image_url: width: block.settings.page_2_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "5",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_5_image != blank %}{{ block.settings.page_5_image |  image_url: width: block.settings.page_5_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_5_image_back != blank %}{{ block.settings.page_5_image_back |  image_url: width: block.settings.page_5_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "6",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_6_image != blank %}{{ block.settings.page_6_image |  image_url: width: block.settings.page_6_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_6_image_back != blank %}{{ block.settings.page_6_image_back |  image_url: width: block.settings.page_6_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "7",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_7_image != blank %}{{ block.settings.page_7_image |  image_url: width: block.settings.page_7_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_7_image_back != blank %}{{ block.settings.page_7_image_back |  image_url: width: block.settings.page_7_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "8",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_8_image != blank %}{{ block.settings.page_8_image |  image_url: width: block.settings.page_8_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_8_image_back != blank %}{{ block.settings.page_8_image_back |  image_url: width: block.settings.page_8_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "9",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_9_image != blank %}{{ block.settings.page_9_image |  image_url: width: block.settings.page_9_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_9_image_back != blank %}{{ block.settings.page_9_image_back |  image_url: width: block.settings.page_9_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "10",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_10_image != blank %}{{ block.settings.page_10_image |  image_url: width: block.settings.page_10_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_10_image_back != blank %}{{ block.settings.page_10_image_back |  image_url: width: block.settings.page_10_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "11",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_11_image != blank %}{{ block.settings.page_11_image |  image_url: width: block.settings.page_11_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_11_image_back != blank %}{{ block.settings.page_11_image_back |  image_url: width: block.settings.page_11_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "12",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_12_image != blank %}{{ block.settings.page_12_image |  image_url: width: block.settings.page_12_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_12_image_back != blank %}{{ block.settings.page_12_image_back |  image_url: width: block.settings.page_12_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "13",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_13_image != blank %}{{ block.settings.page_13_image |  image_url: width: block.settings.page_13_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_13_image_back != blank %}{{ block.settings.page_13_image_back |  image_url: width: block.settings.page_13_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "14",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_14_image != blank %}{{ block.settings.page_14_image |  image_url: width: block.settings.page_14_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_14_image_back != blank %}{{ block.settings.page_14_image_back |  image_url: width: block.settings.page_14_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "15",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_15_image != blank %}{{ block.settings.page_15_image |  image_url: width: block.settings.page_15_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_15_image_back != blank %}{{ block.settings.page_15_image_back |  image_url: width: block.settings.page_15_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "16",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_16_image != blank %}{{ block.settings.page_16_image |  image_url: width: block.settings.page_16_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_16_image_back != blank %}{{ block.settings.page_16_image_back |  image_url: width: block.settings.page_16_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "17",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_17_image != blank %}{{ block.settings.page_17_image |  image_url: width: block.settings.page_17_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_17_image_back != blank %}{{ block.settings.page_17_image_back |  image_url: width: block.settings.page_17_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "18",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_18_image != blank %}{{ block.settings.page_18_image |  image_url: width: block.settings.page_18_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_18_image_back != blank %}{{ block.settings.page_18_image_back |  image_url: width: block.settings.page_18_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "19",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_19_image != blank %}{{ block.settings.page_19_image |  image_url: width: block.settings.page_19_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_19_image_back != blank %}{{ block.settings.page_19_image_back |  image_url: width: block.settings.page_19_image_back.width }}{% endif %}"
+                  });
+                  multiyear_pages.push({
+                    "year": "{{ block.settings.year_selected }}",
+                    "page_number": "20",
+                    "page_type": "{{ block.settings.page_type }}",
+                    "front_image": "{% if block.settings.page_20_image != blank %}{{ block.settings.page_20_image |  image_url: width: block.settings.page_20_image.width }}{% endif %}",
+                    "back_image": "{% if block.settings.page_20_image_back != blank %}{{ block.settings.page_20_image_back |  image_url: width: block.settings.page_20_image_back.width }}{% endif %}"
+                  });
+                </script>
+              
+              
+                {% comment %} {%- when 'pages_limit' -%} {% endcomment %}
+                  {% comment %} <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
+                    <div class="danger-icon">
+                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
+                    </div>
+                    <div class="pages-limit__content">
+                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
+                      <p>{{ block.settings.pages_limit_note }}</p>
+                      <input type="checkbox" id="split_diary" name="split_diary" autocomplete='off' value="false" onclick="splitDiary()">
+                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
+                      <br>
+                      {{ block.settings.other_note }}
+                    </div>
+
+                  </div> {% endcomment %}
+                
+                {%- when 'monthly_double_pages'-%}
+                  <script>
+                    
+                    {% if block.settings.page_1_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_1_image | image_url: width: block.settings.page_1_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_1_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_1_image_back | image_url: width: block.settings.page_1_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_2_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_2_image | image_url: width: block.settings.page_2_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_2_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_2_image_back | image_url: width: block.settings.page_2_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_3_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_3_image | image_url: width: block.settings.page_3_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_3_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_3_image_back | image_url: width: block.settings.page_3_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_4_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_4_image | image_url: width: block.settings.page_4_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_4_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_4_image_back | image_url: width: block.settings.page_4_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_5_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_5_image | image_url: width: block.settings.page_5_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_5_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_5_image_back | image_url: width: block.settings.page_5_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_6_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_6_image | image_url: width: block.settings.page_6_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_6_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_6_image_back | image_url: width: block.settings.page_6_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_7_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_7_image | image_url: width: block.settings.page_7_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_7_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_7_image_back | image_url: width: block.settings.page_7_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_8_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_8_image | image_url: width: block.settings.page_8_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_8_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_8_image_back | image_url: width: block.settings.page_8_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_9_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_9_image | image_url: width: block.settings.page_9_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_9_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_9_image_back | image_url: width: block.settings.page_9_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_10_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_10_image | image_url: width: block.settings.page_10_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_10_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_10_image_back | image_url: width: block.settings.page_10_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_11_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_11_image | image_url: width: block.settings.page_11_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_11_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_11_image_back | image_url: width: block.settings.page_11_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_12_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_12_image | image_url: width: block.settings.page_12_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_12_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_12_image_back | image_url: width: block.settings.page_12_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_13_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_13_image | image_url: width: block.settings.page_13_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_13_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_13_image_back | image_url: width: block.settings.page_13_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_14_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_14_image | image_url: width: block.settings.page_14_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_14_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_14_image_back | image_url: width: block.settings.page_14_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_15_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_15_image | image_url: width: block.settings.page_15_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_15_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_15_image_back | image_url: width: block.settings.page_15_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_16_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_16_image | image_url: width: block.settings.page_16_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_16_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_16_image_back | image_url: width: block.settings.page_16_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_17_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_17_image | image_url: width: block.settings.page_17_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_17_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_17_image_back | image_url: width: block.settings.page_17_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_18_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_18_image | image_url: width: block.settings.page_18_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_18_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_18_image_back | image_url: width: block.settings.page_18_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_19_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_19_image | image_url: width: block.settings.page_19_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_19_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_19_image_back | image_url: width: block.settings.page_19_image_back.width | json }});
+                    {% endif %}
+
+                    {% if block.settings.page_20_image != blank %}
+                      monthly_double_pages.push({{ block.settings.page_20_image | image_url: width: block.settings.page_20_image.width | json }});
+                    {% endif %}
+                    {% if block.settings.page_20_image_back != blank %}
+                      monthly_double_pages.push({{ block.settings.page_20_image_back | image_url: width: block.settings.page_20_image_back.width | json }});
+                    {% endif %}
+                  </script>
+              {%- when '@app' -%}
+                {% render block %}
+              {%- when 'text' -%}
+                <p
+                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  {{ block.shopify_attributes }}
+                  style="color:{{ block.settings.body_text_color }};font-family:poopins-bold;"
+                >
+                  {{- block.settings.text -}}
+                </p>
+              {%- when 'title' -%}
+                <div class="product__title" {{ block.shopify_attributes }}>
+                  <h1>{{ product.title | escape }}</h1>
+                  <a href="{{ product.url }}" class="product__title">
+                    <h2 class="h1">
+                      {{ product.title | escape }}
+                    </h2>
+                  </a>
+                </div>
+              {%- when 'price' -%}
+                {% comment %} <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  {%- render 'price',
+                    product: product, 
+                    use_variant: true,
+                    show_badges: true,
+                    price_class: 'price--large'
+                  -%} {% endcomment %}
+                </div>
+                {%- if product.quantity_price_breaks_configured? -%}
+                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                  </div>
+                {%- endif -%}
+                <div class="product__tax caption rte">
+                  {%- if cart.taxes_included -%}
+                    {{ 'products.product.include_taxes' | t }}
+                  {%- endif -%}
+                  {%- if shop.shipping_policy.body != blank -%}
+                    {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- endif -%}
+                </div>
+                <div {{ block.shopify_attributes }}>
+                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    {{ form | payment_terms }}
+                  {%- endform -%}
+                </div>
+              {%- when 'inventory' -%}
+                <p
+                  class="product__inventory no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                  {{ block.shopify_attributes }}
+                  id="Inventory-{{ section.id }}"
+                  role="status"
+                >
+                  {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+                    {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity
+                          <= block.settings.inventory_threshold
+                      -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(238,148,65, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(238,148,65)"/>
+                        </svg>
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_low_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_low_stock' | t -}}
+                        {%- endif -%}
+                      {%- else -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                        </svg>
+                        {%- if block.settings.show_inventory_quantity -%}
+                          {{-
+                            'products.product.inventory_in_stock_show_count'
+                            | t: quantity: product.selected_or_first_available_variant.inventory_quantity
+                          -}}
+                        {%- else -%}
+                          {{- 'products.product.inventory_in_stock' | t -}}
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- else -%}
+                      {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(62,214,96, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(62,214,96)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock_continue_selling' | t -}}
+                      {%- else -%}
+                        <svg width="15" height="15" aria-hidden="true">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="rgb(200,200,200, 0.3)"/>
+                          <circle cx="7.5" cy="7.5" r="5" stroke="rgb(255, 255, 255)" stroke-width="1" fill="rgb(200,200,200)"/>
+                        </svg>
+                        {{- 'products.product.inventory_out_of_stock' | t -}}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endif -%}
+                </p>
+              {%- when 'description' -%}
+                {{ product.description }}
+              {%- when 'sku' -%}
+                <p
+                  class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
+                  id="Sku-{{ section.id }}"
+                  role="status"
+                  {{ block.shopify_attributes }}
+                >
+                  <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>
+                  {{- product.selected_or_first_available_variant.sku -}}
+                </p>
+              {%- when 'custom_liquid' -%}
+                {{ block.settings.custom_liquid }}
+              {%- when 'collapsible_tab' -%}
+                <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                  <details id="Details-{{ block.id }}-{{ section.id }}">
+                    <summary>
+                      <div class="summary__title">
+                        {% render 'icon-accordion', icon: block.settings.icon %}
+                        <h2 class="h4 accordion__title inline-richtext">
+                          {{ block.settings.heading | default: block.settings.page.title | escape }}
+                        </h2>
+                      </div>
+                      {% render 'icon-caret' %}
+                    </summary>
+                    <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                      {{ block.settings.content }}
+                      {{ block.settings.page.content }}
+                    </div>
+                  </details>
+                </div>
+          
+                
               {%- when 'popup' -%}
                 <modal-opener
                   class="product-popup-modal__opener no-js-hidden quick-add-hidden"
@@ -956,14 +1428,7 @@
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-              {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons-custom',
-                  block: block,
-                  product: product,
-                  product_form_id: product_form_id,
-                  section_id: section.id,
-                  show_pickup_availability: false
-                -%}
+              
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -1439,7 +1904,270 @@ function bigImg() {
 
 </script>
 
+{% comment %} Code for changing layout to steps {% endcomment %}
 
+<style>
+    /* The Modal (background) */
+    .step-modal {
+      position: fixed; /* Stay in place */
+      z-index: 4; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: white; /* Fallback color */
+    }
+
+    /* Modal Content */
+    .step-modal-content {
+      background-color: #ffffff;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 100%;
+      max-width: 860px;
+      padding: 20px;
+      display: flex;
+      border-radius: 6px;
+      position: relative;
+      height: 100%;
+    }
+
+    .modal-content img{
+      width: 100%;
+    }
+
+    /* The Close Button */
+    .step-modal-close {
+      color: red;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: -14px;
+      right: 3px;
+      display: none;
+    }
+
+    .step-modal-close:hover,
+    .step-modal-close:focus {
+      color: pink;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .build-step__main{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .build-step__1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .build-step__nav{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0px;
+      position: absolute;
+      top: 25px;
+      padding: 0 20px;
+    }
+
+    .build-step__button{
+      cursor: pointer;
+      background-color: #FF4545;
+      color: white;
+      font-weight: bold;
+      border: unset;
+      padding: 7px 20px;
+      border-radius: 4px;
+    }
+
+    .build-step__wrapper{
+      overflow-x: auto;
+      width: 100%;
+    }
+
+    .build-step__wrapper > div{
+      display: none;
+    }
+
+    .build-step__wrapper > div.build-step__active{
+      display: block;
+      margin: 0 auto;
+    }
+
+    .build-step__wrapper div.build-step-media__active{
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .build-step__header h2{
+      font-weight: bold;
+      color: #FF4545;
+      margin-top: 0;
+    }
+
+    .product-form__buttons{
+      margin: 0 auto;
+    }
+
+    .build-step-button__disabled{
+      background-color: lightgray;
+      cursor: not-allowed;
+    }
+
+    @media(max-width: 1024px){
+      .grid__item.product__media-wrapper.build-step-media__active{
+        height: unset;
+      }
+    }
+
+    @media(max-width: 630px){
+      .build-step__wrapper{
+        overflow-x: scroll;
+        max-width: 425px;
+      }
+    }
+
+</style>
+
+<div id="stepModal" class="step-modal">
+
+  <!-- Modal content -->
+  <div class="step-modal-content">
+    <span class="step-modal-close">&times;</span>
+    <div class="build-step__main">
+      <div class="build-step__header">
+          <h2>STEP <span class="step-count">1</span></h2>
+      </div>
+      <div class="build-step__wrapper">
+        
+      </div>
+      <div class="build-step__nav">
+          <button class="build-step__button build-step__prev build-step-button__disabled" onclick="processPrevStep()">Prev Step</button>
+          <button class="build-step__button build-step__next" onclick="processNextStep()">Next Step</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var step_modal = document.getElementById("stepModal");
+  // Get the <span> element that closes the modal
+  var step_modal_span = document.getElementsByClassName("step-modal-close")[0];
+  // When the user clicks on <span> (x), close the modal
+  step_modal_span.onclick = function() {
+    step_modal.style.display = "none";
+  }
+
+</script>
+
+
+<script>
+
+  let final_step_number = {{ custom_pages_step | json }};
+  
+  document.addEventListener("DOMContentLoaded", (event) => {
+    let build_step_wrapper = document.querySelector('.build-step__wrapper');
+    let diary_preview = document.querySelector(".product__media-wrapper");
+    build_step_wrapper.appendChild(diary_preview);
+    for(let i=1 ; i<(final_step_number + 1) ; ++i){
+        let build_step = document.querySelector(`.build-step__${i}`);
+        build_step_wrapper.appendChild(build_step);
+    }
+    
+  });
+
+
+
+  function processNextStep(){
+      let build_step_wrapper = document.querySelector('.build-step__wrapper');
+      let current_step = document.querySelector('.build-step__active');
+      let current_index = Number(current_step.getAttribute("data-buildstep"));
+      
+      let next_index = current_index + 1;
+      let next_step = document.querySelector(`.build-step__${next_index}`);
+      next_step.classList.add('build-step__active');
+      current_step.classList.remove('build-step__active');
+      let step_count = document.querySelector('.step-count');
+      step_count.innerHTML = next_index;
+      if(next_index == final_step_number){
+        let diary_preview = document.querySelector(".product__media-wrapper");
+        diary_preview.classList.add('build-step-media__active');
+        let next_btn = document.querySelector(".build-step__next");
+        next_btn.classList.add('build-step-button__disabled');
+        diary_preview.scrollLeft = diary_preview.scrollWidth;
+      }
+
+      if(current_index == 1){
+        let prev_btn = document.querySelector(".build-step__prev");
+        prev_btn.classList.remove('build-step-button__disabled');
+        let update_date_button = document.querySelector("button.diary-update__button");
+        update_date_button.click();
+      }
+
+  }
+
+  function processPrevStep(){
+      let build_step_wrapper = document.querySelector('.build-step__wrapper');
+      let current_step = document.querySelector('.build-step__active');
+      let current_index = Number(current_step.getAttribute("data-buildstep"));
+      let prev_index = current_index - 1;
+      if(prev_index > 0){
+        let prev_step = document.querySelector(`.build-step__${prev_index}`);
+        prev_step.classList.add('build-step__active');
+        current_step.classList.remove('build-step__active');
+        let step_count = document.querySelector('.step-count');
+        step_count.innerHTML = prev_index;
+        if(prev_index < final_step_number){
+          let diary_preview_active = document.querySelector(".build-step-media__active");
+          if(diary_preview_active){
+            diary_preview_active.classList.remove('build-step-media__active');
+          }
+        }
+      }
+
+      if(prev_index == final_step_number - 1){
+        let next_btn = document.querySelector(".build-step__next");
+        next_btn.classList.remove('build-step-button__disabled');
+      }
+
+      if(prev_index == 1){
+        let prev_btn = document.querySelector(".build-step__prev");
+        prev_btn.classList.add('build-step-button__disabled');
+      }
+  }
+
+  function epSlideNext(){
+    let target = this.event.target;
+    let ep_wrapper = target.closest(".planner-custom_pages");
+    let ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
+    let slide_width = ep_slider.querySelector('.page_item').offsetWidth;
+    ep_slider.scrollBy({ left: slide_width, behavior: "smooth" });
+  }
+
+  function epSlidePrev(){
+    let target = this.event.target;
+    let ep_wrapper = target.closest(".planner-custom_pages");
+    let ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
+    let slide_width = ep_slider.querySelector('.page_item').offsetWidth;
+    ep_slider.scrollBy({ left: (-1 * slide_width), behavior: "smooth" });
+  }
+
+</script>
 
 {% schema %}
 {
@@ -1451,6 +2179,27 @@ function bigImg() {
       "type": "@app"
     },
     {
+      "type": "disclaimer_text",
+      "name": "Disclaimer Text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "info_1",
+          "label": "Info 1"
+        },
+        {
+          "type": "richtext",
+          "id": "info_2",
+          "label": "Info 2"
+        },
+        {
+          "type": "richtext",
+          "id": "info_3",
+          "label": "Info 3"
+        }
+      ]
+    },
+    {
        "type": "planner_custom_pages",
        "name": "Planner Custom Pages",
        "settings":[
@@ -1459,6 +2208,11 @@ function bigImg() {
                 "id": "title",
                 "label": "Title",
                 "default": "Custom Pages"
+            },
+            {
+              "type": "richtext",
+              "id": "additional_information",
+              "label": "Additional Information"
             },
             {
                 "type": "select",
@@ -1679,7 +2433,135 @@ function bigImg() {
               "id": "has_more_than_1_year_pages_12",
               "label": "Has more than 1 Year 12",
               "default": false
-            }  
+            },
+            {
+                "type": "image_picker",
+                "id": "page_13_image",
+                "label": "Page 13 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_13_image_back",
+                "label": "Page 13 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_13",
+              "label": "Has more than 1 Year 13",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image",
+                "label": "Page 14 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image_back",
+                "label": "Page 14 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_14",
+              "label": "Has more than 1 Year 14",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image",
+                "label": "Page 15 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image_back",
+                "label": "Page 15 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_15",
+              "label": "Has more than 1 Year 15",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image",
+                "label": "Page 16 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image_back",
+                "label": "Page 16 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_16",
+              "label": "Has more than 1 Year 16",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image",
+                "label": "Page 17 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image_back",
+                "label": "Page 17 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_17",
+              "label": "Has more than 1 Year 17",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image",
+                "label": "Page 18 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image_back",
+                "label": "Page 18 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_18",
+              "label": "Has more than 1 Year 18",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image",
+                "label": "Page 19 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image_back",
+                "label": "Page 19 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_19",
+              "label": "Has more than 1 Year 19",
+              "default": false
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image",
+                "label": "Page 20 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image_back",
+                "label": "Page 20 Back"
+            },
+            {
+              "type": "checkbox",
+              "id": "has_more_than_1_year_pages_20",
+              "label": "Has more than 1 Year 20",
+              "default": false
+            }
        ]
     },
     {
@@ -1805,7 +2687,87 @@ function bigImg() {
                 "type": "image_picker",
                 "id": "page_12_image_back",
                 "label": "Page 12 Back"
-            }   
+            }  ,
+            {
+                "type": "image_picker",
+                "id": "page_13_image",
+                "label": "Page 13 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_13_image_back",
+                "label": "Page 13 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image",
+                "label": "Page 14 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image_back",
+                "label": "Page 14 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image",
+                "label": "Page 15 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image_back",
+                "label": "Page 15 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image",
+                "label": "Page 16 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image_back",
+                "label": "Page 16 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image",
+                "label": "Page 17 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image_back",
+                "label": "Page 17 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image",
+                "label": "Page 18 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image_back",
+                "label": "Page 18 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image",
+                "label": "Page 19 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image_back",
+                "label": "Page 19 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image",
+                "label": "Page 20 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image_back",
+                "label": "Page 20 Back"
+            }     
        ]
     },
     {
@@ -1965,7 +2927,87 @@ function bigImg() {
                 "type": "image_picker",
                 "id": "page_12_image_back",
                 "label": "Page 12 Back"
-            } 
+            } ,
+            {
+                "type": "image_picker",
+                "id": "page_13_image",
+                "label": "Page 13 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_13_image_back",
+                "label": "Page 13 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image",
+                "label": "Page 14 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_14_image_back",
+                "label": "Page 14 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image",
+                "label": "Page 15 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_15_image_back",
+                "label": "Page 15 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image",
+                "label": "Page 16 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_16_image_back",
+                "label": "Page 16 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image",
+                "label": "Page 17 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_17_image_back",
+                "label": "Page 17 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image",
+                "label": "Page 18 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_18_image_back",
+                "label": "Page 18 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image",
+                "label": "Page 19 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_19_image_back",
+                "label": "Page 19 Back"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image",
+                "label": "Page 20 Front"
+            },
+            {
+                "type": "image_picker",
+                "id": "page_20_image_back",
+                "label": "Page 20 Back"
+            }  
       ]
     },
     {
@@ -2011,6 +3053,11 @@ function bigImg() {
       "name": "Planner Date Range",
       "limit": 1,
       "settings": [
+        {
+          "type": "richtext",
+          "id": "additional_information",
+          "label": "Additional Information"
+        },
         {
           "type": "text",
           "id": "start_date",
@@ -2181,6 +3228,11 @@ function bigImg() {
       "limit": 1,
       "settings": [
         {
+          "type": "richtext",
+          "id": "additional_information",
+          "label": "Additional Information"
+        },
+        {
           "type": "checkbox",
           "id": "show_dynamic_checkout",
           "default": true,
@@ -2193,6 +3245,33 @@ function bigImg() {
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        },
+        {
+          "type": "number",
+          "label": "Pages Limit",
+          "id": "pages_limit",
+          "default": 386
+        },
+        {
+          "type": "number",
+          "id": "split_planner_price",
+          "label": "Split planner price",
+          "default": 10
+        },
+        {
+          "type": "text",
+          "label": "Pages Limit Note",
+          "id": "pages_limit_note"
+        },
+        {
+          "type": "text",
+          "id": "checkbox_label",
+          "label": "Checkbox Label"
+        },
+        {
+          "type": "richtext",
+          "id": "other_note",
+          "label": "Other Note"
         }
       ]
     },
@@ -3446,10 +4525,22 @@ function bigImg() {
       "default": "0.16"
     },
     {
+      "type": "inline_richtext",
+      "id": "text_below_price",
+      "label": "Text Below Price",
+      "default": "“$0.27 per day”"
+    },
+    {
       "type": "text",
       "id": "fixed_added_price",
       "label": "Fixed added price",
       "default": "25"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "final_step_note",
+      "label": "Final Step Note",
+      "default": "Check your Planner"
     },
     {
       "type": "checkbox",

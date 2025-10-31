@@ -300,7 +300,7 @@
             {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
               <div class="no-js-hidden">
                 <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+                {% comment %} {%- render 'country-localization', localPosition: 'FooterCountry' -%} {% endcomment %}
               </div>
             {%- endform -%}
           </localization-form>

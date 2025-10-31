@@ -5,32 +5,24 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "announcement_AhVCg9": {
+        "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "2026 LAYOUTS AVAILABLE NOW FOR FINANCIAL YEAR PLANNERS",
+            "text": "FREE SHIPPING ON ORDERS OVER $99",
             "link": ""
           }
         },
         "announcement_Tmkret": {
           "type": "announcement",
           "settings": {
-            "text": "CURRENT PROCESSING TIME: 1-3 DAYS",
-            "link": ""
-          }
-        },
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "FREE SHIPPING ON ORDERS OVER $120",
+            "text": "CURRENT PROCESSING TIME: 2-5 DAYS",
             "link": ""
           }
         }
       },
       "block_order": [
-        "announcement_AhVCg9",
-        "announcement_Tmkret",
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement_Tmkret"
       ],
       "settings": {
         "color_scheme": "scheme-d5e96a29-2dd1-41a2-bec5-14b872e2d7b6",

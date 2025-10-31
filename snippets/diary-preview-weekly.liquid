@@ -77,7 +77,7 @@
    {% assign date_range_block = blocks | where: "type", "planner_date_range" %}
     <script>
         
-        let start_date = {{ date_range_block[0].settings.start_date | json }};
+        let start_date = "2025-01-01";
         
         let current_date = new Date(start_date);
         let diary_pages = [];
@@ -133,6 +133,8 @@
     </script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
+
+<p class="final-step__note">{{ section.settings.final_step_note }}</p>
 <div class="diary-wrapper">
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -147,11 +149,11 @@
                 
         <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 6000 | minus: index }};" data-pageindex="{{index}}"> 
                     <div class="diary-flip_back">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" class="back-page" loading="lazy">
+                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" alt="ypp" class="back-page" loading="lazy">
                         <label class="diary-flip_back-btn">Prev</label>
                     </div>
                     <div class="diary-flip_front">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" class="front-page" loading="lazy">
+                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" alt="ypp" class="front-page" loading="lazy">
                         <label class="diary-flip_next-btn">NEXT</label>
                     </div>
         </div>
@@ -191,11 +193,15 @@
                     updated_pages.push(diary_pages_backup[i]);
                 }
             }else{
-                updated_pages.push(diary_pages_backup[i]);
+                let cloneObj = JSON.parse(JSON.stringify(diary_pages_backup[i]));
+                cloneObj.year = start_date.getFullYear();
+                updated_pages.push(cloneObj);
             }
         }
 
         diary_pages = updated_pages;
+
+    
 
         let inputs = document.querySelectorAll('input[type=number].page-qty__input ');
  
@@ -311,9 +317,6 @@
                         ++new_index;
                     }
 
-                    
-                    
-                    
                     ++page_step;
 
                     if(page_step == 3){
@@ -667,7 +670,7 @@
                         diary_pages_backup[i].page_url = new_layout[page_index];
                         ++page_index;
                         updated_pages_for_backup.push(diary_pages_backup[i]);
-                        let second_page = {page_type: 'day', date: diary_pages_backup[i].date ,page_url: new_layout[page_index], year: diary_pages[i].year};
+                        let second_page = {page_type: 'day', date: diary_pages_backup[i].date ,page_url: new_layout[page_index], year: diary_pages[i]?.year};
                         updated_pages_for_backup.push(second_page);
                         ++page_index;
                     }else{
@@ -804,12 +807,16 @@
         let pages_length = diary_pages.length;
         let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
+        
         let current_layout = all_layouts[currently_selected_layout-1];
+        
         let current_layout_pages_length_half = current_layout.length/2;
+        
         let page_gap = 1;
-        if(current_layout_pages_length_half > 40){
+        if(current_layout_pages_length_half > 80){
             page_gap = 2;
         }
+        console.log(page_gap);
         if(updateType == 'plus'){
             let day_page_counter = 0; 
             for(var i=0 ; i < pages_length ; ++i){
@@ -978,9 +985,12 @@
 
         let diary_pages_days = diary_pages.filter((page) => page.page_type == "day");
         let start_date = new Date(diary_pages_days[0].date);
+        let previous_date = new Date(diary_pages_days[0].date);
+        previous_date.setDate(previous_date.getDate() - 7);
         let current_year = start_date.getFullYear();
         let previous_year = start_date.getFullYear();
         let start_date_month = start_date.getMonth();
+        let previous_date_month = previous_date.getMonth();
         let date_year = start_date.getFullYear();
         let current_layout = all_layouts[currently_selected_layout-1];
         let current_layout_pages_length_half = current_layout.length/2;
@@ -1001,14 +1011,10 @@
 
         let access_index = start_date_month * 2 + year_gap;
 
-        if(start_date_month != 0){
-            access_index -= 2;
-        }
-        
-        if(start_date.getDate() != 1){
+        if(start_date_month == previous_date_month){
             access_index += 2;
         }
-       
+
         let image_front = element.closest(".page_item").querySelector(".extra-image").getAttribute("src");
         let image_back = element.closest(".page_item").querySelector(".preview-icon").getAttribute("data-backimage");
         let pages_length = diary_pages.length;
@@ -1024,8 +1030,9 @@
             for(var i=0; i<pages_length; ++i){
                 
                 if(diary_pages[i].page_type == 'day'){
-
+                    
                     let current_date = new Date(diary_pages[i].date);
+                    
                     current_month = current_date.getMonth() + 1;
                     day_of_month = current_date.getDate();
                     current_year = current_date.getFullYear();
@@ -1119,31 +1126,53 @@
         let pages_length = diary_pages.length;
         let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
-        
+        let year_changed = false;
+        if(diary_pages[0].year != current_year){
+            current_year = diary_pages[0].year;
+            year_changed = true;
+        }
+
         if(updateType == "plus"){
             let page_added = true;
             for(var i=0;i<pages_length;++i){
                 let page_year = diary_pages[i].year;
-
+                
                 if((multiyear == "true" && page_year && page_year != current_year) || (page_year && page_year != current_year) || i == diary_pages.length - 1 ){
                     page_added = false;
                 }
 
-                if(!page_added){
-                        updated_pages.push({page_type:"inner_cover_back", page_url: image_front, year: diary_pages[i-1].year });
-                        if(image_back){
-                            updated_pages.push({page_type:"inner_cover_back", page_url: image_back, year: diary_pages[i-1].year });
-                        }
-                        page_added = true;
-                }
-
-                if(multiyear == "true" && page_year != current_year){
+                if( (multiyear == "true" && year_changed) ){
                     
                     let page_number = preview_icon.getAttribute("data-pagenumber");
                     let page_type = preview_icon.getAttribute("data-pagetype");   
                     let target_object_index = multiyear_pages.findIndex((item)=> item.page_type==page_type && item.page_number==page_number && item.year==page_year);
-                    image_front = multiyear_pages[target_object_index]?.front_image;
-                    image_back = multiyear_pages[target_object_index]?.back_image;
+                    if(target_object_index){
+                      image_front = multiyear_pages[target_object_index]?.front_image;
+                      image_back = multiyear_pages[target_object_index]?.back_image;
+                    }
+
+                }
+
+              
+                 if(!page_added){
+                        updated_pages.push({page_type:"inner_cover_back", page_url: image_front, year: page_year });
+                        if(image_back){
+                            updated_pages.push({page_type:"inner_cover_back", page_url: image_back, year: page_year });
+                        }
+                        page_added = true;
+                  
+                }
+
+                if((multiyear == "true" && page_year != current_year) ){
+                    
+                    let page_number = preview_icon.getAttribute("data-pagenumber");
+                    let page_type = preview_icon.getAttribute("data-pagetype");   
+                  
+                    let target_object_index = multiyear_pages.findIndex((item)=> item.page_type==page_type && item.page_number==page_number && item.year==page_year);
+                    if(target_object_index){
+                      image_front = multiyear_pages[target_object_index]?.front_image;
+                      image_back = multiyear_pages[target_object_index]?.back_image;
+                    }
                 }
 
                 if((diary_pages[i].page_type !='blank' && diary_pages[i].page_type !='copyright')){

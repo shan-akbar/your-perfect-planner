@@ -312,7 +312,7 @@
             {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+                {% comment %} {%- render 'country-localization', localPosition: 'HeaderCountry' -%} {% endcomment %}
               </div>
             {%- endform -%}
           </localization-form>
@@ -392,9 +392,7 @@
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
-{%- if settings.cart_type == "notification" -%}
-  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
-{%- endif -%}
+
 
 {% javascript %}
   class StickyHeader extends HTMLElement {

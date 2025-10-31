@@ -15,7 +15,7 @@
           "type": "accordion",
           "settings": {
             "question": "Is there different covers to choose from?",
-            "answer": "<p>We don't offer different cover designs at this stage, however we're working on bringing four new designs for 2026 planners.<\/p>"
+            "answer": "<p>Yes! You can upgrade your cover <a href=\"\/products\/planner-cover\" title=\"Planner Cover - PRE-ORDER\">here<\/a><\/p>"
           }
         },
         "accordion_4xLKyK": {
@@ -59,13 +59,6 @@
             "question": "Do you sell gift cards?",
             "answer": "<p>Yes! Find them <a href=\"\/products\/your-perfect-planner-gift-card\" title=\"Your Perfect Planner Gift Card\">here<\/a><\/p>"
           }
-        },
-        "accordion_LmGNVd": {
-          "type": "accordion",
-          "settings": {
-            "question": "Can I buy a 2024 planner?",
-            "answer": "<p>2024 planners are not available to purchase on our website, however if you'd like one that covers the last few months of the year, please email us at hello@yourperfectplanner.com.au and we can explain your options<\/p>"
-          }
         }
       },
       "block_order": [
@@ -75,8 +68,7 @@
         "accordion_EcWt94",
         "accordion_7dYzTE",
         "accordion_jgLgda",
-        "accordion_dfhFdt",
-        "accordion_LmGNVd"
+        "accordion_dfhFdt"
       ],
       "settings": {
         "Heading_text_1": "You're Welcome To Contact Us",
@@ -141,7 +133,7 @@
           "type": "accordion",
           "settings": {
             "question": "Do you offer free shipping?",
-            "answer": "<p>At this stage, we offer free shipping for all orders over $120 that are being shipped within Australia. If your order is under $120 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from$11.95.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
+            "answer": "<p>At this stage, we offer free shipping for all orders over $99 that are being shipped within Australia. If your order is under $99 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from $11.95.<\/p><p>Read the full details of our Shipping Policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a><\/p>"
           }
         },
         "accordion_JETnYg": {

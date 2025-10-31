@@ -169,7 +169,7 @@
           {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
-              {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
+              {% comment %} {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%} {% endcomment %}
             </div>
           {%- endform -%}
         </localization-form>

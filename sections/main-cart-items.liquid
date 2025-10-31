@@ -107,7 +107,7 @@
     const shippingMessage = document.getElementById('free-shipping-message');
 
     function updateFreeShippingBar(cart) {
-      const freeShippingThreshold = 12000; // $120 in cents
+      const freeShippingThreshold = 9900; // $99 in cents
       const cartTotal = cart.items_subtotal_price;
 
       if (cartTotal >= freeShippingThreshold) {
