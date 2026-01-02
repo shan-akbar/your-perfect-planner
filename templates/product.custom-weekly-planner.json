@@ -51,6 +51,7 @@
         },
         "text_4WehDr": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<strong>Step 1: Choose planner dates</strong>",
             "body_text_color": "#000000",
@@ -88,6 +89,7 @@
         },
         "text_deWihk": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<strong>Step 2: Choose page layout</strong>",
             "body_text_color": "#000000",
@@ -142,6 +144,7 @@
         },
         "text_G7CHiV": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<strong>Step 3: Choose extra pages</strong>",
             "body_text_color": "#000000",
@@ -271,6 +274,7 @@
             "has_more_than_1_year_pages_12": false,
             "page_13_image": "shopify://shop_images/BUSINESS_MONTHLY_OVERVIEW.png",
             "has_more_than_1_year_pages_13": false,
+            "page_14_image": "shopify://shop_images/APPOINTMENT_TIMES.png",
             "has_more_than_1_year_pages_14": false,
             "has_more_than_1_year_pages_15": false,
             "has_more_than_1_year_pages_16": false,
@@ -332,6 +336,7 @@
         },
         "afterpay_on_site_messaging_payments_messaging_eHk3jC": {
           "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "disabled": true,
           "settings": {
             "text_align": "inherit",
             "margin_top": 16,
@@ -365,6 +370,7 @@
         },
         "text_Vtn6Fp": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "Once you add your planner to cart, you cannot go back to check the pages you've chose. Your selections will save but you won't be able to view them again.",
             "body_text_color": "#ff4545",
@@ -399,7 +405,7 @@
           "settings": {
             "heading": "Features",
             "icon": "star",
-            "content": "<ul><li>Front and back hardcover (Your Perfect Planner branded design)</li><li>Printed on FSC certified paper</li><li>Cover: 195x235mm</li><li>Pages: 176x230mm</li><li>100gsm paper</li><li>All pages inside the planner are black and white</li><li>One light pink ribbon bookmark</li><li>White ring wire binding</li><li>Thickness of planner and size of coil will vary depending on how many pages you select</li></ul>",
+            "content": "<ul><li>Front and back hardcover</li><li>Printed on FSC certified paper</li><li>Cover: 195x235mm</li><li>Pages: 176x230mm</li><li>100gsm paper</li><li>All pages inside the planner are black and white</li><li>One light pink ribbon bookmark</li><li>White ring wire binding</li><li>Thickness of planner and size of coil will vary depending on how many pages you select</li></ul>",
             "page": ""
           }
         },
@@ -408,7 +414,7 @@
           "settings": {
             "heading": "How To Build Your Perfect Planner",
             "icon": "clipboard",
-            "content": "<p>If you have access to a computer, we recommend building your<br/>planner using that instead of on your mobile as you can view the preview and<br/>extra pages easier</p><ol><li>Select your start and end date using the calendar<br/>selection above</li><li>Click “update diary” button so you can view your date selection on the planner preview</li><li>Choose the layout you’d like your planner to have<br/>Select all your extra pages by clicking the preview button (little eye) in the bottom left corner of each page to view the page. If you’d like to add that page to your planner, click the + button to increase the quantity</li><li>Check the preview to make sure it’s looking how you wish</li><li>Add to cart!</li></ol><p>While this custom feature is the exact reason Your Perfect<br/>Planner exists, the process is quite complex. If you’re confused about<br/>something or have a question, please don’t hesitate to contact us, we’d be happy to help. </p>",
+            "content": "<p></p><ol><li>Click \"Start Building Planner\"</li><li>Set your date range</li><li>Choose the layout you’d like your planner to have by clicking the circle in the top right corner</li><li>Select all your extra pages by clicking  the + button to increase the quantity</li><li>Check the preview to make sure it’s looking how you wish</li><li>Add to cart!</li></ol><p>While this custom feature is the exact reason Your Perfect<br/>Planner exists, the process is quite complex. If you’re confused about<br/>something or have a question, please don’t hesitate to contact us, we’d be happy to help. </p>",
             "page": ""
           }
         },
@@ -514,7 +520,7 @@
           "type": "monthly_double_pages",
           "settings": {
             "page_1_image": "shopify://shop_images/2026_Monthly_view1_JAN1.png",
-            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2.png",
+            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2_d419deaf-3482-4d61-af99-e08e7e5a0c88.png",
             "page_2_image": "shopify://shop_images/2026_Monthly_view3_FEB1.png",
             "page_2_image_back": "shopify://shop_images/2026_Monthly_view4_FEB2.png",
             "page_3_image": "shopify://shop_images/2026_Monthly_view5_MAR1.png",
@@ -524,17 +530,17 @@
             "page_5_image": "shopify://shop_images/2026_Monthly_view9_MAY1.png",
             "page_5_image_back": "shopify://shop_images/2026_Monthly_view10_MAY2.png",
             "page_6_image": "shopify://shop_images/2026_Monthly_view11_JUN1.png",
-            "page_6_image_back": "shopify://shop_images/2026_Monthly_view12_JUN2.png",
+            "page_6_image_back": "shopify://shop_images/2026_Monthly_view12_JUN2_ec0c51f8-fe79-4cf2-a6a3-cedfd41caf76.png",
             "page_7_image": "shopify://shop_images/2026_Monthly_view13_JUL1.png",
-            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2.png",
+            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2_25cc6c8e-469a-4b8d-a5b3-bb08b28aa92c.png",
             "page_8_image": "shopify://shop_images/2026_Monthly_view15_AUG1.png",
-            "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2.png",
+            "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2_a5968cc6-033e-44d5-8bf6-9af38fb4f53a.png",
             "page_9_image": "shopify://shop_images/2026_Monthly_view17_SEP1.png",
             "page_9_image_back": "shopify://shop_images/2026_Monthly_view18_SEP2.png",
             "page_10_image": "shopify://shop_images/2026_Monthly_view19_OCT1.png",
-            "page_10_image_back": "shopify://shop_images/2026_Monthly_view20_OCT2.png",
+            "page_10_image_back": "shopify://shop_images/2026_Monthly_view20_OCT2_f66ed878-f5c3-4be1-ac54-43f68f895cc5.png",
             "page_11_image": "shopify://shop_images/2026_Monthly_view21_NOV1.png",
-            "page_11_image_back": "shopify://shop_images/2026_Monthly_view22_NOV2.png",
+            "page_11_image_back": "shopify://shop_images/2026_Monthly_view22_NOV2_dbb76bf0-a5ce-49d4-891e-975fb91bb4f7.png",
             "page_12_image": "shopify://shop_images/2026_Monthly_view23_DEC1.png",
             "page_12_image_back": "shopify://shop_images/2026_Monthly_view24_DEC2.png"
           }
@@ -640,7 +646,6 @@
       ],
       "settings": {
         "unit_page_price": "0.34",
-        "text_below_price": "<strong>“$0.27 per day” </strong>but the price needs to change based on the price of the custom planner and the date range it covers. So it’s the planner price divided by the amount of days it covers.",
         "fixed_added_price": "28",
         "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, place your order first, then reply to the order confirmation email with what edits you'd like and Jess will be in touch.",
         "enable_sticky_info": true,

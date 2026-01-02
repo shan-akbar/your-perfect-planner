@@ -50,8 +50,10 @@
 {% assign sat_sun_half = sat_sun_half | concat: sat_sun_half_2 %}
 
 {% for i in (1..12) %}
+   
+    {% assign metafield_key_2_check = "planner_pages_2_layout_" | append: i | append: "_set_1" %}
     {% assign metafield_key_check = "planner_pages_layout_" | append: i | append: "_set_1" %}
-    {% if product.metafields["custom"][metafield_key_check].value %}
+    {% if product.metafields["custom"][metafield_key_check].value or product.metafields["custom"][metafield_key_2_check].value %}
         {%  assign diary_pages_layout_general = null %}
         {%  assign diary_pages_layout_general_2 = null %}
         {% for j in (1..3) %}
@@ -65,11 +67,19 @@
                 {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
                 {%  assign diary_pages_layout_general = diary_pages_layout_general | concat: diary_pages_temp %}
             {%- endpaginate -%}
+           
             {%- paginate diary_pages_temp_2 by 128 -%}
                 {% assign diary_pages_temp_2 = diary_pages_temp_2 | reverse | reverse %}
                 {%  assign diary_pages_layout_general_2 = diary_pages_layout_general_2 | concat: diary_pages_temp_2 %}
             {%- endpaginate -%}
         {% endfor %}
+
+        
+        {% assign general_layout_size = diary_pages_layout_general | size %}
+
+        {% if general_layout_size == 0 %}
+            {% assign diary_pages_layout_general = diary_pages_layout_general_2 %}
+        {% endif %}
 
         {% assign diary_pages_layout_general_final = diary_pages_layout_general | concat: diary_pages_layout_general_2 %}
 
@@ -78,13 +88,12 @@
         {% endif %}
 
         <script>
-            all_layouts.push({{ diary_pages_layout_general_final | json}});
-            
+            all_layouts.push({{ diary_pages_layout_general_final | json }});
+         
         </script>
     {% endif %}
 {% endfor %}
 
-   {% assign date_range_block = blocks | where: "type", "planner_date_range" %}
     <script>
 
         let sat_sun_half = {{ sat_sun_half | json}};
@@ -356,6 +365,7 @@
         for(var i=0; i<pages_length; ++i){    
             let page = pages_preview[i];
             page.querySelector(".front-page").setAttribute("src", diary_pages[side_index].page_url);
+            
             page.querySelector(".back-page").setAttribute("src", diary_pages[side_index + 1].page_url);
             if(diary_pages[side_index].page_type == 'day'){
                 
@@ -447,9 +457,7 @@
             pages_limit_div.style.display = 'none';
         }
         
-        updatePrice(diary_pages.length);
-
-
+        
         if(excludeWeekends){
             diary_pages_no_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original));
@@ -457,6 +465,8 @@
             diary_pages_half_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original_2));
         }
+
+        updatePrice(diary_pages.length);
     
     }
 
@@ -476,7 +486,7 @@
         }
     }
     
-    renderPages();
+        renderPages();
   }
 
   function splitDiary(){
@@ -496,16 +506,17 @@
         }
         
         document.querySelector(".custom-planner__price").setAttribute("data-fixedprice", fixedprice);
-        let excludeWeekends = document.getElementById("exclude_weekends").checked;
-        let switchWeekends = document.getElementById("switch_weekends").checked;
-        
-        if(excludeWeekends){
-            updatePrice(diary_pages_no_weekends.length);
-        }else if(switchWeekends){
-            updatePrice(diary_pages_half_weekends.length);
-        }else{
-            updatePrice(diary_pages.length);
-        }
+        updatePrice(diary_pages.length);
+        //     let excludeWeekends = document.getElementById("exclude_weekends").checked;
+        //     let switchWeekends = document.getElementById("switch_weekends").checked;
+            
+        //     if(excludeWeekends){
+        //         updatePrice(diary_pages_no_weekends.length);
+        //     }else if(switchWeekends){
+        //         updatePrice(diary_pages_half_weekends.length);
+        //     }else{
+        //         updatePrice(diary_pages.length);
+        // }
 
     }
 
@@ -516,10 +527,29 @@
             if(priceTarget){
                 let unitPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-unitprice"));
                 let fixedAddedPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-fixedprice"));
+                let excludeWeekends = document.getElementById("exclude_weekends").checked;
+                let switch_weekends = document.querySelector(".switch_weekends");
+
+                
+                let diary_pages_final2 = [];
+                
+                    if(excludeWeekends){
+                        diary_pages_final2 = structuredClone(diary_pages_no_weekends);
+                    }else if(switch_weekends){
+                        diary_pages_final2 = structuredClone(diary_pages_half_weekends);
+                    }else{
+                        diary_pages_final2 = structuredClone(diary_pages);
+                    }
+               if(diary_pages_final2.length > 0){
+                   noOfPages = diary_pages_final2.length;
+                }
                 let totalPrice = ((noOfPages * unitPrice) + fixedAddedPrice).toFixed(2);
                 priceTarget.innerHTML = "$" + totalPrice + " AUD";
                 let customPriceProperty = document.getElementById("custom_price");
                 customPriceProperty.value = totalPrice;
+                let final_unit_price = totalPrice/noOfPages;
+                let text_below_price =  document.querySelector(".text-below__price");
+                text_below_price.innerHTML = "$" + final_unit_price.toFixed(2) + " per day";
                 clearInterval(myInterval);
             }
         }, 100);
@@ -571,14 +601,19 @@
             let diary_loading_spinner = document.querySelector('.diary-loading_spinner');
             diary_loading_spinner.classList.remove('diary-loading-spinner_hidden');
             let layout_pages = all_layouts[layout_position-1];
+           
             let page_index = 0;
             let diary_pages_length = diary_pages.length;
+          
             for(var i=0;i<diary_pages_length;++i){
                 if(diary_pages[i].page_type == "day"){
                     diary_pages[i].page_url = layout_pages[page_index];
+                   
                     ++page_index;
                 }
             }
+
+          
             
             page_index = 0;
             for(var i=0;i<diary_pages_backup.length;++i){

@@ -40,8 +40,9 @@
 {% assign diary_pages_layout_1 = null %}
 
 {% for i in (1..12) %}
+     {% assign metafield_key_2_check = "planner_pages_2_layout_" | append: i | append: "_set_1" %}
     {% assign metafield_key_check = "planner_pages_layout_" | append: i | append: "_set_1" %}
-    {% if product.metafields["custom"][metafield_key_check].value %}
+    {% if product.metafields["custom"][metafield_key_check].value or product.metafields["custom"][metafield_key_2_check].value %}
         {%  assign diary_pages_layout_general = null %}
         {%  assign diary_pages_layout_general_2 = null %}
         {% for j in (1..3) %}
@@ -68,13 +69,13 @@
         {% endif %}
 
         <script>
-            all_layouts.push({{ diary_pages_layout_general_final | json}});
+            all_layouts.push( {{ diary_pages_layout_general_final | json }} );
             
         </script>
     {% endif %}
 {% endfor %}
 
-   {% assign date_range_block = blocks | where: "type", "planner_date_range" %}
+  
     <script>
         
         let start_date = "2025-01-01";
@@ -136,6 +137,7 @@
 
 <p class="final-step__note">{{ section.settings.final_step_note }}</p>
 <div class="diary-wrapper">
+    
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
         <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
@@ -480,7 +482,7 @@
         }else{
             pages_limit_div.style.display = 'none';
         }
-        updatePrice();
+        updatePrice(diary_pages.length);
     }
 
     function splitDiary(){
@@ -500,21 +502,25 @@
         }
         
         document.querySelector(".custom-planner__price").setAttribute("data-fixedprice", fixedprice);
-        updatePrice();
+        updatePrice(diary_pages.length);
     }
 
-    function updatePrice(){
+    function updatePrice(noOfPages){
     
         const myInterval = setInterval(function (){
             let priceTarget = document.querySelector(".price__container .price-item.price-item--regular");
             if(priceTarget){
-                let noOfPages = diary_pages.length;
+                
                 let unitPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-unitprice"));
                 let fixedAddedPrice = Number(document.querySelector(".custom-planner__price").getAttribute("data-fixedprice"));
+                
                 let totalPrice = ((noOfPages * unitPrice) + fixedAddedPrice).toFixed(2);
                 priceTarget.innerHTML = "$" + totalPrice + " AUD";
                 let customPriceProperty = document.getElementById("custom_price");
                 customPriceProperty.value = totalPrice;
+                let final_unit_price = totalPrice/noOfPages;
+                let text_below_price =  document.querySelector(".text-below__price");
+                text_below_price.innerHTML = "$" + final_unit_price.toFixed(2) + " per day";
                 clearInterval(myInterval);
             }
         }, 100);

@@ -180,6 +180,7 @@
 </div>
 
 <script>
+   
     async function customAddToCart(){
         let target = this.event.target;
         let spinner = target.querySelector(".loading__spinner");
@@ -258,7 +259,13 @@
                     "_before_dates_start": before_dates_start,
                     "_in_between_each_week": in_between_each_week,
                     "_in_between_each_month": in_between_each_month,
-                    "_after_dates_end": after_dates_end
+                    "_after_dates_end": after_dates_end,
+                    "_split_diary": document.getElementById("split_diary").checked,
+                    "_fixed_p": Number({{ section.settings.fixed_added_price | json }}),
+                    "_unit_p" : Number({{ section.settings.unit_page_price | json }}),
+                    "_pages_len": Number(diary_pages_final.length),
+                    "_pages_len2": Number(diary_pages.length),
+                    "_split_p": Number({{ split_planner_price | json }})
 
                  }
                 }

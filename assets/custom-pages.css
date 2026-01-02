@@ -2,6 +2,14 @@
   text-align: center;
   color: #ff4545 !important;
   margin-top: 0;
+  margin-bottom: 0;
+  display: block !important;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.price-2.price--large.price--show-badge{
+  align-self: end;
 }
 
 .planner-custom-pages_images{
@@ -10,6 +18,20 @@
     overflow-x: scroll;
     max-width: 400;
     overflow-y: hidden;
+}
+
+@media(max-width: 400px){
+  .price-label{
+    font-size: 15px!important;
+  }
+
+  .step-price__wrapper{
+    column-gap: 10px !important;
+  }
+
+  .price__regular .price-item--regular{
+    font-size: 14px !important;
+  }
 }
 
 .step-price__wrapper{

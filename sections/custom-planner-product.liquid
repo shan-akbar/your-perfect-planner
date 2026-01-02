@@ -22,8 +22,8 @@
 
   {%- style -%}
 
-  body{
-    overflow: hidden;
+  product-info .build-step-hide{
+    display: none;
   }
   
   @font-face {
@@ -244,6 +244,22 @@
       position: relative;
     }
 
+    .page-width .product .product__media-wrapper-2{
+      display: none;
+    }
+
+    .product__media-wrapper-3 .product-media-container .product__media img{
+      object-fit: contain !important;
+    }
+
+    .product__media-wrapper-3 .product-media-container{
+      border: unset !important;
+    }
+
+    .grid__item.product__media-wrapper-3{
+      height: unset !important;
+    }
+
     @media(max-width: 769px){
       .extra-pages__navigation{
         left: 0;
@@ -312,11 +328,16 @@
 
   {% assign custom_pages_step =  1 %}
 
+  {% assign split_planner_price =  0 %}
+
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
+      <div class="grid__item product__media-wrapper-2 product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
         {% render 'diary-preview', blocks: section.blocks %}
+      </div>
+      <div class="grid__item product__media-wrapper-3 product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
+        {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <product-info
@@ -331,14 +352,14 @@
             {%- case block.type -%}
 
               {% when 'disclaimer_text' %}
-                <div class="disclaimer-text__wrapper build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                <div class="disclaimer-text__wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
                   <div class="disclaimer-text disclaimer-text-info__1">{{ block.settings.info_1 }}</div>
                   <div class="disclaimer-text disclaimer-text-info__2">{{ block.settings.info_2 }}</div>
                   <div class="disclaimer-text disclaimer-text-info__3">{{ block.settings.info_3 }}</div>
                 </div>
                 {% assign custom_pages_step = custom_pages_step | plus: 1 %}
               {% when 'planner_date_range' %}
-                <div class="planner-date__range build-step__{{ custom_pages_step }} build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
+                <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
                   <div class="additional-information">{{ block.settings.additional_information }}</div>
                   <p class="date-range-error__message" style="color:red;display:none;"></p>
                   <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
@@ -359,7 +380,7 @@
                   endDate.value = {{ block.settings.end_date | json }};
                 </script>
               {%- when 'exclude_weekends' -%}
-                <div class="build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                <div class="build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
                   <div class="exclude_weekends">
                     {% if block.settings.heading != blank %}
                       <h3>{{ block.settings.heading }}</h3>
@@ -375,7 +396,7 @@
                     {% endif %}
                   </div>
                     {% if switch_weekends_block != blank %}
-                       <div class="switch_weekends build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                       <div class="switch_weekends build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
                         {% if switch_weekends_block.settings.heading != blank %}
                           <h3>{{ switch_weekends_block.settings.heading }}</h3>
                         {% endif %}
@@ -393,7 +414,7 @@
                     </div>
                   {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                   {%- when 'switch_weekends_pages' -%}
-                    {% comment %} <div class="switch_weekends build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                    {% comment %} <div class="switch_weekends build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
                       {% if block.settings.heading != blank %}
                         <h3>{{ block.settings.heading }}</h3>
                       {% endif %}
@@ -411,7 +432,7 @@
                     {% comment %} {% assign custom_pages_step = custom_pages_step | plus: 1 %} {% endcomment %}
                   
                 {% when 'planner_custom_pages' %}
-                  <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
+                  <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
                    <div class="additional-information">{{ block.settings.additional_information }}</div>
                     <div class="planner-custom_pages">
                         <h2>{{ block.settings.title }}</h2>
@@ -702,15 +723,19 @@
                     {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                 </div>
                 {%- when 'buy_buttons' -%}
+
+                  <div class="planner-builder-button">
+                    <button id="planner_building_button" class="custom-pages__button product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}">Start Building Planner</button>
+                  </div>
                   
-                  <div class="build-step__{{ custom_pages_step }}" data-buildstep="{{ custom_pages_step }}">
+                  <div class="build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
                     <div class="step-price__wrapper no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                       <span class="price-label">Price: </span>
-                      {%- render 'price',
+                      {%- render 'price-2',
                         product: product, 
                         use_variant: true,
                         show_badges: true,
-                        price_class: 'price--large'
+                        price_class: 'price--large',
                       -%}
                       <div
                   id="Quantity-Form-{{ section.id }}"
@@ -922,8 +947,9 @@
                   {%- endif -%}
                 </div>
                     </div>
-                    <p class="text-below__price">{{ section.settings.text_below_price }}</p>
+                  
                     <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
+                    {% assign split_planner_price =  block.settings.split_planner_price %}
                     <div class="danger-icon">
                       <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
                     </div>
@@ -943,7 +969,8 @@
                       product: product,
                       product_form_id: product_form_id,
                       section_id: section.id,
-                      show_pickup_availability: false
+                      show_pickup_availability: false,
+                      split_planner_price: split_planner_price
                     -%}
 
                     <div class="cart-notification__links">
@@ -1616,6 +1643,7 @@
           </a>
         </product-info>
       </div>
+      
       {%- if section.settings.media_position == 'right' -%}
         {% comment %} Duplicate gallery to display after product content on tablet/desktop breakpoint {% endcomment %}
         <div class="grid__item product__media-wrapper small-hide">
@@ -1764,7 +1792,7 @@
 
 <script>
 
-const media_wrapper = document.querySelector('.grid__item.product__media-wrapper');
+const media_wrapper = document.querySelector('.grid__item.product__media-wrapper.product__media-wrapper-2');
 media_wrapper.scrollLeft = media_wrapper.scrollWidth;
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -1917,6 +1945,7 @@ function bigImg() {
       height: 100%; /* Full height */
       overflow: auto; /* Enable scroll if needed */
       background-color: white; /* Fallback color */
+      display: none;
     }
 
     /* Modal Content */
@@ -2080,15 +2109,21 @@ function bigImg() {
 
   let final_step_number = {{ custom_pages_step | json }};
   
-  document.addEventListener("DOMContentLoaded", (event) => {
+  let planner_building_button = document.getElementById("planner_building_button");
+
+  planner_building_button.addEventListener("click", (event) => {
     let build_step_wrapper = document.querySelector('.build-step__wrapper');
-    let diary_preview = document.querySelector(".product__media-wrapper");
+    let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
     build_step_wrapper.appendChild(diary_preview);
     for(let i=1 ; i<(final_step_number + 1) ; ++i){
         let build_step = document.querySelector(`.build-step__${i}`);
         build_step_wrapper.appendChild(build_step);
     }
-    
+
+    step_modal.style.display = "block";
+
+    document.body.style.overflow = 'hidden';
+
   });
 
 
@@ -2105,7 +2140,7 @@ function bigImg() {
       let step_count = document.querySelector('.step-count');
       step_count.innerHTML = next_index;
       if(next_index == final_step_number){
-        let diary_preview = document.querySelector(".product__media-wrapper");
+        let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
         diary_preview.classList.add('build-step-media__active');
         let next_btn = document.querySelector(".build-step__next");
         next_btn.classList.add('build-step-button__disabled');
@@ -4523,12 +4558,6 @@ function bigImg() {
       "id": "unit_page_price",
       "label": "Unit page price",
       "default": "0.16"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "text_below_price",
-      "label": "Text Below Price",
-      "default": "“$0.27 per day”"
     },
     {
       "type": "text",
