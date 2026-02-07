@@ -20,7 +20,13 @@
   width: 100%;
   box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius)
     rgba(var(--color-shadow), var(--popup-shadow-opacity));
-  z-index: -1;
+  z-index: 99;
+  background: white !important;
+}
+
+cart-notification{
+  z-index: 999;
+  position: relative;
 }
 
 .cart-notification.focused {

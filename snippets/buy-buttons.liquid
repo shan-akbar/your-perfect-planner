@@ -8,7 +8,7 @@
   - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
 
   Usage:
-  {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
+  {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: false %}
 {% endcomment %}
 <div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
@@ -24,8 +24,36 @@
       endif
     -%}
 
+    <style>
+      .custom-pages__button{
+        background-color: #FF4545;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 7px;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .custom-pages__button:hover{
+        opacity: 0.7;
+      }
+
+      .button:after, .shopify-challenge__button:after, .customer button:after, .shopify-payment-button__button--unbranded:after{
+        box-shadow: none !important;
+      }
+
+      .button:not([disabled]):hover:after, .shopify-challenge__button:hover:after, .customer button:hover:after, .shopify-payment-button__button--unbranded:hover:after{
+        box-shadow: none !important;
+      }
+
+      .shopify-cleanslate > div{
+        border-radius: 7px !important;
+      }
+    </style>
+
     <product-form
-      class="product-form"
+      class="product-form vvv"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
     >
@@ -51,6 +79,7 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
+        
         <input
           type="hidden"
           name="id"
@@ -60,11 +89,24 @@
           {% endif %}
           class="product-variant-id"
         >
-
+      
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
+{% if template.suffix == 'custom-journal' %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            $('#prompts-questions').on('input', function() {
+      var textareaContent = $(this).val();
+      $('#promptsquestions').attr('value', textareaContent);
+    });
+          })
 
+        </script>
+ 
+  <input type="hidden" required class="required" id="promptsquestions" name="properties[Prompts/Questions]" value="">
+{% endif %}
         <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
@@ -79,7 +121,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            class="custom-pages__button product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
               disabled
             {% endif %}

@@ -177,7 +177,7 @@
                         <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
                           {{ 'localization.country_label' | t }}
                         </h2>
-                        {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                        {% comment %} {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%} {% endcomment %}
                       </div>
                     {%- endform -%}
                   </localization-form>

@@ -6,6 +6,34 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .cart-warning__note{
+    margin: 0 auto;
+    background-color: #FF4545;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 4rem;
+  }
+
+  .cart-warning-note-inner__inner{
+    display: flex;
+    align-items: center;
+  }
+
+  .cart-warning-note__inner img{
+    max-width: 30px;
+  }
+
+  .cart-warning-note__inner h3{
+    display: inline-block;
+    color: white;
+    margin: 0 0 0 10px;
+  }
+
+  .cart-warning-note__inner p{
+    color: white;
+    margin: 5px 0 0 0;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -34,6 +62,25 @@
       </a>
     </div>
 
+    {% assign acrylic_cover_present = false %}
+    {% for item in cart.items %}
+      {% if item.title contains 'Acrylic' %}
+        {% assign acrylic_cover_present = true %}
+      {% endif %}
+    {% endfor %}
+
+    {%- if cart != empty and settings.cart_warning_note != blank and acrylic_cover_present -%}
+      <div class="cart-warning__note">
+        <div class="cart-warning-note__inner">
+          <div class="cart-warning-note-inner__inner">
+            <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/warning-28-48.png?v=1732746448">
+            <h3>Warning!</h3>
+          </div>
+          <p>{{ settings.cart_warning_note }}</p>
+        </div>
+      </div>
+    {%- endif -%}
+
     <div class="cart__warnings">
       <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
       <a href="{{ routes.all_products_collection_url }}" class="button">
@@ -49,6 +96,37 @@
     </div>
 
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
+
+<div id="free-shipping-bar" style="background-color: #FF9CAE; color: black; padding: 15px; text-align: center; border-radius: 10px; margin-bottom: 1.5rem;">
+  <span id="free-shipping-message">Loading...</span>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const shippingBar = document.getElementById('free-shipping-bar');
+    const shippingMessage = document.getElementById('free-shipping-message');
+
+    function updateFreeShippingBar(cart) {
+      const freeShippingThreshold = 9900; // $99 in cents
+      const cartTotal = cart.items_subtotal_price;
+
+      if (cartTotal >= freeShippingThreshold) {
+        shippingMessage.innerText = "🎉 You've unlocked free shipping!";
+        shippingBar.style.backgroundColor = "#f6b78a";
+      } else {
+        const amountLeft = (freeShippingThreshold - cartTotal) / 100;
+        shippingMessage.innerText = `Spend $${amountLeft.toFixed(2)} more to get free shipping!`;
+      }
+    }
+
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        updateFreeShippingBar(cart);
+      });
+  });
+</script>
+      
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
@@ -76,9 +154,15 @@
                   </th>
                 </tr>
               </thead>
-
+             
               <tbody>
                 {%- for item in cart.items -%}
+                  {% assign custom_price = 0 %}
+                  {% for property in item.properties %}
+                  {% if property.first == "_custom_price" %}
+                    {% assign custom_price = property.last | times: 100 %}
+                  {% endif %}
+                {% endfor %}
                   <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                     <td class="cart-item__media">
                       {% if item.image %}
@@ -121,7 +205,11 @@
                         </div>
                       {%- else -%}
                         <div class="product-option">
-                          {{ item.original_price | money }}
+                          {% if custom_price == 0 %}
+                            {{ item.original_price | money }}
+                          {% else %}
+                            {{ custom_price | money_with_currency }}
+                          {% endif %}
                         </div>
                       {%- endif -%}
 
@@ -138,8 +226,9 @@
                               </div>
                             {%- endfor -%}
                           {%- endif -%}
-
+                     
                           {%- for property in item.properties -%}
+                           
                             {%- assign property_first_char = property.first | slice: 0 -%}
                             {%- if property.last != blank and property_first_char != '_' -%}
                               <div class="product-option">
@@ -193,7 +282,11 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% if custom_price == 0 %}
+                              {{ item.original_line_price | money }}
+                            {% else %}
+                              {{ custom_price | times: item.quantity | money_with_currency }}
+                            {% endif %}
                           </span>
                         {%- endif -%}
 
@@ -408,7 +501,11 @@
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% if custom_price == 0 %}
+                              {{ item.original_line_price | money }}
+                            {% else %}
+                              {{ custom_price | times: item.quantity | money_with_currency }}
+                            {% endif %}
                           </span>
                         {%- endif -%}
 

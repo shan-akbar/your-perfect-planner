@@ -1,0 +1,199 @@
+<style>
+    @font-face {
+      font-family: YesevaOneRegular;
+      src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular.ttf?v=1732747747);
+    }
+    @font-face {
+      font-family: Poppins;
+      src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1732747766);
+    }
+
+    .custom-text-div-h1-{{ section.id }} {
+      font-family: {{ section.settings.text-font-Family }};
+      font-size: {{ section.settings.text-font-size }}px;
+      color: {{ section.settings.text-color }};
+      font-weight: {{ section.settings.text-font-weight }};
+      line-height: 1.2;
+    }
+    .custom-text-div-h1-{{ section.id }} p {
+      margin: 0;
+    }
+
+    .custom-txt-div-{{ section.id }} {
+      width: 100%;
+      margin-top: {{ section.settings.margin-top }}px;
+      margin-bottom: {{ section.settings.margin-bottom }}px;
+      padding-top: {{ section.settings.padding-top }}px;
+      padding-bottom: {{ section.settings.padding-bottom }}px;
+      padding-left: {{ section.settings.padding-left }}px;
+      padding-right: {{ section.settings.padding-right }}px;
+      background-color: {{ section.settings.text-bg-color }};
+      text-align: {{ section.settings.text-alignment }};
+    }
+
+    /* Force smaller font on mobile */
+    @media (max-width: 600px) {
+      .custom-text-div-h1-{{ section.id }} {
+        font-size: 18px !important;
+      }
+    }
+</style>
+
+<div class="custom-txt-div-{{ section.id }}">
+  <div class="custom-text-div">
+    <div class="custom-text-div-h1-{{ section.id }}">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-text-div-h1-{{ section.id }} {
+    font-size: clamp(18px, {{ section.settings.text-font-size }}px, 6vw);
+    color: {{ section.settings.text-color }};
+    font-weight: {{ section.settings.text-font-weight }};
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 480px) {
+    .custom-text-div-h1-{{ section.id }} {
+      font-size: max(16px, calc({{ section.settings.text-font-size }}px * 0.6));
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "custom-text-section2",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "label": "Enter text",
+      "id": "text",
+      "default": "<p>Your custom text here</p>"
+    },
+    {
+      "type": "color",
+      "label": "Choose Text Color",
+      "id": "text-color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "label": "Choose Background Color",
+      "id": "text-bg-color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "text-font-size",
+      "label": "Font Size (px)",
+      "step": 1,
+      "min": 10,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "text-font-Family",
+      "label": "Select Font Family",
+      "options": [
+        { "value": "YesevaOneRegular", "label": "Font Family 1" },
+        { "value": "wild_mango", "label": "Font Family 2" },
+        { "value": "Poppins", "label": "Font Family 3" }
+      ],
+      "default": "Poppins"
+    },
+    {
+      "type": "select",
+      "id": "text-font-weight",
+      "label": "Select Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "200", "label": "Extra Light" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "margin-top",
+      "label": "Margin Top (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin-bottom",
+      "label": "Margin Bottom (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "label": "Padding Top (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "label": "Padding Bottom (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-left",
+      "label": "Padding Left (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding-right",
+      "label": "Padding Right (px)",
+      "step": 1,
+      "min": 0,
+      "max": 100,
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "text-alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-text-section2",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}

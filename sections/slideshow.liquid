@@ -2,9 +2,42 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            $('.slideshow__slide').on('click', function() {
+              var textareaContent = $(this).attr('data-link');
+                      if(textareaContent != '') {
+                        window.location.href = textareaContent;
+                      }
+            
+              });
+          });
+        </script>
 {%- if section.settings.slide_height == 'adapt_image' and section.blocks.first.settings.image != blank -%}
   {%- style -%}
+    .banner__media:after, .banner:after {
+      display: none;
+    }
+    #Slider-{{ section.id }} .slideshow__slide {
+      cursor: pointer;
+    }
+    #Slider-{{ section.id }} a {
+     text-decoration: none !important;
+    }
+    #Slider-{{ section.id }} .media a {
+      width: 100%;
+      height: 100%;
+    }
+     #Slider-{{ section.id }} .media a img {
+      width: 100%;
+      height: 100%;
+    }
     @media screen and (max-width: 749px) {
+
+      #Slider-{{ section.id }} .banner__content {
+      position: absolute;
+      }
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before,
       #Slider-{{ section.id }}:not(.banner--mobile-bottom) .banner__content::before {
@@ -12,15 +45,41 @@
         content: '';
         display: block;
       }
+     
+     #Slider-{{ section.id }} .media img {
+    display: none;
+}
+      #Slider-{{ section.id }} .media {
+         position: initial !important; 
+      }
+       #Slider-{{ section.id }} .media img.mobile_image {
+    display: block !important;
+    position: initial !important;
+    
+}
+   #Slider-{{ section.id }} .media:before, #Slider-{{ section.id }} .banner__content:before {
+     display: none !important;
+   }
     }
 
     @media screen and (min-width: 750px) {
+      .slideshow__text.slideshow__text--left {
+        padding-left: 0;
+      }
+      .slideshow__text-wrapper.banner__content {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
       #Slider-{{ section.id }}::before,
       #Slider-{{ section.id }} .media::before {
         padding-bottom: {{ 1 | divided_by: section.blocks.first.settings.image.aspect_ratio | times: 100 }}%;
         content: '';
         display: block;
       }
+     #Slider-{{ section.id }} .media .mobile_image {
+    display: none;
+}
     }
   {%- endstyle -%}
 {%- endif -%}
@@ -117,7 +176,38 @@
         #Slide-{{ section.id }}-{{ forloop.index }} .banner__media::after {
           opacity: {{ block.settings.image_overlay_opacity | divided_by: 100.0 }};
         }
+
+        #Slide-{{ section.id }}-{{ forloop.index }} .banner__media > img{
+          object-position: {{ block.settings.image_position }} !important;
+        }
+
+        #Slide-{{ section.id }}-{{ forloop.index }}  h2.banner__heading.inline-richtext{
+          font-family: '{{ block.settings.font_family }}'!important;
+          max-width: {{ block.settings.heading_width }}px;
+        }
+
+        @media(max-width: 768px){
+          #Slide-{{ section.id }}-{{ forloop.index }} .banner__media > img{
+            object-position: {{ block.settings.image_position_mobile }} !important;
+          }
+
+          #Slide-{{ section.id }}-{{ forloop.index }}  h2.banner__heading.inline-richtext{
+            font-size: {{ block.settings.font_size_mobile }}px;
+          }
+
+          #Slide-{{ section.id }}-{{ forloop.index }} .slideshow__text-wrapper.banner__content{
+            align-items: {{ block.settings.heading_position_mobile }} !important;
+          }
+
+          #Slide-{{ section.id }}-{{ forloop.index }} .slideshow__text-wrapper.banner__content .slideshow__text.banner__box.content-container{
+            {% if block.settings.heading_position_mobile == "flex-start" %}
+              margin-top: 50px;
+            {% endif%}
+          }
+        }
       </style>
+      
+      
       <div
         class="slideshow__slide grid__item grid--1-col slider__slide"
         id="Slide-{{ section.id }}-{{ forloop.index }}"
@@ -125,10 +215,14 @@
         role="group"
         aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-        tabindex="-1"
+        tabindex="-1" data-link="{{ block.settings.link }}"
       >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
-          {%- if block.settings.image -%}
+         {% if block.settings.slide_link %}
+        <a class="custom-slide__link" href="{{ block.settings.slide_link }}" style="height:100%;text-decoration:unset;">
+      {% endif %}
+        <div  class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
+    
+      {%- if block.settings.image -%}
             {%- liquid
               assign height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio | round
               if section.settings.image_behavior == 'ambient'
@@ -164,7 +258,14 @@
               {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
           {%- endif -%}
+           {% if block.settings.mob_image != blank %}
+            <img src="{{ block.settings.mob_image | img_url: 'master' }}" class="mobile_image" width="" height="">
+          {% endif %}
+     
         </div>
+       
+          
+      
         <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
@@ -193,7 +294,11 @@
             {%- endif -%}
           </div>
         </div>
+       {% if block.settings.slide_link %}
+        </a>
+      {% endif %}
       </div>
+      
     {%- endfor -%}
   </div>
 
@@ -411,13 +516,92 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.slideshow.blocks.slide.settings.image.label"
+          "label": "Desktop Image"
+        },
+          {
+          "type": "image_picker",
+          "id": "mob_image",
+          "label": "Mobile Image"
         },
         {
           "type": "inline_richtext",
           "id": "heading",
           "default": "Image slide",
           "label": "t:sections.slideshow.blocks.slide.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom"
+            },
+            {
+              "value": "center center",
+              "label": "Center"
+            }
+          ],
+          "default": "center center",
+          "label": "Image Position"
+        },
+        {
+          "type": "select",
+          "id": "image_position_mobile",
+          "options": [
+            {
+              "value": "top right",
+              "label": "Top Right"
+            },
+            {
+              "value": "bottom right",
+              "label": "Bottom Right"
+            },
+            {
+              "value": "center right",
+              "label": "Center Right"
+            },
+            {
+              "value": "center center",
+              "label": "Center Center"
+            }
+          ],
+          "default": "center center",
+          "label": "Image Position Mobile"
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "min": 18,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size mobile",
+          "default": 32
+        },
+        {
+          "type": "select",
+          "id": "heading_position_mobile",
+          "options": [
+            {
+              "value": "flex-start",
+              "label": "Top"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "flex-end",
+              "label": "Bottom"
+            }
+          ],
+          "default": "center",
+          "label": "Heading Position Mobile"
         },
         {
           "type": "select",
@@ -440,10 +624,41 @@
           "label": "t:sections.all.heading_size.label"
         },
         {
+          "type": "select",
+          "id": "font_family",
+          "options": [
+            {
+              "value": "wild_mango",
+              "label": "Wild Mango"
+            },
+            {
+              "value": "poppins",
+              "label": "Poppins"
+            }
+          ],
+          "default": "wild_mango",
+          "label": "Font Family"
+        },
+        {
+          "type": "range",
+          "id": "heading_width",
+          "min": 300,
+          "max": 700,
+          "step": 5,
+          "unit": "px",
+          "label": "Heading Width",
+          "default": 495
+        },
+        {
           "type": "inline_richtext",
           "id": "subheading",
           "default": "Tell your brand's story through images",
           "label": "t:sections.slideshow.blocks.slide.settings.subheading.label"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Slide Link"
         },
         {
           "type": "text",

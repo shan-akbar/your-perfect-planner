@@ -65,12 +65,24 @@ if (!customElements.get('product-form')) {
               return;
             }
 
-            if (!this.error)
+            if (!this.error){
               publish(PUB_SUB_EVENTS.cartUpdate, {
                 source: 'product-form',
                 productVariantId: formData.get('id'),
                 cartData: response,
               });
+              
+              if(response.handle == "2026-ultimate-planner" ||
+                response.handle == "2026-business-planner" ||
+                response.handle == "2026-health-planner" ||
+                response.handle == "2026-student-planner" ||
+                response.handle == "2026-teacher-planner" ||
+                response.handle == "2026-everyday-planner" ||
+                response.handle == "2026-minimalist-planner"
+               ){
+                window.location.href = "/products/planner-cover";
+              }
+            }
             this.error = false;
             const quickAddModal = this.closest('quick-add-modal');
             if (quickAddModal) {

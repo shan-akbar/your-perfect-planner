@@ -1,0 +1,42 @@
+{{ 'contact-section-form2.css' | asset_url | stylesheet_tag }}
+
+<div class="form-container">
+  <div class="contact-heading">
+     <h1>{{ section.settings.heading }}</h1>
+  </div>
+  <div class="form">
+    <form>
+      <input placeholder="Name">
+      <input placeholder="Email"> 
+      <input type="tel" placeholder="Phone Number" >
+      <textarea name="" id="" placeholder="Type Message"></textarea>
+      <button>{{ section.settings.btn-Text }}</button>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "contact-section-form2",
+    "settings": [
+       {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading-Text",
+          "default": "Please enter text"
+        },
+       {
+          "type": "text",
+          "id": "btn-Text",
+          "label": "Button-Text",
+          "default": "Please enter text"
+        },
+    ],
+    
+     "presets": [
+    {
+      "name": "contact-section-form2"
+    }
+  ]
+  }
+{% endschema %}

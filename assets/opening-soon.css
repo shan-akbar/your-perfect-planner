@@ -15,7 +15,8 @@
 
 .opening-soon-form__wrapper{
     width: 100%;
-    margin-bottom: 185px;
+    margin-bottom: 20%;
+    margin-top: 5%;
 }
 
 .opening-soon__form{
@@ -24,6 +25,21 @@
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    position: relative;
+}
+
+#nameFeedback{
+    position: absolute;
+    bottom: -43px;
+    width: 100%;
+    text-align: center;
+}
+
+#emailFeedback{
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    text-align: center;
 }
 
 .opening-soon__form > input{
@@ -80,7 +96,6 @@
 
 .opening-soon-title__background{
     background-color: #FAD8DA;
-    margin-top: 70px;
 }
 
 .opening-soon-title__background h2{
@@ -88,8 +103,9 @@
     color: #FF4545;
     font-family: yeseva-one;
     font-size: 40px;
-    padding: 5px 0;
+    padding: 15px 0;
     margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .opening-soon__subtitle{
@@ -97,7 +113,7 @@
     color: #FF9CAE;
     text-align: center;
     font-size: 50px;
-    margin-top: 25px;
+    margin-top: 8%;
     margin-bottom: 25px;
 }
 
@@ -105,7 +121,7 @@
     text-align: center;
     font-family: poopins-bold;
     color: #F87C92;
-    margin: 25px auto;
+    margin: 39px auto;
     padding: 0 15px;
     max-width: 520px;
 }
@@ -114,10 +130,26 @@
     display: none;
 }
 
-@media(min-width: 1661px){
-    .opening-soon-title__background{
-        margin-top: 13%;
-    }
+#successMessage{
+    text-align: center;
+    position: absolute;
+    top: -40px;
+    line-height: 1.2;
+    display: none;
+    width: 100%;
+}
+
+#errorMessage{
+    text-align: center;
+    position: absolute;
+    top: -33px;
+    line-height: 1.2;
+    display: none;
+    width: 100%;
+}
+
+#nameInput{
+    margin-top: 6px;
 }
 
 @media (max-width: 768px){
@@ -136,6 +168,16 @@
     }
     .opening-soon__subtitle{
         font-size: 40px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #nameFeedback{
+        bottom: -27px;
+    }
+    
+    #emailFeedback{
+        bottom: -44px;
     }
 }
 
@@ -143,10 +185,6 @@
     .opening-soon__logo > img{
         max-width: 200px;
         max-height: 116px;
-    }
-
-    .opening-soon-title__background{
-        margin-top: 25px;
     }
 
     .opening-soon__form{
@@ -177,9 +215,14 @@
     .opening-soon__subtitle{
         font-size: 25px;
         padding: 0 15px;
+        margin-top: 15%;
     }
 
     .opening-soon-mobile__subtitle {
         font-size: 19px;
+    }
+
+    #successMessage{
+      top: -33px;
     }
 }

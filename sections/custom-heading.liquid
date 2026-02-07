@@ -1,0 +1,73 @@
+{{ 'custom-heading-section.css' | asset_url | stylesheet_tag }}
+<style>
+.text-container .text1 {
+  background-color: {{ section.settings.background_color_1 | default: "#FF9CAE" }};
+}
+  .text-container .text2 {
+  background-color: {{ section.settings.background_color_2 | default: "#fad8da" }};
+    .text-container .text1 h1{
+      color:{{section.settings.text_color-1 | default:"#FF4545"}};
+    }
+   .text-container .text2 h2{
+      color:{{section.settings.text_color-2 | default:"#FF4545"}}
+    }
+}
+</style>
+ <div class="text-container">
+        <div class="text1">
+           <h1>{{ section.settings.first_heading }}</h1>
+        </div>
+        <div class="text2">
+           <h2>{{ section.settings.second_heading }}</h2>
+        </div>
+    </div>
+
+{% schema %}
+  {
+    "name": "Custom Heading Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "first_heading",
+        "label": "Heading 1",
+        "default": "Please enter first heading"
+      },
+       {
+        "type": "text",
+        "id": "second_heading",
+        "label": "Heading 2",
+        "default": "Please enter Second heading"
+      },
+      {
+      "type": "color",
+      "id": "text_color-1",
+      "label": "Text Color 1",
+      "default": "#FF4545" 
+    },
+    {
+      "type": "color",
+      "id": "text_color-2",
+      "label": "Text Color 2",
+      "default": "#FF4545" 
+    },
+       {
+      "type": "color",
+      "id": "background_color_1",
+      "label": "Background Color 1",
+      "default": "#FF9CAE"
+    },
+      {
+      "type": "color",
+      "id": "background_color_2",
+      "label": "Background Color 1",
+      "default": "#fad8da"
+    }
+    ],
+    "presets": [
+    {
+      "name": "Custom Heading Section"
+    }
+  ]
+  }
+ 
+{% endschema %}

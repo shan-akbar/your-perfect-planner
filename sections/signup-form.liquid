@@ -1,0 +1,123 @@
+{{ 'signup-form.css' | asset_url | stylesheet_tag }}
+
+<div class="form-container">
+  <form class="subscribe__form">
+    <span id="successMessage" style="color: green;">Thanks for signing up</span>
+    <span id="errorMessage" style="color: red;">Some error occurred, please try again!</span>
+    <h1>{{ section.settings.heading }}</h1>
+    <input type="text" placeholder="Name" id="nameInput" oninput="clearErrorName()">
+    <input type="email" placeholder="Email" id="emailInput" oninput="clearErrorEmail()">
+    <button type="button" onclick="subscribeToList()">{{ section.settings.btn-Text }}</button>
+    <span id="nameFeedback" style="color: red;"></span>
+    <span id="emailFeedback" style="color: red;"></span>
+  </form>
+</div>
+
+<script>
+  function clearErrorName(){
+    const feedbackElementName = document.getElementById('nameFeedback');
+    feedbackElementName.textContent = "";
+  }
+
+  function clearErrorEmail(){
+    const feedbackElementEmail = document.getElementById('emailFeedback');
+    feedbackElementEmail.textContent = "";
+  }
+
+  function subscribeToList(){
+    
+      const emailInput = document.getElementById('emailInput').value;
+      const nameInput = document.getElementById('nameInput').value;
+      const feedbackElementEmail = document.getElementById('emailFeedback');
+      const feedbackElementName = document.getElementById('nameFeedback');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if(nameInput){
+        feedbackElementName.textContent = ""; // Email is valid
+      }else{
+        feedbackElementName.textContent = "Please enter a valid name.";
+      }
+
+      if (emailRegex.test(emailInput)) {
+        feedbackElementEmail.textContent = ""; // Email is valid
+      } else {
+        feedbackElementEmail.textContent = "Please enter a valid email address.";
+      }
+
+      if(!nameInput || !emailRegex.test(emailInput)){
+        return;
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {revision: '2024-06-15', 'content-type': 'application/json'},
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              custom_source: 'Sign up and receive 10% off',
+              profile: {
+                data: {
+                  type: 'profile',
+                  attributes: {
+                    email: emailInput,
+                    first_name: nameInput
+                  }
+                }
+              }
+            },
+            relationships: {list: {data: {type: 'list', id: 'XBvaMq'}}}
+          }
+        })
+      };
+
+      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WL27eL', options)
+        .then(response => {
+         
+          if(response.status >=200 && response.status < 300){
+              let successMessage = document.getElementById('successMessage');
+              successMessage.style.display = 'block';
+              setTimeout(
+                function() {
+                  document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+          }else{
+            let errorMessage = document.getElementById('errorMessage');
+              errorMessage.style.display = 'block';
+              setTimeout(
+                function() {
+                  document.getElementById('errorMessage').style.display = 'none';
+                }, 5000);
+          }
+
+        })
+        .catch(err => console.error(err));
+  }
+
+</script>
+
+{% schema %}
+  {
+    "name": "signup-form",
+    "settings": [
+       {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading-Text",
+          "default": "Please enter text"
+        },
+       {
+          "type": "text",
+          "id": "btn-Text",
+          "label": "Button-Text",
+          "default": "Please enter text"
+        },
+    ],
+    
+     "presets": [
+    {
+      "name": "signup-form"
+    }
+  ]
+  }
+{% endschema %}

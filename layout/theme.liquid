@@ -1,6 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+    <!-- Klaviyo Embedded Form Script -->
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=WL27eL"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -252,6 +254,7 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'home-page.css' | asset_url | stylesheet_tag }}
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -280,10 +283,44 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17495788412">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17495788412');
+</script>
+
+<style>
+    .quick-add__submit.button{
+      background-color: #FF4545;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 20px;
+      border-radius: 7px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .quick-add__submit.button:hover{
+      opacity: 0.7;
+    }
+  </style>
+
   </head>
 
+  
+
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+  {%- if settings.cart_type == "notification" -%}
+  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
+{%- endif -%}  
+  <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
 
@@ -349,5 +386,51 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script>
+      
+     async function customCheckout(){
+      let responce = await fetch('/cart.js', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+      });
+      let cart = await responce.json();
+      
+      
+      let callCustomCheckout = false;
+      for(var i=0;i<cart.items.length;++i){
+        if(cart.items[i].id == 48218174325042 || cart.items[i].id == 49152979730738){
+          callCustomCheckout = true;
+        }
+      }
+      if(callCustomCheckout){
+        
+        let checkout_button = document.querySelector(".cart__checkout-button") || document.querySelector(".notification__checkout-button");
+        checkout_button.setAttribute("disabled", "disabled");
+        let loading_spinner = checkout_button.querySelector(".loading__spinner");
+        loading_spinner.classList.remove("hidden");
+        let responce = await fetch('https://api.yourperfectplanner.com.au/checkoutLink', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cart: cart
+            }),
+            mode: 'cors'
+        });
+        loading_spinner.classList.add("hidden");
+        checkout_button.removeAttribute("disabled");
+        let data = await responce.json();
+        let invoice_url = data.invoice_url;
+        window.location.href = invoice_url;
+      }else{
+        window.location.href = "/checkout";
+      }
+    }
+  </script>
+ 
   </body>
 </html>

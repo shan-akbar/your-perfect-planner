@@ -9,6 +9,12 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+
+  .cart__checkout-button svg circle{
+    stroke: black !important;
+  }
+
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -16,7 +22,7 @@
     }
   }
 {%- endstyle -%}
-
+{% assign custom_total_price = 0 %}
 <div
   class="gradient color-{{ section.settings.color_scheme }}{% if cart == empty %} is-empty{% endif %}"
   id="main-cart-footer"
@@ -36,6 +42,20 @@
           >{{ cart.note }}</textarea>
         </cart-note>
       {%- endif -%}
+      
+      {% for item in cart.items %}
+        {% assign custom_price = 0 %}
+        {% for property in item.properties %}
+          {% if property.first == "_custom_price" %}
+            {% assign custom_price = property.last | times: item.quantity | times: 100 %}
+          {% endif %}
+        {% endfor %}
+        {% if custom_price == 0 %}
+          {% assign custom_total_price = custom_total_price | plus: item.original_line_price %}
+        {% else %}
+          {% assign custom_total_price = custom_total_price | plus: custom_price %}
+        {% endif %}
+      {% endfor %}
 
       <div class="cart__blocks">
         {% for block in section.blocks %}
@@ -60,7 +80,7 @@
 
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  <p class="totals__total-value">{{ custom_total_price | money_with_currency }}</p>
                 </div>
 
                 <small class="tax-note caption-large rte">
@@ -84,9 +104,10 @@
                 </noscript>
 
                 <button
-                  type="submit"
+                  type="button"
                   id="checkout"
                   class="cart__checkout-button button"
+                  onclick="customCheckout()"
                   name="checkout"
                   {% if cart == empty %}
                     disabled
@@ -94,6 +115,11 @@
                   form="cart"
                 >
                   {{ 'sections.cart.checkout' | t }}
+                  <div class="loading__spinner hidden">
+                    <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
                 </button>
               </div>
 
@@ -130,6 +156,8 @@
       document.querySelector('#cart').submit();
     });
   });
+ 
+ 
 </script>
 
 {% schema %}

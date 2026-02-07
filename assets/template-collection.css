@@ -11,6 +11,24 @@
   }
 }
 
+.collection__view-all a{
+  background-color: #ff4545;
+  border-radius: 5px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.collection__view-all a:hover{
+  opacity: 0.7;
+}
+
+.button:after, .shopify-challenge__button:after, .customer button:after, .shopify-payment-button__button--unbranded:after{
+  box-shadow: none !important;
+}
+
+.button:not([disabled]):hover:after, .shopify-challenge__button:hover:after, .customer button:hover:after, .shopify-payment-button__button--unbranded:hover:after{
+  box-shadow: none !important;
+}
+
 .collection .loading-overlay {
   position: absolute;
   z-index: 1;

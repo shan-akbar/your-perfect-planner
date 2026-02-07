@@ -2278,11 +2278,21 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 .announcement-bar__message {
+  font-size: 30px;
   text-align: center;
   padding: 1rem 0;
   margin: 0;
   letter-spacing: 0.1rem;
   min-height: 3.8rem;
+}
+
+@media (max-width: 768px){
+  .announcement-bar__message{
+    font-size: 15px;
+  }
+  .utility-bar__grid.page-width{
+    padding: 0 8px;
+  }
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,
@@ -3516,4 +3526,20 @@ details-disclosure > details {
   .animate--hover-vertical-lift .button:not([disabled]).button--secondary:hover:after {
     --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
   }
+}
+
+
+a.custom-build__link{
+  background-color: #FF4545;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 7px;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  padding: .8rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
