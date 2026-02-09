@@ -83,8 +83,227 @@
              color: {{ section.settings.text-color }};    display: inline;
             padding: 0 10px;
            }
-           .new-banner-section-img2{
-        display:none;}
+          .new-banner-section-img2{
+            display:none;
+          }
+              /* The main container needs to be relative so children can be absolute */
+    .banner-grid-layout {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 500px; /* Adjust based on your image height */
+    }
+
+    /* Make the girl image fill the container background area */
+    .banner-center-column {
+      position: relative !important; /* Changed from absolute */
+      width: 100%;
+      z-index: 1;
+      display: block;
+      line-height: 0;
+    }
+
+    .banner-center-column img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .banner-side-column {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 10 !important; 
+      pointer-events: none; 
+    }
+
+    .feature-item {
+      {% comment %} display: flex !important; {% endcomment %}
+      align-items: center;
+      gap: 15px;
+      position: absolute !important;
+      width: auto;
+      z-index: 2;
+    }
+
+    .feature-item.left {
+      position: absolute !important;
+      left: 5% !important;
+      right: auto !important; /* Forces it to the right side */
+      width: auto;
+    }
+
+    .feature-item.right {
+      position: absolute !important;
+      right: 5% !important;
+      left: auto !important; /* Forces it to the right side */
+      width: auto;
+    }
+
+    .feature-item.left {
+      /* Put arrow first, then text */
+      left: 5%;
+    }
+
+    .feature-item.left .arrow-img {
+      width: 200px;
+    }
+
+    .feature-item.right {
+      flex-direction: row; 
+      right: 5%;
+    }
+
+    .feature-item.right .arrow-img {
+      transform: none !important; /* Removes the inward flip */
+      width: 300px;
+      height: auto;
+    }
+
+    .feature-item.left:nth-child(1), 
+    .feature-item.right:nth-child(1) { 
+      top: 30% !important; 
+    }
+
+    .feature-item.left:nth-child(2), 
+    .feature-item.right:nth-child(2) { 
+      top: 55% !important; /* Changed from 'bottom' to 'top' for consistent scaling */
+    }
+    
+
+    .arrow-img {
+      width: 100%;
+      max-width: 300px; 
+      height: auto;
+    }
+
+    .feature-text-left1 {
+      display: flex;
+      font-size: 29px;
+      color: #ff4545;
+      width: 100%;
+      max-width: 146px;
+      line-height: 1.1;
+      position: relative;
+      left: 100px;
+      top: -10px;
+    }
+
+    .feature-text-left2 {
+      position: relative;
+      font-size: 29px;
+      color: #ff4545;
+      max-width: 214px;
+      line-height: 1.1;
+      top: 182px;
+      left: 71px;
+      display: flex;
+    }
+
+    .feature-text-right1 {
+      font-size: 32px;
+      display: flex;
+      color: #ff4545;
+      max-width: 198px;
+      line-height: 1.1;
+      position: relative;
+      right: -43px;
+      bottom: 220px;
+      justify-content: flex-start !important;
+    }
+
+    .feature-text-right2 {
+      font-size: 32px;
+      width: 100%;
+      color: #ff4545;
+      max-width: 140px;
+      line-height: 1.1;
+      position: relative;
+      top: 10px;
+      display: flex;
+      max-width: 195px;
+      right: 23px;
+    }
+
+    #new-banner-section{
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    
+    .banner-grid-layout {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    } 
+
+    .new-banner-sect-heading {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+    }
+    /* Ensure the image occupies real space so the pink area stays below it */
+
+
+    .banner-side-right-column {
+      position: absolute !important;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none; /* Allows interactions with the image if needed */
+    }
+
+    /* Positioning the right column side specifically */
+    .banner-side-right-column {
+      right: 0;
+    }
+
+    .arrow-img1{
+      position: absolute;
+      top: -53px;
+      max-width: 281px;
+      left: 160px;
+      top: 28px;
+    }
+
+    .arrow-img2{
+      max-width: 182px;
+      position: relative;
+      left: 199px;
+      top: -37px;
+      max-width: 270px;
+    }
+
+    .arrow-img3{
+      width: 100%;
+      max-width: 321px;
+      position: relative;
+      right: 194px;
+    }
+
+    .arrow-img4{
+      width: 100%;
+      max-width: 220px;
+      position: relative;
+      top: 10px;
+      right: 207px;
+    }
+
+
+
+            
 
 
         @media screen and (max-width:650px) {
@@ -197,41 +416,75 @@
                  }
 </style>
 
-<div id="new-banner-section" style="background-color:{{ section.settings.bg-color }}">
-  <div class="new-banner-section-container">
-    <div class="new-banner-sect-heading">
-      <h1 class="wild-mango-font  " style="color:{{section.settings.heading-color }}">
-        {{ section.settings.heading }}
-      </h1>
-    </div>
-    <div class="new-banner-section-img">
-      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Hero_banner_Oct25_Desktop_view.png?v=1760467895" alt="">
-    </div>
-    <div class="new-banner-section-img2">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/87772553129-removebg-preview.png?v=1760461230"
-        alt=""
-      >
-    </div>
-    <div class="new-banner-content">
-      <div class="new-banner-sub-cont1">
-        <h1 class="wild-mango-font ">
-          {{ section.settings['text-1'] }}
-          <span class="sub-text">{{ section.settings['sub-text-1'] }}</span>
-          {{ section.settings['sec-text-1'] }}
+
+<div id="new-banner-section" style="padding: 0;">
+  {% comment %} <div class="new-banner-section-container" style="background-color: {{ section.settings.bg-color }};"> {% endcomment %}
+    
+    <div class="banner-grid-layout">
+      <div class="new-banner-sect-heading">
+        <h1 class="wild-mango-font  " style="color:{{section.settings.heading-color }}">
+          {{ section.settings.heading }}
         </h1>
-        <a href="{{ section.settings.btn-url1 }}" class="poppins-semibold ">{{ section.settings['btn-text1'] }}</a>
+      </div> 
+      <div class="banner-side-column">
+        <div class="feature-item left">
+          <span class="wild-mango-font feature-text-left1">{{ section.settings.text_left_1 }}</span>
+          {% if section.settings.arrow_left_1 %}
+            <img src="{{ section.settings.arrow_left_1 | img_url: 'master' }}" class="arrow-img1">
+          {% endif %}
+        </div>
+        <div class="feature-item left">
+          <span class="wild-mango-font feature-text-left2">{{ section.settings.text_left_2 }}</span>
+          {% if section.settings.arrow_left_2 %}
+            <img src="{{ section.settings.arrow_left_2 | img_url: 'master' }}" class="arrow-img2" style="m">
+          {% endif %}
+        </div>
       </div>
-      <div class="new-banner-sub-cont1">
-        <h1 class="wild-mango-font ">
-          {{ section.settings['text-2'] }}
-          <span class="sub-text">{{ section.settings['sub-text-2'] }}</span>
-          {{ section.settings['sec-text-2'] }}
-        </h1>
-        <a href="{{ section.settings.btn-url2 }}" class="poppins-semibold ">{{ section.settings['btn-text2'] }}</a>
+
+      <div class="banner-center-column" style="">
+        {% if section.settings.center_image %}
+          <img src="{{ section.settings.center_image | img_url: 'master' }}" alt="Planner Model">
+        {% endif %}
+      </div>
+      <div class="banner-side-right-column">
+          <div class="feature-item right">
+            {% if section.settings.arrow_right_1 %}
+              <img src="{{ section.settings.arrow_right_1 | img_url: 'master' }}" class="arrow-img3">
+            {% endif %}
+            <span class="wild-mango-font feature-text-right1">{{ section.settings.text_right_1 }}</span>
+          </div>
+        
+          <div class="feature-item right">
+              {% if section.settings.arrow_right_2 %}
+              <img src="{{ section.settings.arrow_right_2 | img_url: 'master' }}" class="arrow-img4">
+            {% endif %}
+            <span class="wild-mango-font feature-text-right2">{{ section.settings.text_right_2 }}</span>
+
+          </div>
       </div>
     </div>
-  </div>
+      
+      <div class="new-banner-section-container" style="background-color: {{ section.settings.bg-color }};">
+        <div class="new-banner-content">
+          <div class="new-banner-sub-cont1">
+            <h1 class="wild-mango-font ">
+              {{ section.settings['text-1'] }}
+              <span class="sub-text">{{ section.settings['sub-text-1'] }}</span>
+              {{ section.settings['sec-text-1'] }}
+            </h1>
+            <a href="{{ section.settings.btn-url1 }}" class="poppins-semibold ">{{ section.settings['btn-text1'] }}</a>
+          </div>
+          <div class="new-banner-sub-cont1">
+            <h1 class="wild-mango-font ">
+              {{ section.settings['text-2'] }}
+              <span class="sub-text">{{ section.settings['sub-text-2'] }}</span>
+              {{ section.settings['sec-text-2'] }}
+            </h1>
+            <a href="{{ section.settings.btn-url2 }}" class="poppins-semibold ">{{ section.settings['btn-text2'] }}</a>
+          </div>
+        </div>
+      </div>
+
 </div>
 {% schema %}
 {
@@ -245,6 +498,68 @@
       "label": "Enter main Heading",
       "default": "How would you like to plan your year?"
     },
+    {
+      "type": "header",
+      "content": "Center Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Main Center Image (Girl with Planner)"
+    },
+    {
+      "type": "header",
+      "content": "Left Side Features"
+    },
+    {
+      "type": "text",
+      "id": "text_left_1",
+      "label": "Left Text 1",
+      "default": "Choose your date range"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_left_1",
+      "label": "Arrow Left 1"
+    },
+    {
+      "type": "text",
+      "id": "text_left_2",
+      "label": "Left Text 2",
+      "default": "Choose your extra pages"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_left_2",
+      "label": "Arrow Left 2"
+    },
+    {
+      "type": "header",
+      "content": "Right Side Features"
+    },
+    {
+      "type": "text",
+      "id": "text_right_1",
+      "label": "Right Text 1",
+      "default": "Choose your cover"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_right_1",
+      "label": "Arrow Right 1"
+    },
+    {
+      "type": "text",
+      "id": "text_right_2",
+      "label": "Right Text 2",
+      "default": "Choose your layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_right_2",
+      "label": "Arrow Right 2"
+    },
+    
     {
       "type": "color",
       "id": "heading-color",
@@ -336,4 +651,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} 

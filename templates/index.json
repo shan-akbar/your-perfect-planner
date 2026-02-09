@@ -143,7 +143,16 @@
       "name": "New banner section",
       "settings": {
         "bg-color": "#fad6d6",
-        "heading": "How would you like to plan your year?",
+        "heading": "You Deserve A Planner As Unique As You",
+        "center_image": "shopify://shop_images/Hero_banner_no_text_253916dd-5958-4318-a73a-63bce03f8e63.png",
+        "text_left_1": "Choose your date range",
+        "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
+        "text_left_2": "Choose your extra pages",
+        "arrow_left_2": "shopify://shop_images/4-removebg-preview.png",
+        "text_right_1": "Choose your cover",
+        "arrow_right_1": "shopify://shop_images/2-removebg-preview.png",
+        "text_right_2": "Choose your layout",
+        "arrow_right_2": "shopify://shop_images/5-removebg-preview.png",
         "heading-color": "#ff4545",
         "text-1": "I want to",
         "sec-text-1": "my own planner",
@@ -243,6 +252,13 @@
     "list_view_7F98EF": {
       "type": "list-view",
       "blocks": {
+        "list_item_f9Hb3b": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "Please Enter text",
+            "list_text_color": "#000000"
+          }
+        },
         "list_item_hdJtEU": {
           "type": "list-item",
           "settings": {
@@ -301,6 +317,7 @@
         }
       },
       "block_order": [
+        "list_item_f9Hb3b",
         "list_item_hdJtEU",
         "list_item_6xbJbY",
         "list_item_YpnCRH",
@@ -310,6 +327,7 @@
         "list_item_GBw63m",
         "list_item_yFERH8"
       ],
+      "disabled": true,
       "settings": {
         "btn": "START BUILDING YOURS",
         "button_link": "https://yourperfectplanner.com.au/collections/planners"
