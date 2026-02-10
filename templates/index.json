@@ -145,6 +145,7 @@
         "bg-color": "#fad6d6",
         "heading": "You Deserve A Planner As Unique As You",
         "center_image": "shopify://shop_images/Hero_banner_no_text_253916dd-5958-4318-a73a-63bce03f8e63.png",
+        "mobile_image": "shopify://shop_images/edited-photo_1.png",
         "text_left_1": "Choose your date range",
         "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
         "text_left_2": "Choose your extra pages",
@@ -533,6 +534,64 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "video_highlights_section_x7b9K9": {
+      "type": "video-highlights-section",
+      "blocks": {
+        "highlight_EAmkFX": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Kelly.MP4"
+          }
+        },
+        "highlight_eGGFq7": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Brittnee.MP4"
+          }
+        },
+        "highlight_TJwNzh": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_Pr4t3r": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 1.mp4"
+          }
+        },
+        "highlight_PE8bnL": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_CWHJjB": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Tamara.mp4"
+          }
+        },
+        "highlight_RbRJQU": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "highlight_EAmkFX",
+        "highlight_eGGFq7",
+        "highlight_TJwNzh",
+        "highlight_Pr4t3r",
+        "highlight_PE8bnL",
+        "highlight_CWHJjB",
+        "highlight_RbRJQU"
+      ],
+      "name": "Video Highlights",
+      "settings": {}
     }
   },
   "order": [
@@ -554,6 +613,7 @@
     "gift_card_banner_xfPJ49",
     "signup_form_cBWbKw",
     "featured_collection",
-    "1728790333c53c7779"
+    "1728790333c53c7779",
+    "video_highlights_section_x7b9K9"
   ]
 }
