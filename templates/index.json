@@ -170,6 +170,96 @@
         "button-text-color": "#ffffff"
       }
     },
+    "video_highlights_section_x7b9K9": {
+      "type": "video-highlights-section",
+      "blocks": {
+        "highlight_EAmkFX": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Kelly.MP4"
+          }
+        },
+        "highlight_eGGFq7": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Brittnee.MP4"
+          }
+        },
+        "highlight_TJwNzh": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_Pr4t3r": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 1.mp4"
+          }
+        },
+        "highlight_PE8bnL": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_CWHJjB": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Tamara.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "highlight_EAmkFX",
+        "highlight_eGGFq7",
+        "highlight_TJwNzh",
+        "highlight_Pr4t3r",
+        "highlight_PE8bnL",
+        "highlight_CWHJjB"
+      ],
+      "name": "Video Highlights",
+      "settings": {}
+    },
+    "guide_steps_section_wPT6tb": {
+      "type": "guide-steps-section",
+      "blocks": {
+        "add_step_H3jwz7": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_1_icon_eef0fde6-9f22-4900-9ace-d2910bd53dc8.png",
+            "text": "STEP 1",
+            "text1": "SELECT YOUR DATE RANGE",
+            "image_width": 190
+          }
+        },
+        "add_step_RyDEfV": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_2_icon_ccdbaa4e-0766-4e91-a0ed-a9cd31202d02.png",
+            "text": "STEP 2",
+            "text1": "CHOOSE YOUR LAYOUT",
+            "image_width": 180
+          }
+        },
+        "add_step_qHk6qV": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_3_icon_035afea2-0eed-4779-b571-a884e81f8da4.png",
+            "text": "STEP 3",
+            "text1": "ADD YOUR EXTRA PAGES",
+            "image_width": 120
+          }
+        }
+      },
+      "block_order": [
+        "add_step_H3jwz7",
+        "add_step_RyDEfV",
+        "add_step_qHk6qV"
+      ],
+      "name": "Guide-Steps",
+      "settings": {}
+    },
     "custom_text_section_zJUVNW": {
       "type": "custom-text-section",
       "disabled": true,
@@ -353,7 +443,7 @@
           "settings": {
             "quiz_id": 1792,
             "width": 100,
-            "height": 85,
+            "height": 100,
             "padding_top": 0,
             "padding_right": 0,
             "padding_bottom": 0,
@@ -363,6 +453,10 @@
       },
       "block_order": [
         "recomma_product_quiz_builder_recommenda_inline_quiz_M7AGDp"
+      ],
+      "custom_css": [
+        ".page-width {max-width: 100% !important; padding: 0 !important;}",
+        ".recommenda-quiz-inline {width: 100%; height: 54vh !important;}"
       ],
       "name": "Quiz - Find Your Perfect Planner",
       "settings": {
@@ -534,70 +628,14 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "video_highlights_section_x7b9K9": {
-      "type": "video-highlights-section",
-      "blocks": {
-        "highlight_EAmkFX": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Kelly.MP4"
-          }
-        },
-        "highlight_eGGFq7": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Brittnee.MP4"
-          }
-        },
-        "highlight_TJwNzh": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Bec 2.mp4"
-          }
-        },
-        "highlight_Pr4t3r": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Bec 1.mp4"
-          }
-        },
-        "highlight_PE8bnL": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Bec 2.mp4"
-          }
-        },
-        "highlight_CWHJjB": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Tamara.mp4"
-          }
-        },
-        "highlight_RbRJQU": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Bec 2.mp4"
-          }
-        }
-      },
-      "block_order": [
-        "highlight_EAmkFX",
-        "highlight_eGGFq7",
-        "highlight_TJwNzh",
-        "highlight_Pr4t3r",
-        "highlight_PE8bnL",
-        "highlight_CWHJjB",
-        "highlight_RbRJQU"
-      ],
-      "name": "Video Highlights",
-      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "slideshow_BagVwL",
     "new_banner_section_kdwJmF",
+    "video_highlights_section_x7b9K9",
+    "guide_steps_section_wPT6tb",
     "custom_text_section_zJUVNW",
     "custom_text_section2_PKFGm7",
     "custom_text_section2_LqDfzE",
@@ -613,7 +651,6 @@
     "gift_card_banner_xfPJ49",
     "signup_form_cBWbKw",
     "featured_collection",
-    "1728790333c53c7779",
-    "video_highlights_section_x7b9K9"
+    "1728790333c53c7779"
   ]
 }
