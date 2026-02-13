@@ -9,7 +9,7 @@
     .carousal-viewport {
         overflow: hidden;
         width: 100%;
-        max-width: 800px; 
+        max-width: 1000px; 
         margin: 0 auto;
         position: relative;
     }
@@ -29,10 +29,11 @@
         flex-shrink: 0;
         width: 100%; 
         box-sizing: border-box;
+        gap: 45px;
     }
 
     #InfiniteSlider-{{ section.id }} .inner-container {
-        width: 800px; 
+        width: 1000px; 
     }
 
     .image-area img {
@@ -50,9 +51,9 @@
     }
 
     .text-area .text, .text-area .s-text {
-        font-size: 28px;
+        font-size: 45px;
         color: #ff4545;
-        font-weight: 600;
+        font-weight: 500;
         margin: 0;
         line-height: normal;
     }
@@ -65,7 +66,6 @@
     }
 
     {% for block in section.blocks %}
-        /* Removed the 'if' check so it always applies the slider value */
         img.img-{{ block.id }} {
             max-width: {{ block.settings.image_width }}px !important; 
         }
@@ -81,20 +81,44 @@
             width: 100vw;
             flex-direction: row;
             text-align: center;
-            gap: 15px;
+            gap: 30px;
         }
         .image-area img {
             margin-right: 0;
             margin-bottom: 10px;
         }
+        .inner-container{
+            gap: 13px !important;
+        }
+    }
+    @media screen and (max-width: 1024px){
+        .text-area .text, 
+        .text-area .s-text {
+            font-size: 37px;
+            color: #ff4545;
+            font-weight: 500;
+            margin: 0;  
+        }
+    }
+    @media screen and (max-width: 769px){
+        .text-area .text, 
+        .text-area .s-text {
+            font-size: 35px;
+            color: #ff4545;
+            font-weight: 500;
+            margin: 0;  
+        }
     }
     @media screen and (max-width: 600px){
         .text-area .text, 
         .text-area .s-text {
-            font-size: 24px;
+            font-size: 27px;
             color: #ff4545;
             font-weight: 500;
             margin: 0;  
+        }
+        .inner-container{
+            gap: 22px
         }
     }
     @media screen and (max-width: 426px){
@@ -107,6 +131,9 @@
             font-weight: 500;
             margin: 0;  
             line-height: normal;
+        }
+        .inner-container{
+            gap: 15px
         }
     }
     @media screen and (max-width: 380px){
@@ -217,7 +244,7 @@
                 track.style.transition = "transform 0.5s ease-in-out";
                 counter++;
                 track.style.transform = `translateX(${-size * counter}px)`;
-            }, 2000); // 2 seconds interval
+            }, 3000); // 2 seconds interval
         }
 
         track.addEventListener('transitionend', () => {
@@ -230,7 +257,7 @@
 
         // Re-calculate size on window resize
         window.addEventListener('resize', () => {
-            size = items[0].clientWidth;
+            size = items[0].clientWidth; 
             track.style.transition = "none";
             track.style.transform = `translateX(${-size * counter}px)`;
         });

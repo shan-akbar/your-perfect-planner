@@ -233,12 +233,12 @@
     }
 
     #new-banner-section{
-      width: 100vw;
+      {% comment %} width: 100vw; {% endcomment %}
       position: relative;
-      left: 50%;
+      {% comment %} left: 50%;
       right: 50%;
       margin-left: -50vw;
-      margin-right: -50vw;
+      margin-right: -50vw; {% endcomment %}
     }
     
     .banner-grid-layout {
@@ -256,8 +256,6 @@
       z-index: 2;
     }
     
-
-
     .banner-side-right-column {
       position: absolute !important;
       top: 0;

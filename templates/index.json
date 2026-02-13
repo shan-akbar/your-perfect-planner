@@ -230,7 +230,7 @@
             "image": "shopify://shop_images/Step_1_icon_eef0fde6-9f22-4900-9ace-d2910bd53dc8.png",
             "text": "STEP 1",
             "text1": "SELECT YOUR DATE RANGE",
-            "image_width": 190
+            "image_width": 360
           }
         },
         "add_step_RyDEfV": {
@@ -239,7 +239,7 @@
             "image": "shopify://shop_images/Step_2_icon_ccdbaa4e-0766-4e91-a0ed-a9cd31202d02.png",
             "text": "STEP 2",
             "text1": "CHOOSE YOUR LAYOUT",
-            "image_width": 180
+            "image_width": 400
           }
         },
         "add_step_qHk6qV": {
@@ -248,7 +248,7 @@
             "image": "shopify://shop_images/Step_3_icon_035afea2-0eed-4779-b571-a884e81f8da4.png",
             "text": "STEP 3",
             "text1": "ADD YOUR EXTRA PAGES",
-            "image_width": 120
+            "image_width": 250
           }
         }
       },
@@ -456,11 +456,11 @@
       ],
       "custom_css": [
         ".page-width {max-width: 100% !important; padding: 0 !important;}",
-        ".recommenda-quiz-inline {width: 100%; height: 54vh !important;}"
+        ".recommenda-quiz-inline {height: 40vh !important;}"
       ],
       "name": "Quiz - Find Your Perfect Planner",
       "settings": {
-        "include_margins": true
+        "include_margins": false
       }
     },
     "image_banner_JWNcn6": {
