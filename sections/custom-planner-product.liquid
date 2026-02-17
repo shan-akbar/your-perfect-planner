@@ -361,7 +361,7 @@
               {% when 'planner_date_range' %}
                 <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
                   <div class="additional-information">{{ block.settings.additional_information }}</div>
-                  <p class="date-range-error__message" style="color:red;display:none;"></p>
+                  
                   <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
                   <input type="date" id="start_date" name="start_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
                   <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
@@ -369,6 +369,7 @@
                   <br>
                   <span class="date-range__note">{{ block.settings.date_note }}</span>
                   <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
+                  <p class="date-range-error__message" style="color:red;display:none;"></p>
                   <button class="diary-update__button" style="display:none;" onclick="updateDiaryPages()" >Update Diary</button>
                 </div>
                 {% assign custom_pages_step = custom_pages_step | plus: 1 %}

@@ -1,6 +1,5 @@
 <style>
     .main-container {
-        padding: 40px 0;
         overflow: hidden;
         width: 100%;
         background-color: #fdf1f0;
@@ -51,7 +50,7 @@
     }
 
     .text-area .text, .text-area .s-text {
-        font-size: 45px;
+        font-size: 38px;
         color: #ff4545;
         font-weight: 500;
         margin: 0;
@@ -110,6 +109,13 @@
         }
     }
     @media screen and (max-width: 600px){
+        .image-area img{
+            max-width: 170px !important;
+            margin-bottom: 0;
+        }
+        .text-area{
+            justify-content: center !important;
+        }
         .text-area .text, 
         .text-area .s-text {
             font-size: 27px;
@@ -119,6 +125,10 @@
         }
         .inner-container{
             gap: 22px
+        }
+
+        .carousal-container div:nth-child(4) > div.image-area > img{
+            max-width: 110px !important;
         }
     }
     @media screen and (max-width: 426px){
@@ -172,7 +182,53 @@
         {% endfor %}
         </div>
     </div>
-</div>    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('InfiniteSlider-{{ section.id }}');
+        const items = track.querySelectorAll('.inner-container');
+        if (items.length === 0) return;
+
+        // Clone first and last items for seamless looping
+        const firstClone = items[0].cloneNode(true);
+        const lastClone = items[items.length - 1].cloneNode(true);
+        track.appendChild(firstClone);
+        track.prepend(lastClone);
+
+        let counter = 1;
+        let size = items[0].clientWidth;
+
+        // Set initial position
+        track.style.transform = `translateX(${-size * counter}px)`;
+
+        function startSlider() {
+            setInterval(() => {
+                if (counter >= items.length + 1) return;
+                track.style.transition = "transform 0.5s ease-in-out";
+                counter++;
+                track.style.transform = `translateX(${-size * counter}px)`;
+            }, 3000); // 2 seconds interval
+        }
+
+        track.addEventListener('transitionend', () => {
+            if (items[counter - 1] && items[counter - 1] === firstClone || counter > items.length) {
+                track.style.transition = "none";
+                counter = 1;
+                track.style.transform = `translateX(${-size * counter}px)`;
+            }
+        });
+
+        // Re-calculate size on window resize
+        window.addEventListener('resize', () => {
+            size = items[0].clientWidth; 
+            track.style.transition = "none";
+            track.style.transform = `translateX(${-size * counter}px)`;
+        });
+
+        startSlider();
+    });
+</script>
+
 {% schema %}
 {
     "name": "Guide-Steps",
@@ -220,48 +276,3 @@
     ]
 }
 {% endschema %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const track = document.getElementById('InfiniteSlider-{{ section.id }}');
-        const items = track.querySelectorAll('.inner-container');
-        if (items.length === 0) return;
-
-        // Clone first and last items for seamless looping
-        const firstClone = items[0].cloneNode(true);
-        const lastClone = items[items.length - 1].cloneNode(true);
-        track.appendChild(firstClone);
-        track.prepend(lastClone);
-
-        let counter = 1;
-        let size = items[0].clientWidth;
-
-        // Set initial position
-        track.style.transform = `translateX(${-size * counter}px)`;
-
-        function startSlider() {
-            setInterval(() => {
-                if (counter >= items.length + 1) return;
-                track.style.transition = "transform 0.5s ease-in-out";
-                counter++;
-                track.style.transform = `translateX(${-size * counter}px)`;
-            }, 3000); // 2 seconds interval
-        }
-
-        track.addEventListener('transitionend', () => {
-            if (items[counter - 1] && items[counter - 1] === firstClone || counter > items.length) {
-                track.style.transition = "none";
-                counter = 1;
-                track.style.transform = `translateX(${-size * counter}px)`;
-            }
-        });
-
-        // Re-calculate size on window resize
-        window.addEventListener('resize', () => {
-            size = items[0].clientWidth; 
-            track.style.transition = "none";
-            track.style.transform = `translateX(${-size * counter}px)`;
-        });
-
-        startSlider();
-    });
-</script>

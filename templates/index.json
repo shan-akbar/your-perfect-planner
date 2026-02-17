@@ -143,9 +143,10 @@
       "name": "New banner section",
       "settings": {
         "bg-color": "#fad6d6",
-        "heading": "You Deserve A Planner As Unique As You",
-        "center_image": "shopify://shop_images/Hero_banner_no_text_253916dd-5958-4318-a73a-63bce03f8e63.png",
-        "mobile_image": "shopify://shop_images/edited-photo_1.png",
+        "heading": "BECAUSE YOUR BRAIN WASN'T  MEANT TO HOLD EVERYTHING.",
+        "heading1": "BUILD A PLANNER THAT HOLDS IT FOR YOU",
+        "center_image": "shopify://shop_images/New-one-2.png",
+        "mobile_image": "shopify://shop_images/New-one.png",
         "text_left_1": "Choose your date range",
         "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
         "text_left_2": "Choose your extra pages",
@@ -155,12 +156,12 @@
         "text_right_2": "Choose your layout",
         "arrow_right_2": "shopify://shop_images/5-removebg-preview.png",
         "heading-color": "#ff4545",
-        "text-1": "I want to",
-        "sec-text-1": "my own planner",
+        "text-1": "",
+        "sec-text-1": "your planner",
         "sub-text-1": "custom build",
         "btn-text1": "START CUSTOMISING",
         "btn-url1": "https://yourperfectplanner.com.au/collections/planners",
-        "text-2": "I want to pick from the",
+        "text-2": "Pick from the",
         "sec-text-2": "options",
         "sub-text-2": "ready-made",
         "btn-text2": "FIND MY MATCH",
@@ -230,7 +231,7 @@
             "image": "shopify://shop_images/Step_1_icon_eef0fde6-9f22-4900-9ace-d2910bd53dc8.png",
             "text": "STEP 1",
             "text1": "SELECT YOUR DATE RANGE",
-            "image_width": 360
+            "image_width": 300
           }
         },
         "add_step_RyDEfV": {
@@ -239,7 +240,7 @@
             "image": "shopify://shop_images/Step_2_icon_ccdbaa4e-0766-4e91-a0ed-a9cd31202d02.png",
             "text": "STEP 2",
             "text1": "CHOOSE YOUR LAYOUT",
-            "image_width": 400
+            "image_width": 320
           }
         },
         "add_step_qHk6qV": {
@@ -248,7 +249,7 @@
             "image": "shopify://shop_images/Step_3_icon_035afea2-0eed-4779-b571-a884e81f8da4.png",
             "text": "STEP 3",
             "text1": "ADD YOUR EXTRA PAGES",
-            "image_width": 250
+            "image_width": 170
           }
         }
       },
