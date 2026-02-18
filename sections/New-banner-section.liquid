@@ -21,7 +21,7 @@
 
                .new-banner-sect-heading h1 {
                  font-size: 50px;
-                 
+                 font-family: Poppinsbold;
                  margin: 0;
                  text-align: center;
                }
@@ -85,9 +85,7 @@
     .new-banner-section-img2{
       display:none;
     }
-    .new-banner-section-container{
-      padding-bottom: 48px;
-    }
+   
 
     .banner-grid-layout {
       position: relative;
@@ -95,12 +93,8 @@
       max-width: 1000px;
       margin: 0 auto;
       display: flex;
-      {% comment %} justify-content: center;
-      align-items: center;
-      min-height: 500px;  {% endcomment %}
     }
 
-    
     .banner-center-column {
       position: relative !important;
       width: 100%;
@@ -125,12 +119,21 @@
     }
 
     .feature-item {
-      {% comment %} display: flex !important; {% endcomment %}
       align-items: center;
       gap: 15px;
       position: absolute !important;
       width: auto;
       z-index: 2;
+    }
+
+    .feature-item span{
+       font-family: Poppinsbold;
+    }
+
+    @media(min-width: 800px){
+      .feature-item span{
+        max-width: 275px !important;
+      }
     }
 
     .feature-item.left {
@@ -152,29 +155,22 @@
       left: 5%;
     }
 
-    {% comment %} .feature-item.left .arrow-img {
-      width: 200px;
-    } {% endcomment %}
+  
 
     .feature-item.right {
       flex-direction: row; 
       right: 5%;
     }
 
-    {% comment %} .feature-item.right .arrow-img {
-      transform: none !important; /* Removes the inward flip */
-      width: 300px;
-      height: auto;
-    } {% endcomment %}
 
     .feature-item.left:nth-child(1), 
     .feature-item.right:nth-child(1) { 
-      top: 30% !important; 
+      top: 10% !important; 
     }
 
     .feature-item.left:nth-child(2), 
     .feature-item.right:nth-child(2) { 
-      top: 55% !important; /* Changed from 'bottom' to 'top' for consistent scaling */
+      top: 45% !important; 
     }
     
 
@@ -233,12 +229,12 @@
     }
 
     #new-banner-section{
-      width: 100vw;
+      {% comment %} width: 100vw; {% endcomment %}
       position: relative;
-      left: 50%;
+      {% comment %} left: 50%;
       right: 50%;
       margin-left: -50vw;
-      margin-right: -50vw;
+      margin-right: -50vw; {% endcomment %}
     }
     
     .banner-grid-layout {
@@ -249,15 +245,18 @@
     } 
 
     .new-banner-sect-heading {
-      position: absolute;
-      top: 45px;
+      position: relative !important;
+      top: 0px;
       left: 0;
       width: 100%;
       z-index: 2;
+      background: #ff4545;
+    }
+
+    .new-banner-sect-heading h1{
+      color: white;
     }
     
-
-
     .banner-side-right-column {
       position: absolute !important;
       top: 0;
@@ -304,9 +303,11 @@
     }
 
     .new-banner-section-container{
-      padding: 18px;
-      padding-bottom: 45px;
+      padding: 40px 20px;
+    }
 
+    .new-banner-sub-cont1 h1{
+      margin-top: 0 !important;
     }
 
     .banner-center-column img:nth-child(1) {
@@ -318,9 +319,15 @@
     }
 
     @media screen and (max-width:2570px){
+      .new-banner-sect-heading h1{
+        color: white !important;
+        font-size: 49px !important;
+      }
       .new-banner-sect-heading {
+        position: relative;
+        padding: 20px !important;
         position: absolute;
-        top: 45px;
+        top: 0px;
       }
       .arrow-img1 {
         position: absolute;
@@ -394,13 +401,20 @@
     }
 
     @media screen and (max-width: 1900px) {
+      .new-banner-sect-heading h1{
+        font-size: 44px !important;
+      }
+      .new-banner-sect-heading {
+        position: relative;
+        color: white !important;
+      }
       .arrow-img1 {
         position: absolute;
         top: -53px;
         max-width: 374px;
         left: 195px;
         top: 40px;
-      }
+      } 
 
       .arrow-img2{
         max-width: 330px
@@ -463,7 +477,9 @@
       .feature-text-right2 {
         right: -11px;
       }
-      
+      .new-banner-sect-heading h1{
+        font-size: 42px !important;
+      }
     }
 
     @media screen and (max-width: 1500px) {
@@ -472,6 +488,9 @@
         max-width: 299px;
         left: 130px;
         top: 30px;
+      }
+      .new-banner-sect-heading h1{
+        font-size: 39px !important;
       }
 
       .feature-text-left1 {
@@ -519,6 +538,11 @@
         right: -30px;
         font-size: 34px;
         top: 20px;
+      }
+    }
+    @media screen and (max-width: 1442px){
+      .new-banner-sect-heading h1{
+        font-size: 37px !important;
       }
     }
 
@@ -578,12 +602,13 @@
       }
 
       .new-banner-sect-heading h1{
-        font-size: 45px;
+        font-size: 33px !important;
+        color: white !important;
         {% comment %} margin-top: 13px; {% endcomment %}
       }
       .feature-text-right1 {
         display: flex;
-        justify-content: center; 
+        justify-content: center;  
         align-items: center;     
         text-align: center;
         margin-left: auto;
@@ -596,9 +621,9 @@
 
     @media screen and (max-width: 1025px) {
       .feature-text-left1 {
-          font-size: 28px;
-          max-width: 180px;
-          left: 10px;
+        font-size: 28px;
+        max-width: 180px;
+        left: 10px;
       }
       .arrow-img1 {
         position: absolute;
@@ -629,7 +654,7 @@
         right: 98px;
         top: 0px;
       }
-      .arrow-img4 {
+      .arrow-img4 { 
         width: 100%;
         max-width: 146px;
         right: 124px;
@@ -641,11 +666,13 @@
         top: 13px;
         max-width: 166px;
       }
+      .new-banner-sect-heading h1{
+        font-size: 28px !important;
+      }
     }
     @media screen and (max-width: 900px) {
       .new-banner-sect-heading h1 {
-          font-size: 35px;
-          margin-top: 13px;
+          font-size: 30px;
           margin-top: 0 !important;
       }
       .feature-text-left2 {
@@ -671,15 +698,30 @@
         width: 100%; 
       }
     }
+
+    .feature-item span{
+       text-align: center !important;  
+    }
+
+    @media(max-width: 868px){
+      .new-banner-sub-cont1 h1{
+        font-size: 32px;
+      }
+    }
+
     @media screen and (max-width: 770px) {
       .new-banner-sub-cont1 a{
-        font-size: 28px;
+        font-size: 23px;
       }
-      .new-banner-sect-heading h1 {
-          font-size: 35px;
-          margin-top: 13px;
-          margin-top: 0 !important;
+      .new-banner-sect-heading{
+        position: relative;
+        top: 0;
       }
+
+      .new-banner-content{
+        padding: 0 !important;
+      }
+      
       .banner-center-column img:nth-child(1) {
         display: none !important;
       }
@@ -693,35 +735,39 @@
       .banner-grid-layout {
         width: 100%;
         min-height: auto !important;
-        display: block !important; /* Stack columns vertically on mobile */
+        display: block !important;
       }
 
       .new-banner-sect-heading {
-        position: absolute !important;
+        position: relative;
         top: 0 !important;
         padding: 20px 10px;
         justify-items: center;
       }
 
       .new-banner-sect-heading h1 {
-        padding-top: 25px;
-        font-size: 33px;
+        margin: 0 !important;
+        color: white;
+        font-size: 24px !important;
+        line-height: 30px;
       }
 
       .new-banner-content {
         flex-direction: row;
-        gap: 30px;
+        gap: 20px;
         padding: 20px;
       }
+
+      
 
       .new-banner-sub-cont1 {
         max-width: 100%;
       }
       .feature-item.left:nth-child(1), .feature-item.right:nth-child(1) {
-          top: 28% !important;
+          top: 13% !important;
       }
       .feature-item.left:nth-child(2), .feature-item.right:nth-child(2) {
-          top: 45% !important;
+          top: 30% !important;
       }
       .arrow-img1 {
         position: absolute;
@@ -769,15 +815,25 @@
         top: 22px;
         max-width: 122px;
       }
+      .new-banner-sect-heading{
+        padding: 11px !important;
+      }
     }
 
     @media screen and (max-width:650px) {
+
+      .new-banner-section-container{
+        padding: 20px;
+      }
+
       .feature-item.left:nth-child(2), .feature-item.right:nth-child(2) {
           top: 45% !important;
       }
+
       .new-banner-section-img{
         display:none;
       }
+
       .arrow-img1 {
         position: absolute;
         max-width: 123px;
@@ -826,8 +882,9 @@
         max-width: 112px;
         }
       .new-banner-sect-heading h1 {
-        font-size: 33px;
+        font-size: 22px !important;
         padding-top: 5px;
+        line-height: 24px !important;
       }
       .new-banner-section-img2{
          width:100%;max-width:300px;
@@ -868,18 +925,17 @@
       .new-banner-sect-heading h1 {
         margin: 0;
         text-align: center;
-        line-height: 45px;
       }
     }
     @media screen and (max-width: 550px) {
       .feature-item.left:nth-child(2), .feature-item.right:nth-child(2) {
-          top: 42% !important;
+        top: 26% !important;
       }
       .new-banner-sect-heading h1 {
-        font-size: 31px;
+        font-size: 22px !important;
         margin: 0;
         text-align: center;
-        line-height: 37px;
+        line-height: 26px;
       }
       .new-banner-sub-cont1 h1 {
         color: #ff4545;
@@ -889,12 +945,7 @@
         font-size: 25px;
         margin: 0 2px;
       }
-      .new-banner-sect-heading h1 {
-        font-size: 33px;
-        margin: 0;
-        text-align: center;
-        line-height: 45px;
-      }
+      
 
       .new-banner-sub-cont1 a {
         max-width: 170px;
@@ -903,10 +954,14 @@
     }
     @media screen and (max-width: 500px){
       .new-banner-sect-heading h1 {
-        font-size: 29px;
         margin: 0;
         text-align: center;
-        line-height: 37px;
+        
+        font-size: 15px !important;
+        margin: 0;
+        text-align: center;
+        line-height: 20px !important;
+        font-weight: 400 !important;
       }
       .arrow-img1 {
         position: absolute;
@@ -948,13 +1003,16 @@
         right: -12px;
         font-size: 15px;
         top: 36px;
-        max-width: 90px;
+        max-width: 97px;
       }
       .arrow-img4 {
         width: 100%;
         max-width: 93px;
         right: 38px;
         top: 42px;
+      }
+      .feature-item.left:nth-child(2), .feature-item.right:nth-child(2) {
+        top: 26% !important;
       }
     }
 
@@ -976,24 +1034,35 @@
         color: #ff4545;
         text-align: center;
         line-height: normal;
-        font-size: 20px;
+        font-size: 16px;
          margin: 0 2px;
       }
+      .new-banner-section-container{
+        padding: 20px 0 !important;
+      }
+      .new-banner-content{
+        gap: 0!important;
+      }
+      
+      .new-banner-sect-heading{
+        padding: 8px !important;
+      }
       .new-banner-sect-heading h1 {
-        font-size: 27px;
+        font-size: 15px !important;
         margin: 0;
         text-align: center;
-        line-height: 31px;
+        line-height: 20px !important;
+        font-weight: 400 !important;
       }
       .arrow-img1 {
         position: absolute;
         max-width: 88px;
-        left: 55px;
+        left: 66px;
         top: 10px;
       }
       .feature-text-left1 {
         font-size: 13px;
-        max-width: 85px;
+        max-width: 92px;
         left: -7px;
         top: 4px;
       }
@@ -1002,17 +1071,17 @@
         left: 34px;
         top: 11px;
       }
-          .feature-text-left2 {
+      .feature-text-left2 {
         position: relative;
         top: 90px;
         font-size: 12.5px;
-        max-width: 86px;
+        max-width: 88px;
         left: -12px;
       }
       .arrow-img3 {
         width: 100%;
         max-width: 98px;
-        right: 50px;
+        right: 59px;
         top: 4px;
       }
       .feature-text-right1 {
@@ -1039,27 +1108,24 @@
         max-width: 129px;
         font-size: 9px;
       }
+      .new-banner-sect-heading{
+        padding: 6px !important;
+      }
       .new-banner-sect-heading h1 {
-        font-size: 20px;
+        font-size: 14px !important;
         margin: 0;
         text-align: center;
-        line-height: normal;
+        line-height: 18px !important;
       }
 
       .new-banner-sub-cont1 h1 {
-          font-size: 18px;
+          font-size: 14px;
       }
 
-      .new-banner-sect-heading h1 {
-        font-size: 24px;
-        margin: 0;
-        text-align: center;
-        line-height: normal;
-      }
     }
     @media screen and (max-width: 360px){
       .new-banner-sect-heading h1 {
-        font-size: 20px;
+        font-size: 14px !important;
       }
       .feature-text-left1 {
         font-size: 12px;
@@ -1074,7 +1140,7 @@
         position: relative;
         top: 82px;
         font-size: 11.5px;
-        max-width: 86px;
+        max-width: 88px;
         left: -12px;
       }
       .arrow-img2 {
@@ -1112,13 +1178,18 @@
 
 <div id="new-banner-section" style="padding: 0;">
   {% comment %} <div class="new-banner-section-container" style="background-color: {{ section.settings.bg-color }};"> {% endcomment %}
-    
-    <div class="banner-grid-layout">
-      <div class="new-banner-sect-heading">
-        <h1 class="wild-mango-font  " style="color:{{section.settings.heading-color }}">
-          {{ section.settings.heading }}
-        </h1>
+    <div class="heading-area">
+        <div class="new-banner-sect-heading">
+          <h1 class="wild-mango-font  " style="color:{{section.settings.heading-color }}">
+            {{ section.settings.heading }}
+          </h1>
+          <h1 class="wild-mango-font second-child" style="color:{{section.settings.heading-color }}">
+            {{ section.settings.heading1 }}
+          </h1>
+        </div>
       </div> 
+    <div class="banner-grid-layout">
+      
       <div class="banner-side-column">
         <div class="feature-item left">
           <span class="wild-mango-font feature-text-left1">{{ section.settings.text_left_1 }}</span>
@@ -1166,7 +1237,7 @@
           <div class="new-banner-sub-cont1">
             <h1 class="wild-mango-font ">
               {{ section.settings['text-1'] }}
-              <span class="sub-text">{{ section.settings['sub-text-1'] }}</span>
+              <span class="sub-text">{{ section.settings['sub-text-1'] }}</span><br>
               {{ section.settings['sec-text-1'] }}
             </h1>
             <a href="{{ section.settings.btn-url1 }}" class="poppins-semibold ">{{ section.settings['btn-text1'] }}</a>
@@ -1174,6 +1245,7 @@
           <div class="new-banner-sub-cont1">
             <h1 class="wild-mango-font ">
               {{ section.settings['text-2'] }}
+              <br>
               <span class="sub-text">{{ section.settings['sub-text-2'] }}</span>
               {{ section.settings['sec-text-2'] }}
             </h1>
@@ -1190,10 +1262,19 @@
   "settings": [
     { "type": "color", "label": "Choose background color", "id": "bg-color", "default": "#FAD6D6" },
     {
+      "type": "header",
+      "content": "Main Heading Section"
+    },
+    {
       "type": "text",
       "id": "heading",
-      "label": "Enter main Heading",
+      "label": "First Line Text",
       "default": "How would you like to plan your year?"
+    },
+    {
+      "type": "text",
+      "id": "heading1",
+      "label": "Second Line Text",
     },
     {
       "type": "header",

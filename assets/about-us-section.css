@@ -95,6 +95,16 @@
       justify-content: center;
     }
 }
+
+  @media screen and (max-width: 1120px) and (min-width: 1000px) {
+    .about-container .right-box{
+        display: flex;
+        flex-direction: column; /* Ensures text and button stack */
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        height: auto; /* Overrides the 80vh you set earlier */
+    }
+}
   @media (max-width:599px){
       .about-container{
       flex-direction: column;
