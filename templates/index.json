@@ -180,44 +180,51 @@
             "video": "shopify://files/videos/Kelly.MP4"
           }
         },
+        "highlight_PE8bnL": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 3 edit.mp4"
+          }
+        },
+        "highlight_CWHJjB": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Emma edit.mp4"
+          }
+        },
         "highlight_eGGFq7": {
           "type": "highlight",
           "settings": {
             "video": "shopify://files/videos/Brittnee.MP4"
           }
         },
-        "highlight_TJwNzh": {
+        "highlight_ie3V74": {
           "type": "highlight",
           "settings": {
-            "video": "shopify://files/videos/Bec 2.mp4"
+            "video": "shopify://files/videos/Tamara edit.mp4"
           }
         },
         "highlight_Pr4t3r": {
           "type": "highlight",
           "settings": {
-            "video": "shopify://files/videos/Bec 1.mp4"
+            "video": "shopify://files/videos/Bec 1 edit.mp4"
           }
         },
-        "highlight_PE8bnL": {
+        "highlight_TJwNzh": {
           "type": "highlight",
           "settings": {
-            "video": "shopify://files/videos/Bec 2.mp4"
-          }
-        },
-        "highlight_CWHJjB": {
-          "type": "highlight",
-          "settings": {
-            "video": "shopify://files/videos/Tamara.mp4"
+            "video": "shopify://files/videos/Bec 2 edit.mp4"
           }
         }
       },
       "block_order": [
         "highlight_EAmkFX",
-        "highlight_eGGFq7",
-        "highlight_TJwNzh",
-        "highlight_Pr4t3r",
         "highlight_PE8bnL",
-        "highlight_CWHJjB"
+        "highlight_CWHJjB",
+        "highlight_eGGFq7",
+        "highlight_ie3V74",
+        "highlight_Pr4t3r",
+        "highlight_TJwNzh"
       ],
       "name": "Video Highlights",
       "settings": {}
@@ -283,6 +290,7 @@
     },
     "custom_text_section2_PKFGm7": {
       "type": "custom-text-section2",
+      "disabled": true,
       "name": "custom-text-section2",
       "settings": {
         "text": "<p>A FULLY CUSTOMISABLE PLANNER SO YOU ONLY CARRY <br/>THE PAGES YOU USE AND DITCH THE ONES YOU DON’T</p>",
@@ -437,6 +445,7 @@
     },
     "custom_heading_NfGnxf": {
       "type": "custom-heading",
+      "disabled": true,
       "settings": {
         "first_heading": "",
         "second_heading": "Specially Made Just For You",

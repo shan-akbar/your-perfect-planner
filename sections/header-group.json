@@ -16,10 +16,9 @@
       "blocks": {
         "announcement_rnttPQ": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "ORDER PLACED BETWEEN 19 DEC-4 JAN WILL BE PROCESSED ON 5 JAN",
-            "link": ""
+            "text": "30-DAY MONEY BACK GUARANTEE",
+            "link": "shopify://pages/30-day-money-back-guarantee"
           }
         },
         "announcement-bar-0": {

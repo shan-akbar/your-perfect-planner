@@ -36,6 +36,14 @@
             "text_style": "body"
           }
         },
+        "text_HHTjgA": {
+          "type": "text",
+          "settings": {
+            "text": "<a href=\"/pages/30-day-money-back-guarantee\" title=\"30-Day Money Back Guarantee\">30-Day Money Back Guarantee</a>",
+            "body_text_color": "#ff9cae",
+            "text_style": "body"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -427,7 +435,16 @@
           "settings": {
             "heading": "How To Build Your Perfect Planner",
             "icon": "clipboard",
-            "content": "<p></p><ol><li>Click “Start Building\"</li><li>Set your date range</li><li>Next you have the option to exclude weekends, have a half page for weekends or keep as full pages</li><li>Choose the layout you’d like your planner to have. Select by pressing the circle at the top right of the page</li><li>Select all your extra pages by pressing + button to increase the quantity</li><li>Check the preview to make sure it’s looking how you wish</li><li>Add to cart!</li></ol><p>While this custom feature is the exact reason Your Perfect<br/>Planner exists, the process is quite complex. If you’re confused about<br/>something or have a question, please don’t hesitate to contact us, we’d be<br/>happy to help. </p>",
+            "content": "<p>Watch video <a href=\"https://youtu.be/dV8f4VCo_YI?si=ZKyjIeeKZd5Y5iad\" target=\"_blank\" title=\"How To Build Your Perfect Planner\">here</a></p><ol><li>Click “Start Building\"</li><li>Set your date range</li><li>Next you have the option to exclude weekends, have a half page for weekends or keep as full pages</li><li>Choose the layout you’d like your planner to have. Select by pressing the circle at the top right of the page</li><li>Select all your extra pages by pressing + button to increase the quantity</li><li>Check the preview to make sure it’s looking how you wish</li><li>Add to cart!</li></ol><p>While this custom feature is the exact reason Your Perfect<br/>Planner exists, the process is quite complex. If you’re confused about<br/>something or have a question, please don’t hesitate to contact us, we’d be<br/>happy to help. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_hWb8kp": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "30-Day Money Back Guarantee",
+            "icon": "check_mark",
+            "content": "<p>Your brain wasn’t meant to hold everything.</p><p>Use your planner for 30 days.<br/>If you don’t feel less stressed, less overwhelmed and more in control, we’ll<br/>give you your money back. Applies to first time purchases only, see full policy<br/><a href=\"/pages/30-day-money-back-guarantee\" title=\"30-Day Money Back Guarantee\">here</a>.<br/><br/><br/><br/></p>",
             "page": ""
           }
         },
@@ -508,7 +525,7 @@
             "page_6_image": "shopify://shop_images/2026_Monthly_view11_JUN1_7898cf5b-7ce7-4a3e-a173-0d308c5fdffd.png",
             "page_6_image_back": "shopify://shop_images/JUNE_2.png",
             "page_7_image": "shopify://shop_images/JULY_1.png",
-            "page_7_image_back": "shopify://shop_images/JULY_2.png",
+            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2_312eb320-d126-4526-a88a-00220cfe7de8.png",
             "page_8_image": "shopify://shop_images/2026_Monthly_view15_AUG1_43f2b944-2151-4773-b2d3-51479d055eea.png",
             "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2_31d9eed2-c8ae-4d2f-8b4d-cb14058ee331.png",
             "page_9_image": "shopify://shop_images/SEP_1.png",
@@ -537,7 +554,7 @@
             "page_6_image": "shopify://shop_images/2026_Monthly_view11_JUN1_7898cf5b-7ce7-4a3e-a173-0d308c5fdffd.png",
             "page_6_image_back": "shopify://shop_images/2026_Monthly_view12_JUN2_ec0c51f8-fe79-4cf2-a6a3-cedfd41caf76.png",
             "page_7_image": "shopify://shop_images/2026_Monthly_view13_JUL1.png",
-            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2_25cc6c8e-469a-4b8d-a5b3-bb08b28aa92c.png",
+            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2_312eb320-d126-4526-a88a-00220cfe7de8.png",
             "page_8_image": "shopify://shop_images/2026_Monthly_view15_AUG1_43f2b944-2151-4773-b2d3-51479d055eea.png",
             "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2_31d9eed2-c8ae-4d2f-8b4d-cb14058ee331.png",
             "page_9_image": "shopify://shop_images/2026_Monthly_view17_SEP1.png",
@@ -607,6 +624,7 @@
         "title",
         "judge_me_reviews_preview_badge_HQUMdm",
         "text_n6Yxtm",
+        "text_HHTjgA",
         "description",
         "text_hqtRGT",
         "text_4WehDr",
@@ -631,6 +649,7 @@
         "buy_buttons",
         "collapsible_tab_kBfjnj",
         "collapsible_tab_abKUVB",
+        "collapsible_tab_hWb8kp",
         "collapsible_tab_xncNx9",
         "collapsible_tab_kVWFdY",
         "collapsible_tab_tzVcWC",
