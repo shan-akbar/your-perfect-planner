@@ -361,7 +361,7 @@
               {% when 'planner_date_range' %}
                 <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
                   <div class="additional-information">{{ block.settings.additional_information }}</div>
-                  <p class="date-range-error__message" style="color:red;display:none;"></p>
+                  
                   <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
                   <input type="date" id="start_date" name="start_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
                   <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
@@ -369,6 +369,7 @@
                   <br>
                   <span class="date-range__note">{{ block.settings.date_note }}</span>
                   <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
+                  <p class="date-range-error__message" style="color:red;display:none;"></p>
                   <button class="diary-update__button" style="display:none;" onclick="updateDiaryPages()" >Update Diary</button>
                 </div>
                 {% assign custom_pages_step = custom_pages_step | plus: 1 %}
@@ -1398,7 +1399,43 @@
                   {%- endif -%}
                 </p>
               {%- when 'description' -%}
-                {{ product.description }}
+                <div class="product-description-collapsible">
+                  <div id="PlannerDescriptionContainer" class="planner-description-container">
+                    {{ product.description }}
+                    <div id="PlannerDescriptionFade" class="planner-description-fade"></div>
+                  </div>
+                  
+                  <button id="PlannerReadMoreBtn" class="planner-read-more-btn" type="button">
+                    Read More
+                  </button>
+                </div>
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const btn = document.getElementById('PlannerReadMoreBtn');
+                    const container = document.getElementById('PlannerDescriptionContainer');
+                    const fade = document.getElementById('PlannerDescriptionFade');
+
+                    // Note: We use 250 here to match the CSS max-height
+                    const collapsedHeight = "250px";
+
+                    if (btn && container) {
+                      btn.addEventListener('click', function() {
+                        // Check against the computed style to handle the external CSS
+                        if (container.style.maxHeight === collapsedHeight || !container.style.maxHeight) {
+                          container.style.maxHeight = '10000px'; 
+                          fade.style.display = 'none';
+                          btn.innerText = 'Read Less';
+                        } else {
+                          container.style.maxHeight = collapsedHeight;
+                          fade.style.display = 'block';
+                          btn.innerText = 'Read More';
+                          container.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      });
+                    }
+                  });
+                </script>
               {%- when 'sku' -%}
                 <p
                   class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -1930,11 +1967,56 @@ function bigImg() {
     }, 1000);
   }
 
-</script>
+</script> 
 
 {% comment %} Code for changing layout to steps {% endcomment %}
 
 <style>
+    /* Description Collapsable  */
+    .product-description-collapsible {
+      margin-bottom: 20px;
+    }
+
+    .planner-description-container {
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.4s ease;
+      max-height: 250px; 
+    }
+
+    .planner-description-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+      pointer-events: none;
+    }
+
+    .planner-read-more-btn {
+      background: none;
+      border: none;
+      color: #ff4545; 
+      font-weight: bold;
+      cursor: pointer;
+      padding: 10px 0;
+      text-decoration: underline;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    /* youtube link styles */
+    .builder-help-link{
+      text-align: center; 
+      margin-top: 15px; 
+      border-top: 1.5px solid #FF4545; 
+      padding-top: 10px;
+    }
+    .need-help-p{
+      font-size: 14px; 
+      margin: 0; 
+      color: black;
+    }
     /* The Modal (background) */
     .step-modal {
       position: fixed; /* Stay in place */
@@ -2025,7 +2107,7 @@ function bigImg() {
       overflow-x: auto;
       width: 100%;
     }
-
+   
     .build-step__wrapper > div{
       display: none;
     }
@@ -2125,8 +2207,17 @@ function bigImg() {
           <button class="build-step__button build-step__next" onclick="processNextStep()">Next Step</button>
          
       </div>
-       
-    </div>
+        <div class="builder-help-link" style="">
+          <p class="need-help-p" style="">
+            Need help? 
+            <a href="{{ section.settings.help_video_url | default: '#' }}" 
+              target="_blank" 
+              style="font-weight: bold; color: black; text-decoration: underline;">
+              Watch the video tutorial
+            </a> 
+          </p>
+        </div>
+    </div>                    
   </div>
 
 </div>
@@ -2238,7 +2329,7 @@ function bigImg() {
     let ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
     let slide_width = ep_slider.querySelector('.page_item').offsetWidth;
     ep_slider.scrollBy({ left: slide_width, behavior: "smooth" });
-  }
+  }        
 
   function epSlidePrev(){
     let target = this.event.target;
@@ -4616,6 +4707,12 @@ function bigImg() {
       "id": "final_step_note",
       "label": "Final Step Note",
       "default": "Check your Planner"
+    },
+
+    {
+      "type": "url",
+      "id": "help_video_url",
+      "label": "Help Video Tutorial Link"
     },
     {
       "type": "checkbox",
