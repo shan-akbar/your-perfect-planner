@@ -143,14 +143,25 @@
       "name": "New banner section",
       "settings": {
         "bg-color": "#fad6d6",
-        "heading": "How would you like to plan your year?",
+        "heading": "BECAUSE YOUR BRAIN WASN'T  MEANT TO HOLD EVERYTHING.",
+        "heading1": "BUILD A PLANNER THAT HOLDS IT FOR YOU",
+        "center_image": "shopify://shop_images/New-one-2.png",
+        "mobile_image": "shopify://shop_images/New-one.png",
+        "text_left_1": "Choose your date range",
+        "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
+        "text_left_2": "Choose your extra pages",
+        "arrow_left_2": "shopify://shop_images/4-removebg-preview.png",
+        "text_right_1": "Choose your cover",
+        "arrow_right_1": "shopify://shop_images/2-removebg-preview.png",
+        "text_right_2": "Choose your layout",
+        "arrow_right_2": "shopify://shop_images/5-removebg-preview.png",
         "heading-color": "#ff4545",
-        "text-1": "I want to",
-        "sec-text-1": "my own planner",
+        "text-1": "",
+        "sec-text-1": "your planner",
         "sub-text-1": "custom build",
         "btn-text1": "START CUSTOMISING",
         "btn-url1": "https://yourperfectplanner.com.au/collections/planners",
-        "text-2": "I want to pick from the",
+        "text-2": "Pick from the",
         "sec-text-2": "options",
         "sub-text-2": "ready-made",
         "btn-text2": "FIND MY MATCH",
@@ -159,6 +170,96 @@
         "button-bg-color": "#ff4545",
         "button-text-color": "#ffffff"
       }
+    },
+    "video_highlights_section_x7b9K9": {
+      "type": "video-highlights-section",
+      "blocks": {
+        "highlight_EAmkFX": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Kelly.MP4"
+          }
+        },
+        "highlight_eGGFq7": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Brittnee.MP4"
+          }
+        },
+        "highlight_TJwNzh": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_Pr4t3r": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 1.mp4"
+          }
+        },
+        "highlight_PE8bnL": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Bec 2.mp4"
+          }
+        },
+        "highlight_CWHJjB": {
+          "type": "highlight",
+          "settings": {
+            "video": "shopify://files/videos/Tamara.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "highlight_EAmkFX",
+        "highlight_eGGFq7",
+        "highlight_TJwNzh",
+        "highlight_Pr4t3r",
+        "highlight_PE8bnL",
+        "highlight_CWHJjB"
+      ],
+      "name": "Video Highlights",
+      "settings": {}
+    },
+    "guide_steps_section_wPT6tb": {
+      "type": "guide-steps-section",
+      "blocks": {
+        "add_step_H3jwz7": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_1_icon_eef0fde6-9f22-4900-9ace-d2910bd53dc8.png",
+            "text": "STEP 1",
+            "text1": "SELECT YOUR DATE RANGE",
+            "image_width": 300
+          }
+        },
+        "add_step_RyDEfV": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_2_icon_ccdbaa4e-0766-4e91-a0ed-a9cd31202d02.png",
+            "text": "STEP 2",
+            "text1": "CHOOSE YOUR LAYOUT",
+            "image_width": 320
+          }
+        },
+        "add_step_qHk6qV": {
+          "type": "Add-Step",
+          "settings": {
+            "image": "shopify://shop_images/Step_3_icon_035afea2-0eed-4779-b571-a884e81f8da4.png",
+            "text": "STEP 3",
+            "text1": "ADD YOUR EXTRA PAGES",
+            "image_width": 170
+          }
+        }
+      },
+      "block_order": [
+        "add_step_H3jwz7",
+        "add_step_RyDEfV",
+        "add_step_qHk6qV"
+      ],
+      "name": "Guide-Steps",
+      "settings": {}
     },
     "custom_text_section_zJUVNW": {
       "type": "custom-text-section",
@@ -243,6 +344,13 @@
     "list_view_7F98EF": {
       "type": "list-view",
       "blocks": {
+        "list_item_f9Hb3b": {
+          "type": "list-item",
+          "settings": {
+            "textItem": "Please Enter text",
+            "list_text_color": "#000000"
+          }
+        },
         "list_item_hdJtEU": {
           "type": "list-item",
           "settings": {
@@ -301,6 +409,7 @@
         }
       },
       "block_order": [
+        "list_item_f9Hb3b",
         "list_item_hdJtEU",
         "list_item_6xbJbY",
         "list_item_YpnCRH",
@@ -310,6 +419,7 @@
         "list_item_GBw63m",
         "list_item_yFERH8"
       ],
+      "disabled": true,
       "settings": {
         "btn": "START BUILDING YOURS",
         "button_link": "https://yourperfectplanner.com.au/collections/planners"
@@ -334,7 +444,7 @@
           "settings": {
             "quiz_id": 1792,
             "width": 100,
-            "height": 85,
+            "height": 100,
             "padding_top": 0,
             "padding_right": 0,
             "padding_bottom": 0,
@@ -345,9 +455,13 @@
       "block_order": [
         "recomma_product_quiz_builder_recommenda_inline_quiz_M7AGDp"
       ],
+      "custom_css": [
+        ".page-width {max-width: 100% !important; padding: 0 !important;}",
+        ".recommenda-quiz-inline {height: 40vh !important;}"
+      ],
       "name": "Quiz - Find Your Perfect Planner",
       "settings": {
-        "include_margins": true
+        "include_margins": false
       }
     },
     "image_banner_JWNcn6": {
@@ -521,6 +635,8 @@
     "image_banner",
     "slideshow_BagVwL",
     "new_banner_section_kdwJmF",
+    "video_highlights_section_x7b9K9",
+    "guide_steps_section_wPT6tb",
     "custom_text_section_zJUVNW",
     "custom_text_section2_PKFGm7",
     "custom_text_section2_LqDfzE",

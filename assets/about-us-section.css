@@ -12,7 +12,7 @@
     src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1732747766);
   }
   
-  .about-container{
+  .about-container{ 
     width:100%;
     background-color:#FFCFAD;
     padding:0;
@@ -20,6 +20,7 @@
     display:flex;
     column-gap: 30px;
     align-items: center;
+    
   }
   .about-container .left-box{
     max-height: 556px;
@@ -32,7 +33,7 @@
   }
   .about-container .right-box .heading1  h3{
      
-       border-radius: 100px;
+      border-radius: 100px;
       background-color: #fdf1f0;
       color: #ff9cae;
       font-family: Poppins;
@@ -82,6 +83,28 @@
   .about-container .right-box .heading1 h3{
     margin: 0;
   }
+  @media (min-width: 1440px){
+    .about-container{
+      width:100%;
+      background-color:#FFCFAD;
+      padding:0;
+      margin:0;
+      display:flex;
+      column-gap: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+}
+
+  @media screen and (max-width: 1120px) and (min-width: 1000px) {
+    .about-container .right-box{
+        display: flex;
+        flex-direction: column; /* Ensures text and button stack */
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        height: auto; /* Overrides the 80vh you set earlier */
+    }
+}
   @media (max-width:599px){
       .about-container{
       flex-direction: column;

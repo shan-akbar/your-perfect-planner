@@ -226,22 +226,13 @@
         let start_date_fixed = document.querySelector('.planner-date__range').getAttribute('data-startdate');
         let end_date_fixed = document.querySelector('.planner-date__range').getAttribute('data-enddate');
 
-
-        if(!start_date){
-            start_date = document.querySelector('.planner-date__range').getAttribute('data-startdate');
-        }
-
-        if(!end_date){
-            end_date = document.querySelector('.planner-date__range').getAttribute('data-enddate');
-        }
-
         let start_date_obj = new Date(start_date);
         let end_date_obj = new Date(end_date);
         let start_date_fixed_obj = new Date(start_date_fixed);
         let end_date_fixed_obj = new Date(end_date_fixed);
         
         let error__message = document.querySelector(".date-range-error__message");
-        if(start_date_obj > end_date_obj || start_date_obj < start_date_fixed_obj || end_date_obj > end_date_fixed_obj){
+        if(start_date_obj > end_date_obj || start_date_obj < start_date_fixed_obj || end_date_obj > end_date_fixed_obj || (!start_date || !end_date)){
             
             error__message.style.display = "block";
             if(target.isSameNode(start_date_element)){
@@ -262,6 +253,10 @@
                 error__message.innerHTML = "End Date cannot be larger then " + end_date_fixed;
             }
 
+             if(!start_date || !end_date){
+               error__message.innerHTML = "Invalid date selected.";
+            }
+
             
 
             setTimeout(
@@ -272,6 +267,7 @@
 
         }else{
             error__message.style.display = "none";
+            updateDiaryPages();
         }
 
     }

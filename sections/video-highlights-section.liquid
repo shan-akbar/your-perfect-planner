@@ -1,0 +1,310 @@
+<style>
+    /* 1. THE MAIN CONTAINER */
+    .highlights-container {
+        padding: 20px 0;
+        width: 100%;
+        overflow-x: auto; 
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        display: block;
+    }
+
+    .highlights-container::-webkit-scrollbar {
+        height: 10px; 
+        display: block; 
+    } 
+    .highlights-container::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 10px;
+    }
+    .highlights-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 69, 69, 1); 
+        border-radius: 10px;
+        border: 2px solid #f1f1f1;
+    }
+
+    .highlights-scroll {
+        display: flex;
+        gap: 20px;
+        padding: 0 20px;
+        flex-wrap: nowrap; 
+        width: max-content; 
+        min-width: 100%;   
+    }
+
+    .highlight-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0; 
+    }
+
+    .circle-outline {
+        width: 185px;
+        height: 185px;
+        border-radius: 50%;
+        border: 2px solid #ff8fa3; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px; 
+    }
+
+    .circle-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        padding: 2px;
+        overflow: hidden;
+        background: #ccc;
+        border: 2px solid #fff; 
+    }
+
+    .circle-inner video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .story-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .story-content {
+      width: 90%;
+      max-width: 380px;
+      height: 80vh;
+      background: #000; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+    }
+
+    .story-content video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; 
+      border-radius: 15px;
+    }
+
+    .close-story {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 10001;
+    }
+
+    #story-video-player {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; 
+    }
+
+    @media screen and (max-width: 2565px) {
+      .story-content {
+          max-width: 592px;
+          height: 55vh;
+      }
+      .close-story {
+        position: absolute;
+        top: 30px;
+        right: 55px;
+        color: white;
+        font-size: 90px;
+        cursor: pointer;
+        z-index: 10001;
+      }
+    }
+    
+    @media screen and (max-width: 1450px){
+      .story-content{
+        max-width: 430px;
+      }
+      .close-story {
+        position: absolute;
+        top: 30px;
+        right: 55px;
+        color: white;
+        font-size: 60px;
+        cursor: pointer;
+        z-index: 10001;
+      }
+      .story-content {
+        max-width: 430px;
+        height: 70vh;
+      }
+    }
+
+    @media screen and (min-width: 1300px){
+      .highlights-scroll{
+          display: flex;
+          justify-content: center;
+      }
+    }
+    @media screen and (max-width: 1300px){
+      .close-story {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 50px;
+        cursor: pointer;
+        z-index: 10001;
+      }
+    }
+
+    @media screen and (max-width: 1030px) {
+      .circle-outline { 
+        width: 160px; 
+        height: 160px; 
+      }
+      .close-story {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 10001;
+      }
+      .story-content {
+        max-width: 346px;
+        height: 66vh;
+      }
+    }
+    @media screen and (max-width: 770px) {
+        .circle-outline { width: 140px; height: 140px; }
+        .highlights-container::-webkit-scrollbar { height: 8px; } 
+        .story-content{
+          max-width: 310px;
+          height: 75vh;
+        }
+    }
+    @media screen and (max-width: 600px) {
+      .circle-outline{
+        width: 90px;
+        height: 90px;
+      }
+      .highlights-container{
+        padding: 12px 0;
+      }
+      .highlights-scroll{
+        gap: 10px;
+        padding: 0 10px;
+      }
+      .story-content {
+        max-width: 218px !important;
+        height: 50vh;
+      }
+      .close-story {
+        position: absolute;
+        top: 8px;
+      }
+    }
+</style>
+
+<div class="highlights-container">
+  <div class="highlights-scroll">
+    {% for block in section.blocks %}
+      <div class="highlight-item" 
+           {{ block.shopify_attributes }} 
+           onclick="openStoryModal('{{ block.settings.video.sources[1].url }}')">
+        <div class="circle-outline">
+          <div class="circle-inner">
+            {% if block.settings.video != blank %}
+              {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div id="story-modal" class="story-modal-overlay" style="display:none;">
+    <span class="close-story" onclick="closeStoryModal()">&times;</span>
+    <div class="story-content">
+        <video id="story-video-player" controls autoplay playsinline></video>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Video Highlights",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Highlight",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Select Video"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Highlights"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+function openStoryModal(videoUrl) {
+    const modal = document.getElementById('story-modal');
+    const videoPlayer = document.getElementById('story-video-player');
+    
+    // Set the source of the modal video to the clicked video's URL
+    videoPlayer.src = videoUrl;
+    
+    // Show the modal
+    modal.style.display = 'flex';
+    
+    // Play the video
+    videoPlayer.play();
+
+    // Disable background scrolling
+    document.body.style.overflow = 'hidden';
+}
+
+function closeStoryModal() {
+    const modal = document.getElementById('story-modal');
+    const videoPlayer = document.getElementById('story-video-player');
+    
+    // Hide modal and pause video
+    modal.style.display = 'none';
+    videoPlayer.pause();
+    videoPlayer.src = ""; // Clear source to stop loading
+
+    // Enable background scrolling again
+    document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('story-modal');
+    if (event.target == modal) {
+        closeStoryModal();
+    }
+}
+</script>

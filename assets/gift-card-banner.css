@@ -4,7 +4,6 @@
     align-items: center;
     padding: 30px;
     justify-content: space-around;
-    column-gap: 10px;
 }
 
 .gift-cars__content{
@@ -48,7 +47,15 @@
     height: 100%;
 }
 
+@media (min-width: 1440px){
+    .gift-card__wrapper{
+        justify-content: center ;
+        column-gap: 110px;
+    }
+}
+
 @media(max-width: 720px){
+    
     .gift-cars__content h2{
         font-size: 22px;
     }
@@ -81,4 +88,5 @@
     .gift-cars__content a{
         font-size: 14px;
     }
+    
 }
