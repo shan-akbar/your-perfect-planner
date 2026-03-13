@@ -85,8 +85,8 @@
         let diary_pages_backup = [];
         let last_index_date = new Date();
         
-        diary_pages.push({page_type: 'outer_cover', date: '',  year: '2025' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '',  year: '2025' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+        diary_pages.push({page_type: 'outer_cover', date: '',  year: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+        diary_pages_backup.push({page_type: 'outer_cover', date: '',  year: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
 
         {% assign page_type = 'day' %}
         {% assign pages_length = diary_pages_layout_1 | size | divided_by: 2 %}
@@ -96,41 +96,18 @@
         {% endif %}
         {% assign skip_date_increment = true %}
         {% assign skip_date_increment_year = false %}
-        {% for diary_page in diary_pages_layout_1 %}
-                {% if forloop.rindex0 == 1 or forloop.last %}
-                    last_index_date = current_date;
-                    {% if forloop.rindex0 == 1 %}
-                        last_index_date.setDate(current_date.getDate() - 7); 
-                    {% endif %}
-                    {% if forloop.last %}
-                        last_index_date.setDate(current_date.getDate() - 14); 
-                    {% endif %}
-                 
-                    diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: last_index_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                    diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: last_index_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                {% else %}
-                    diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                    diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                {% endif %}
-                
-                
-                {% if double_pages %}
-                    
-                    {% if skip_date_increment %}
-                        {% assign skip_date_increment = false %}
-                    {% else %}
-                        current_date.setDate(current_date.getDate() + 7);
-                        {% assign skip_date_increment = true %}
-                    {% endif %}
-                {% else %}
-                    current_date.setDate(current_date.getDate() + 7);    
-                {% endif %}
 
-        {% endfor %}
-        current_date.setDate(current_date.getDate() - 14);
+        {% assign diary_page = diary_pages_layout_1[0] %}
+
+            {% for i in (1..13) %}
+                diary_pages.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
+                diary_pages_backup.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
+            {% endfor %}
+
+      
        
-        diary_pages.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506" });
+        diary_pages.push({page_type: 'outer_cover', date: '',page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
+        diary_pages_backup.push({page_type: 'outer_cover', date: '',page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506" });
     </script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
@@ -368,13 +345,11 @@
     function renderPages(){
         remove_neutral_pages();
         neutralize_pages();
-        let end_date_3 = document.querySelector('#end_date').value;
-        let end_date_obj_3 = new Date(end_date_3);
-        let current_year = end_date_obj_3.getFullYear().toString();
-        diary_pages.splice(diary_pages.length-1, 0, {page_type:"copyright", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669",year: current_year });
+       
+        diary_pages.splice(diary_pages.length-1, 0, {page_type:"copyright", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669" });
         
         if(diary_pages.length % 2 != 0){
-            diary_pages.splice(diary_pages.length-2, 0, {page_type:"blank", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668",year: current_year });
+            diary_pages.splice(diary_pages.length-2, 0, {page_type:"blank", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" });
         }
 
         let old_last_page = document.querySelector(".diary-flip_page.last__page");
@@ -527,8 +502,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         renderPages();   
-        let update_date_range_button = document.querySelector(".diary-update__button");
-        update_date_range_button.click();
     });
 
     function extraPages(){

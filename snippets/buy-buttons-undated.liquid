@@ -187,7 +187,7 @@
         let cartNotification = document.querySelector('cart-notification');
         spinner.classList.remove('hidden');
         let diary_pages_final = [];
-       
+        diary_pages_final = structuredClone(diary_pages);
         diary_pages_final[0].page_url = '//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668';
         diary_pages_final.pop();
 
@@ -201,17 +201,6 @@
         checked_added_pages.forEach((item, index) => {
           before_dates_start[`${item.getAttribute("data-numberindex")}`] = item.value;
         });
-
-        let added_pages_wrapper2 = document.querySelector("[data-pagetype='between_week']");
-        let added_pages2 = added_pages_wrapper2.querySelectorAll("input[type='number']");
-        let checked_added_pages2 =  Array.from(added_pages2).filter(node => node.value > 0);
-
-
-        let added_pages_wrapper3 = document.querySelector("[data-pagetype='between_month']");
-        let added_pages3 = added_pages_wrapper3.querySelectorAll("input[type='number']");
-        let checked_added_pages3 =  Array.from(added_pages3).filter(node => node.value > 0);
-
-       
 
         let added_pages_wrapper4 = document.querySelector("[data-pagetype='back_cover']");
         let added_pages4 = added_pages_wrapper4.querySelectorAll("input[type='number']");
@@ -232,7 +221,7 @@
                 "id": {{ product.selected_or_first_available_variant.id | json }},
                 "quantity": document.querySelector('.quantity__input').value,
                 "properties": { 
-                   
+                    "_custom_planner": true,
                     "_custom_price": document.getElementById("custom_price").value,
                     "_custom_pages": diary_pages_final,
                     "_page_layout_index": document.querySelector('input[name="layout-page"]:checked').getAttribute("data-layoutposition"),

@@ -35,6 +35,7 @@
         font-family: 'poopins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
     }
+    
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -229,6 +230,45 @@
       }
     }
   {%- endstyle -%}
+
+  <style>
+    .coverage-container {
+      max-width: 400px;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+
+    .coverage-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .coverage-options {
+      display: flex;
+      gap: 15px;
+    }
+
+    .coverage-option {
+      border: 1px solid #ddd;
+      padding: 12px 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .coverage-option:hover {
+      border-color: #333;
+    }
+
+    #selectedCoverage {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    </style>
   
   <script src="{{ 'custom-pages.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -451,28 +491,115 @@
                     "back_image": "{% if block.settings.page_20_image_back != blank %}{{ block.settings.page_20_image_back |  image_url: width: block.settings.page_20_image_back.width }}{% endif %}"
                   });
                 </script>
-              {% when 'planner_date_range' %}
+              {% when 'planner_range' %}
                 <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide build-step__active" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
                   <div class="additional-information">{{ block.settings.additional_information }}</div>
-                 
-                  <label for="start_date" style="font-weight:bold;color:black;">Start Date:</label>
-                  <input type="date" id="start_date" name="start_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
-                  <label for="end_date" style="font-weight:bold;color:black;">End Date:</label>
-                  <input type="date" id="end_date" name="end_date" min="2025-01-01" max="2026-12-31" onchange="handleDateRangeChange()">
-                  <br>
-                  <span class="date-range__note">{{ block.settings.date_note }}</span>
-                  <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
-                   <p class="date-range-error__message" style="color:red;display:none;"></p>
-                  <button class="diary-update__button" style="display:none;" onclick="updateDiaryPages()" >Update Diary</button>
+                  <div class="coverage-container">
+
+                    <div class="coverage-title">
+                      Choose your coverage
+                    </div>
+
+                    <div class="coverage-options">
+
+                      <label class="coverage-option">
+                        <input type="radio" name="coverage" value="3" checked>
+                        3 Months
+                      </label>
+
+                      <label class="coverage-option">
+                        <input type="radio" name="coverage" value="6">
+                        6 Months
+                      </label>
+
+                      <label class="coverage-option">
+                        <input type="radio" name="coverage" value="12">
+                        12 Months
+                      </label>
+
+                    </div>
+
+                    <div id="selectedCoverage">
+                      Selected: 3 Months
+                    </div>
+
+                  </div>
+                  
                 </div>
                 {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                 <script>
-                 
-                  const startDate = document.querySelector('#start_date');
-                  startDate.value = {{ block.settings.start_date | json }};
-                  const endDate = document.querySelector('#end_date');
-                  endDate.value = {{ block.settings.end_date | json }};
-                </script>
+                  const radios = document.querySelectorAll('input[name="coverage"]');
+                  const display = document.getElementById('selectedCoverage');
+
+                function updateCoverage(months){
+
+                  display.textContent = "Selected: " + months + " Months";
+
+                  const pagesPerMonth = 13;
+                  let requiredInnerPages = 13;
+
+                  if(months == 3){
+                     let requiredInnerPages = 13;
+                  }
+                  if(months == 6){
+                     let requiredInnerPages = 26;
+                  }
+                  if(months == 12){
+                     let requiredInnerPages = 52;
+                  }
+
+                  // get all day page indexes
+                  const dayIndexes = diary_pages
+                    .map((p, i) => p.page_type === "day" ? i : -1)
+                    .filter(i => i !== -1);
+
+                  const currentInnerCount = dayIndexes.length;
+
+                  if (requiredInnerPages > currentInnerCount) {
+
+                    const pagesToAdd = requiredInnerPages - currentInnerCount;
+
+                    // insert before the last day page
+                    const insertIndex = dayIndexes[dayIndexes.length - 1] + 1;
+
+                    const layoutUrl = diary_pages[dayIndexes[0]].page_url;
+
+                    for (let i = 0; i < pagesToAdd; i++) {
+                      diary_pages.splice(insertIndex + i, 0, {
+                        page_url: layoutUrl,
+                        page_type: "day"
+                      });
+                    }
+
+                  } 
+                  else if (requiredInnerPages < currentInnerCount) {
+
+                    const pagesToRemove = currentInnerCount - requiredInnerPages;
+
+                    for (let i = 0; i < pagesToRemove; i++) {
+                      const indexToRemove = dayIndexes[dayIndexes.length - 1 - i];
+                      diary_pages.splice(indexToRemove, 1);
+                    }
+
+                  }
+
+                  renderPages();
+                }
+
+                  radios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                      updateCoverage(this.value);
+                    });
+                  });
+
+                  // Ensure default selection shows on load
+                  document.addEventListener("DOMContentLoaded", () => {
+                    const selected = document.querySelector('input[name="coverage"]:checked');
+                    if(selected){
+                      updateCoverage(selected.value);
+                    }
+                  });
+                  </script>
               {% when 'planner_custom_pages' %}
                 <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
                   <div class="additional-information">{{ block.settings.additional_information }}</div>    
@@ -2346,8 +2473,7 @@ function onyearchange(){
       if(current_index == 1){
         let prev_btn = document.querySelector(".build-step__prev");
         prev_btn.classList.remove('build-step-button__disabled');
-        let update_date_button = document.querySelector("button.diary-update__button");
-        update_date_button.click();
+       
       }
   }
   function processPrevStep(){
@@ -3035,48 +3161,15 @@ function onyearchange(){
       ]
     },
     {
-      "type": "planner_date_range",
-      "name": "Planner Date Range",
+      "type": "planner_range", 
+      "name": "Planner Range",
       "limit": 1,
       "settings": [
-      {
+        {
           "type": "richtext",
           "id": "additional_information",
           "label": "Additional Information"
-        },
-        {
-          "type": "text",
-          "id": "start_date",
-          "label": "Start Date",
-          "default": "2025-01-01",
-          "info": "Please enter date in format 'YYYY-MM-DD'"
-        },
-        {
-          "type": "text",
-          "id": "end_date",
-          "label": "End Date",
-          "default": "2025-12-31",
-          "info": "Please enter date in format 'YYYY-MM-DD'"
-        },
-        {
-          "type": "text",
-          "id": "date_note",
-          "label": "Date Note",
-          "default": "NOTE: Default dates are from 01/01/2025 to 12/31/2025"
-        },
-        {
-          "type": "text",
-          "id": "text_message",
-          "label": "Text Message",
-          "default": "After you have selected your dates, please click the button below to update your planner."
-        },
-        {
-          "type": "color",
-          "id": "body_text_color",
-          "label": "Text Color",
-          "default": "#000000"
         }
-
       ]
     },
     {

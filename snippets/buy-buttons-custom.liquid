@@ -248,6 +248,7 @@
                 "id": {{ product.selected_or_first_available_variant.id | json }},
                 "quantity": document.querySelector('.quantity__input').value,
                 "properties": { 
+                    "_custom_planner": true,
                     "_split_pages": document.getElementById("pages_limit_property").value,
                     "_custom_price": document.getElementById("custom_price").value,
                     "_custom_pages": diary_pages_final,
