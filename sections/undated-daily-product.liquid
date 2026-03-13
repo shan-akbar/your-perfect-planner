@@ -438,51 +438,70 @@
                   const radios = document.querySelectorAll('input[name="coverage"]');
                   const display = document.getElementById('selectedCoverage');
 
-                function updateCoverage(months){
+                  function updateCoverage(months){
 
-                  display.textContent = "Selected: " + months + " Months";
+                    display.textContent = "Selected: " + months + " Months";
 
-                  const pagesPerMonth = 30;
-                  const requiredInnerPages = months * pagesPerMonth;
+                    // weeks
+                    let weeks = 13;
+                    if (months == 6) weeks = 26;
+                    if (months == 12) weeks = 52;
 
-                  // get all day page indexes
-                  const dayIndexes = diary_pages
-                    .map((p, i) => p.page_type === "day" ? i : -1)
-                    .filter(i => i !== -1);
+                    // required pages depending on layout
+                    const requiredInnerPages = currentLayoutIsDouble ? weeks * 2 : weeks;
 
-                  const currentInnerCount = dayIndexes.length;
+                    // get selected layout
+                    const selectedRadio = document.querySelector('input[name="layout-page"]:checked');
+                    const pageItem = selectedRadio.closest('.page_item');
 
-                  if (requiredInnerPages > currentInnerCount) {
+                    const frontImg = pageItem.querySelector('.extra-image').src;
+                    const backImg = pageItem.querySelector('.preview-icon').dataset.backimage || "";
 
-                    const pagesToAdd = requiredInnerPages - currentInnerCount;
+                    // find first and last day index
+                    const firstDayIndex = diary_pages.findIndex(p => p.page_type === "day");
+                    const lastDayIndex = diary_pages.map(p => p.page_type).lastIndexOf("day");
 
-                    // insert before the last day page
-                    const insertIndex = dayIndexes[dayIndexes.length - 1] + 1;
+                    if (firstDayIndex === -1) return;
 
-                    const layoutUrl = diary_pages[dayIndexes[0]].page_url;
+                    // split array safely
+                    const beforeDiary = diary_pages.slice(0, firstDayIndex);
+                    const currentDays = diary_pages.slice(firstDayIndex, lastDayIndex + 1);
+                    const afterDiary = diary_pages.slice(lastDayIndex + 1);
 
-                    for (let i = 0; i < pagesToAdd; i++) {
-                      diary_pages.splice(insertIndex + i, 0, {
-                        page_url: layoutUrl,
-                        page_type: "day"
-                      });
+                    let newDayPages = [];
+
+                    for (let i = 0; i < requiredInnerPages; i++) {
+
+                      if (currentLayoutIsDouble) {
+
+                        const isBack = i % 2 === 1;
+
+                        newDayPages.push({
+                          page_url: isBack ? backImg : frontImg,
+                          page_type: "day"
+                        });
+
+                      } else {
+
+                        newDayPages.push({
+                          page_url: frontImg,
+                          page_type: "day"
+                        });
+
+                      }
+
                     }
 
-                  } 
-                  else if (requiredInnerPages < currentInnerCount) {
+                    // rebuild array safely
+                    diary_pages = [
+                      ...beforeDiary,
+                      ...newDayPages,
+                      ...afterDiary
+                    ];
 
-                    const pagesToRemove = currentInnerCount - requiredInnerPages;
-
-                    for (let i = 0; i < pagesToRemove; i++) {
-                      const indexToRemove = dayIndexes[dayIndexes.length - 1 - i];
-                      diary_pages.splice(indexToRemove, 1);
-                    }
-
+                    renderPages();
                   }
-
-                  renderPages();
-                }
-
+                
                   radios.forEach(radio => {
                     radio.addEventListener('change', function() {
                       updateCoverage(this.value);

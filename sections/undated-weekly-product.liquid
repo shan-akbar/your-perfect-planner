@@ -535,20 +535,23 @@
 
                   display.textContent = "Selected: " + months + " Months";
 
-                  const pagesPerMonth = 13;
-                  let requiredInnerPages = 13;
+                  // weeks per coverage
+                  let weeks = 13;
 
-                  if(months == 3){
-                     let requiredInnerPages = 13;
-                  }
-                  if(months == 6){
-                     let requiredInnerPages = 26;
-                  }
-                  if(months == 12){
-                     let requiredInnerPages = 52;
-                  }
+                  if (months == 6) weeks = 26;
+                  if (months == 12) weeks = 52;
 
-                  // get all day page indexes
+                  // determine required day pages based on layout
+                  const requiredInnerPages = currentLayoutIsDouble ? weeks * 2 : weeks;
+
+                  // get selected layout images
+                  const selectedRadio = document.querySelector('input[name="layout-page"]:checked');
+                  const pageItem = selectedRadio.closest('.page_item');
+
+                  const frontImg = pageItem.querySelector('.extra-image').src;
+                  const backImg = pageItem.querySelector('.preview-icon').dataset.backimage || "";
+
+                  // get all current day pages
                   const dayIndexes = diary_pages
                     .map((p, i) => p.page_type === "day" ? i : -1)
                     .filter(i => i !== -1);
@@ -559,16 +562,17 @@
 
                     const pagesToAdd = requiredInnerPages - currentInnerCount;
 
-                    // insert before the last day page
                     const insertIndex = dayIndexes[dayIndexes.length - 1] + 1;
 
-                    const layoutUrl = diary_pages[dayIndexes[0]].page_url;
-
                     for (let i = 0; i < pagesToAdd; i++) {
+
+                      const isBackPage = currentLayoutIsDouble && ((currentInnerCount + i) % 2 === 1);
+
                       diary_pages.splice(insertIndex + i, 0, {
-                        page_url: layoutUrl,
+                        page_url: isBackPage ? backImg : frontImg,
                         page_type: "day"
                       });
+
                     }
 
                   } 
@@ -577,8 +581,10 @@
                     const pagesToRemove = currentInnerCount - requiredInnerPages;
 
                     for (let i = 0; i < pagesToRemove; i++) {
+
                       const indexToRemove = dayIndexes[dayIndexes.length - 1 - i];
                       diary_pages.splice(indexToRemove, 1);
+
                     }
 
                   }
