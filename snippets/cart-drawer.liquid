@@ -491,6 +491,14 @@
             <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
+          <div style="background-color: #fdf1f0; border-left: 4px solid #ff4545; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-family: 'Poppins', sans-serif; font-size: 14px; color: #333; display: flex; align-items: center; gap: 10px;">
+  <span style="font-size: 18px;">🕐</span>
+  <span>
+    <strong style="color: #ff4545;">Current processing time: 1–2 business days</strong>
+    — we'll get your order made, packed and on its way quickly! 🎉
+  </span>
+</div>
+
           <small class="tax-note caption-large rte">
             {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
               {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}

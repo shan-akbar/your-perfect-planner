@@ -1178,7 +1178,8 @@
 
 <div id="new-banner-section" style="padding: 0;">
   {% comment %} <div class="new-banner-section-container" style="background-color: {{ section.settings.bg-color }};"> {% endcomment %}
-    <div class="heading-area">
+  {% if section.settings.heading != blank or section.settings.heading1 != blank %}  
+      <div class="heading-area">
         <div class="new-banner-sect-heading">
           <h1 class="wild-mango-font  " style="color:{{section.settings.heading-color }}">
             {{ section.settings.heading }}
@@ -1188,6 +1189,7 @@
           </h1>
         </div>
       </div> 
+  {% endif %}
     <div class="banner-grid-layout">
       
       <div class="banner-side-column">

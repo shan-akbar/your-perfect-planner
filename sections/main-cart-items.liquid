@@ -97,36 +97,132 @@
 
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
 
-<div id="free-shipping-bar" style="background-color: #FF9CAE; color: black; padding: 15px; text-align: center; border-radius: 10px; margin-bottom: 1.5rem;">
-  <span id="free-shipping-message">Loading...</span>
+{% comment %} ── Your Perfect Planner · Free Shipping Progress Bar ── {% endcomment %}
+
+<div class="ypp-shipping-bar">
+  <p class="ypp-shipping-bar__message" id="ypp-shipping-msg">Loading...</p>
+  <div class="ypp-shipping-bar__track">
+    <div class="ypp-shipping-bar__fill" id="ypp-shipping-fill"></div>
+  </div>
 </div>
 
+<style>
+  .ypp-shipping-bar {
+    background: #ff9cae;
+    padding: 14px 20px;
+    border-bottom: 1px solid #ff85a0;
+    font-family: 'Poppins', sans-serif;
+  }
+  .ypp-shipping-bar__message {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  .ypp-shipping-bar__track {
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    height: 10px;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    position: relative;
+  }
+  .ypp-shipping-bar__fill {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10px;
+    width: var(--ypp-progress, 0%);
+    border-radius: 999px;
+    background: #ffffff !important;
+    transition: width 0.5s ease;
+  }
+</style>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const shippingBar = document.getElementById('free-shipping-bar');
-    const shippingMessage = document.getElementById('free-shipping-message');
+  (function() {
+    var THRESHOLD = 9900;
 
-    function updateFreeShippingBar(cart) {
-      const freeShippingThreshold = 9900; // $99 in cents
-      const cartTotal = cart.items_subtotal_price;
+    function updateBar(cartTotal) {
+      var fill = document.getElementById('ypp-shipping-fill');
+      var msg = document.getElementById('ypp-shipping-msg');
+      if (!fill || !msg) return;
 
-      if (cartTotal >= freeShippingThreshold) {
-        shippingMessage.innerText = "🎉 You've unlocked free shipping!";
-        shippingBar.style.backgroundColor = "#f6b78a";
+      var pct = Math.min(cartTotal / THRESHOLD * 100, 100);
+      fill.style.setProperty('--ypp-progress', pct.toFixed(2) + '%');
+
+      if (cartTotal >= THRESHOLD) {
+        msg.innerHTML = '🎉 You\'ve unlocked <strong>FREE shipping!</strong>';
       } else {
-        const amountLeft = (freeShippingThreshold - cartTotal) / 100;
-        shippingMessage.innerText = `Spend $${amountLeft.toFixed(2)} more to get free shipping!`;
+        var remaining = ((THRESHOLD - cartTotal) / 100).toFixed(2);
+        msg.innerHTML = 'You\'re <strong>$' + remaining + '</strong> away from free shipping 🚚';
       }
     }
 
-    fetch('/cart.js')
-      .then(response => response.json())
-      .then(cart => {
-        updateFreeShippingBar(cart);
-      });
-  });
+    function fetchCart() {
+      fetch('/cart.js', { credentials: 'same-origin' })
+        .then(function(r) { return r.json(); })
+        .then(function(cart) { updateBar(cart.total_price); })
+        .catch(function(e) { console.log('YPP cart error:', e); });
+    }
+
+    // Run on load
+    fetchCart();
+
+    // Shopify theme event
+    document.addEventListener('cart:updated', function(e) {
+      if (e.detail && e.detail.cart) {
+        updateBar(e.detail.cart.total_price);
+      } else {
+        fetchCart();
+      }
+    });
+
+    // Also listen for these common theme events
+    document.addEventListener('cart:refresh', fetchCart);
+    document.addEventListener('CartUpdate', fetchCart);
+
+    // Intercept fetch calls
+    var _fetch = window.fetch;
+    window.fetch = function(input, init) {
+      var url = typeof input === 'string' ? input : (input && input.url) || '';
+      var promise = _fetch.apply(this, arguments);
+      if (/\/cart\/(add|change|update|clear)/.test(url)) {
+        promise.then(function() {
+          setTimeout(fetchCart, 200);
+        });
+      }
+      return promise;
+    };
+
+    // Intercept XHR calls
+    var _open = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+      this._yppUrl = url || '';
+      return _open.apply(this, arguments);
+    };
+    var _send = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.send = function() {
+      if (/\/cart\/(add|change|update|clear)/.test(this._yppUrl)) {
+        this.addEventListener('loadend', function() {
+          setTimeout(fetchCart, 200);
+        });
+      }
+      return _send.apply(this, arguments);
+    };
+
+  })();
 </script>
-      
+
+<p style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #000; margin: 16px 0; text-align: center;">
+  <strong>Current processing time: 1–2 business days</strong>
+</p>
+
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
           {%- if cart != empty -%}
