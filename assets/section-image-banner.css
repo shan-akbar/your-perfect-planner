@@ -364,6 +364,7 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
+    row-gap: 15px;
   }
 
   .banner--desktop-transparent .button--secondary {

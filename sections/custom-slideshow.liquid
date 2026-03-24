@@ -18,6 +18,10 @@
 
     <style>
 
+      .subheading_mobile{
+        width: 100%;
+      }
+
         .slideshow__media.banner__media.media{
             max-height: 81rem;
         }
@@ -60,7 +64,7 @@
         }
 
         .banner__heading{
-            font-family: YesevaOneRegular !important;
+            font-family: wild_mango; !important;
             font-size: 55px;
             color: white;
             max-width: 455px;
@@ -92,7 +96,7 @@
         }
 
             .banner__text p{
-                font-size: 17px;
+                font-size: 9px;
                 background-color: #f6cdd1;
                 padding: 10px 0;
             }
@@ -123,7 +127,7 @@
             }
 
             .banner__heading{
-                font-size: 25px !important;
+                font-size: 22px !important;
             }
 
             .subheading_mobile{
@@ -135,11 +139,11 @@
             }
 
             .banner-pre_heading{
-                font-size: 20px !important;
+                font-size: 17px !important;
             }
 
             .banner-post_heading{
-                font-size: 18px !important;
+                font-size: 15px !important;
             }
 
             .banner__heading.inline-richtext.h1{
@@ -148,6 +152,7 @@
 
             .klaviyo-form-button{
                 font-size: 20px !important;
+
             }
         }
     </style>
@@ -1683,6 +1688,7 @@
                 {% if block.settings.open_form != blank %}
                     <style>
                         .klaviyo-form-button{
+                          border: 1px solid white !important;
                             background-color: #ff4545;
                             border-radius: 50px;
                             font-family: "Poppins", sans-serif;
