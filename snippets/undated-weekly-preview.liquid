@@ -101,7 +101,7 @@
 
         {% assign diary_page = diary_pages_layout_1[0] %}
 
-            {% for i in (1..13) %}
+            {% for i in (1..26) %}
                 diary_pages.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
                 diary_pages_backup.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
             {% endfor %}

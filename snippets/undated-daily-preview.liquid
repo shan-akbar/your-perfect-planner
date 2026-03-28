@@ -113,7 +113,7 @@
 
         {% assign diary_page = diary_pages_layout_1 | first %}
 
-        {% for i in (1..90) %}
+        {% for i in (1..180) %}
               
                 diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}, day_name: days_names[current_date.getDay()] });
                 diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}, day_name: days_names[current_date.getDay()]});
