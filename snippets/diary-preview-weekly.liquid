@@ -590,61 +590,50 @@
                 }
             }
 
-            if(current_layout.length > new_layout.length){
-                let updated_pages = [];
-                let page_index = 0;
-                let skip_page = false;
-                
-                for(var i=0;i<diary_pages_length;++i){
-                    
-                        if(diary_pages[i].page_type == "day"){
-                            if(!skip_page){
-                                
-                                diary_pages[i].page_url = new_layout[page_index];
-                                updated_pages.push(diary_pages[i]);
-                                skip_page = true;
-                                ++page_index;
-                            
-                            }else{
-                                skip_page = false;
-                            }
-                            
-                        }else{
-                            if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
-                                updated_pages.push(diary_pages[i]);
-                            }
-                        }
-                    
-                }
-                diary_pages = updated_pages;
+            if (current_layout.length > new_layout.length) {
 
-                let updated_pages_for_backup = [];
-                page_index = 0;
-                skip_page = false;
-                
-                for(var i=0;i<diary_pages_backup.length;++i){
-                    
-                        if(diary_pages_backup[i].page_type == "day"){
-                            if(!skip_page){
-                                
-                                diary_pages_backup[i].page_url = new_layout[page_index];
-                                updated_pages_for_backup.push(diary_pages_backup[i]);
-                                skip_page = true;
-                                ++page_index;
-                            
-                            }else{
-                                skip_page = false;
-                            }
-                            
-                        }else{
-                            
-                            updated_pages_for_backup.push(diary_pages_backup[i]);
-                            
+                let page_index = 0;
+
+                diary_pages = diary_pages.reduce((acc, page, i) => {
+
+                    if (page.page_type === "day") {
+
+                        // keep only every first "day" page (even index among day pages)
+                        if (page_index < new_layout.length) {
+                            page.page_url = new_layout[page_index];
+                            acc.push(page);
+                            page_index++;
                         }
-                    
-                }
-                diary_pages_backup = updated_pages_for_backup;
-                
+
+                        // skip the second "day" page automatically
+
+                    } else if (page.page_type !== "blank" && page.page_type !== "copyright") {
+                        acc.push(page);
+                    }
+
+                    return acc;
+
+                }, []);
+
+                let page_index_backup = 0;
+
+                diary_pages_backup = diary_pages_backup.reduce((acc, page) => {
+
+                    if (page.page_type === "day") {
+
+                        if (page_index_backup < new_layout.length) {
+                            page.page_url = new_layout[page_index_backup];
+                            acc.push(page);
+                            page_index_backup++;
+                        }
+
+                    } else {
+                        acc.push(page);
+                    }
+
+                    return acc;
+
+                }, []);
             }
 
             if(current_layout.length < new_layout.length){
@@ -694,15 +683,8 @@
             let start_date = start_date_element.value;
             let end_date = end_date_element.value;
 
-            
+            renderPages();
 
-            if(start_date || end_date){
-                updateDiaryPages();
-            }else{
-                renderPages();
-            }
-
-            
             setTimeout(function(){
                 let diary_loading_spinner = document.querySelector('.diary-loading_spinner');
                 diary_loading_spinner.classList.add('diary-loading-spinner_hidden');

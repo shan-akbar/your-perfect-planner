@@ -14,6 +14,7 @@
       "blocks": {
         "vendor": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "{{ product.vendor }}",
             "body_text_color": "#000000",
@@ -46,6 +47,10 @@
         },
         "description": {
           "type": "description",
+          "settings": {}
+        },
+        "form_MkqLVR": {
+          "type": "form",
           "settings": {}
         },
         "planner_range_n7gM63": {
@@ -218,6 +223,7 @@
         },
         "collapsible_tab_abKUVB": {
           "type": "collapsible_tab",
+          "disabled": true,
           "settings": {
             "heading": "How To Build Your Perfect Planner",
             "icon": "clipboard",
@@ -266,7 +272,7 @@
           "settings": {
             "heading": "Add Ons/Accessories",
             "icon": "return",
-            "content": "<p>Shop:</p><ul><li><a href=\"/products/adhesive-pen-loop\" title=\"Adhesive Pen Loop\">Adhesive Pen Loop</a></li><li><a href=\"/products/erasable-pen\" title=\"Erasable Pen\">Erasable Pen</a></li><li><a href=\"/products/2025-sticker\" title=\"2025 Sticker\">2025 Sticker</a></li><li><a href=\"/products/custom-sticker\" title=\"Custom Sticker\">Custom Sticker</a></li><li><a href=\"/products/monthly-tab-stickers\" title=\"Monthly Tab Stickers\">Monthly Tab Stickers</a></li><li><a href=\"/products/additional-pages\" title=\"Additional Pages\">Additional Pages</a></li></ul>",
+            "content": "<p>Shop Accessories <a href=\"/collections/accessories\" title=\"Accessories\">here</a></p>",
             "page": ""
           }
         },
@@ -405,6 +411,7 @@
         "text_n6Yxtm",
         "text_HHTjgA",
         "description",
+        "form_MkqLVR",
         "planner_range_n7gM63",
         "planner_custom_pages_ACUF3N",
         "planner_custom_pages_AJbVAC",
@@ -437,19 +444,50 @@
         "fixed_added_price": "28",
         "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, place your order first, then reply to the order confirmation email with what edits you'd like and Jess will be in touch.",
         "help_video_url": "https://youtu.be/dV8f4VCo_YI?si=QdGM3ViT4puZPYtP",
+        "contact_note": "<p>Or send us an email or text<br/><strong>Email: </strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\" title=\"mailto:hello@yourperfectplanner.com.au\">hello@yourperfectplanner.com.au</a><br/><strong>Phone: </strong>+61408002468</p>",
         "enable_sticky_info": true,
         "color_scheme": "scheme-1",
         "media_size": "medium",
-        "constrain_to_viewport": true,
+        "constrain_to_viewport": false,
         "media_fit": "cover",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail_slider",
         "media_position": "left",
         "image_zoom": "lightbox",
-        "mobile_thumbnails": "hide",
+        "mobile_thumbnails": "show",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
+        "padding_top": 8,
         "padding_bottom": 12
+      }
+    },
+    "custom_liquid_N6QabG": {
+      "type": "custom-liquid",
+      "name": "How it works",
+      "settings": {
+        "custom_liquid": "<section class=\"ypp-how-it-works\">\n  <p class=\"ypp-section-label\">How It Works</p>\n  <h2 class=\"ypp-section-title\">Build It in 4 Simple Steps</h2>\n  <p class=\"ypp-section-sub\">Your planner, your rules. Completely customised to how your brain works.</p>\n\n  <div class=\"ypp-steps-grid\">\n\n    <div class=\"ypp-step\">\n      <div class=\"ypp-step-num\">1</div>\n      <h3 class=\"ypp-step-heading\">Choose Your Layout</h3>\n      <p class=\"ypp-step-text\">Select a layout that matches how you think and plan</p>\n      <span class=\"ypp-step-arrow\">→</span>\n    </div>\n\n    <div class=\"ypp-step\">\n      <div class=\"ypp-step-num\">2</div>\n      <h3 class=\"ypp-step-heading\">Set Your Coverage</h3>\n      <p class=\"ypp-step-text\">6 months or 12 months — you choose how far ahead you plan</p>\n      <span class=\"ypp-step-arrow\">→</span>\n    </div>\n\n    <div class=\"ypp-step\">\n      <div class=\"ypp-step-num\">3</div>\n      <h3 class=\"ypp-step-heading\">Add Extra Pages</h3>\n      <p class=\"ypp-step-text\">Habit trackers, meal planning, notes, finance pages &amp; more</p>\n      <span class=\"ypp-step-arrow\">→</span>\n    </div>\n\n    <div class=\"ypp-step\">\n      <div class=\"ypp-step-num\">4</div>\n      <h3 class=\"ypp-step-heading\">Pick Your Cover</h3>\n      <p class=\"ypp-step-text\">Choose a cover design that speaks to your style</p>\n    </div>\n\n  </div>\n</section>\n\n<style>\n.ypp-how-it-works {\n  background-color: #fdf1f0;\n  padding: 64px 40px;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-section-label {\n  font-size: 12px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  color: #ff9cae;\n  text-align: center;\n  margin: 0 0 8px 0;\n}\n\n.ypp-section-title {\n  font-size: 30px;\n  font-weight: 700;\n  text-align: center;\n  color: #2d1a1a;\n  margin: 0 0 8px 0;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-section-sub {\n  font-size: 15px;\n  color: #7a5a5a;\n  text-align: center;\n  margin: 0 0 40px 0;\n}\n\n.ypp-steps-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 20px;\n}\n\n.ypp-step {\n  text-align: center;\n  position: relative;\n}\n\n.ypp-step-num {\n  width: 52px;\n  height: 52px;\n  border-radius: 999px;\n  background-color: #ff4545;\n  color: #ffffff;\n  font-size: 20px;\n  font-weight: 700;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto 16px auto;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-step-heading {\n  font-size: 13px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  margin: 0 0 8px 0;\n  color: #2d1a1a;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-step-text {\n  font-size: 13px;\n  color: #7a5a5a;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.ypp-step-arrow {\n  position: absolute;\n  right: -10px;\n  top: 14px;\n  color: #ff9cae;\n  font-size: 20px;\n  font-weight: 700;\n}\n\n/* Tablet — 2 columns, hide arrows */\n@media (max-width: 900px) {\n  .ypp-steps-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n  .ypp-step-arrow {\n    display: none;\n  }\n}\n\n/* Mobile — keep 2 columns, tighten padding */\n@media (max-width: 540px) {\n  .ypp-how-it-works {\n    padding: 48px 24px;\n  }\n  .ypp-steps-grid {\n    grid-template-columns: repeat(2, 1fr);\n    gap: 16px;\n  }\n  .ypp-section-title {\n    font-size: 24px;\n  }\n  .ypp-step-arrow {\n    display: none;\n  }\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_NMKCqa": {
+      "type": "custom-liquid",
+      "name": "Product quality",
+      "settings": {
+        "custom_liquid": "<section class=\"ypp-features\">\n  <p class=\"ypp-feat-label\">Product Quality</p>\n  <h2 class=\"ypp-feat-title\">Built to Last. Designed to Use.</h2>\n  <p class=\"ypp-feat-sub\">Every detail has been considered so your planner feels as good as it works.</p>\n\n  <div class=\"ypp-feat-grid\">\n\n    <div class=\"ypp-feat-card\">\n      <div class=\"ypp-feat-icon\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ff4545\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"></path>\n          <polyline points=\"14 2 14 8 20 8\"></polyline>\n          <line x1=\"16\" y1=\"13\" x2=\"8\" y2=\"13\"></line>\n          <line x1=\"16\" y1=\"17\" x2=\"8\" y2=\"17\"></line>\n          <polyline points=\"10 9 9 9 8 9\"></polyline>\n        </svg>\n      </div>\n      <h3 class=\"ypp-feat-heading\">Premium Paper</h3>\n      <p class=\"ypp-feat-text\">100gsm FSC-certified paper that's thick, smooth, and genuinely pen-friendly — no bleed, no blobs</p>\n    </div>\n\n    <div class=\"ypp-feat-card\">\n      <div class=\"ypp-feat-icon\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ff4545\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <path d=\"M21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z\"></path>\n          <line x1=\"7\" y1=\"10\" x2=\"7\" y2=\"14\"></line>\n          <line x1=\"11\" y1=\"11\" x2=\"11\" y2=\"13\"></line>\n          <line x1=\"15\" y1=\"10\" x2=\"15\" y2=\"14\"></line>\n        </svg>\n      </div>\n      <h3 class=\"ypp-feat-heading\">The Perfect Size</h3>\n      <p class=\"ypp-feat-text\">195 × 235mm — enough room to write freely, compact enough to take anywhere without a second thought</p>\n    </div>\n\n    <div class=\"ypp-feat-card\">\n      <div class=\"ypp-feat-icon\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ff4545\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon>\n        </svg>\n      </div>\n      <h3 class=\"ypp-feat-heading\">Handmade in Australia</h3>\n      <p class=\"ypp-feat-text\">Every planner is handmade locally — supporting Australian makers and arriving at your door faster</p>\n    </div>\n\n    <div class=\"ypp-feat-card\">\n      <div class=\"ypp-feat-icon\">\n        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ff4545\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <line x1=\"4\" y1=\"21\" x2=\"4\" y2=\"14\"></line>\n          <line x1=\"4\" y1=\"10\" x2=\"4\" y2=\"3\"></line>\n          <line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"12\"></line>\n          <line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"3\"></line>\n          <line x1=\"20\" y1=\"21\" x2=\"20\" y2=\"16\"></line>\n          <line x1=\"20\" y1=\"12\" x2=\"20\" y2=\"3\"></line>\n          <line x1=\"1\" y1=\"14\" x2=\"7\" y2=\"14\"></line>\n          <line x1=\"9\" y1=\"8\" x2=\"15\" y2=\"8\"></line>\n          <line x1=\"17\" y1=\"16\" x2=\"23\" y2=\"16\"></line>\n        </svg>\n      </div>\n      <h3 class=\"ypp-feat-heading\">Only What You Need</h3>\n      <p class=\"ypp-feat-text\">Fully customisable — carry only the pages you'll actually use and leave out everything you won't</p>\n    </div>\n\n  </div>\n</section>\n\n<style>\n.ypp-features {\n  background-color: #ffffff;\n  padding: 64px 40px;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-feat-label {\n  font-size: 12px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  color: #ff9cae;\n  text-align: center;\n  margin: 0 0 8px 0;\n}\n\n.ypp-feat-title {\n  font-size: 30px;\n  font-weight: 700;\n  text-align: center;\n  color: #2d1a1a;\n  margin: 0 0 8px 0;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-feat-sub {\n  font-size: 15px;\n  color: #7a5a5a;\n  text-align: center;\n  margin: 0 0 40px 0;\n}\n\n.ypp-feat-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 20px;\n}\n\n.ypp-feat-card {\n  background-color: #fdf1f0;\n  border-radius: 20px;\n  padding: 28px 20px;\n  text-align: center;\n  border: 1px solid #fad8da;\n}\n\n.ypp-feat-icon {\n  width: 64px;\n  height: 64px;\n  border-radius: 999px;\n  background-color: #fad8da;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto 16px auto;\n}\n\n.ypp-feat-heading {\n  font-size: 14px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  margin: 0 0 8px 0;\n  color: #2d1a1a;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-feat-text {\n  font-size: 13px;\n  color: #7a5a5a;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Tablet — 2 columns */\n@media (max-width: 900px) {\n  .ypp-feat-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n/* Mobile — 2 columns, reduced outer and inner padding for more text width */\n@media (max-width: 540px) {\n  .ypp-features {\n    padding: 40px 12px;\n  }\n  .ypp-feat-grid {\n    grid-template-columns: repeat(2, 1fr);\n    gap: 10px;\n  }\n  .ypp-feat-title {\n    font-size: 24px;\n  }\n  .ypp-feat-card {\n    padding: 16px 10px;\n  }\n  .ypp-feat-icon {\n    width: 48px;\n    height: 48px;\n    margin-bottom: 10px;\n  }\n  .ypp-feat-heading {\n    font-size: 11px;\n    letter-spacing: 0.5px;\n  }\n  .ypp-feat-text {\n    font-size: 11px;\n  }\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_jEiRAL": {
+      "type": "custom-liquid",
+      "name": "Comparison table",
+      "settings": {
+        "custom_liquid": "<section class=\"ypp-comparison\">\n  <p class=\"ypp-comp-label\">Why Custom?</p>\n  <h2 class=\"ypp-comp-title\">How We Stack Up</h2>\n  <p class=\"ypp-comp-sub\">Not all planners are created equal. Here's the honest comparison.</p>\n\n  <div class=\"ypp-comp-wrap\">\n    <table class=\"ypp-comp-table\">\n      <thead>\n        <tr>\n          <th class=\"ypp-col-feature\">Feature</th>\n          <th class=\"ypp-col-ours\">Your Perfect<br>Planner</th>\n          <th class=\"ypp-col-generic\">Generic<br>Planner</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td class=\"ypp-row-label\">Choose your coverage</td>\n          <td class=\"ypp-col-ours-cell\"><span class=\"ypp-check\">✔</span></td>\n          <td class=\"ypp-col-generic-cell\"><span class=\"ypp-cross\">✗</span></td>\n        </tr>\n        <tr>\n          <td class=\"ypp-row-label\">Choose your layout</td>\n          <td class=\"ypp-col-ours-cell\"><span class=\"ypp-check\">✔</span></td>\n          <td class=\"ypp-col-generic-cell\"><span class=\"ypp-cross\">✗</span></td>\n        </tr>\n        <tr>\n          <td class=\"ypp-row-label\">Only the pages you need</td>\n          <td class=\"ypp-col-ours-cell\"><span class=\"ypp-check\">✔</span></td>\n          <td class=\"ypp-col-generic-cell\"><span class=\"ypp-cross\">✗</span></td>\n        </tr>\n        <tr>\n          <td class=\"ypp-row-label\">Australian made</td>\n          <td class=\"ypp-col-ours-cell\"><span class=\"ypp-check\">✔</span></td>\n          <td class=\"ypp-col-generic-cell\"><span class=\"ypp-cross\">✗</span></td>\n        </tr>\n        <tr>\n          <td class=\"ypp-row-label\">30-day money back guarantee</td>\n          <td class=\"ypp-col-ours-cell\"><span class=\"ypp-check\">✔</span></td>\n          <td class=\"ypp-col-generic-cell\"><span class=\"ypp-cross\">✗</span></td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</section>\n\n<style>\n.ypp-comparison {\n  background-color: #fdf1f0;\n  padding: 64px 40px;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-comp-label {\n  font-size: 12px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n  color: #ff9cae;\n  text-align: center;\n  margin: 0 0 8px 0;\n}\n\n.ypp-comp-title {\n  font-size: 30px;\n  font-weight: 700;\n  text-align: center;\n  color: #2d1a1a;\n  margin: 0 0 8px 0;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-comp-sub {\n  font-size: 15px;\n  color: #7a5a5a;\n  text-align: center;\n  margin: 0 0 40px 0;\n}\n\n.ypp-comp-wrap {\n  max-width: 620px;\n  margin: 0 auto;\n  border-radius: 16px;\n  overflow: hidden;\n  border: 1px solid #fad8da;\n}\n\n.ypp-comp-table {\n  width: 100%;\n  border-collapse: collapse;\n  table-layout: fixed;\n}\n\n.ypp-col-feature {\n  padding: 18px 24px;\n  text-align: left;\n  font-size: 13px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  background-color: #fdf1f0;\n  color: #2d1a1a;\n  width: 50%;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-col-ours {\n  padding: 18px 16px;\n  text-align: center;\n  font-size: 13px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  background-color: #ff4545;\n  color: #ffffff;\n  width: 25%;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-col-generic {\n  padding: 18px 16px;\n  text-align: center;\n  font-size: 13px;\n  font-weight: 700;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n  background-color: #fdf1f0;\n  color: #7a5a5a;\n  width: 25%;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-row-label {\n  padding: 16px 24px;\n  font-size: 14px;\n  font-weight: 700;\n  color: #2d1a1a;\n  background-color: #fdf1f0;\n  border-top: 1px solid #fad8da;\n  font-family: 'Poppins', sans-serif;\n}\n\n.ypp-col-ours-cell {\n  padding: 16px;\n  text-align: center;\n  background-color: #fff8f8;\n  border-top: 1px solid #fad8da;\n}\n\n.ypp-col-generic-cell {\n  padding: 16px;\n  text-align: center;\n  background-color: #fdf1f0;\n  border-top: 1px solid #fad8da;\n}\n\n.ypp-check {\n  color: #ff4545;\n  font-size: 18px;\n  font-weight: 700;\n}\n\n.ypp-cross {\n  color: #cccccc;\n  font-size: 20px;\n}\n\n/* Mobile */\n@media (max-width: 540px) {\n  .ypp-comparison {\n    padding: 40px 12px;\n  }\n  .ypp-comp-title {\n    font-size: 24px;\n  }\n  .ypp-comp-sub {\n    font-size: 13px;\n  }\n  .ypp-col-feature {\n    padding: 14px 10px;\n    font-size: 11px;\n    letter-spacing: 0;\n  }\n  .ypp-col-ours,\n  .ypp-col-generic {\n    padding: 14px 6px;\n    font-size: 10px;\n    letter-spacing: 0;\n  }\n  .ypp-row-label {\n    padding: 12px 10px;\n    font-size: 12px;\n  }\n  .ypp-col-ours-cell,\n  .ypp-col-generic-cell {\n    padding: 12px 6px;\n  }\n  .ypp-check {\n    font-size: 15px;\n  }\n  .ypp-cross {\n    font-size: 16px;\n  }\n}\n</style>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "17251686649a988cd2": {
@@ -493,6 +531,9 @@
   },
   "order": [
     "main",
+    "custom_liquid_N6QabG",
+    "custom_liquid_NMKCqa",
+    "custom_liquid_jEiRAL",
     "17251686649a988cd2",
     "related-products"
   ]

@@ -9,112 +9,74 @@
  */
 {
   "sections": {
-    "custom_slideshow_9dQD9c": {
-      "type": "custom-slideshow",
-      "blocks": {
-        "slide_Et9URB": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Copy_of_Undated_hero_banner_-_desktop.png",
-            "mob_image": "shopify://shop_images/Copy_of_Undated_hero_banner_-_mobile.png",
-            "pre_heading": "<strong>NEW UNDATED PLANNER</strong>",
-            "heading": "The Planner You Can Ghost & Come Back To",
-            "post_heading": "<strong>NO DATES. NO PRESSURE.</strong>",
-            "image_position": "center center",
-            "image_position_mobile": "center center",
-            "font_size_mobile": 32,
-            "heading_position_mobile": "center",
-            "heading_size": "h1",
-            "font_family": "wild_mango",
-            "heading_width": 495,
-            "subheading": "<p>Start anytime. </p><p>Pause when you need.</p><p>Come back when you're ready.</p>",
-            "slide_link": "",
-            "button_label": "LAUNCHING 29TH MARCH",
-            "open_form": "W92HVx",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-left",
-            "show_text_box": false,
-            "text_alignment": "left",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "text_alignment_mobile": "center"
-          }
-        },
-        "first_slide_PNBAFd": {
-          "type": "first_slide",
-          "settings": {
-            "bg-color": "#fad6d6",
-            "heading": "BECAUSE YOUR BRAIN WASN'T  MEANT TO HOLD EVERYTHING.",
-            "heading1": "BUILD A PLANNER THAT HOLDS IT FOR YOU",
-            "center_image": "shopify://shop_images/New-one-2.png",
-            "mobile_image": "shopify://shop_images/New-one.png",
-            "text_left_1": "Choose your date range",
-            "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
-            "text_left_2": "Choose your extra pages",
-            "arrow_left_2": "shopify://shop_images/4-removebg-preview.png",
-            "text_right_1": "Choose your cover",
-            "arrow_right_1": "shopify://shop_images/2-removebg-preview.png",
-            "text_right_2": "Choose your layout",
-            "arrow_right_2": "shopify://shop_images/5-removebg-preview.png",
-            "heading-color": "#ff4545",
-            "text-1": "",
-            "sec-text-1": "",
-            "sub-text-1": "",
-            "btn-text1": "",
-            "btn-url1": "",
-            "text-2": "",
-            "sec-text-2": "",
-            "sub-text-2": "",
-            "btn-text2": "",
-            "text-color": "#ff4545",
-            "btn-url2": "",
-            "button-bg-color": "#ff4545",
-            "button-text-color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "slide_Et9URB",
-        "first_slide_PNBAFd"
-      ],
-      "name": "Custom Slide Show",
+    "custom_liquid_LYTCzi": {
+      "type": "custom-liquid",
+      "name": "Hero banner",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "small",
-        "slider_visual": "dots",
-        "auto_rotate": true,
-        "change_slides_speed": 7,
-        "image_behavior": "none",
-        "show_text_below": false,
-        "accessibility_info": "Slideshow about our brand"
+        "custom_liquid": "<style>\n  @font-face {\n    font-family: 'Wild Mango';\n    src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/WildMango.otf?v=1732748528') format('opentype');\n    font-weight: normal; font-style: normal;\n  }\n  .ypp-hero {\n    position: relative;\n    min-height: 90vh;\n    display: flex; flex-direction: column; justify-content: flex-start;\n    overflow: hidden;\n  }\n  .ypp-hero-bg {\n    position: absolute; inset: 0; z-index: 0;\n    width: 100%; height: 100%;\n    object-fit: cover; object-position: center 18%;\n  }\n  .ypp-hero-bg-desktop { display: none; }\n  .ypp-hero-bg-mobile { display: block; }\n  .ypp-hero-left {\n    position: relative; z-index: 2;\n    display: flex; flex-direction: column; align-items: flex-start;\n    padding: 3.5rem 5rem 3rem 5rem; max-width: 640px;\n  }\n  .ypp-trust-bar {\n    position: absolute; bottom: 2.5rem; left: 5rem; z-index: 3;\n  }\n  @media (min-width: 769px) {\n    .ypp-hero {\n      min-height: 85vh; max-height: 85vh;\n      display: grid; grid-template-columns: 1fr 1fr;\n      align-items: stretch;\n    }\n    .ypp-hero-bg-mobile { display: none; }\n    .ypp-hero-bg-desktop {\n      display: block;\n      position: relative; inset: auto;\n      width: 100%; height: 100%;\n      object-fit: cover; object-position: center center;\n      grid-column: 2; grid-row: 1;\n    }\n    .ypp-hero-left {\n      grid-column: 1; grid-row: 1;\n      display: flex; flex-direction: column; justify-content: flex-start;\n      padding: 3.5rem 3rem 6rem 4rem;\n      max-width: 100%;\n      background: #fdf1f0;\n    }\n    .ypp-trust-bar {\n      grid-column: 1; grid-row: 1;\n      position: absolute;\n      bottom: 2.5rem; left: 4rem;\n    }\n    .ypp-h1 { font-size: clamp(2.4rem, 3.8vw, 3.8rem); margin-bottom: 1.5rem; }\n    .ypp-sub { font-size: 1.25rem !important; line-height: 1.9 !important; margin-bottom: 2.5rem !important; max-width: 100% !important; }\n    .ypp-actions { margin-bottom: 2.5rem !important; gap: 1.25rem !important; }\n    .ypp-btn-primary { font-size: 1.1rem !important; padding: 1.2rem 2.8rem !important; }\n    .ypp-btn-secondary { font-size: 1.1rem !important; padding: 1.2rem 2.8rem !important; }\n    .ypp-trust { gap: 2.5rem !important; padding: 1.5rem 2.5rem !important; border-radius: 18px !important; }\n    .ypp-trust-num { font-size: 2.2rem !important; }\n    .ypp-trust-label { font-size: 0.8rem !important; }\n  }\n  .ypp-h1 {\n    font-family: 'Wild Mango', cursive;\n    font-size: clamp(2.8rem, 5vw, 4.4rem);\n    line-height: 1.1; color: #2d1f1f;\n    margin-bottom: 1.5rem; font-weight: normal;\n  }\n  .ypp-h1 em { font-style: normal; color: #ff4545; }\n  .ypp-sub {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.95rem; color: #7a5c5c; line-height: 1.8;\n    max-width: 420px; margin-bottom: 2.5rem; font-weight: 300;\n  }\n  .ypp-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }\n  .ypp-btn-primary {\n    background: #ff4545; color: white;\n    padding: 0.9rem 2rem; border-radius: 999px;\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;\n    text-decoration: none; font-weight: 700;\n    transition: background 0.2s; display: inline-block;\n  }\n  .ypp-btn-primary:hover { background: #e03030; }\n  .ypp-btn-secondary {\n    border: 2px solid #ff9cae; color: #ff4545;\n    padding: 0.9rem 2rem; border-radius: 999px;\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;\n    text-decoration: none; font-weight: 700;\n    background: rgba(253,241,240,0.85); display: inline-block;\n    transition: background 0.2s;\n  }\n  .ypp-btn-secondary:hover { background: #fad8da; }\n  .ypp-trust {\n    display: flex; gap: 1.5rem;\n    background: rgba(253,241,240,0.88);\n    backdrop-filter: blur(8px);\n    padding: 1rem 1.5rem; border-radius: 14px;\n    border: 1px solid #f0d4d4; flex-wrap: wrap;\n  }\n  .ypp-trust-item { text-align: center; }\n  .ypp-trust-num {\n    font-family: 'Wild Mango', cursive;\n    font-size: 1.4rem; color: #ff4545; display: block;\n    font-weight: normal; line-height: 1; margin-bottom: 2px;\n  }\n  .ypp-trust-label {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.6rem; color: #7a5c5c;\n    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;\n    display: block; line-height: 1;\n  }\n\n  @media (max-width: 768px) {\n    .ypp-hero-left { padding: 2.5rem 1.5rem; }\n    .ypp-trust-bar { left: 1.5rem; bottom: 2rem; }\n    .ypp-trust { gap: 1rem; padding: 0.9rem 1.2rem; }\n  }\n</style>\n\n<section class=\"ypp-hero\">\n  <img class=\"ypp-hero-bg ypp-hero-bg-mobile\" src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/DSCF4189.jpg?v=1775890261\" alt=\"Jess writing in her Perfect Planner\" />\n  <img class=\"ypp-hero-bg ypp-hero-bg-desktop\" src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Jess_writing_in_planner_crop_for_desktop.jpg?v=1775895630\" alt=\"Jess writing in her Perfect Planner\" />\n  <div class=\"ypp-hero-left\">\n    <h1 class=\"ypp-h1\">Your brain deserves a planner that actually <em>fits <span style=\"text-decoration: underline; text-decoration-color: #ff9cae; text-underline-offset: 4px;\">your</span> life</em></h1>\n    <p class=\"ypp-sub\">Stop wasting pages on things you don't need. Stop missing the layouts you actually want. Build a planner around your life, not someone else's.</p>\n    <div class=\"ypp-actions\">\n      <a href=\"/collections/planners\" class=\"ypp-btn-primary\">Build My Planner</a>\n      <a href=\"/collections/built-by-us\" class=\"ypp-btn-secondary\">See Ready-Made Options</a>\n    </div>\n  </div>\n  <div class=\"ypp-trust-bar\">\n    <div class=\"ypp-trust\">\n      <div class=\"ypp-trust-item\">\n        <span class=\"ypp-trust-num\">69+</span>\n        <span class=\"ypp-trust-label\">5-star reviews</span>\n      </div>\n      <div class=\"ypp-trust-item\">\n        <span class=\"ypp-trust-num\">100%</span>\n        <span class=\"ypp-trust-label\">Customisable</span>\n      </div>\n      <div class=\"ypp-trust-item\">\n        <span class=\"ypp-trust-num\">30-day</span>\n        <span class=\"ypp-trust-label\">Money back</span>\n      </div>\n      <div class=\"ypp-trust-item\">\n        <span class=\"ypp-trust-num\">AUS</span>\n        <span class=\"ypp-trust-label\">Made</span>\n      </div>\n    </div>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
-    "new_banner_section_kdwJmF": {
-      "type": "New-banner-section",
-      "name": "New banner section",
+    "custom_liquid_6NJjgb": {
+      "type": "custom-liquid",
+      "name": "Shop Collection",
       "settings": {
-        "bg-color": "#fad6d6",
-        "heading": "",
-        "heading1": "",
-        "text_left_1": "",
-        "text_left_2": "",
-        "text_right_1": "",
-        "text_right_2": "",
-        "heading-color": "#ff4545",
-        "text-1": "",
-        "sec-text-1": "your planner",
-        "sub-text-1": "custom build",
-        "btn-text1": "START CUSTOMISING",
-        "btn-url1": "https://yourperfectplanner.com.au/collections/planners",
-        "text-2": "Pick from the",
-        "sec-text-2": "options",
-        "sub-text-2": "ready-made",
-        "btn-text2": "FIND MY MATCH",
-        "text-color": "#ff4545",
-        "btn-url2": "https://yourperfectplanner.com.au/collections/built-by-us",
-        "button-bg-color": "#ff4545",
-        "button-text-color": "#ffffff"
+        "custom_liquid": "<style>\n  .ypp-col-grid-section {\n    padding: 3rem 5rem; background: #fdf1f0; box-sizing: border-box;\n  }\n  .ypp-col-grid-heading {\n    font-family: 'Poppins', sans-serif; font-size: 1.3rem;\n    font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;\n    color: #2d1f1f; margin-bottom: 1.5rem;\n  }\n  .ypp-col-grid {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    gap: 1.25rem;\n  }\n  .ypp-col-card {\n    border-radius: 16px; overflow: hidden;\n    border: 1.5px solid #f0d4d4; background: #ffffff;\n    text-decoration: none; color: #2d1f1f;\n    transition: transform 0.2s, box-shadow 0.2s; display: block;\n  }\n  .ypp-col-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(255,156,174,0.2); }\n  .ypp-col-img {\n    width: 100%; aspect-ratio: 1 / 1; overflow: hidden;\n    display: flex; align-items: center; justify-content: center;\n    background: #fad8da;\n  }\n  .ypp-col-img img { width: 100%; height: 100%; object-fit: cover; }\n  .ypp-col-info {\n    padding: 1rem 1.25rem 1.25rem;\n    display: flex; align-items: center; justify-content: space-between;\n  }\n  .ypp-col-name {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.9rem; font-weight: 700; text-transform: uppercase;\n    letter-spacing: 0.05em; color: #2d1f1f;\n  }\n  .ypp-col-arrow { font-size: 1rem; color: #ff4545; font-weight: 700; }\n  @media (max-width: 768px) {\n    .ypp-col-grid-section { padding: 2.5rem 1.5rem; }\n    .ypp-col-grid { grid-template-columns: repeat(2, 1fr); }\n  }\n</style>\n\n<section class=\"ypp-col-grid-section\">\n  <h2 class=\"ypp-col-grid-heading\">Shop Collections</h2>\n  <div class=\"ypp-col-grid\">\n    <a href=\"/collections/planners\" class=\"ypp-col-card\">\n      <div class=\"ypp-col-img\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/custom_planner.png?v=1775901294\" alt=\"Custom Planners\" />\n      </div>\n      <div class=\"ypp-col-info\">\n        <div class=\"ypp-col-name\">Custom Planners</div>\n        <div class=\"ypp-col-arrow\">→</div>\n      </div>\n    </a>\n    <a href=\"/collections/custom-undated-planners\" class=\"ypp-col-card\">\n      <div class=\"ypp-col-img\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/undated_planner.png?v=1775901290\" alt=\"Undated Planners\" />\n      </div>\n      <div class=\"ypp-col-info\">\n        <div class=\"ypp-col-name\">Undated Planners</div>\n        <div class=\"ypp-col-arrow\">→</div>\n      </div>\n    </a>\n    <a href=\"/collections/built-by-us\" class=\"ypp-col-card\">\n      <div class=\"ypp-col-img\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/ready-made_planner.png?v=1775901253\" alt=\"Ready-Made Planners\" />\n      </div>\n      <div class=\"ypp-col-info\">\n        <div class=\"ypp-col-name\">Ready-Made Planners</div>\n        <div class=\"ypp-col-arrow\">→</div>\n      </div>\n    </a>\n    <a href=\"/collections/journals\" class=\"ypp-col-card\">\n      <div class=\"ypp-col-img\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/journal.png?v=1775901291\" alt=\"Journals\" />\n      </div>\n      <div class=\"ypp-col-info\">\n        <div class=\"ypp-col-name\">Journals</div>\n        <div class=\"ypp-col-arrow\">→</div>\n      </div>\n    </a>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_PcdfK3": {
+      "type": "custom-liquid",
+      "name": "Emotional Strip",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-emotion {\n    background: #ff9cae;\n    padding: 4rem 5rem;\n    display: flex;\n    flex-direction: row;\n    align-items: flex-start;\n    box-sizing: border-box;\n    width: 100%;\n  }\n  .ypp-emotion-item {\n    flex: 1 1 0;\n    min-width: 0;\n    text-align: center;\n    padding: 0 2rem;\n  }\n  .ypp-emotion-divider {\n    flex: 0 0 1px;\n    background: rgba(255,255,255,0.35);\n    align-self: stretch;\n    min-height: 120px;\n  }\n  .ypp-emotion-icon {\n    font-size: 1.8rem;\n    margin-bottom: 1rem;\n    width: 60px; height: 60px; border-radius: 50%;\n    background: white;\n    display: flex; align-items: center; justify-content: center;\n    margin-left: auto; margin-right: auto;\n  }\n  .ypp-emotion-heading {\n    font-family: 'Wild Mango', cursive;\n    font-size: 1.6rem; color: #ffffff;\n    margin-bottom: 0.6rem; font-weight: normal; line-height: 1.3;\n    word-wrap: break-word;\n  }\n  .ypp-emotion-body {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.1rem; color: #ffffff; line-height: 1.7; font-weight: 400;\n    word-wrap: break-word;\n  }\n  @media (max-width: 768px) {\n    .ypp-emotion {\n      flex-direction: column;\n      padding: 3rem 1.5rem;\n    }\n    .ypp-emotion-item {\n      padding: 1.5rem 0;\n      border-bottom: 1px solid rgba(255,255,255,0.3);\n      text-align: center;\n      width: 100%;\n    }\n    .ypp-emotion-item:last-child { border-bottom: none; }\n    .ypp-emotion-divider { display: none; }\n  }\n</style>\n\n<div class=\"ypp-emotion\">\n  <div class=\"ypp-emotion-item\">\n    <div class=\"ypp-emotion-icon\">🧠</div>\n    <div class=\"ypp-emotion-heading\">Stop carrying it all in your head</div>\n    <div class=\"ypp-emotion-body\">Free up mental space for the things that actually matter. Your planner holds the rest.</div>\n  </div>\n  <div class=\"ypp-emotion-divider\"></div>\n  <div class=\"ypp-emotion-item\">\n    <div class=\"ypp-emotion-icon\">✨</div>\n    <div class=\"ypp-emotion-heading\">Feel in control every single day</div>\n    <div class=\"ypp-emotion-body\">Start each morning knowing exactly what's ahead and end each day with a real sense of progress.</div>\n  </div>\n  <div class=\"ypp-emotion-divider\"></div>\n  <div class=\"ypp-emotion-item\">\n    <div class=\"ypp-emotion-icon\">📖</div>\n    <div class=\"ypp-emotion-heading\">A planner you'll actually use</div>\n    <div class=\"ypp-emotion-body\">Because it's built around your life. Not the other way around.</div>\n  </div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_FAGPQJ": {
+      "type": "custom-liquid",
+      "name": "Custom Planners",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-carousel { padding: 4rem 0 4rem 5rem; background: #ffffff; }\n  .ypp-carousel.bg-base { background: #fdf1f0; }\n  .ypp-carousel-header {\n    display: flex; align-items: center; justify-content: space-between;\n    padding-right: 5rem; margin-bottom: 1.5rem;\n  }\n  .ypp-carousel-heading {\n    font-family: 'Poppins', sans-serif; font-size: 1.4rem;\n    font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #2d1f1f;\n  }\n  .ypp-carousel-view-all {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;\n    letter-spacing: 0.1em; color: #ff4545; text-decoration: none;\n    border-bottom: 2px solid #ff9cae; padding-bottom: 2px; white-space: nowrap;\n  }\n  .ypp-carousel-track {\n    display: flex; gap: 1.25rem;\n    overflow-x: auto; scroll-snap-type: x mandatory;\n    -webkit-overflow-scrolling: touch;\n    padding-right: 5rem; padding-bottom: 1rem;\n    scrollbar-width: none;\n  }\n  .ypp-carousel-track::-webkit-scrollbar { display: none; }\n  .ypp-product-card {\n    flex: 0 0 240px; scroll-snap-align: start;\n    border-radius: 16px; overflow: hidden;\n    border: 1.5px solid #f0d4d4; background: #ffffff;\n    text-decoration: none; color: #2d1f1f;\n    transition: transform 0.2s, box-shadow 0.2s; display: block;\n  }\n  .ypp-product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(255,156,174,0.2); }\n  .ypp-product-img {\n    width: 100%; height: 220px; background: #fad8da;\n    overflow: hidden; display: flex; align-items: center; justify-content: center;\n  }\n  .ypp-product-img img { width: 100%; height: 100%; object-fit: cover; }\n  .ypp-product-info { padding: 1rem 1.1rem 1.1rem; }\n  .ypp-product-name {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.95rem; font-weight: 700; text-transform: uppercase;\n    letter-spacing: 0.05em; color: #2d1f1f; margin-bottom: 0.4rem; line-height: 1.4;\n  }\n  .ypp-product-price {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.95rem; color: #ff4545; font-weight: 600;\n  }\n  @media (max-width: 768px) {\n    .ypp-carousel { padding: 3rem 0 3rem 1.5rem; }\n    .ypp-carousel-header { padding-right: 1.5rem; }\n    .ypp-carousel-track { padding-right: 1.5rem; }\n  }\n</style>\n\n<section class=\"ypp-carousel\">\n  <div class=\"ypp-carousel-header\">\n    <h2 class=\"ypp-carousel-heading\">Custom Planners</h2>\n    <a href=\"/collections/planners\" class=\"ypp-carousel-view-all\">View all →</a>\n  </div>\n  <div class=\"ypp-carousel-track\">\n    <a href=\"/products/weekly-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/WEEKLYBUILTBYYOUcoverimage.png?v=1732691782\" alt=\"Custom Weekly Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">Custom Weekly Planner</div>\n        <div class=\"ypp-product-price\">From $42.28</div>\n      </div>\n    </a>\n    <a href=\"/products/daily-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/DAILYBUILTBYYOUcoverimage.png?v=1732691653\" alt=\"Custom Daily Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">Custom Daily Planner</div>\n        <div class=\"ypp-product-price\">From $83.88</div>\n      </div>\n    </a>\n    <a \n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_LJhQNM": {
+      "type": "custom-liquid",
+      "name": "Steps",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-usp { padding: 6rem 5rem; background: #ffffff; }\n  .ypp-section-label {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;\n    color: #ff4545; margin-bottom: 1rem; font-weight: 700;\n    display: flex; align-items: center; gap: 0.75rem;\n  }\n  .ypp-section-label::before {\n    content: ''; display: block; width: 2rem; height: 2px;\n    background: #ff9cae; border-radius: 999px;\n  }\n  .ypp-section-heading {\n    font-family: 'Wild Mango', cursive; font-size: clamp(2.6rem, 4vw, 3.4rem);\n    line-height: 1.15; max-width: 600px; margin-bottom: 4rem; font-weight: normal;\n    color: #2d1f1f;\n  }\n  .ypp-section-heading em { font-style: normal; color: #ff4545; }\n  .ypp-usp-grid {\n    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;\n  }\n  .ypp-usp-card {\n    background: #fdf1f0; padding: 2.5rem; border-radius: 20px;\n    position: relative; overflow: hidden;\n    transition: background 0.3s, transform 0.2s;\n    border: 1px solid #f0d4d4;\n  }\n  .ypp-usp-card:hover { background: #fad8da; transform: translateY(-4px); }\n  .ypp-usp-num {\n    font-family: 'Wild Mango', cursive; font-size: 4rem; color: #f0d4d4;\n    position: absolute; top: 1rem; right: 1.5rem; line-height: 1; font-weight: normal;\n  }\n  .ypp-usp-card-title {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.3rem; color: #2d1f1f; margin-bottom: 0.75rem; margin-top: 1rem;\n    font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;\n  }\n  .ypp-usp-card-body {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.1rem; color: #7a5c5c; line-height: 1.75; font-weight: 300;\n  }\n  @media (max-width: 768px) {\n    .ypp-usp { padding: 4rem 1.5rem; }\n    .ypp-usp-grid { grid-template-columns: 1fr; }\n  }\n</style>\n\n<section class=\"ypp-usp\">\n  <div class=\"ypp-section-label\">Why Your Perfect Planner</div>\n  <h2 class=\"ypp-section-heading\">Not a generic planner. <em>Yours.</em></h2>\n  <div class=\"ypp-usp-grid\">\n    <div class=\"ypp-usp-card\">\n      <div class=\"ypp-usp-num\">01</div>\n      <div class=\"ypp-usp-card-title\">Choose your date range</div>\n      <div class=\"ypp-usp-card-body\">Start any month you like. Calendar year, financial year, school year — you decide.</div>\n    </div>\n    <div class=\"ypp-usp-card\">\n      <div class=\"ypp-usp-num\">02</div>\n      <div class=\"ypp-usp-card-title\">Pick your layout</div>\n      <div class=\"ypp-usp-card-body\">Daily pages for busy, detailed planners. Weekly spreads for those who like to see the big picture. Choose what suits how your mind works.</div>\n    </div>\n    <div class=\"ypp-usp-card\">\n      <div class=\"ypp-usp-num\">03</div>\n      <div class=\"ypp-usp-card-title\">Add only what you need</div>\n      <div class=\"ypp-usp-card-body\">Habit trackers. Meal planners. Goal pages. Budget spreads. Add the pages that serve your life, skip the ones that don't.</div>\n    </div>\n    <div class=\"ypp-usp-card\">\n      <div class=\"ypp-usp-num\">04</div>\n      <div class=\"ypp-usp-card-title\">Choose your cover</div>\n      <div class=\"ypp-usp-card-body\">Pick a cover you'll love pulling out every single day. Because a planner you're excited about is a planner you'll actually use.</div>\n    </div>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_Vcj8zt": {
+      "type": "custom-liquid",
+      "name": "Ready-Made Planners",
+      "settings": {
+        "custom_liquid": "<section class=\"ypp-carousel bg-base\">\n  <div class=\"ypp-carousel-header\">\n    <h2 class=\"ypp-carousel-heading\">Ready-Made Planners</h2>\n    <a href=\"/collections/built-by-us\" class=\"ypp-carousel-view-all\">View all →</a>\n  </div>\n  <div class=\"ypp-carousel-track\">\n    <a href=\"/products/2026-business-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Business_blank.png?v=1762466055\" alt=\"2026 Business Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Business Planner</div>\n        <div class=\"ypp-product-price\">$87.95</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-everyday-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Everyday_blank.png?v=1762465720\" alt=\"2026 Everyday Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Everyday Planner</div>\n        <div class=\"ypp-product-price\">$60.50</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-health-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Health_blank.png?v=1762465646\" alt=\"2026 Health Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Health Planner</div>\n        <div class=\"ypp-product-price\">$87.95</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-minimalist-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Minimalist_blank.png?v=1762465800\" alt=\"2026 Minimalist Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Minimalist Planner</div>\n        <div class=\"ypp-product-price\">$60.50</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-student-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Student_blank.png?v=1762465991\" alt=\"2026 Student Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Student Planner</div>\n        <div class=\"ypp-product-price\">$60.50</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-teacher-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Teacher_blank.png?v=1762465573\" alt=\"2026 Teacher Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Teacher Planner</div>\n        <div class=\"ypp-product-price\">$60.50</div>\n      </div>\n    </a>\n    <a href=\"/products/2026-ultimate-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Ultimate_blank.png?v=1762465947\" alt=\"2026 Ultimate Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">2026 Ultimate Planner</div>\n        <div class=\"ypp-product-price\">$71.50</div>\n      </div>\n    </a>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_qmhHEJ": {
+      "type": "custom-liquid",
+      "name": "Reviews",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-reviews { padding: 6rem 5rem; background: #ffffff; }\n  .ypp-reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }\n  .ypp-review-card {\n    border: 1.5px solid #f0d4d4; padding: 2rem; border-radius: 20px;\n    background: #fdf1f0; transition: transform 0.2s, box-shadow 0.2s;\n  }\n  .ypp-review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(255,156,174,0.2); }\n  .ypp-review-stars { color: #f6b78a; font-size: 1.4rem; margin-bottom: 1rem; letter-spacing: 0.1em; }\n  .ypp-review-text {\n    font-family: 'Poppins', sans-serif; font-size: 1.2rem;\n    line-height: 1.8; color: #2d1f1f; margin-bottom: 1.5rem; font-weight: 300;\n  }\n  .ypp-review-author {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.85rem; color: #7a5c5c; font-weight: 700;\n    text-transform: uppercase; letter-spacing: 0.1em;\n  }\n  .ypp-review-tag {\n    display: inline-block; margin-top: 0.5rem;\n    background: #fad8da; color: #ff4545;\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.72rem; padding: 0.25rem 0.75rem; border-radius: 999px;\n    letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;\n  }\n  @media (max-width: 768px) {\n    .ypp-reviews { padding: 4rem 1.5rem; }\n    .ypp-reviews-grid { grid-template-columns: 1fr; }\n  }\n</style>\n\n<section class=\"ypp-reviews\">\n  <div class=\"ypp-section-label\">Real customers, real results</div>\n  <h2 class=\"ypp-section-heading\">They couldn't find the right planner either. <em>Until now.</em></h2>\n  <div class=\"ypp-reviews-grid\">\n    <div class=\"ypp-review-card\">\n      <div class=\"ypp-review-stars\">★★★★★</div>\n      <div class=\"ypp-review-text\">This diary is the only thing that has really helped me stay on top of my appointments and schedule. With my ADHD, any time I try to keep a diary I always stop a couple of months in, but not this one.</div>\n      <div class=\"ypp-review-author\">Tara G.</div>\n      <div class=\"ypp-review-tag\">Custom Weekly Planner</div>\n    </div>\n    <div class=\"ypp-review-card\">\n      <div class=\"ypp-review-stars\">★★★★★</div>\n      <div class=\"ypp-review-text\">I was so impressed with my work planner I did something I haven't done for years: bought one for personal use too. Express really meant express, it arrived in two days. Jess couldn't have been more accommodating.</div>\n      <div class=\"ypp-review-author\">Kylie B.</div>\n      <div class=\"ypp-review-tag\">Custom Weekly Planner</div>\n    </div>\n    <div class=\"ypp-review-card\">\n      <div class=\"ypp-review-stars\">★★★★★</div>\n      <div class=\"ypp-review-text\">Not only is this the most stunning planner I've ever owned, it's so well thought out with unique and useful features. If you're on the fence just buy it. You'll be supporting the sweetest small business owner too.</div>\n      <div class=\"ypp-review-author\">Gina U.</div>\n      <div class=\"ypp-review-tag\">2026 Business Planner</div>\n    </div>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "video_highlights_section_x7b9K9": {
@@ -175,64 +137,155 @@
       "name": "Video Highlights",
       "settings": {}
     },
-    "guide_steps_section_wPT6tb": {
-      "type": "guide-steps-section",
+    "custom_liquid_HKNk3A": {
+      "type": "custom-liquid",
+      "name": "Undated Planners",
+      "settings": {
+        "custom_liquid": "<section class=\"ypp-carousel\">\n  <div class=\"ypp-carousel-header\">\n    <h2 class=\"ypp-carousel-heading\">Undated Planners</h2>\n    <a href=\"/collections/custom-undated-planners\" class=\"ypp-carousel-view-all\">View all →</a>\n  </div>\n  <div class=\"ypp-carousel-track\">\n    <a href=\"/products/undated-weekly-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Undated_weekly_vertical_unlined_2.jpg?v=1773977138\" alt=\"Custom Undated Weekly Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">Custom Undated Weekly Planner</div>\n        <div class=\"ypp-product-price\">From $32.48</div>\n      </div>\n    </a>\n    <a href=\"/products/undated-daily-planner\" class=\"ypp-product-card\">\n      <div class=\"ypp-product-img\">\n        <img src=\"https://yourperfectplanner.com.au/cdn/shop/files/Undated_biz_daily.jpg?v=1773978928\" alt=\"Custom Undated Daily Planner\" />\n      </div>\n      <div class=\"ypp-product-info\">\n        <div class=\"ypp-product-name\">Custom Undated Daily Planner</div>\n        <div class=\"ypp-product-price\">From $45.86</div>\n      </div>\n    </a>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_Vmt8kK": {
+      "type": "custom-liquid",
+      "name": "Quiz",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-quiz {\n    background: #fdf1f0;\n    padding: 5rem;\n    text-align: center;\n    border-top: 2px solid #f0d4d4;\n    box-sizing: border-box;\n  }\n  .ypp-quiz-eyebrow {\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;\n    color: #ff4545; font-weight: 700;\n    display: flex; align-items: center; justify-content: center; gap: 0.75rem;\n    margin-bottom: 1.25rem;\n  }\n  .ypp-quiz-eyebrow::before, .ypp-quiz-eyebrow::after {\n    content: ''; display: block; width: 2rem; height: 2px;\n    background: #ff9cae; border-radius: 999px;\n  }\n  .ypp-quiz-heading {\n    font-family: 'Wild Mango', cursive;\n    font-size: clamp(2rem, 3.5vw, 3rem);\n    color: #2d1f1f; line-height: 1.2;\n    font-weight: normal; margin-bottom: 1rem;\n    max-width: 640px; margin-left: auto; margin-right: auto;\n  }\n  .ypp-quiz-heading em { font-style: normal; color: #ff4545; }\n  .ypp-quiz-sub {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1rem; color: #7a5c5c; line-height: 1.7;\n    font-weight: 300; margin-bottom: 2.5rem;\n    max-width: 480px; margin-left: auto; margin-right: auto;\n  }\n  .ypp-quiz-btn {\n    background: #ff4545; color: white;\n    padding: 1rem 2.5rem; border-radius: 999px;\n    font-family: 'Poppins', sans-serif;\n    font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;\n    text-decoration: none; font-weight: 700;\n    display: inline-block; transition: background 0.2s;\n  }\n  .ypp-quiz-btn:hover { background: #e03030; }\n  @media (max-width: 768px) {\n    .ypp-quiz { padding: 4rem 1.5rem; }\n  }\n</style>\n\n<section class=\"ypp-quiz\">\n  <div class=\"ypp-quiz-eyebrow\">Find your perfect match</div>\n  <h2 class=\"ypp-quiz-heading\">Not sure which planner is <em>right for you?</em></h2>\n  <p class=\"ypp-quiz-sub\">Answer a few quick questions and we'll match you with the perfect planner for your life.</p>\n  <a href=\"/pages/which-planner-is-best-for-you\" class=\"ypp-quiz-btn\">Take the quiz</a>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_nD3xFF": {
+      "type": "custom-liquid",
+      "name": "About Us",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-founder {\n    padding: 6rem 5rem; background: #ffffff;\n    display: grid; grid-template-columns: 1fr 2fr;\n    gap: 5rem; align-items: center;\n    box-sizing: border-box; width: 100%;\n  }\n  .ypp-founder-img {\n    aspect-ratio: 3/4; background: #fad8da; border-radius: 24px;\n    display: flex; align-items: center; justify-content: center;\n    border: 2px solid #f0d4d4; overflow: hidden;\n  }\n  .ypp-founder-img img { width: 100%; height: 100%; object-fit: cover; }\n  .ypp-founder-quote {\n    font-family: 'Wild Mango', cursive; font-size: clamp(1.7rem, 2.5vw, 1.9rem);\n    line-height: 1.4; color: #2d1f1f; margin-bottom: 1.5rem;\n  }\n  .ypp-founder-quote::before { content: '\\201C'; color: #ff9cae; }\n  .ypp-founder-quote::after { content: '\\201D'; color: #ff9cae; }\n  .ypp-founder-body {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.2rem; color: #7a5c5c; line-height: 1.85; font-weight: 300; margin-bottom: 1.5rem;\n  }\n  .ypp-founder-name {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase;\n    color: #ff4545; font-weight: 700;\n  }\n  @media (max-width: 768px) {\n    .ypp-founder { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2rem; }\n  }\n</style>\n\n<section class=\"ypp-founder\">\n  <div class=\"ypp-founder-img\">\n    <img src=\"https://cdn.shopify.com/s/files/1/0870/1021/4194/files/DSCF4132.jpg?v=1775898234\" alt=\"Jess, founder of Your Perfect Planner\" />\n  </div>\n  <div>\n    <div class=\"ypp-section-label\">Meet Jess</div>\n    <div class=\"ypp-founder-quote\">I started this business because I couldn't find a planner that perfectly suited my life.</div>\n    <p class=\"ypp-founder-body\">Every planner I tried had pages I didn't use and was missing pages I actually wanted. So I built one myself and then realised I probably wasn't the only one who felt this way.</p>\n    <p class=\"ypp-founder-body\">Your Perfect Planner exists so that nobody has to settle for a planner that's almost right. Because the right planner changes things. It quiets the mental noise, creates calm, and helps you show up as the best version of yourself.</p>\n    <div class=\"ypp-founder-name\">— Jess, Founder</div>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_CdUiri": {
+      "type": "custom-liquid",
+      "name": "CTA",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-cta {\n    background: #fad8da; padding: 5rem;\n    display: grid; grid-template-columns: 1fr 1fr;\n    gap: 4rem; align-items: center;\n    border-top: 2px solid #f0d4d4; border-bottom: 2px solid #f0d4d4;\n    box-sizing: border-box; width: 100%;\n  }\n  .ypp-cta-heading {\n    font-family: 'Wild Mango', cursive; font-size: clamp(2.5rem, 3.5vw, 2.9rem);\n    color: #2d1f1f; line-height: 1.15; font-weight: normal;\n  }\n  .ypp-cta-heading em { font-style: normal; color: #ff4545; }\n  .ypp-cta-right { display: flex; flex-direction: column; gap: 1.25rem; }\n  .ypp-cta-body {\n    font-family: 'Poppins', sans-serif;\n    color: #7a5c5c; font-size: 1.3rem; line-height: 1.8; font-weight: 300;\n  }\n  .ypp-btn-red {\n    background: #ff4545; color: white; padding: 1rem 2.2rem; border-radius: 999px;\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.3rem; letter-spacing: 0.08em; text-transform: uppercase;\n    text-decoration: none; font-weight: 700;\n    display: inline-block; align-self: flex-start;\n    transition: background 0.2s;\n  }\n  .ypp-btn-red:hover { background: #e03030; }\n  .ypp-cta-guarantee {\n    font-family: 'Poppins', sans-serif;\n    font-size: 1.1rem; color: #7a5c5c; font-weight: 600;\n    display: flex; align-items: center; gap: 0.5rem;\n    text-transform: uppercase; letter-spacing: 0.08em;\n  }\n  .ypp-cta-guarantee::before { content: '✓'; color: #ff4545; }\n  @media (max-width: 768px) {\n    .ypp-cta { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2rem; }\n  }\n</style>\n\n<section class=\"ypp-cta\">\n  <div>\n    <h2 class=\"ypp-cta-heading\">Ready to stop settling for <em>almost right?</em></h2>\n  </div>\n  <div class=\"ypp-cta-right\">\n    <p class=\"ypp-cta-body\">Every single page in your planner should earn its place. Build one that fits your life perfectly in under 5 minutes.</p>\n    <a href=\"/collections/planners\" class=\"ypp-btn-red\">Build My Perfect Planner</a>\n    <div class=\"ypp-cta-guarantee\">30-day money back guarantee.</div>\n  </div>\n</section>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_slideshow_9dQD9c": {
+      "type": "custom-slideshow",
       "blocks": {
-        "add_step_H3jwz7": {
-          "type": "Add-Step",
+        "slide_Et9URB": {
+          "type": "slide",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Step_1_icon_eef0fde6-9f22-4900-9ace-d2910bd53dc8.png",
-            "text": "STEP 1",
-            "text1": "SELECT YOUR DATE RANGE",
-            "image_width": 300
+            "image": "shopify://shop_images/Copy_of_Undated_hero_banner_-_desktop.png",
+            "mob_image": "shopify://shop_images/Copy_of_Undated_hero_banner_-_mobile.png",
+            "pre_heading": "<strong>NEW UNDATED PLANNER</strong>",
+            "heading": "The Planner You Can Ghost & Come Back To",
+            "post_heading": "<strong>NO DATES. NO PRESSURE.</strong>",
+            "image_position": "center center",
+            "image_position_mobile": "center center",
+            "font_size_mobile": 32,
+            "heading_position_mobile": "center",
+            "heading_size": "h1",
+            "font_family": "wild_mango",
+            "heading_width": 495,
+            "subheading": "<p>Start anytime. </p><p>Pause when you need.</p><p>Come back when you're ready.</p>",
+            "slide_link": "shopify://collections/custom-undated-planners",
+            "button_label": "SHOP NOW",
+            "open_form": "",
+            "link": "shopify://collections/custom-undated-planners",
+            "button_style_secondary": false,
+            "box_align": "middle-left",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
           }
         },
-        "add_step_RyDEfV": {
-          "type": "Add-Step",
+        "first_slide_PNBAFd": {
+          "type": "first_slide",
           "settings": {
-            "image": "shopify://shop_images/Step_2_icon_ccdbaa4e-0766-4e91-a0ed-a9cd31202d02.png",
-            "text": "STEP 2",
-            "text1": "CHOOSE YOUR LAYOUT",
-            "image_width": 320
-          }
-        },
-        "add_step_qHk6qV": {
-          "type": "Add-Step",
-          "settings": {
-            "image": "shopify://shop_images/Step_3_icon_035afea2-0eed-4779-b571-a884e81f8da4.png",
-            "text": "STEP 3",
-            "text1": "ADD YOUR EXTRA PAGES",
-            "image_width": 170
-          }
-        },
-        "add_step_m3ct6V": {
-          "type": "Add-Step",
-          "settings": {
-            "image": "shopify://shop_images/New.png",
-            "text": "STEP 4",
-            "text1": "Choose Your Cover",
-            "image_width": 200
+            "bg-color": "#fad6d6",
+            "heading": "BECAUSE YOUR BRAIN WASN'T  MEANT TO HOLD EVERYTHING.",
+            "heading1": "BUILD A PLANNER THAT HOLDS IT FOR YOU",
+            "center_image": "shopify://shop_images/New-one-2.png",
+            "mobile_image": "shopify://shop_images/New-one.png",
+            "text_left_1": "Choose your date range",
+            "arrow_left_1": "shopify://shop_images/3-removebg-preview.png",
+            "text_left_2": "Choose your extra pages",
+            "arrow_left_2": "shopify://shop_images/4-removebg-preview.png",
+            "text_right_1": "Choose your cover",
+            "arrow_right_1": "shopify://shop_images/2-removebg-preview.png",
+            "text_right_2": "Choose your layout",
+            "arrow_right_2": "shopify://shop_images/5-removebg-preview.png",
+            "heading-color": "#ff4545",
+            "text-1": "",
+            "sec-text-1": "",
+            "sub-text-1": "",
+            "btn-text1": "",
+            "btn-url1": "",
+            "text-2": "",
+            "sec-text-2": "",
+            "sub-text-2": "",
+            "btn-text2": "",
+            "text-color": "#ff4545",
+            "btn-url2": "",
+            "button-bg-color": "#ff4545",
+            "button-text-color": "#ffffff"
           }
         }
       },
       "block_order": [
-        "add_step_H3jwz7",
-        "add_step_RyDEfV",
-        "add_step_qHk6qV",
-        "add_step_m3ct6V"
+        "slide_Et9URB",
+        "first_slide_PNBAFd"
       ],
-      "name": "Guide-Steps",
-      "settings": {}
-    },
-    "featured_products_2_dQ3QTQ": {
-      "type": "featured-products-2",
+      "disabled": true,
+      "name": "Custom Slide Show",
       "settings": {
-        "button-text-1": "BUILD DAILY",
-        "button_1_link": "shopify://products/daily-planner",
-        "product_1_image": "shopify://shop_images/DAILYBUILTBYYOUcoverimage.png",
-        "button-text-2": "BUILD WEEKLY",
-        "button_2_link": "shopify://products/weekly-planner",
-        "product_2_image": "shopify://shop_images/WEEKLYBUILTBYYOUcoverimage.png"
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 7,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "new_banner_section_kdwJmF": {
+      "type": "New-banner-section",
+      "disabled": true,
+      "name": "New banner section",
+      "settings": {
+        "bg-color": "#fad6d6",
+        "heading": "",
+        "heading1": "",
+        "text_left_1": "",
+        "text_left_2": "",
+        "text_right_1": "",
+        "text_right_2": "",
+        "heading-color": "#ff4545",
+        "text-1": "",
+        "sec-text-1": "your planner",
+        "sub-text-1": "custom build",
+        "btn-text1": "START CUSTOMISING",
+        "btn-url1": "https://yourperfectplanner.com.au/collections/planners",
+        "text-2": "Pick from the",
+        "sec-text-2": "options",
+        "sub-text-2": "ready-made",
+        "btn-text2": "FIND MY MATCH",
+        "text-color": "#ff4545",
+        "btn-url2": "https://yourperfectplanner.com.au/collections/built-by-us",
+        "button-bg-color": "#ff4545",
+        "button-text-color": "#ffffff"
       }
     },
     "175566174031ec8df8": {
@@ -247,13 +300,15 @@
             "padding_top": 0,
             "padding_right": 0,
             "padding_bottom": 0,
-            "padding_left": 0
+            "padding_left": 0,
+            "open_delay": 0
           }
         }
       },
       "block_order": [
         "recomma_product_quiz_builder_recommenda_inline_quiz_M7AGDp"
       ],
+      "disabled": true,
       "custom_css": [
         ".page-width {max-width: 100% !important; padding: 0 !important;}",
         ".recommenda-quiz-inline {height: 40vh !important;}"
@@ -263,25 +318,9 @@
         "include_margins": false
       }
     },
-    "image_banner_JWNcn6": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/icons_99.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
-      }
-    },
     "about_us_section_dWd7GB": {
       "type": "about-us-section",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/about_me.jpg",
         "heading2": "MEET OUR FOUNDER; JESS",
@@ -294,6 +333,7 @@
       "blocks": {
         "judge_me_reviews_featured_carousel_9bNb4R": {
           "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "maxwidth": 1000
           }
@@ -382,13 +422,21 @@
     }
   },
   "order": [
+    "custom_liquid_LYTCzi",
+    "custom_liquid_6NJjgb",
+    "custom_liquid_PcdfK3",
+    "custom_liquid_FAGPQJ",
+    "custom_liquid_LJhQNM",
+    "custom_liquid_Vcj8zt",
+    "custom_liquid_qmhHEJ",
+    "video_highlights_section_x7b9K9",
+    "custom_liquid_HKNk3A",
+    "custom_liquid_Vmt8kK",
+    "custom_liquid_nD3xFF",
+    "custom_liquid_CdUiri",
     "custom_slideshow_9dQD9c",
     "new_banner_section_kdwJmF",
-    "video_highlights_section_x7b9K9",
-    "guide_steps_section_wPT6tb",
-    "featured_products_2_dQ3QTQ",
     "175566174031ec8df8",
-    "image_banner_JWNcn6",
     "about_us_section_dWd7GB",
     "1730439458d5f2a585",
     "gift_card_banner_xfPJ49",

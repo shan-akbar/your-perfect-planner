@@ -17,6 +17,24 @@
     </script>
 
     <style>
+      .custom-slide__link{
+        height: unset !important;
+      }
+
+      .custom-button-style{
+          border: 1px solid white !important;
+          background-color: #ff4545;
+          border-radius: 50px;
+          font-family: "Poppins", sans-serif;
+          color: white;
+          outline: none;
+          border: none;
+          font-size: 28px;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding: 7px 20px;
+          cursor: pointer;
+      }
 
       .subheading_mobile{
         width: 100%;
@@ -1717,7 +1735,7 @@
                   {% else %}
                     role="link" aria-disabled="true"
                   {% endif %}
-                  class="button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
+                  class="button custom-button-style {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
                 >
                   {{- block.settings.button_label | escape -}}
                 </a>
