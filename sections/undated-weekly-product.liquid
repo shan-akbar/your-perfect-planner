@@ -220,19 +220,7 @@
       height: unset !important;
     }
 
-    @media(min-width: 536px){
-      .global-price{
-        position: relative;
-        top: 22px;
-      }
-    }
-
-    @media(max-width: 769px){
-      .extra-pages__navigation{
-        left: 0;
-
-      }
-    }
+    
 
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
@@ -366,6 +354,10 @@
                   background: #ffffff;
                   box-shadow: 0 12px 35px rgba(0,0,0,0.08);
                   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+                }
+
+                .klaviyo-form-wrapper .loading__spinner{
+                  top:0;
                 }
 
                 .klaviyo-form-wrapper h2 {
@@ -699,7 +691,7 @@
                   });
                 </script>
               {% when 'planner_range' %}
-                <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-startdate="2025-01-01" data-enddate="2026-12-31" >
+                <div class="planner-date__range build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-startdate="2026-01-01" data-enddate="2027-12-31" >
                   <div class="additional-information">{{ block.settings.additional_information }}</div>
                   <div class="coverage-container">
 
@@ -810,7 +802,7 @@
                   });
                   </script>
               {% when 'planner_custom_pages' %}
-                <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2025">
+                <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2026">
                   <div class="additional-information">{{ block.settings.additional_information }}</div>    
                     <div class="planner-custom_pages">
                         <h2>{{ block.settings.title }}</h2>
@@ -2238,15 +2230,15 @@
 </section>
 
 <!-- The Modal -->
-<div id="myModal" class="modal" data-currentyear="2025">
+<div id="myModal" class="modal" data-currentyear="2026">
 
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
      {%- render 'loading-spinner' -%}
     <select class="multiyear__selector invisible" onchange="onyearchange()">
-      <option value="2025" selected>2025</option>
-      <option value="2026">2026</option>
+      <option value="2026" selected>2026</option>
+      <option value="2027">2027</option>
     </select>
     <img class="main-image" src="">
     <img class="rotate-icon" src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/rotate-icon.png?v=1732746382" onclick="alternateImage()">
@@ -2469,7 +2461,7 @@ function onyearchange(){
       display: flex;
       border-radius: 6px;
       position: relative;
-      height: 100%;
+   
     }
     .modal-content img{
       width: 100%;
@@ -2509,9 +2501,7 @@ function onyearchange(){
       justify-content: space-between;
       width: 100%;
       margin-top: 0px;
-      position: absolute;
-      top: 25px;
-      padding: 0 20px;
+      
     }
     .build-step__button{
       cursor: pointer;
@@ -2585,12 +2575,7 @@ function onyearchange(){
     }
 
     @media(max-width: 520px){
-      .global-price{
-        position: relative;
-        top: 9px;
-        text-align: center;
-        min-width: 150px;
-      }
+       
       .gp-title{
         font-size: 15px;
       }
@@ -2605,22 +2590,26 @@ function onyearchange(){
 
   <!-- Modal content -->
   <div class="step-modal-content">
-    <span class="step-modal-close">&times;</span>
-    <div class="build-step__main">
-      <div class="build-step__header">
-          <h2>STEP <span class="step-count">1</span></h2>
+    <div class="build-step__nav">
+          <button class="build-step__button build-step__prev build-step-button__disabled" onclick="processPrevStep()">Prev Step</button>
+           <div class="step-state">
+              <div class="build-step__header">
+                <h2>STEP <span class="step-count">1</span></h2>
+              </div>
+              <div class="global-price">
+                <span class="gp-title">Price:</span>
+                <span class="gp-price">00</span>
+              </div>
+           </div>
+          <button class="build-step__button build-step__next" onclick="processNextStep()"><span>Next Step</span>
+            {% render 'loading-spinner' %}</button>
       </div>
+    <div class="build-step__main">
+      
       <div class="build-step__wrapper">
 
       </div>
-      <div class="build-step__nav">
-          <button class="build-step__button build-step__prev build-step-button__disabled" onclick="processPrevStep()">Prev Step</button>
-          <div class="global-price">
-            <span class="gp-title">Price:</span>
-              <span class="gp-price">00</span>
-          </div>
-          <button class="build-step__button build-step__next" onclick="processNextStep()">Next Step</button>
-      </div>
+     
       <div class="help-link" style="">
         <p class="help-para" style="">
           Need help? 
@@ -2669,7 +2658,7 @@ function onyearchange(){
     
   });
 
-  function processNextStep(){
+ function processNextStep(){
       let build_step_wrapper = document.querySelector('.build-step__wrapper');
       let current_step = document.querySelector('.build-step__active');
       let current_index = Number(current_step.getAttribute("data-buildstep"));
@@ -2699,7 +2688,8 @@ function onyearchange(){
                 let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
                 diary_preview.classList.add('build-step-media__active');
                 let next_btn = document.querySelector(".build-step__next");
-                next_btn.classList.add('build-step-button__disabled');
+                // next_btn.classList.add('build-step-button__disabled');
+                next_btn.querySelector('span').innerHTML = "Add to Cart";
                 diary_preview.scrollLeft = diary_preview.scrollWidth;
                 let globalPriceWrap = document.querySelector(".global-price");
                 globalPriceWrap.classList.add('hidden');
@@ -2708,7 +2698,8 @@ function onyearchange(){
               if(current_index == 1){
                 let prev_btn = document.querySelector(".build-step__prev");
                 prev_btn.classList.remove('build-step-button__disabled');
-               
+                let update_date_button = document.querySelector("button.diary-update__button");
+                update_date_button.click();
               }
               localStorage.removeItem("contactForm");
               clearInterval(myInterval);
@@ -2719,6 +2710,15 @@ function onyearchange(){
       }
 
       if(process_next){
+        let next_btn_main = document.querySelector(".build-step__next");
+
+        if(next_btn_main.querySelector('span').innerHTML == "Add to Cart"){
+          let add_to_cart_button = document.querySelector(".product-form__buttons .button");
+          let loading_spinner = next_btn_main.querySelector(".loading__spinner");
+          loading_spinner.classList.remove('hidden');
+          add_to_cart_button.click();
+          return;
+        }
       
         let next_index = current_index + 1;
         let next_step = document.querySelector(`.build-step__${next_index}`);
@@ -2732,7 +2732,8 @@ function onyearchange(){
           let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
           diary_preview.classList.add('build-step-media__active');
           let next_btn = document.querySelector(".build-step__next");
-          next_btn.classList.add('build-step-button__disabled');
+          // next_btn.classList.add('build-step-button__disabled');
+          next_btn.querySelector('span').innerHTML = "Add to Cart";
           diary_preview.scrollLeft = diary_preview.scrollWidth;
           let globalPriceWrap = document.querySelector(".global-price");
           globalPriceWrap.classList.add('hidden');
@@ -2743,11 +2744,11 @@ function onyearchange(){
         if(current_index == 1){
           let prev_btn = document.querySelector(".build-step__prev");
           prev_btn.classList.remove('build-step-button__disabled');
-         
+          let update_date_button = document.querySelector("button.diary-update__button");
+          update_date_button.click();
         }
       }
   }
-
   function processPrevStep(){
       let build_step_wrapper = document.querySelector('.build-step__wrapper');
       let current_step = document.querySelector('.build-step__active');
@@ -2766,31 +2767,86 @@ function onyearchange(){
           }
         }
       }
+
       if(prev_index == final_step_number - 1){
         let next_btn = document.querySelector(".build-step__next");
-        next_btn.classList.remove('build-step-button__disabled');
-         let globalPriceWrap = document.querySelector(".global-price");
+        // next_btn.classList.remove('build-step-button__disabled');
+        next_btn.querySelector('span').innerHTML = "Next Step";
+        let globalPriceWrap = document.querySelector(".global-price");
         globalPriceWrap.classList.remove('hidden');
       }
+
       if(prev_index == 1){
         let prev_btn = document.querySelector(".build-step__prev");
         prev_btn.classList.add('build-step-button__disabled');
       }
   }
-  function epSlideNext(){
-    let target = this.event.target;
-    let ep_wrapper = target.closest(".planner-custom_pages");
-    let ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
-    let slide_width = ep_slider.querySelector('.page_item').offsetWidth;
-    ep_slider.scrollBy({ left: slide_width, behavior: "smooth" });
+  
+  function epSlideNext() {
+    const target = this.event.currentTarget;
+    const ep_wrapper = target.closest(".planner-custom_pages");
+    const ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
+    
+    const slides = Array.from(ep_slider.querySelectorAll('.page_item'));
+    const containerCenter = ep_slider.scrollLeft + (ep_slider.offsetWidth / 2);
+
+    // 1. Find the index of the slide closest to the center
+    let currentIndex = slides.findIndex((slide) => {
+      const slideMid = slide.offsetLeft + (slide.offsetWidth / 2);
+      return Math.abs(slideMid - containerCenter) < (slide.offsetWidth / 2);
+    });
+
+    // 2. Target the next index
+    const nextIndex = currentIndex + 1;
+
+    // 3. Scroll if the next slide exists
+    if (nextIndex < slides.length) {
+      const nextSlide = slides[nextIndex];
+      ep_slider.scrollTo({
+        left: nextSlide.offsetLeft - (ep_slider.offsetWidth / 2) + (nextSlide.offsetWidth / 2),
+        behavior: "smooth"
+      });
+    }
   }
-  function epSlidePrev(){
-    let target = this.event.target;
-    let ep_wrapper = target.closest(".planner-custom_pages");
-    let ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
-    let slide_width = ep_slider.querySelector('.page_item').offsetWidth;
-    ep_slider.scrollBy({ left: (-1 * slide_width), behavior: "smooth" });
+
+  function epSlidePrev() {
+  const target = this.event.currentTarget;
+  const ep_wrapper = target.closest(".planner-custom_pages");
+  const ep_slider = ep_wrapper.querySelector(".planner-custom-pages_images");
+  const slides = Array.from(ep_slider.querySelectorAll('.page_item'));
+
+  const containerCenter = ep_slider.scrollLeft + (ep_slider.offsetWidth / 2);
+
+  // Find closest slide to center
+  let currentIndex = 0;
+  let closestDistance = Infinity;
+
+  slides.forEach((slide, index) => {
+    const slideCenter = slide.offsetLeft + (slide.offsetWidth / 2);
+    const distance = Math.abs(containerCenter - slideCenter);
+    
+    if (distance < closestDistance) {
+      
+      closestDistance = distance;
+      currentIndex = index;
+    }
+  });
+          
+  // Move to previous slide
+  if (currentIndex > 0) {
+    const prevSlide = slides[currentIndex - 1];
+
+    ep_slider.scrollTo({
+      left: prevSlide.offsetLeft,
+      behavior: "smooth"
+    });
+  }else{
+    ep_slider.scrollTo({
+      left: 0,
+      behavior: "smooth"
+    });
   }
+}
 </script>
 
 {% schema %}

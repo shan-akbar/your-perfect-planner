@@ -47,7 +47,7 @@
     {% assign sat_sun_half_2 = sat_sun_half_2 | reverse | reverse %}
 {%- endpaginate -%}
 
-{% assign sat_sun_half = sat_sun_half | concat: sat_sun_half_2 %}
+{% assign sat_sun_half = sat_sun_half_2 | concat: sat_sun_half %}
 
 {% for i in (1..12) %}
    
@@ -81,7 +81,7 @@
             {% assign diary_pages_layout_general = diary_pages_layout_general_2 %}
         {% endif %}
 
-        {% assign diary_pages_layout_general_final = diary_pages_layout_general | concat: diary_pages_layout_general_2 %}
+        {% assign diary_pages_layout_general_final = diary_pages_layout_general_2 | concat: diary_pages_layout_general %}
 
         {% if forloop.first %}
             {% assign diary_pages_layout_1 = diary_pages_layout_general_final %}
@@ -97,7 +97,7 @@
     <script>
 
         let sat_sun_half = {{ sat_sun_half | json}};
-        let start_date = "2025-01-01";
+        let start_date = "2026-01-01";
         let current_date = new Date(start_date);
         let diary_pages = [];
         let diary_pages_no_weekends = [];
@@ -884,7 +884,7 @@
         let start_date_month = start_date.getMonth();
         let date_year = start_date.getFullYear();
         let year_gap = 0;
-        if(date_year == 2026){
+        if(date_year == 2027){
             year_gap = 24;
         }
         let access_index = start_date_month * 2 + year_gap;

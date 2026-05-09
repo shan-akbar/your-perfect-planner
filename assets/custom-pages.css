@@ -12,12 +12,21 @@
   align-self: end;
 }
 
-.planner-custom-pages_images{
+.planner-custom-pages_images {
     display: flex;
-    height: 60vh;
-    overflow-x: scroll;
-    max-width: 400;
+    height: 59vh;
+    overflow-x: auto; /* Use auto for cleaner scrollbars */
     overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    /* Remove scroll-behavior: smooth from here to avoid JS conflicts */
+    -webkit-overflow-scrolling: touch;
+}
+
+.page_item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    /* Optional: Add a little margin so they aren't touching */
+    margin: 0 10px; 
 }
 
 @media(max-width: 400px){
@@ -61,13 +70,115 @@
 }
 
 .planner-custom-pages_images .page_item{
-    /* max-width: 85px; */
     border: 2px solid black;
     margin: 3px 2px;
     cursor: pointer;
-    /* max-height: 109px; */
     position: relative;
 }
+
+  .planner-custom-pages_wrapper{
+      max-width: 400px;
+  }
+  
+  .build-step__header h2{
+    margin-bottom: 0 !important;
+    font-size: 26px !important;
+  }
+
+  .step-state{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .build-step__button{
+    max-height: 32px;
+  }
+
+  .klaviyo-form-wrapper .loading__spinner{
+    position: relative;
+  }
+
+  .additional-information a{
+    margin-left: 5px;
+  }
+
+  .step-modal-content{
+    flex-direction: column;
+  }
+
+  .build-step__main{
+    min-height: 709px !important;
+  }
+
+  .build-step__button{
+    position: relative;
+  }
+
+  .build-step__button .loading__spinner{
+    left: 42%;
+    top: 5px;
+  }
+
+@media(max-width: 1200px){
+  .planner-custom-pages_images .page_item{
+    max-width: 630px !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .planner-custom-pages_wrapper{
+      max-width: 630px !important;
+  }
+
+  .extra-pages__navigation{
+    max-width: 806px !important;
+    left: 0 !important;
+  }
+}
+
+@media(max-width: 768px){
+  .final-step__note{
+    min-width: 641px;
+  }
+
+   .build-step__main{
+    min-height: 85vh;
+  }
+}
+
+@media(max-width: 600px){
+ 
+
+  .planner-custom-pages_images .page_item{
+    max-width: 391.5px !important;
+    display: block !important;
+    width: 100%;
+  }
+  
+}
+
+@media(max-width: 380px){
+    .gp-title{
+      font-size: 15px !important;
+    }
+
+    .gp-price{
+      font-size: 14px !important;
+    }
+
+    .build-step__header h2{
+      font-size: 20px !important;
+    }
+
+    .global-price{
+      text-align: center;
+    }
+
+    .build-step__button{
+      max-height: 44px;
+    }
+} 
 
 .planner-custom-pages_images .page_item img{
     width: auto;
@@ -277,6 +388,12 @@ input.minus-button{
 
 .additional-information p{
   margin-top: 0;
+  font-size: 15px;
+  line-height: 1.3;
+  min-height: 38.98px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input.page-qty__input::-webkit-outer-spin-button,
@@ -298,20 +415,23 @@ input.page-qty__input::-webkit-inner-spin-button {
   }
 
   .diary-flip{
-    width: 273px;
-    height: 327px;
+    width: 355px;
+    height: 425px;
   }
 
   .diary-wrapper{
-    width: 546px;
+    width: 814px;
   }
 
   .modal-content{
     max-width: 391px;
   }
+
+  
 }
 
 @media (max-width: 768px) {
+  
   .diary-flip {
       width: 259px;
       height: 310px;
@@ -328,7 +448,28 @@ input.page-qty__input::-webkit-inner-spin-button {
   }
 }
 
+@media(max-width: 600px){
+  .planner-custom_pages{
+    min-height: 440px;
+  }
+  .planner-custom-pages_wrapper{
+      max-width: 400px !important;
+  }
+
+  .extra-pages__navigation{
+    left: 0 !important;
+  }
+}
+
 @media (max-width: 535px) {
+
+  .page_item {
+    flex: 0 0 80%; /* Or whatever width you want the slide to be */
+    width: 80%;    /* Redundancy helps Safari */
+    scroll-snap-align: center;
+    margin: 0 10px; 
+  }
+
   .planner-custom-pages_images{
     height: 50vh;
   }

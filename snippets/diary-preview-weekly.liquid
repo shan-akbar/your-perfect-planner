@@ -62,7 +62,7 @@
             {%- endpaginate -%}
         {% endfor %}
 
-        {% assign diary_pages_layout_general_final = diary_pages_layout_general | concat: diary_pages_layout_general_2 %}
+        {% assign diary_pages_layout_general_final = diary_pages_layout_general_2 | concat: diary_pages_layout_general %}
 
         {% if forloop.first %}
             {% assign diary_pages_layout_1 = diary_pages_layout_general_final %}
@@ -571,7 +571,9 @@
             let current_layout = all_layouts[currently_selected_layout - 1];
             let new_layout = all_layouts[layout_position - 1];
             let diary_pages_length = diary_pages.length;
+
             if(current_layout.length == new_layout.length){
+               
                 let page_index = 0;
                 let diary_pages_length = diary_pages.length;
                 for(var i=0;i<diary_pages_length;++i){
@@ -588,52 +590,40 @@
                         ++page_index;
                     }
                 }
+               
             }
 
             if (current_layout.length > new_layout.length) {
+                // We'll use a function to avoid repeating the same logic twice
+                const processPages = (targetArray) => {
+                    let dayOccurrences = 0; // Counts every "day" type found
+                    let layoutIndex = 0;    // Tracks which URL from new_layout to use
 
-                let page_index = 0;
-
-                diary_pages = diary_pages.reduce((acc, page, i) => {
-
-                    if (page.page_type === "day") {
-
-                        // keep only every first "day" page (even index among day pages)
-                        if (page_index < new_layout.length) {
-                            page.page_url = new_layout[page_index];
-                            acc.push(page);
-                            page_index++;
+                    return targetArray.reduce((acc, page) => {
+                        if (page.page_type === "day") {
+                            // Only keep the 1st, 3rd, 5th... "day" page (even indices 0, 2, 4...)
+                            if (dayOccurrences % 2 === 0 && layoutIndex < new_layout.length) {
+                                // Clone the page object so we don't mutate the original reference
+                                const updatedPage = { 
+                                    ...page, 
+                                    page_url: new_layout[layoutIndex] 
+                                };
+                                acc.push(updatedPage);
+                                layoutIndex++;
+                            }
+                            dayOccurrences++; // Increment this every time a "day" is seen to skip the next one
+                        } else if (page.page_type !== "blank" && page.page_type !== "copyright") {
+                            // Keep other page types as they are (cloned for safety)
+                            acc.push({ ...page });
                         }
+                        return acc;
+                    }, []);
+                };
 
-                        // skip the second "day" page automatically
+                // Apply the fix to both arrays
+                diary_pages = processPages(diary_pages);
+                diary_pages_backup = processPages(diary_pages_backup);
 
-                    } else if (page.page_type !== "blank" && page.page_type !== "copyright") {
-                        acc.push(page);
-                    }
-
-                    return acc;
-
-                }, []);
-
-                let page_index_backup = 0;
-
-                diary_pages_backup = diary_pages_backup.reduce((acc, page) => {
-
-                    if (page.page_type === "day") {
-
-                        if (page_index_backup < new_layout.length) {
-                            page.page_url = new_layout[page_index_backup];
-                            acc.push(page);
-                            page_index_backup++;
-                        }
-
-                    } else {
-                        acc.push(page);
-                    }
-
-                    return acc;
-
-                }, []);
             }
 
             if(current_layout.length < new_layout.length){
@@ -682,6 +672,9 @@
             let end_date_element = document.getElementById("end_date");
             let start_date = start_date_element.value;
             let end_date = end_date_element.value;
+
+             let update_date_range_button = document.querySelector(".diary-update__button");
+             update_date_range_button.click();
 
             renderPages();
 
@@ -991,7 +984,7 @@
 
         let skip_iteration_count = page_gap;
         let year_gap = 0;
-        if(date_year == 2026){
+        if(date_year == 2027){
             year_gap = 24;
         }
 

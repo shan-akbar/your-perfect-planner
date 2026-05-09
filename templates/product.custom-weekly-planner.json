@@ -75,9 +75,9 @@
           "type": "planner_date_range",
           "settings": {
             "additional_information": "<p>To view planner details, click <a href=\"/pages/custom-planner-details\" title=\"Custom Planner Details\">here</a></p><p><strong>Choose your date range</strong></p>",
-            "start_date": "2026-01-01",
-            "end_date": "2026-12-31",
-            "date_note": "NOTE: Default dates are from 01/01/2026 to 31/12/2026",
+            "start_date": "2026-07-01",
+            "end_date": "2027-06-30",
+            "date_note": "NOTE: Default dates are from 01/07/2026 to 30/06/2027",
             "text_message": "",
             "body_text_color": "#ff4545"
           }
@@ -174,12 +174,12 @@
             "page_type": "front_cover",
             "page_1_image": "shopify://shop_images/THIS_PLANNER_BELONGS_TO.png",
             "has_more_than_1_year_pages_1": false,
-            "page_2_image": "shopify://shop_images/2025_REFLECTION_1a7a61c8-0c71-4ec2-a06a-954d003327cf.png",
-            "has_more_than_1_year_pages_2": false,
+            "page_2_image": "shopify://shop_images/2026_REFLECTION.png",
+            "has_more_than_1_year_pages_2": true,
             "page_3_image": "shopify://shop_images/2026_GOALS_1_fe063ae2-521d-4010-9b3b-f666d3f8915b.png",
-            "has_more_than_1_year_pages_3": false,
+            "has_more_than_1_year_pages_3": true,
             "page_4_image": "shopify://shop_images/2026_GOALS_2_34bb6534-6ff4-4b16-81e5-bd518f1b6c00.png",
-            "has_more_than_1_year_pages_4": false,
+            "has_more_than_1_year_pages_4": true,
             "page_5_image": "shopify://shop_images/52_WEEK_SAVINGS_CHALLENGE_d4d59f27-f947-43ae-af31-8db55b11e1be.png",
             "has_more_than_1_year_pages_5": false,
             "page_6_image": "shopify://shop_images/BIRTHDAY_PLANNER_f14a17d7-97b3-41c0-874a-7961d48e325f.png",
@@ -191,14 +191,14 @@
             "page_9_image": "shopify://shop_images/BULLET_PAGE.png",
             "has_more_than_1_year_pages_9": false,
             "page_10_image": "shopify://shop_images/LITTLE_MONTHS_2026_cc00866f-bc1b-40d4-a490-53e9d3c9b647.png",
-            "has_more_than_1_year_pages_10": true,
+            "has_more_than_1_year_pages_10": false,
             "page_11_image": "shopify://shop_images/YEARLY_VIEW_1-6.png",
             "page_11_image_back": "shopify://shop_images/YEARLY_VIEW_7-12.png",
             "has_more_than_1_year_pages_11": false,
             "page_12_image": "shopify://shop_images/2026_INS_AND_OUTS.png",
             "has_more_than_1_year_pages_12": true,
             "page_13_image": "shopify://shop_images/2026_GOALS_CATEGORIES.png",
-            "has_more_than_1_year_pages_13": false,
+            "has_more_than_1_year_pages_13": true,
             "page_14_image": "shopify://shop_images/WINS_82e51e2e-d161-4e0d-8c0d-6b3f957c4ba7.png",
             "has_more_than_1_year_pages_14": false,
             "page_15_image": "shopify://shop_images/YEARLY_HABIT_TRACKER.png",
@@ -211,6 +211,7 @@
             "has_more_than_1_year_pages_18": false,
             "page_19_image": "shopify://shop_images/LOGIN_DETAILS.png",
             "has_more_than_1_year_pages_19": false,
+            "page_20_image": "shopify://shop_images/Little_months_financial_year_2026_27.png",
             "has_more_than_1_year_pages_20": false
           }
         },
@@ -520,35 +521,6 @@
             "share_label": "Share"
           }
         },
-        "monthly_double_pages_DFdyEj": {
-          "type": "monthly_double_pages",
-          "settings": {
-            "page_1_image": "shopify://shop_images/JAN_1_01fc0676-a4ee-49dd-a6e5-e65950ea525a.png",
-            "page_1_image_back": "shopify://shop_images/JAN_2_5f126690-163a-4d41-8dfb-6e34964e8f1c.png",
-            "page_2_image": "shopify://shop_images/2026_Monthly_view3_FEB1_60fa9aa2-142c-4157-9784-8385f461bf11.png",
-            "page_2_image_back": "shopify://shop_images/2026_Monthly_view4_FEB2_8b336c8c-c6bd-48a3-ac06-0684ae096cb5.png",
-            "page_3_image": "shopify://shop_images/2026_Monthly_view5_MAR1_d1cb109b-0789-414e-852b-ef7715678957.png",
-            "page_3_image_back": "shopify://shop_images/MAR_2.png",
-            "page_4_image": "shopify://shop_images/APR_1.png",
-            "page_4_image_back": "shopify://shop_images/2026_Monthly_view8_APR2_0fa01b44-2f89-4f20-b6fb-0f85d9fab198.png",
-            "page_5_image": "shopify://shop_images/MAY_1.png",
-            "page_5_image_back": "shopify://shop_images/MAY_2.png",
-            "page_6_image": "shopify://shop_images/2026_Monthly_view11_JUN1_7898cf5b-7ce7-4a3e-a173-0d308c5fdffd.png",
-            "page_6_image_back": "shopify://shop_images/JUNE_2.png",
-            "page_7_image": "shopify://shop_images/JULY_1.png",
-            "page_7_image_back": "shopify://shop_images/2026_Monthly_view14_JUL2_312eb320-d126-4526-a88a-00220cfe7de8.png",
-            "page_8_image": "shopify://shop_images/2026_Monthly_view15_AUG1_43f2b944-2151-4773-b2d3-51479d055eea.png",
-            "page_8_image_back": "shopify://shop_images/2026_Monthly_view16_AUG2_31d9eed2-c8ae-4d2f-8b4d-cb14058ee331.png",
-            "page_9_image": "shopify://shop_images/SEP_1.png",
-            "page_9_image_back": "shopify://shop_images/SEP_2.png",
-            "page_10_image": "shopify://shop_images/OCT_1.png",
-            "page_10_image_back": "shopify://shop_images/OCT_2.png",
-            "page_11_image": "shopify://shop_images/NOV_1.png",
-            "page_11_image_back": "shopify://shop_images/NOV_2.png",
-            "page_12_image": "shopify://shop_images/DEC_1.png",
-            "page_12_image_back": "shopify://shop_images/DEC_2.png"
-          }
-        },
         "monthly_double_pages_MpULX8": {
           "type": "monthly_double_pages",
           "settings": {
@@ -578,10 +550,39 @@
             "page_12_image_back": "shopify://shop_images/2026_Monthly_view24_DEC2.png"
           }
         },
+        "monthly_double_pages_DFdyEj": {
+          "type": "monthly_double_pages",
+          "settings": {
+            "page_1_image": "shopify://shop_images/JAN-1_2027.png",
+            "page_1_image_back": "shopify://shop_images/JAN-2_2027.png",
+            "page_2_image": "shopify://shop_images/FEB-1_2027.png",
+            "page_2_image_back": "shopify://shop_images/FEB-2_2027.png",
+            "page_3_image": "shopify://shop_images/MAR-1_2027.png",
+            "page_3_image_back": "shopify://shop_images/MAR-2_2027.png",
+            "page_4_image": "shopify://shop_images/APR-1_2027.png",
+            "page_4_image_back": "shopify://shop_images/APR-2_2027.png",
+            "page_5_image": "shopify://shop_images/MAY-1_2027.png",
+            "page_5_image_back": "shopify://shop_images/MAY-2_2027.png",
+            "page_6_image": "shopify://shop_images/JUN-1_2027.png",
+            "page_6_image_back": "shopify://shop_images/JUN-2_2027.png",
+            "page_7_image": "shopify://shop_images/JUL-1_2027.png",
+            "page_7_image_back": "shopify://shop_images/JUL-2_2027.png",
+            "page_8_image": "shopify://shop_images/AUG-1_2027.png",
+            "page_8_image_back": "shopify://shop_images/AUG-2_2027.png",
+            "page_9_image": "shopify://shop_images/SEP-1_2027.png",
+            "page_9_image_back": "shopify://shop_images/SEP-2_2027.png",
+            "page_10_image": "shopify://shop_images/OCT-1_2027.png",
+            "page_10_image_back": "shopify://shop_images/OCT-2_2027.png",
+            "page_11_image": "shopify://shop_images/NOV-1_2027.png",
+            "page_11_image_back": "shopify://shop_images/NOV-2_2027.png",
+            "page_12_image": "shopify://shop_images/DEC-1_2027.png",
+            "page_12_image_back": "shopify://shop_images/DEC-2_2027.png"
+          }
+        },
         "multiyear_page_7FaH8F": {
           "type": "multiyear_page",
           "settings": {
-            "year_selected": "2026",
+            "year_selected": "2027",
             "page_type": "layout_page",
             "page_1_image": "shopify://shop_images/2026_Weekly_Vertical_LINED1.png",
             "page_1_image_back": "shopify://shop_images/2026_Weekly_Vertical_LINED2.png",
@@ -604,11 +605,11 @@
         "multiyear_page_8FFgwy": {
           "type": "multiyear_page",
           "settings": {
-            "year_selected": "2026",
+            "year_selected": "2027",
             "page_type": "front_cover",
-            "page_2_image": "shopify://shop_images/24-25_REFLECTION.png",
-            "page_3_image": "shopify://shop_images/2026_GOALS_1_b4a19d61-817d-46e0-ac81-8cf9e2d81954.png",
-            "page_4_image": "shopify://shop_images/2026_GOALS_2_8eee47e2-ef82-4944-b6a2-fe6d4c1f43fa.png",
+            "page_2_image": "shopify://shop_images/2026_REFLECTION.png",
+            "page_3_image": "shopify://shop_images/2027_GOALS_1.png",
+            "page_4_image": "shopify://shop_images/2027_GOALS_2.png",
             "page_10_image": "shopify://shop_images/LITTLE_MONTHS_2026_ab1e2e2d-1901-41ba-94ff-0f506496f4d8.png",
             "page_12_image": "shopify://shop_images/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
           }
@@ -616,16 +617,16 @@
         "multiyear_page_y9g9nd": {
           "type": "multiyear_page",
           "settings": {
-            "year_selected": "2026",
+            "year_selected": "2027",
             "page_type": "between_month",
-            "page_1_image": "shopify://shop_images/2026_Monthly_view1_JAN1_384ca065-feca-47ee-821f-7909f33cc2a8.png",
-            "page_1_image_back": "shopify://shop_images/2026_Monthly_view2_JAN2_0886bfc7-6d30-4127-a9c4-18e20a2f601f.png"
+            "page_1_image": "shopify://shop_images/JAN-1_2027.png",
+            "page_1_image_back": "shopify://shop_images/JAN-2_2027.png"
           }
         },
         "multiyear_page_mkH4LT": {
           "type": "multiyear_page",
           "settings": {
-            "year_selected": "2026",
+            "year_selected": "2027",
             "page_type": "back_cover",
             "page_11_image": "shopify://shop_images/2027_IMPORTANT_DATES_d11d728b-e448-456b-97e8-a068a1831324.png",
             "page_12_image": "shopify://shop_images/LITTLE_MONTHS_2027_4890a915-4d2b-4b3d-8362-37187e7708ff.png"
@@ -670,8 +671,8 @@
         "collapsible_tab_BWrTKe",
         "text_Ck896a",
         "share",
-        "monthly_double_pages_DFdyEj",
         "monthly_double_pages_MpULX8",
+        "monthly_double_pages_DFdyEj",
         "multiyear_page_7FaH8F",
         "multiyear_page_8FFgwy",
         "multiyear_page_y9g9nd",
