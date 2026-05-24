@@ -682,7 +682,7 @@
         ".product__text.inline-richtext.subtitle {font-size: 27px; color: black; font-weight: 500;}"
       ],
       "settings": {
-        "unit_page_price": "0.28",
+        "unit_page_price": "0.22",
         "fixed_added_price": "28",
         "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, place your order first, then reply to the order confirmation email with what edits you'd like and Jess will be in touch.",
         "help_video_url2": "https://youtu.be/dV8f4VCo_YI?si=1CuNa6JQKPtl1gJ0",

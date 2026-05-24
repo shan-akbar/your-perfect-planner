@@ -105,6 +105,11 @@
 
   .step-modal-content{
     flex-direction: column;
+    height: 100%;
+  }
+
+  .contact-text p{
+    margin-bottom: 0 !important;
   }
 
   .build-step__main{
@@ -143,7 +148,7 @@
   }
 
    .build-step__main{
-    min-height: 85vh;
+    min-height: 80vh !important;
   }
 }
 
@@ -153,7 +158,12 @@
   .planner-custom-pages_images .page_item{
     max-width: 391.5px !important;
     display: block !important;
-    width: 100%;
+    
+  }
+
+  .step-modal-content{
+    overflow: auto;
+    height: 100%;
   }
   
 }
@@ -161,6 +171,7 @@
 @media(max-width: 380px){
     .gp-title{
       font-size: 15px !important;
+      margin-right: 0 !important;
     }
 
     .gp-price{
@@ -193,8 +204,8 @@
 }
 
 .diary-flip {
-  width: 371px;
-  height: 444px;
+  width: 350px;
+  height: 395px;
   position: relative;
   perspective: 1500px;
 }
@@ -427,14 +438,13 @@ input.page-qty__input::-webkit-inner-spin-button {
     max-width: 391px;
   }
 
-  
 }
 
 @media (max-width: 768px) {
   
   .diary-flip {
-      width: 259px;
-      height: 310px;
+      width: 355px;
+      height: 425px;
   }
 }
 
