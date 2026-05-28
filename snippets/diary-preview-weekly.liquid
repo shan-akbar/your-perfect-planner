@@ -31,6 +31,173 @@
 
 </style>
 
+<style>
+
+.diary-loading-spinner_hidden{
+    display: none !important;
+}
+
+.diary-loading_spinner{
+    width: 100px !important;
+    position: absolute;
+    top: 6%;
+    right: 4%;    
+}
+
+.diary-navigation {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* .nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+} */
+
+.nav-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.nav-group input {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.nav-btn,
+.action-btn {
+    height: 40px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 6px;
+    background: #2d6cdf;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+  
+}
+
+.nav-btn:hover,
+.action-btn:hover {
+    background: #1f57b7;
+}
+
+.skip-group .skip-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.skip-group input {
+    width: 90px;
+    min-width: auto;
+}
+
+.diary-flip{
+    align-self: flex-end;
+}
+
+.diary-wrapper{
+    align-items: center;
+    flex-direction: column;
+}
+
+/* The background dim layer */
+.diary-travel-loader {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Light white tint */
+    backdrop-filter: blur(4px); /* Sleek modern blur effect */
+    z-index: 99999; /* Ensure it covers everything */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    font-family: inherit;
+    transition: opacity 0.3s ease;
+}
+
+/* Elegant CSS Spinner */
+.diary-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000; /* Match your diary's accent color here */
+    border-radius: 50%;
+    animation: diarySpin 0.8s linear infinite;
+}
+
+.diary-loader-text {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.action-btn-date, .action-btn-skip-n{
+    margin-top: 10px;
+}
+
+@keyframes diarySpin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .diary-navigation {
+        align-items: stretch;
+    }
+
+    .nav-btn,
+    .action-btn,
+    .nav-group input {
+        width: 100%;
+    }
+
+   
+}
+
+@media(max-width: 535px){
+    .diary-navigation{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-group-1, .nav-group-2{
+        width: 48%;
+        flex: 0 0 48%;
+    }
+
+    .nav-group-3{
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .nav-group label{
+        font-size: 10px;
+    }
+}
+
+</style>
+
+
 <script>
     let currently_selected_layout = 1;
     let all_monthly_double_pages = [];
@@ -137,7 +304,10 @@
 
 <p class="final-step__note">{{ section.settings.final_step_note }}</p>
 <div class="diary-wrapper">
-    
+    <div class="diary-travel-loader" id="diaryLoader">
+        <div class="diary-spinner"></div>
+        <div class="diary-loader-text">Finding date...</div>
+    </div>
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
         <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
@@ -164,10 +334,279 @@
        
   </div>
 
+  <div class="diary-navigation">
+
+    <div class="nav-group nav-group-1">
+        <label>Jump to Date</label>
+        <input type="date" id="jumpDate">
+        <button class="action-btn action-btn-date" onclick="jumpToDate()">Go</button>
+    </div>
+
+    <div class="nav-group nav-group-2">
+        <label class="pn-label">Page Number</label>
+        <input type="number" min="1" placeholder="Enter page number">
+        <button class="action-btn action-btn-skip-n" onclick="jumpToPageNumber()">Go</button>
+    </div>
+
+    <div class="nav-group skip-group nav-group-3">
+        <label>Skip Pages</label>
+
+        <div class="skip-controls">
+            <button class="action-btn" onclick="skipPages('backward')">← Skip</button>
+
+            <input
+                id="skipPageCount"
+                type="number"
+                min="1"
+                value="10"
+                placeholder="N"
+            >
+
+            <button class="action-btn" onclick="skipPages('forward')">Skip →</button>
+        </div>
+    </div>
+
+
+</div>
+
 </div>
 
 
 <script>
+
+     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+   
+   function getCurrentPageIndex(isBackward = false) {
+        if (isBackward) {
+            // When traveling reverse, the truest indicator of where we are 
+            // is the very last page that is currently flipped open.
+            const lastFlipped = $('.diary-flip_page.flipped').last();
+            if (lastFlipped.length) {
+                return Number(lastFlipped.data('pageindex'));
+            }
+            return 1; // If nothing is flipped, we are at the cover
+        }
+
+        // Standard Forward Tracking: Look at visible, unflipped pages
+        const activePages = $('.diary-flip_page:not(.display__none):not(.flipped)');
+        
+        if (!activePages.length) {
+            return Number($('.diary-flip_page.flipped').last().data('pageindex')) || 1;
+        }
+
+        let targetPage = activePages.first();
+        let highestZ = parseInt(targetPage.css('z-index'), 10) || 0;
+
+        activePages.each(function () {
+            const zIndex = parseInt($(this).css('z-index'), 10) || 0;
+            if (zIndex > highestZ) {
+                highestZ = zIndex;
+                targetPage = $(this);
+            }
+        });
+
+        return Number(targetPage.data('pageindex'));
+    }
+
+   async function flipToPage(targetIndex) {
+        let isBackward = targetIndex < getCurrentPageIndex(false);
+        let currentIndex = getCurrentPageIndex(isBackward);
+
+        if (currentIndex === targetIndex) {
+            return;
+        }
+
+        // --- SHOW LOADER ---
+        // Use flex so alignment classes inside CSS kick in perfectly
+        $('#diaryLoader').css('display', 'flex'); 
+        await sleep(1000);
+        if (!isBackward) {
+            // Moving forward
+            while (currentIndex < targetIndex) {
+                const availablePages = $('.diary-flip_page:not(.display__none):not(.flipped)');
+                let targetPage = null;
+
+                if (availablePages.length === 0) break;
+                
+                if (availablePages.length === 1) {
+                    targetPage = availablePages.first();
+                } else {
+                    let highestZ = -1;
+                    availablePages.each(function() {
+                        const zIndex = parseInt($(this).css('z-index'), 10) || 0;
+                        if (zIndex > highestZ) {
+                            highestZ = zIndex;
+                            targetPage = $(this);
+                        }
+                    });
+                }
+
+                if (targetPage && targetPage.find('.diary-flip_next-btn').length) {
+                    targetPage.find('.diary-flip_next-btn').trigger('click');
+                } else {
+                    break;
+                }
+
+                let previousIndex = currentIndex;
+                currentIndex = getCurrentPageIndex(false);
+                if (currentIndex === previousIndex) break; 
+            }
+        } else {
+            // Moving backward
+            while (currentIndex > targetIndex) {
+                const lastFlippedPage = $('.diary-flip_page.flipped').last();
+
+                if (lastFlippedPage.length && lastFlippedPage.find('.diary-flip_back-btn').length) {
+                    lastFlippedPage.find('.diary-flip_back-btn').trigger('click');
+                } else {
+                    break;
+                }
+
+                let previousIndex = currentIndex;
+                currentIndex = getCurrentPageIndex(true);
+                if (currentIndex === previousIndex) break; 
+            }
+        }
+
+        // --- HIDE LOADER ---
+        // Delay slightly (e.g., 200ms) for visual smoothness if desired, or hide instantly:
+        $('#diaryLoader').hide();
+    }
+
+    function jumpToDate() {
+        // 1. Grab the date string from the input field
+        const dateString = $('#jumpDate').val();
+
+        // 2. Alert the user if they clicked "Go" without picking a date
+        if (!dateString) {
+            alert('Please select a date first.');
+            return;
+        }
+
+        // Convert user input to a Date object (set to midnight for clean comparison)
+        const userDate = new Date(dateString + 'T00:00:00');
+
+        // 3. Find all elements that have a data-date attribute
+        const allDateElements = $('.diary-flip_page img[data-date]');
+
+        if (!allDateElements.length) {
+            alert('No planner dates found.');
+            return;
+        }
+
+        // 4. Get the boundary dates (First and Last elements)
+        const firstDateStr = allDateElements.first().attr('data-date');
+        const lastDateStr = allDateElements.last().attr('data-date');
+
+        const firstDate = new Date(firstDateStr + 'T00:00:00');
+        const lastDate = new Date(lastDateStr + 'T00:00:00');
+
+        // 5. Check if the user's date is within the bounds
+        if (userDate < firstDate || userDate > lastDate) {
+            alert('Selected date is out of the planner\'s range.');
+            return;
+        }
+
+        // 6. Find the closest weekly page
+        let targetPage = null;
+        let closestDiff = Infinity;
+
+        $('.diary-flip_page').each(function () {
+            const pageImg = $(this).find('img[data-date]');
+            if (pageImg.length) {
+                const pageDateStr = pageImg.attr('data-date');
+                const pageDate = new Date(pageDateStr + 'T00:00:00');
+
+                // Calculate absolute difference in milliseconds
+                const diff = Math.abs(userDate - pageDate);
+
+                // Track the page with the smallest difference (nearest date)
+                if (diff < closestDiff) {
+                    closestDiff = diff;
+                    targetPage = $(this);
+                }
+            }
+        });
+
+        // 7. Flip to the page if found
+        if (targetPage && targetPage.length) {
+            flipToPage(Number(targetPage.data('pageindex')));
+        } else {
+            alert('Date not found');
+        }
+    }
+
+    
+
+  function jumpToPageNumber() {
+        // 1. Grab the closest input value relative to the nav-group layout
+        const targetPageInput = $('.nav-group input[type="number"]').val();
+        const targetIndex = Number(targetPageInput);
+
+        // 2. Alert the user if they clicked "Go" without entering a number
+        if (!targetPageInput || isNaN(targetIndex) || targetIndex <= 0) {
+            alert('Please enter a valid page number first.');
+            return;
+        }
+
+        // 3. Look for the page element matching the page index
+        const targetPage = $(`.diary-flip_page[data-pageindex="${targetIndex}"]`);
+
+        // 4. Handle case where the page number doesn't exist in the DOM
+        if (!targetPage.length) {
+            alert(`Page ${targetIndex} not found in the diary.`);
+            return;
+        }
+
+        // 5. Trigger the automated navigation loop until the target is reached
+        flipToPage(targetIndex);
+    }
+
+    /**
+ * Skips N pages forward or backward relative to the current active page
+ * @param {string} direction - Either 'forward' or 'backward'
+ */
+    function skipPages(direction) {
+        // 1. Grab the raw value from the skip input
+        const skipValue = $('#skipPageCount').val();
+        const pagesToSkip = parseInt(skipValue, 10);
+
+        // 2. Validate the user actually put a proper positive number
+        if (!skipValue || isNaN(pagesToSkip) || pagesToSkip <= 0) {
+            alert('Please enter a valid number of pages to skip.');
+            return;
+        }
+
+        // 3. Find out exactly where the diary is positioned right now
+        // We use false here to look at the forward-facing page profile baseline
+        const currentIndex = getCurrentPageIndex(false);
+        let targetIndex = currentIndex;
+
+        // 4. Calculate the target page index based on direction
+        if (direction === 'forward') {
+            targetIndex = currentIndex + pagesToSkip;
+        } else if (direction === 'backward') {
+            targetIndex = currentIndex - pagesToSkip;
+        }
+
+        // 5. Constrain the target index so it doesn't try to go past the actual pages available
+        const totalPages = $('.diary-flip_page').length;
+        
+        if (targetIndex > totalPages) {
+            targetIndex = totalPages; // Snap to the final page
+        }
+        if (targetIndex < 1) {
+            targetIndex = 1; // Snap to the cover page
+        }
+
+        // 6. If the calculated destination is different from where we are, travel!
+        if (targetIndex === currentIndex) {
+            alert(direction === 'forward' ? 'You are already at the end.' : 'You are already at the beginning.');
+            return;
+        }
+
+        flipToPage(targetIndex);
+    }
 
     function updateDiaryPages(){
         let start_date_element = document.getElementById("start_date");

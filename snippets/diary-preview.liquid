@@ -146,7 +146,6 @@
 
 @media (max-width: 768px) {
     .diary-navigation {
-      
         align-items: stretch;
     }
 
@@ -157,6 +156,27 @@
     }
 
    
+}
+
+@media(max-width: 535px){
+    .diary-navigation{
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-group-1, .nav-group-2{
+        width: 48%;
+        flex: 0 0 48%;
+    }
+
+    .nav-group-3{
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .nav-group label{
+        font-size: 10px;
+    }
 }
 
 </style>
@@ -294,21 +314,19 @@
 
   <div class="diary-navigation">
 
-
-
-    <div class="nav-group">
+    <div class="nav-group nav-group-1">
         <label>Jump to Date</label>
         <input type="date" id="jumpDate">
         <button class="action-btn action-btn-date" onclick="jumpToDate()">Go</button>
     </div>
 
-    <div class="nav-group">
+    <div class="nav-group nav-group-2">
         <label class="pn-label">Page Number</label>
         <input type="number" min="1" placeholder="Enter page number">
         <button class="action-btn action-btn-skip-n" onclick="jumpToPageNumber()">Go</button>
     </div>
 
-    <div class="nav-group skip-group">
+    <div class="nav-group skip-group nav-group-3">
         <label>Skip Pages</label>
 
         <div class="skip-controls">

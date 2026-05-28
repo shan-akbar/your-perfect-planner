@@ -143,10 +143,7 @@
 }
 
 @media(max-width: 768px){
-  .final-step__note{
-    min-width: 641px;
-  }
-
+  
    .build-step__main{
     min-height: 80vh !important;
   }
@@ -489,34 +486,35 @@ input.page-qty__input::-webkit-inner-spin-button {
   }
   
   .diary-flip {
-      width: 319px;
-      height: 382px;
+      width: 192px;
+      height: 255px;
   }
   .diary-wrapper{
-    width: 641px;
+    width: 100%;
   }
 }
 
 @media (max-width: 425px) {
   .diary-flip {
-      width: 309px;
-      height: 370px;
+      width: 180px;
+      height: 245px;
   }
+
+  
+ 
 }
 
 @media (max-width: 375px) {
   .diary-flip {
-      width: 275px;
-      height: 329px;
+      width: 165px;
+      height: 221px;
   }
-  .diary-wrapper{
-    width: 457px;
-  }
+  
 }
 
 @media (max-width: 320px) {
   .diary-flip {
-      width: 213px;
-      height: 255px;
+      width: 165px;
+      height: 221px;
   }
 }
