@@ -221,6 +221,16 @@
   color: #000;
 }
 
+/* Apply to the parent to instantly neutralize all 6000 child animations */
+.diary-flip--instant-jump .diary-flip_page,
+.diary-flip--instant-jump .diary-flip_page .diary-flip_back {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  transform-style: flat !important;
+}
+
 .diary-flip_page img{
   height: 100%;
   width: 100%;

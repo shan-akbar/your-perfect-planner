@@ -314,8 +314,11 @@
         </svg>
     </div>
   <div class="diary-flip">
+
+        
         {% for index in (1..6000) %}
-    
+            
+                
         <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 6000 | minus: index }};" data-pageindex="{{index}}"> 
                     <div class="diary-flip_back">
                         <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" alt="ypp" class="back-page" loading="lazy">
@@ -370,7 +373,7 @@
 
 <script>
 
-    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
    
    function getCurrentPageIndex(isBackward = false) {
         if (isBackward) {
@@ -404,68 +407,91 @@
         return Number(targetPage.data('pageindex'));
     }
 
-   async function flipToPage(targetIndex) {
+  async function flipToPage(targetIndex) {
         let isBackward = targetIndex < getCurrentPageIndex(false);
         let currentIndex = getCurrentPageIndex(isBackward);
 
-        if (currentIndex === targetIndex) {
-            return;
-        }
+        if (currentIndex === targetIndex) return;
 
-        // --- SHOW LOADER ---
-        // Use flex so alignment classes inside CSS kick in perfectly
+        // --- 1. SHOW LOADER ---
         $('#diaryLoader').css('display', 'flex'); 
+
         await sleep(1000);
+
+        // Drop out of the current execution frame to let the mobile browser cleanly render the spinner
+        await new Promise(resolve => requestAnimationFrame(resolve));
+
+        const $diaryContainer = $('.diary-flip');
+    
+        // --- 2. KILL 3D/TRANSITIONS INSTANTLY VIA PARENT ---
+        $diaryContainer.addClass('diary-flip--instant-jump');
+
+        const $allPages = $('.diary-flip_page');
+
+        // --- 3. RUN THE FLIP LOGIC DIRECTLY IN MEMORY (NO CLICKS) ---
         if (!isBackward) {
-            // Moving forward
-            while (currentIndex < targetIndex) {
-                const availablePages = $('.diary-flip_page:not(.display__none):not(.flipped)');
-                let targetPage = null;
-
-                if (availablePages.length === 0) break;
+            // Moving Forward: Loop through the pages that need to be flipped
+            $allPages.each(function() {
+                const pageIdx = Number($(this).data('pageindex'));
                 
-                if (availablePages.length === 1) {
-                    targetPage = availablePages.first();
-                } else {
-                    let highestZ = -1;
-                    availablePages.each(function() {
-                        const zIndex = parseInt($(this).css('z-index'), 10) || 0;
-                        if (zIndex > highestZ) {
-                            highestZ = zIndex;
-                            targetPage = $(this);
-                        }
-                    });
+                if (pageIdx >= currentIndex && pageIdx < targetIndex) {
+                    // This page needs to be flipped forward
+                    if (!$(this).hasClass('flipped')) {
+                        $(this).addClass('flipped');
+                        // Replicate the zIndex switch logic directly
+                        let current_zindex = parseInt($(this).css('z-index'), 10) || 0;
+                        $(this).css('z-index', 6000 - current_zindex);
+                    }
                 }
-
-                if (targetPage && targetPage.find('.diary-flip_next-btn').length) {
-                    targetPage.find('.diary-flip_next-btn').trigger('click');
-                } else {
-                    break;
-                }
-
-                let previousIndex = currentIndex;
-                currentIndex = getCurrentPageIndex(false);
-                if (currentIndex === previousIndex) break; 
-            }
+            });
         } else {
-            // Moving backward
-            while (currentIndex > targetIndex) {
-                const lastFlippedPage = $('.diary-flip_page.flipped').last();
-
-                if (lastFlippedPage.length && lastFlippedPage.find('.diary-flip_back-btn').length) {
-                    lastFlippedPage.find('.diary-flip_back-btn').trigger('click');
-                } else {
-                    break;
+            // Moving Backward: Loop through the pages that need to be unflipped
+            // Process in reverse order to cleanly mimic un-flipping stack behavior
+            $($allPages.get().reverse()).each(function() {
+                const pageIdx = Number($(this).data('pageindex'));
+                
+                if (pageIdx >= targetIndex && pageIdx < currentIndex) {
+                    // This page needs to be flipped backward
+                    if ($(this).hasClass('flipped')) {
+                        $(this).removeClass('flipped');
+                        // Replicate the zIndex switch logic directly
+                        let current_zindex = parseInt($(this).css('z-index'), 10) || 0;
+                        $(this).css('z-index', 6000 - current_zindex);
+                    }
                 }
-
-                let previousIndex = currentIndex;
-                currentIndex = getCurrentPageIndex(true);
-                if (currentIndex === previousIndex) break; 
-            }
+            });
         }
 
+        // --- 4. BULK FIX VISIBILITY (.display__none) ---
+        // Instead of sequentially toggling neighboring pages step-by-step, 
+        // we calculate the ultimate visibility states based on the final targetIndex.
+        let target_prev = targetIndex - 3;
+        let target_next = targetIndex + 2;
+
+        $allPages.each(function() {
+            const pageIdx = Number($(this).data('pageindex'));
+
+            // Replicate your visibility boundaries instantly
+            if (pageIdx <= target_prev) {
+                $(this).addClass('display__none');
+            } else if (pageIdx >= target_next) {
+                $(this).addClass('display__none');
+            } else {
+                // Keep the active view window visible
+                if (!($(this).hasClass("second_last__page") || $(this).hasClass("last__page") && pageIdx === target_next)) {
+                    $(this).removeClass('display__none');
+                }
+            }
+        });
+
+        // --- 5. CLEAN UP & RESTORE ---
+        // Force a minor DOM layout flush so the browser processes the updates in one clean layout sweep
+        void document.body.offsetHeight; 
+        await sleep(1000);
+        // Remove the safety class so single manual page clicks still work smoothly
+        $diaryContainer.removeClass('diary-flip--instant-jump');
+    
         // --- HIDE LOADER ---
-        // Delay slightly (e.g., 200ms) for visual smoothness if desired, or hide instantly:
         $('#diaryLoader').hide();
     }
 
@@ -914,12 +940,12 @@
             pages_limit_div.style.display = 'none';
         }
 
+        updatePrice(diary_pages.length);
+
         let last_page_element = document.querySelector('.last__page');
         let last_page_index = last_page_element.getAttribute('data-pageindex');
         let pn_label = document.querySelector('.pn-label');
         pn_label.innerHTML = `Page Number (1-${last_page_index})`;
-        
-        updatePrice(diary_pages.length);
     }
 
     function splitDiary(){
