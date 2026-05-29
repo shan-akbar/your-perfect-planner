@@ -345,13 +345,12 @@
     </div>
 
 
-</div>
+    </div>
 
 </div>
 
 
 <script>
-
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
    
    function getCurrentPageIndex(isBackward = false) {
@@ -847,13 +846,14 @@
             diary_pages_half_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original_2));
         }
-
-        updatePrice(diary_pages.length);
-    
+        
         let last_page_element = document.querySelector('.last__page');
         let last_page_index = last_page_element.getAttribute('data-pageindex');
         let pn_label = document.querySelector('.pn-label');
         pn_label.innerHTML = `Page Number (1-${last_page_index})`;
+
+        updatePrice(diary_pages.length);
+    
     }
 
   function switchWeekendsPages(){

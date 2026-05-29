@@ -314,11 +314,8 @@
         </svg>
     </div>
   <div class="diary-flip">
-
-        
         {% for index in (1..6000) %}
-            
-                
+    
         <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 6000 | minus: index }};" data-pageindex="{{index}}"> 
                     <div class="diary-flip_back">
                         <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" alt="ypp" class="back-page" loading="lazy">
@@ -366,15 +363,14 @@
         </div>
     </div>
 
-
-</div>
+  </div>
 
 </div>
 
 
 <script>
 
-     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
    
    function getCurrentPageIndex(isBackward = false) {
         if (isBackward) {
@@ -917,6 +913,12 @@
         }else{
             pages_limit_div.style.display = 'none';
         }
+
+        let last_page_element = document.querySelector('.last__page');
+        let last_page_index = last_page_element.getAttribute('data-pageindex');
+        let pn_label = document.querySelector('.pn-label');
+        pn_label.innerHTML = `Page Number (1-${last_page_index})`;
+        
         updatePrice(diary_pages.length);
     }
 
