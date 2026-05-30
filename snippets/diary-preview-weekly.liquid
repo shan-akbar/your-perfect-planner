@@ -82,7 +82,7 @@
     padding: 0 18px;
     border: none;
     border-radius: 6px;
-    background: #2d6cdf;
+    background: #ff4545;
     color: #fff;
     cursor: pointer;
     font-size: 14px;
@@ -93,7 +93,7 @@
 
 .nav-btn:hover,
 .action-btn:hover {
-    background: #1f57b7;
+    opacity: 0.7;
 }
 
 .skip-group .skip-controls {
@@ -175,6 +175,11 @@
 }
 
 @media(max-width: 535px){
+    #jumpDate{
+      
+        max-width: 158px;
+    }
+
     .diary-navigation{
         flex-wrap: wrap;
         gap: 10px;
@@ -195,6 +200,19 @@
     }
 }
 
+@media(max-width: 409px){
+    #jumpDate{
+      
+        max-width: 143px;
+    }
+}
+
+@media(max-width: 370px){
+    #jumpDate{
+     
+        max-width: 133px;
+    }
+}
 </style>
 
 
@@ -560,14 +578,33 @@
 
     
 
-  function jumpToPageNumber() {
+   /**
+     * Navigates directly to a specific page number entered by the user
+     */
+    function jumpToPageNumber() {
         // 1. Grab the closest input value relative to the nav-group layout
         const targetPageInput = $('.nav-group input[type="number"]').val();
-        const targetIndex = Number(targetPageInput);
+        const targetIndex = Math.ceil(Number(targetPageInput) / 2);
 
         // 2. Alert the user if they clicked "Go" without entering a number
-        if (!targetPageInput || isNaN(targetIndex) || targetIndex <= 0) {
+        if (!targetPageInput || isNaN(targetIndex)) {
             alert('Please enter a valid page number first.');
+            return;
+        }
+
+        // Dynamic Min/Max bounds check
+        const minPage = 1;
+        const lastPageElement = document.querySelector('.last__page');
+        const maxPage = lastPageElement ? (Number(lastPageElement.getAttribute('data-pageindex'))): $('.diary-flip_page').length;
+
+       // Updated clear error messages for direct jumps
+        if (targetIndex < minPage) {
+            alert(`Invalid page number. The minimum page number you can enter is ${minPage}.`);
+            return;
+        }
+
+        if (targetIndex > maxPage) {
+            alert(`Invalid page number. The maximum page number available in this diary is ${maxPage * 2}.`);
             return;
         }
 
@@ -576,7 +613,7 @@
 
         // 4. Handle case where the page number doesn't exist in the DOM
         if (!targetPage.length) {
-            alert(`Page ${targetIndex} not found in the diary.`);
+            alert(`Page ${targetPageInput} not found in the diary.`);
             return;
         }
 
@@ -585,13 +622,13 @@
     }
 
     /**
- * Skips N pages forward or backward relative to the current active page
- * @param {string} direction - Either 'forward' or 'backward'
- */
+     * Skips N pages forward or backward relative to the current active page
+     * @param {string} direction - Either 'forward' or 'backward'
+     */
     function skipPages(direction) {
         // 1. Grab the raw value from the skip input
         const skipValue = $('#skipPageCount').val();
-        const pagesToSkip = parseInt(skipValue, 10);
+        const pagesToSkip = Math.ceil(parseInt(skipValue, 10)/2);
 
         // 2. Validate the user actually put a proper positive number
         if (!skipValue || isNaN(pagesToSkip) || pagesToSkip <= 0) {
@@ -600,7 +637,6 @@
         }
 
         // 3. Find out exactly where the diary is positioned right now
-        // We use false here to look at the forward-facing page profile baseline
         const currentIndex = getCurrentPageIndex(false);
         let targetIndex = currentIndex;
 
@@ -611,14 +647,20 @@
             targetIndex = currentIndex - pagesToSkip;
         }
 
-        // 5. Constrain the target index so it doesn't try to go past the actual pages available
-        const totalPages = $('.diary-flip_page').length;
-        
-        if (targetIndex > totalPages) {
-            targetIndex = totalPages; // Snap to the final page
+        // Dynamic Min/Max bounds check
+        const minPage = 1;
+        const lastPageElement = document.querySelector('.last__page');
+        const maxPage = lastPageElement ? Number(lastPageElement.getAttribute('data-pageindex')): $('.diary-flip_page').length;
+
+        // 5. Check if the jump exceeds boundaries and alert the user
+        if (direction === 'forward' && targetIndex > maxPage) {
+            alert(`Cannot skip forward. This jump exceeds the maximum page number (${maxPage * 2}).`);
+            return;
         }
-        if (targetIndex < 1) {
-            targetIndex = 1; // Snap to the cover page
+
+        if (direction === 'backward' && targetIndex < minPage) {
+            alert(`Cannot skip backward. This jump drops below the minimum page number (${minPage}).`);
+            return;
         }
 
         // 6. If the calculated destination is different from where we are, travel!
@@ -629,6 +671,7 @@
 
         flipToPage(targetIndex);
     }
+
 
     function updateDiaryPages(){
         let start_date_element = document.getElementById("start_date");
@@ -943,7 +986,7 @@
         updatePrice(diary_pages.length);
 
         let last_page_element = document.querySelector('.last__page');
-        let last_page_index = last_page_element.getAttribute('data-pageindex');
+        let last_page_index = Number(last_page_element.getAttribute('data-pageindex')) * 2;
         let pn_label = document.querySelector('.pn-label');
         pn_label.innerHTML = `Page Number (1-${last_page_index})`;
     }
