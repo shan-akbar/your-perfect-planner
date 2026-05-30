@@ -141,10 +141,10 @@
   <div class="diary-flip">
 
         
-        {% for index in (1..6000) %}
+        {% for index in (1..1500) %}
             
                 
-        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 6000 | minus: index }};" data-pageindex="{{index}}"> 
+        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 1500 | minus: index }};" data-pageindex="{{index}}"> 
             <div class="diary-flip_back">
                 <img alt="ypp" src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" class="back-page" loading="lazy">
                 <label class="diary-flip_back-btn">Prev</label>
@@ -374,7 +374,7 @@
                     if(after_next_page.classList.contains('flipped')){
                         after_next_page.classList.remove('flipped');
                         let current_zindex = after_next_page.style.zIndex;
-                        after_next_page.style.zIndex = 6000-Number(current_zindex);
+                        after_next_page.style.zIndex = 1500-Number(current_zindex);
                     }
                     
                 }
@@ -385,7 +385,7 @@
                     if(after_after_next_page.classList.contains('flipped')){
                         after_after_next_page.classList.remove('flipped');
                         let current_zindex = after_after_next_page.style.zIndex;
-                        after_after_next_page.style.zIndex =  6000-Number(current_zindex);
+                        after_after_next_page.style.zIndex =  1500-Number(current_zindex);
                     }
                 }
             }
@@ -404,7 +404,7 @@
                 reverse_fix = true;
                 page.classList.remove("flipped");
                 let current_zindex = page.style.zIndex;
-                page.style.zIndex =  6000-Number(current_zindex);
+                page.style.zIndex =  1500-Number(current_zindex);
             }
         }
 
@@ -413,19 +413,19 @@
             if(last_page.classList.contains('flipped')){
                 last_page.classList.remove('flipped');
                 let current_zindex = last_page.style.zIndex;
-                last_page.style.zIndex =  6000-Number(current_zindex);
+                last_page.style.zIndex =  1500-Number(current_zindex);
             }
             if(!second_last_page?.classList.contains('flipped')){
                 second_last_page.classList.add('flipped');
                 let current_zindex = second_last_page.style.zIndex;
-                second_last_page.style.zIndex =  6000-Number(current_zindex);
+                second_last_page.style.zIndex =  1500-Number(current_zindex);
             }
             second_last_page?.classList.remove('display__none');
             let third_last_page = pages_preview[pages_length - 3];
             if(!third_last_page.classList.contains('flipped')){
                 third_last_page.classList.add('flipped');
                 let current_zindex = third_last_page.style.zIndex;
-                third_last_page.style.zIndex =  6000-Number(current_zindex);
+                third_last_page.style.zIndex =  1500-Number(current_zindex);
             }
             third_last_page.classList.remove('display__none');
         }

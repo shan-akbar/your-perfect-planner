@@ -48,7 +48,13 @@
 }
 
 .display__none{
-  display: none;
+    display: none !important;
+    /* Tells the browser to completely skip rendering calculations for this node */
+    content-visibility: hidden; 
+    /* Strictly isolates the element so it doesn't affect the layout of anything else */
+    contain: strict; 
+    /* Drop any active z-index */
+    z-index: auto !important;
 }
 
 .product-form__input.product-form__quantity{
@@ -221,7 +227,7 @@
   color: #000;
 }
 
-/* Apply to the parent to instantly neutralize all 6000 child animations */
+/* Apply to the parent to instantly neutralize all 1500 child animations */
 .diary-flip--instant-jump .diary-flip_page,
 .diary-flip--instant-jump .diary-flip_page .diary-flip_back {
   transition: none !important;
