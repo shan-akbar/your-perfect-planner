@@ -42,25 +42,30 @@
 {% assign diary_pages_layout_1 = null %}
 
 {% for i in (1..12) %}
-     {% assign metafield_key_2_check = "planner_pages_2_layout_" | append: i | append: "_set_1" %}
+    {% assign metafield_key_2_check = "planner_pages_2_layout_" | append: i | append: "_set_1" %}
     {% assign metafield_key_check = "planner_pages_layout_" | append: i | append: "_set_1" %}
+    
     {% if product.metafields["custom"][metafield_key_check].value or product.metafields["custom"][metafield_key_2_check].value %}
-        {%  assign diary_pages_layout_general = null %}
-        {%  assign diary_pages_layout_general_2 = null %}
+        {% assign diary_pages_layout_general = null %}
+        {% assign diary_pages_layout_general_2 = null %}
+        
         {% for j in (1..3) %}
             {% assign diary_pages_temp = null %}
             {% assign diary_pages_temp_2 = null %}
             {% assign metafield_key = "planner_pages_layout_" | append: i | append: "_set_" | append: j %}
             {% assign metafield_key_2 = "planner_pages_2_layout_" | append: i | append: "_set_" | append: j %}
+            
             {% assign diary_pages_temp = product.metafields["custom"][metafield_key].value %}
             {% assign diary_pages_temp_2 = product.metafields["custom"][metafield_key_2].value %}
+            
             {%- paginate diary_pages_temp by 128 -%}
                 {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
-                {%  assign diary_pages_layout_general = diary_pages_layout_general | concat: diary_pages_temp %}
+                {% assign diary_pages_layout_general = diary_pages_layout_general | concat: diary_pages_temp %}
             {%- endpaginate -%}
+            
             {%- paginate diary_pages_temp_2 by 128 -%}
                 {% assign diary_pages_temp_2 = diary_pages_temp_2 | reverse | reverse %}
-                {%  assign diary_pages_layout_general_2 = diary_pages_layout_general_2 | concat: diary_pages_temp_2 %}
+                {% assign diary_pages_layout_general_2 = diary_pages_layout_general_2 | concat: diary_pages_temp_2 %}
             {%- endpaginate -%}
         {% endfor %}
 
@@ -71,46 +76,56 @@
         {% endif %}
 
         <script>
-            all_layouts.push( {{ diary_pages_layout_general_final | json }} );
-            
+            // FIXED: Extracted clean, downscaled thumbnail paths instead of heavy Shopify system objects
+            all_layouts.push([
+                {% for img in diary_pages_layout_general_final %}
+                    {{ img | image_url: width: 800 | json }}{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]);
         </script>
     {% endif %}
 {% endfor %}
 
-  
-    <script>
-        
-        let start_date = "2026-01-01";
-        
-        let current_date = new Date(start_date);
-        let diary_pages = [];
-        let diary_pages_backup = [];
-        let last_index_date = new Date();
-        
-        diary_pages.push({page_type: 'outer_cover', date: '',  year: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '',  year: '' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+<script>
+    let start_date = "2026-01-01";
+    let current_date = new Date(start_date);
+    let diary_pages = [];
+    let diary_pages_backup = [];
+    let last_index_date = new Date();
+    
+    diary_pages.push({page_type: 'outer_cover', date: '', year: '', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+    diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
 
-        {% assign page_type = 'day' %}
-        {% assign pages_length = diary_pages_layout_1 | size | divided_by: 2 %}
-        {% assign double_pages = false %}
-        {% if pages_length > 40 %}
-            {% assign double_pages = true %}
-        {% endif %}
-        {% assign skip_date_increment = true %}
-        {% assign skip_date_increment_year = false %}
+    {% assign page_type = 'day' %}
+    {% assign pages_length = diary_pages_layout_1 | size | divided_by: 2 %}
+    {% assign double_pages = false %}
+    {% if pages_length > 40 %}
+        {% assign double_pages = true %}
+    {% endif %}
+    {% assign skip_date_increment = true %}
+    {% assign skip_date_increment_year = false %}
 
-        {% assign diary_page = diary_pages_layout_1[0] %}
+    {% assign diary_page = diary_pages_layout_1[0] %}
 
-            {% for i in (1..26) %}
-                diary_pages.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-                diary_pages_backup.push({page_type: {{ page_type | json }},page_url: {{ diary_page |  image_url: width: diary_page.width | json }}});
-            {% endfor %}
+    // FIXED: Convert the base layout image to a lightweight 800px string reference once outside the loop
+    let optimized_weekly_url = {{ diary_page | image_url: width: 800 | json }};
 
-      
-       
-        diary_pages.push({page_type: 'outer_cover', date: '',page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '',page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506" });
-    </script>
+    {% for i in (1..26) %}
+        diary_pages.push({
+            page_type: {{ page_type | json }},
+            date: '', // Keeps data layout standardized for the sliding window engine
+            page_url: optimized_weekly_url
+        });
+        diary_pages_backup.push({
+            page_type: {{ page_type | json }},
+            date: '',
+            page_url: optimized_weekly_url
+        });
+    {% endfor %}
+
+    diary_pages.push({page_type: 'outer_cover', date: '', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
+    diary_pages_backup.push({page_type: 'outer_cover', date: '', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
+</script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
 
@@ -119,29 +134,29 @@
     
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
         </svg>
     </div>
-  <div class="diary-flip">
 
-        
-        {% for index in (1..1500) %}
-            
-                
-        <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 1500 | minus: index }};" data-pageindex="{{index}}"> 
-                    <div class="diary-flip_back">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" alt="ypp" class="back-page" loading="lazy">
-                        <label class="diary-flip_back-btn">Prev</label>
-                    </div>
-                    <div class="diary-flip_front">
-                        <img src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" alt="ypp" class="front-page" loading="lazy">
-                        <label class="diary-flip_next-btn">NEXT</label>
-                    </div>
-        </div>
-                
+    <div class="diary-flip">
+        <!-- FIXED: Scaled 1,500 crashing DOM nodes down to the unified 5-page virtual viewport -->
+        {% for index in (1..5) %}
+            <div class="diary-flip_page diary-flip_page__{{index}} display__none" data-domindex="{{index}}"> 
+                <div class="diary-flip_back">
+                    <!-- FIXED: Memory protection via async base64 image strings -->
+                    <img decoding="async" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="ypp" class="back-page" loading="lazy">
+                    <!-- FIXED: Safe form-independent button click routing -->
+                    <button type="button" class="diary-flip_back-btn" onclick="handlePrevPage(event)">Prev</button>
+                </div>
+                <div class="diary-flip_front">
+                    <!-- FIXED: Memory protection via async base64 image strings -->
+                    <img decoding="async" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="ypp" class="front-page" loading="lazy">
+                    <!-- FIXED: Safe form-independent button click routing -->
+                    <button type="button" class="diary-flip_next-btn" onclick="handleNextPage(event)">NEXT</button>
+                </div>
+            </div>
         {% endfor %}
-       
-  </div>
+    </div>
 
 </div>
 
@@ -306,119 +321,143 @@
        
     }
 
-    function renderPages(){
-        remove_neutral_pages();
-        neutralize_pages();
-       
-        diary_pages.splice(diary_pages.length-1, 0, {page_type:"copyright", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669" });
+    // ========================================================
+// 1. GLOBAL STATE TRACKING VARIABLES
+// ========================================================
+let current_physical_page = 0;     // Tracks the active center physical page position (0 = Front Cover)
+let is_animating = false;          // Structural lock flag to block rapid double-click UI glitching
+const FLIP_ANIMATION_SPEED = 600;  // CSS transition sync delay in milliseconds (matches 0.6s 3D flip)
+
+// ========================================================
+// 2. UNIFIED SLIDING WINDOW RENDERING ENGINE
+// ========================================================
+/**
+ * Synchronizes the 5-page DOM window container with the main global diary_pages array.
+ * Controls asset loading, attribute interpolation, and 3D stacking depths.
+ */
+function updateDOMWindow() {
+    const domPages = document.querySelectorAll('.diary-flip_page');
+    
+    domPages.forEach((domPage, domSlotIndex) => {
+        // Calculate which virtual data page maps to this specific physical DOM slot.
+        // Slot index 2 in our 5-element viewport loop represents our center focus page.
+        let targetPhysicalPageIndex = current_physical_page + (domSlotIndex - 2);
+        let dataIndexFront = targetPhysicalPageIndex * 2;
+        let dataIndexBack = dataIndexFront + 1;
+
+        // Boundary Protection: If out of data range bounds, drop depth weight and hide the DOM node
+        if (dataIndexFront < 0 || dataIndexFront >= diary_pages.length) {
+            domPage.classList.add('display__none');
+            domPage.style.zIndex = 0;
+            return;
+        }
+
+        const frontImg = domPage.querySelector('.front-page');
+        const backImg = domPage.querySelector('.back-page');
         
-        if(diary_pages.length % 2 != 0){
-            diary_pages.splice(diary_pages.length-2, 0, {page_type:"blank", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" });
+        // --- FRONT LAYER ASSET & METADATA SYNC ---
+        if (diary_pages[dataIndexFront]) {
+            frontImg.setAttribute('src', diary_pages[dataIndexFront].page_url);
+            
+            // Safe conditional handling for Dated vs Undated/Weekly layouts
+            if (diary_pages[dataIndexFront].date) {
+                frontImg.setAttribute('data-date', diary_pages[dataIndexFront].date);
+            } else {
+                frontImg.removeAttribute('data-date');
+            }
+            
+            if (diary_pages[dataIndexFront].day_name) {
+                frontImg.setAttribute('data-dayname', diary_pages[dataIndexFront].day_name);
+            } else {
+                frontImg.removeAttribute('data-dayname');
+            }
         }
-
-        let old_last_page = document.querySelector(".diary-flip_page.last__page");
-        old_last_page?.classList.remove('last__page');
-        let old_second_last_page = document.querySelector(".diary-flip_page.second_last__page");
-        old_second_last_page?.classList.remove('second_last__page');
-        let pages_preview = document.querySelectorAll(".diary-flip_page");
-        let pages_length = diary_pages.length/2;
-        let last_page = pages_preview[pages_length - 1];
-        let second_last_page = pages_preview[pages_length - 2];
-        last_page.classList.add("last__page"); 
-        second_last_page?.classList.add("second_last__page");
-        let side_index = 0;
-        let run_pointer_fix = true;
-        for(var i=0; i<pages_length; ++i){    
-            let page = pages_preview[i];
-            page.querySelector(".front-page").setAttribute("src", diary_pages[side_index].page_url);
-            page.querySelector(".back-page").setAttribute("src", diary_pages[side_index + 1].page_url);
-            if(diary_pages[side_index].page_type == 'day'){
-                
-                page.querySelector(".front-page").setAttribute("data-date", diary_pages[side_index].date);
-              
+        
+        // --- BACK LAYER ASSET & METADATA SYNC ---
+        if (diary_pages[dataIndexBack]) {
+            backImg.setAttribute('src', diary_pages[dataIndexBack].page_url);
+            
+            // Safe conditional handling for Dated vs Undated/Weekly layouts
+            if (diary_pages[dataIndexBack].date) {
+                backImg.setAttribute('data-date', diary_pages[dataIndexBack].date);
+            } else {
+                backImg.removeAttribute('data-date');
             }
-            if(diary_pages[side_index + 1].page_type == 'day'){
-               
-                page.querySelector(".back-page").setAttribute("data-date", diary_pages[side_index + 1].date);
-              
-            }
-            side_index += 2;
-            if(page.classList.contains("flipped") && !page.classList.contains("display__none") && run_pointer_fix){
-                run_pointer_fix = false;
-                let next_page = pages_preview[i+1];
-                if(next_page){
-                    next_page.classList.remove('display__none');
-                }
-                
-                let after_next_page = pages_preview[i+2];
-                if(after_next_page){
-                    after_next_page.classList.remove('display__none');
-                    if(after_next_page.classList.contains('flipped')){
-                        after_next_page.classList.remove('flipped');
-                        let current_zindex = after_next_page.style.zIndex;
-                        after_next_page.style.zIndex = 1500-Number(current_zindex);
-                    }
-                    
-                }
-
-                let after_after_next_page = pages_preview[i+3];
-                if(after_after_next_page){
-                    after_after_next_page.classList.remove('display__none');
-                    if(after_after_next_page.classList.contains('flipped')){
-                        after_after_next_page.classList.remove('flipped');
-                        let current_zindex = after_after_next_page.style.zIndex;
-                        after_after_next_page.style.zIndex =  1500-Number(current_zindex);
-                    }
-                }
+            
+            if (diary_pages[dataIndexBack].day_name) {
+                backImg.setAttribute('data-dayname', diary_pages[dataIndexBack].day_name);
+            } else {
+                backImg.removeAttribute('data-dayname');
             }
         }
 
-        let preview_pages_length = pages_preview.length;
-        let reverse_fix = false;
-        for(var i=pages_length;i<preview_pages_length;++i){
-            let page = pages_preview[i];
-           
-            page.classList.add('display__none');
-            if(page.classList.contains("flipped")){
-                reverse_fix = true;
-                page.classList.remove("flipped");
-                let current_zindex = page.style.zIndex;
-                page.style.zIndex =  1500-Number(current_zindex);
-            }
+        // ========================================================
+        // 3. EXPLICIT 3D LAYER STACKING ENGINE (Z-INDEX BUG FIX)
+        // ========================================================
+        if (domSlotIndex < 2) {
+            // LEFT STACK (Flipped Pages): 
+            // Higher slot numbers sit closer to the center fold line
+            domPage.classList.add('flipped');
+            domPage.style.zIndex = 100 + domSlotIndex; // Slot 1 rests perfectly above Slot 0
+            domPage.classList.remove('display__none');
+            
+        } else if (domSlotIndex === 2) {
+            // CENTER FOCUS PAGE:
+            // This is the active sheet on display (or flying mid-air). Must ALWAYS be on top.
+            domPage.style.zIndex = 200;
+            domPage.classList.remove('display__none');
+            
+        } else {
+            // RIGHT STACK (Unflipped Pages):
+            // Lower slot numbers sit closer to the center fold line
+            domPage.classList.remove('flipped');
+            domPage.style.zIndex = 100 - domSlotIndex; // Slot 3 rests perfectly above Slot 4
+            domPage.classList.remove('display__none');
         }
+    });
+}
 
-        if(reverse_fix){
-            last_page.classList.remove('display__none');
-            if(last_page.classList.contains('flipped')){
-                last_page.classList.remove('flipped');
-                let current_zindex = last_page.style.zIndex;
-                last_page.style.zIndex =  1500-Number(current_zindex);
-            }
-            if(!second_last_page?.classList.contains('flipped')){
-                second_last_page.classList.add('flipped');
-                let current_zindex = second_last_page.style.zIndex;
-                second_last_page.style.zIndex =  1500-Number(current_zindex);
-            }
-            second_last_page?.classList.remove('display__none');
-            let third_last_page = pages_preview[pages_length - 3];
-            if(!third_last_page.classList.contains('flipped')){
-                third_last_page.classList.add('flipped');
-                let current_zindex = third_last_page.style.zIndex;
-                third_last_page.style.zIndex =  1500-Number(current_zindex);
-            }
-            third_last_page.classList.remove('display__none');
-        }
-        let pages_limit_div = document.querySelector('.pages-limit__description');
-        let pages_limit = Number(pages_limit_div.getAttribute("data-pageslimit"));
-        if(diary_pages.length > pages_limit){
-            pages_limit_div.style.display = 'block';
-            let pages_number_message = document.querySelector("#no_of_pages");
-            pages_number_message.innerHTML = diary_pages.length;
-        }else{
-            pages_limit_div.style.display = 'none';
-        }
-        updatePrice(diary_pages.length);
+   function renderPages(){
+    // 1. Reset state and run data cleanup routines
+    remove_neutral_pages();
+    neutralize_pages();
+   
+    // 2. Inject structural pages into the global array safely
+    diary_pages.splice(diary_pages.length - 1, 0, {
+        page_type: "copyright", 
+        page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669" 
+    });
+    
+    if(diary_pages.length % 2 != 0){
+        diary_pages.splice(diary_pages.length - 2, 0, {
+            page_type: "blank", 
+            page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" 
+        });
     }
+
+    // ========================================================
+    // VIRTUAL ENGINE PIPELINE HOOK
+    // ========================================================
+    // Resets the window pointer back to the front cover and triggers the 5-node sync
+    current_physical_page = 0;
+    updateDOMWindow();
+    // ========================================================
+
+    // 3. UI Page Limit Threshold Enforcement
+    let pages_limit_div = document.querySelector('.pages-limit__description');
+    let pages_limit = Number(pages_limit_div.getAttribute("data-pageslimit"));
+    
+    if(diary_pages.length > pages_limit){
+        pages_limit_div.style.display = 'block';
+        let pages_number_message = document.querySelector("#no_of_pages");
+        pages_number_message.innerHTML = diary_pages.length;
+    } else {
+        pages_limit_div.style.display = 'none';
+    }
+    
+    // 4. Fire dynamic price adjustment calculations
+    updatePrice(diary_pages.length);
+}
 
     function splitDiary(){
         let checked = this.event.target.checked;

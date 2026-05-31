@@ -1,49 +1,59 @@
-$('.diary-flip_next-btn').click(function(){
-        let visible_pages = Number($(".diary-flip_page.last__page").data("pageindex"));
-
-        let flipPage = $(this).closest('.diary-flip_page');
-        let current_index = Number(flipPage.data("pageindex"));
-    if(current_index <= visible_pages){
-        flipPage.addClass('flipped');
-        let current_zindex = flipPage.css('zIndex');
-        flipPage.css('zIndex', 1000-Number(current_zindex));
-        let page_index = Number(flipPage.data('pageindex'));
-        let prev_index = page_index - 2;
-        let next_index = page_index + 2;
-        if(prev_index > 0){
-            let prev_page = $(`.diary-flip_page__${prev_index}`);
-            prev_page.addClass('display__none');
-        }
-        if(next_index < 1000){
-            let next_page = $(`.diary-flip_page__${next_index}`);
-            if(!(flipPage.hasClass("second_last__page") || flipPage.hasClass("last__page"))){
-                next_page.removeClass('display__none');
-            }
-        }
+/**
+ * Navigates the diary forward by one physical page (2 diary data pages)
+ * @param {Event} e - The native browser click event payload
+ */
+function handleNextPage(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
     }
 
-    // loadVisibleImages();
+    let total_physical_pages = Math.ceil(diary_pages.length / 2);
+    
+    // Animation lock & boundaries protection
+    if (is_animating || current_physical_page >= total_physical_pages - 1) return;
 
-});
+    is_animating = true;
 
-$('.diary-flip_back-btn').click(function(){
-    let flipPage = $(this).closest('.diary-flip_page');
-    flipPage.removeClass('flipped');
-    let current_zindex = flipPage.css('zIndex');
-    flipPage.css('zIndex', 1000-Number(current_zindex));
-    let page_index = Number(flipPage.data('pageindex'));
-    let prev_index = page_index - 2;
-    let next_index = page_index + 2;
-
-    if(prev_index > 0){
-        let prev_page = $(`.diary-flip_page__${prev_index}`);
-        prev_page.removeClass('display__none');
+    // The middle item (index 2) in our 5-element viewport is always the upcoming page facing right
+    let activePage = document.querySelectorAll('.diary-flip_page')[2];
+    if (activePage) {
+        activePage.classList.add('flipped');
     }
 
-    if(next_index < 1000){
-        let next_page = $(`.diary-flip_page__${next_index}`);
-        next_page.addClass('display__none');
+    // Delay data shift until the 3D CSS transition finishes flipping
+    setTimeout(() => {
+        current_physical_page++;
+        updateDOMWindow();
+        is_animating = false;
+    }, FLIP_ANIMATION_SPEED);
+}
+
+/**
+ * Navigates the diary backward by one physical page (2 diary data pages)
+ * @param {Event} e - The native browser click event payload
+ */
+function handlePrevPage(e) {
+    if (e) {
+        e.preventDefault();
+        e.stopPropagation();
     }
 
-    // loadVisibleImages();
-});
+    // Animation lock & boundary protection
+    if (is_animating || current_physical_page <= 0) return;
+
+    is_animating = true;
+
+    // The item at index 1 is always the immediate previous left page waiting to turn back
+    let prevPage = document.querySelectorAll('.diary-flip_page')[1];
+    if (prevPage) {
+        prevPage.classList.remove('flipped');
+    }
+
+    // Delay data shift backward until the element settles
+    setTimeout(() => {
+        current_physical_page--;
+        updateDOMWindow();
+        is_animating = false;
+    }, FLIP_ANIMATION_SPEED);
+}

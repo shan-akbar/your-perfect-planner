@@ -30,7 +30,7 @@
 
 .diary-navigation {
     display: flex;
-    gap: 16px;
+    gap: 15px;
     align-items: flex-end;
     justify-content: center;
     padding: 20px;
@@ -223,31 +223,33 @@
 {% assign sat_sun_half = sat_sun_half_2 | concat: sat_sun_half %}
 
 {% for i in (1..12) %}
-   
     {% assign metafield_key_2_check = "planner_pages_2_layout_" | append: i | append: "_set_1" %}
     {% assign metafield_key_check = "planner_pages_layout_" | append: i | append: "_set_1" %}
+    
     {% if product.metafields["custom"][metafield_key_check].value or product.metafields["custom"][metafield_key_2_check].value %}
-        {%  assign diary_pages_layout_general = null %}
-        {%  assign diary_pages_layout_general_2 = null %}
+        {% assign diary_pages_layout_general = null %}
+        {% assign diary_pages_layout_general_2 = null %}
+        
         {% for j in (1..3) %}
             {% assign diary_pages_temp = null %}
             {% assign diary_pages_temp_2 = null %}
             {% assign metafield_key = "planner_pages_layout_" | append: i | append: "_set_" | append: j %}
             {% assign metafield_key_2 = "planner_pages_2_layout_" | append: i | append: "_set_" | append: j %}
+            
             {% assign diary_pages_temp = product.metafields["custom"][metafield_key].value %}
             {% assign diary_pages_temp_2 = product.metafields["custom"][metafield_key_2].value %}
+            
             {%- paginate diary_pages_temp by 128 -%}
                 {% assign diary_pages_temp = diary_pages_temp | reverse | reverse %}
-                {%  assign diary_pages_layout_general = diary_pages_layout_general | concat: diary_pages_temp %}
+                {% assign diary_pages_layout_general = diary_pages_layout_general | concat: diary_pages_temp %}
             {%- endpaginate -%}
            
             {%- paginate diary_pages_temp_2 by 128 -%}
                 {% assign diary_pages_temp_2 = diary_pages_temp_2 | reverse | reverse %}
-                {%  assign diary_pages_layout_general_2 = diary_pages_layout_general_2 | concat: diary_pages_temp_2 %}
+                {% assign diary_pages_layout_general_2 = diary_pages_layout_general_2 | concat: diary_pages_temp_2 %}
             {%- endpaginate -%}
         {% endfor %}
 
-        
         {% assign general_layout_size = diary_pages_layout_general | size %}
 
         {% if general_layout_size == 0 %}
@@ -261,44 +263,75 @@
         {% endif %}
 
         <script>
-            all_layouts.push({{ diary_pages_layout_general_final | json }});
-         
+            // FIXED: Map only the light URL string to a standard array width (800px max)
+            // This prevents loading megabytes of useless metadata objects into memory
+            all_layouts.push([
+                {% for img in diary_pages_layout_general_final %}
+                    {{ img | image_url: width: 800 | json }}{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+            ]);
         </script>
     {% endif %}
 {% endfor %}
 
-    <script>
-
-        let sat_sun_half = {{ sat_sun_half | json}};
-        let start_date = "2026-01-01";
-        let current_date = new Date(start_date);
-        let diary_pages = [];
-        let diary_pages_no_weekends = [];
-        let diary_pages_half_weekends = [];
-        let diary_pages_backup = [];
-        let sat_sun_half_with_dates = [];
-        let days_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        
-        diary_pages.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" });
-        {% assign page_type = 'day' %}
-        let sat_sun_half_iterate = 0;
-        {% for diary_page in diary_pages_layout_1 %}
-              
-                diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}, day_name: days_names[current_date.getDay()] });
-                diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString() ,page_url: {{ diary_page |  image_url: width: diary_page.width | json }}, day_name: days_names[current_date.getDay()]});
-                if(days_names[current_date.getDay()] == "Saturday"){
-                    sat_sun_half_with_dates.push({page_url: sat_sun_half[sat_sun_half_iterate], date:formatDate(current_date), year: current_date.getFullYear().toString() });
-                    ++sat_sun_half_iterate;
-                }
-                current_date.setDate(current_date.getDate() + 1);
-           
+<script>
+    // FIXED: Map weekend images to light, optimized 800px image strings safely
+    let sat_sun_half = [
+        {% for img in sat_sun_half %}
+            {{ img | image_url: width: 800 | json }}{% unless forloop.last %},{% endunless %}
         {% endfor %}
-        current_date.setDate(current_date.getDate() - 1);
-        diary_pages.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
-        diary_pages_backup.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506" });
+    ];
+
+    let start_date = "2026-01-01";
+    let current_date = new Date(start_date);
+    let diary_pages = [];
+    let diary_pages_no_weekends = [];
+    let diary_pages_half_weekends = [];
+    let diary_pages_backup = [];
+    let sat_sun_half_with_dates = [];
+    let days_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    diary_pages.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
+    diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '2026' ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" });
+    
+    {% assign page_type = 'day' %}
+    let sat_sun_half_iterate = 0;
+    let optimized_url = '';
+    {% for diary_page in diary_pages_layout_1 %}
+        // FIXED: Replaced master file output width with constrained width: 800
+        optimized_url = {{ diary_page | image_url: width: 800 | json }};
+          
+        diary_pages.push({
+            page_type: {{ page_type | json }}, 
+            date: formatDate(current_date), 
+            year: current_date.getFullYear().toString(),
+            page_url: optimized_url, 
+            day_name: days_names[current_date.getDay()] 
+        });
         
-    </script>
+        diary_pages_backup.push({
+            page_type: {{ page_type | json }}, 
+            date: formatDate(current_date), 
+            year: current_date.getFullYear().toString(),
+            page_url: optimized_url, 
+            day_name: days_names[current_date.getDay()]
+        });
+
+        if(days_names[current_date.getDay()] == "Saturday"){
+            sat_sun_half_with_dates.push({
+                page_url: sat_sun_half[sat_sun_half_iterate], 
+                date: formatDate(current_date), 
+                year: current_date.getFullYear().toString() 
+            });
+            ++sat_sun_half_iterate;
+        }
+        current_date.setDate(current_date.getDate() + 1);
+    {% endfor %}
+
+    current_date.setDate(current_date.getDate() - 1);
+    diary_pages.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506"});
+    diary_pages_backup.push({page_type: 'outer_cover', date: '', year: current_date.getFullYear().toString() ,page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Back.jpg?v=1732746506" });
+</script>
 
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
 
@@ -310,311 +343,271 @@
     </div>
     <div class="loading__spinner diary-loading_spinner diary-loading-spinner_hidden">
         <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
         </svg>
     </div>
-  <div class="diary-flip">
-
-        
-        {% for index in (1..1000) %}
-            
-                
-            <div class="diary-flip_page diary-flip_page__{{index}} {% if index > 2 %}display__none{% endif %}" style="z-index: {{ 1000 | minus: index }};" data-pageindex="{{index}}"> 
+    
+    <div class="diary-flip">
+        {% for index in (1..5) %}
+            <div class="diary-flip_page diary-flip_page__{{index}} display__none" data-domindex="{{index}}"> 
                 <div class="diary-flip_back">
-                    <img decoding="async" alt="ypp" src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668" class="back-page" loading="lazy">
-                    <label class="diary-flip_back-btn">Prev</label>
+                    <img decoding="async" alt="ypp" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="back-page" loading="lazy">
+                    <button type="button" class="diary-flip_back-btn" onclick="handlePrevPage(event)">Prev</button>
                 </div>
                 <div class="diary-flip_front">
-                    <img decoding="async" alt="ypp" src="//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507" class="front-page" loading="lazy">
-                    <label class="diary-flip_next-btn">NEXT</label>
+                    <img decoding="async" alt="ypp" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="front-page" loading="lazy">
+                    <button type="button" class="diary-flip_next-btn" onclick="handleNextPage(event)">NEXT</button>
                 </div>
             </div>
-                
         {% endfor %}
-       
-  </div>
-
-  <div class="diary-navigation">
-
-    <div class="nav-group nav-group-1">
-        <label>Jump to Date</label>
-        <input type="date" id="jumpDate">
-        <button class="action-btn action-btn-date" onclick="jumpToDate()">Go</button>
     </div>
 
-    <div class="nav-group nav-group-2">
-        <label class="pn-label">Page Number</label>
-        <input type="number" min="1" placeholder="Enter page number">
-        <button class="action-btn action-btn-skip-n" onclick="jumpToPageNumber()">Go</button>
-    </div>
-
-    <div class="nav-group skip-group nav-group-3">
-        <label>Skip Pages</label>
-
-        <div class="skip-controls">
-            <button class="action-btn" onclick="skipPages('backward')">← Skip</button>
-
-            <input
-                id="skipPageCount"
-                type="number"
-                min="1"
-                value="10"
-                placeholder="N"
-            >
-
-            <button class="action-btn" onclick="skipPages('forward')">Skip →</button>
+    <div class="diary-navigation">
+        <div class="nav-group nav-group-1">
+            <label>Jump to Date</label>
+            <input type="date" id="jumpDate">
+            <button class="action-btn action-btn-date" onclick="jumpToDate()">Go</button>
+        </div>
+        <div class="nav-group nav-group-2">
+            <label class="pn-label">Page Number</label>
+            <input type="number" min="1" placeholder="Enter page number">
+            <button class="action-btn action-btn-skip-n" onclick="jumpToPageNumber()">Go</button>
+        </div>
+        <div class="nav-group skip-group nav-group-3">
+            <label>Skip Pages</label>
+            <div class="skip-controls">
+                <button class="action-btn" onclick="skipPages('backward')">← Skip</button>
+                <input id="skipPageCount" type="number" min="1" value="10" placeholder="N">
+                <button class="action-btn" onclick="skipPages('forward')">Skip →</button>
+            </div>
         </div>
     </div>
-
-
-    </div>
-
 </div>
 
 
 <script>
 
-   const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-   
-   function getCurrentPageIndex(isBackward = false) {
-        if (isBackward) {
-            // When traveling reverse, the truest indicator of where we are 
-            // is the very last page that is currently flipped open.
-            const lastFlipped = $('.diary-flip_page.flipped').last();
-            if (lastFlipped.length) {
-                return Number(lastFlipped.data('pageindex'));
-            }
-            return 1; // If nothing is flipped, we are at the cover
-        }
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-        // Standard Forward Tracking: Look at visible, unflipped pages
-        const activePages = $('.diary-flip_page:not(.display__none):not(.flipped)');
-        
-        if (!activePages.length) {
-            return Number($('.diary-flip_page.flipped').last().data('pageindex')) || 1;
-        }
+/**
+ * Returns the active 1-based physical page leaf index.
+ * With our virtual engine, our global pointer is the source of absolute truth!
+ */
+function getCurrentPageIndex(isBackward = false) {
+    return current_physical_page + 1;
+}
 
-        let targetPage = activePages.first();
-        let highestZ = parseInt(targetPage.css('z-index'), 10) || 0;
+/**
+ * Sweeps to a target 1-based physical page spread cleanly using data references
+ * @param {number} targetIndex - 1-based physical leaf index destination
+ */
+async function flipToPage(targetIndex) {
+    const targetPhysicalPage = targetIndex - 1;
+    
+    // Safety check: if already positioned at destination, exit early
+    if (targetPhysicalPage === current_physical_page) return;
 
-        activePages.each(function () {
-            const zIndex = parseInt($(this).css('z-index'), 10) || 0;
-            if (zIndex > highestZ) {
-                highestZ = zIndex;
-                targetPage = $(this);
-            }
-        });
+    // --- 1. SHOW LOADER ---
+    const $loader = $('#diaryLoader, .diary-loading_spinner');
+    $loader.css('display', 'flex').removeClass('diary-loading-spinner_hidden'); 
 
-        return Number(targetPage.data('pageindex'));
+    await sleep(1000); // Shorter, crisper load delay for virtual execution
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    // --- 2. UPDATE ENGINE STATE DIRECTLY ---
+    current_physical_page = targetPhysicalPage;
+    updateDOMWindow();
+
+    // --- 3. FORCE DOM LAYOUT RE-PAINT AND CLEANUP ---
+    void document.body.offsetHeight; 
+    await sleep(1000);
+    
+    // --- HIDE LOADER ---
+    $loader.hide().addClass('diary-loading-spinner_hidden');
+}
+
+/**
+ * Performs a search across the data array to jump directly to a chosen date string
+ */
+function jumpToDate() {
+    // 1. Grab the date string from the input field
+    const dateString = $('#jumpDate').val();
+
+    if (!dateString) {
+        alert('Please select a date first.');
+        return;
     }
 
-   async function flipToPage(targetIndex) {
-        let isBackward = targetIndex < getCurrentPageIndex(false);
-        let currentIndex = getCurrentPageIndex(isBackward);
+    // 2. SEARCH THE DATA ARRAY (Instead of querying the missing DOM nodes!)
+    const dataIndex = diary_pages.findIndex(page => page.date === dateString);
 
-        if (currentIndex === targetIndex) return;
+    // 3. Handle case where the date doesn't exist in the data
+    if (dataIndex === -1) {
+        alert("Selected date is out of the planner's range.");
+        return;
+    }
 
-        // --- 1. SHOW LOADER ---
-        $('#diaryLoader').css('display', 'flex'); 
+    // 4. Convert structural array index into a 1-based physical leaf number
+    const targetIndex = Math.floor(dataIndex / 2) + 1;
+    flipToPage(targetIndex);
+}
 
-        await sleep(1000);
+/**
+ * Navigates directly to a specific page number entered by the user
+ */
+function jumpToPageNumber() {
+    // 1. Grab the user value and convert to 1-based physical leaf index
+    const targetPageInput = $('.nav-group input[type="number"]').val();
+    const targetIndex = Math.ceil(Number(targetPageInput) / 2);
 
-        // Drop out of the current execution frame to let the mobile browser cleanly render the spinner
-        await new Promise(resolve => requestAnimationFrame(resolve));
+    if (!targetPageInput || isNaN(targetIndex)) {
+        alert('Please enter a valid page number first.');
+        return;
+    }
 
-        const $diaryContainer = $('.diary-flip');
-    
-        // --- 2. KILL 3D/TRANSITIONS INSTANTLY VIA PARENT ---
-        $diaryContainer.addClass('diary-flip--instant-jump');
+    // 2. Dynamic Min/Max bounds check using data array length
+    const minPage = 1;
+    const maxPage = Math.ceil(diary_pages.length / 2);
 
-        const $allPages = $('.diary-flip_page');
+    if (targetIndex < minPage) {
+        alert(`Invalid page number. The minimum page number you can enter is ${minPage}.`);
+        return;
+    }
 
-        // --- 3. RUN THE FLIP LOGIC DIRECTLY IN MEMORY (NO CLICKS) ---
-        if (!isBackward) {
-            // Moving Forward: Loop through the pages that need to be flipped
-            $allPages.each(function() {
-                const pageIdx = Number($(this).data('pageindex'));
-                
-                if (pageIdx >= currentIndex && pageIdx < targetIndex) {
-                    // This page needs to be flipped forward
-                    if (!$(this).hasClass('flipped')) {
-                        $(this).addClass('flipped');
-                        // Replicate the zIndex switch logic directly
-                        let current_zindex = parseInt($(this).css('z-index'), 10) || 0;
-                        $(this).css('z-index', 1000 - current_zindex);
-                    }
-                }
-            });
-        } else {
-            // Moving Backward: Loop through the pages that need to be unflipped
-            // Process in reverse order to cleanly mimic un-flipping stack behavior
-            $($allPages.get().reverse()).each(function() {
-                const pageIdx = Number($(this).data('pageindex'));
-                
-                if (pageIdx >= targetIndex && pageIdx < currentIndex) {
-                    // This page needs to be flipped backward
-                    if ($(this).hasClass('flipped')) {
-                        $(this).removeClass('flipped');
-                        // Replicate the zIndex switch logic directly
-                        let current_zindex = parseInt($(this).css('z-index'), 10) || 0;
-                        $(this).css('z-index', 1000 - current_zindex);
-                    }
-                }
-            });
-        }
+    if (targetIndex > maxPage) {
+        alert(`Invalid page number. The maximum page number available in this diary is ${maxPage * 2}.`);
+        return;
+    }
 
-        // --- 4. BULK FIX VISIBILITY (.display__none) ---
-        // Instead of sequentially toggling neighboring pages step-by-step, 
-        // we calculate the ultimate visibility states based on the final targetIndex.
-        let target_prev = targetIndex - 3;
-        let target_next = targetIndex + 2;
+    // 3. Trigger the automated navigation pipeline
+    flipToPage(targetIndex);
+}
 
-        $allPages.each(function() {
-            const pageIdx = Number($(this).data('pageindex'));
+/**
+ * Skips N pages forward or backward relative to the current active position
+ * @param {string} direction - Either 'forward' or 'backward'
+ */
+function skipPages(direction) {
+    // 1. Grab value and calculate requested physical leaf skip distance
+    const skipValue = $('#skipPageCount').val();
+    const pagesToSkip = Math.ceil(parseInt(skipValue, 10) / 2);
 
-            // Replicate your visibility boundaries instantly
-            if (pageIdx <= target_prev) {
-                $(this).addClass('display__none');
-            } else if (pageIdx >= target_next) {
-                $(this).addClass('display__none');
+    if (!skipValue || isNaN(pagesToSkip) || pagesToSkip <= 0) {
+        alert('Please enter a valid number of pages to skip.');
+        return;
+    }
+
+    // 2. Find internal position and compute target
+    const currentIndex = getCurrentPageIndex(false);
+    let targetIndex = currentIndex;
+
+    if (direction === 'forward') {
+        targetIndex = currentIndex + pagesToSkip;
+    } else if (direction === 'backward') {
+        targetIndex = currentIndex - pagesToSkip;
+    }
+
+    // 3. Boundary validation limits against data arrays
+    const minPage = 1;
+    const maxPage = Math.ceil(diary_pages.length / 2);
+
+    if (direction === 'forward' && targetIndex > maxPage) {
+        alert(`Cannot skip forward. This jump exceeds the maximum page number (${maxPage * 2}).`);
+        return;
+    }
+
+    if (direction === 'backward' && targetIndex < minPage) {
+        alert(`Cannot skip backward. This jump drops below the minimum page number (${minPage}).`);
+        return;
+    }
+
+    if (targetIndex === currentIndex) {
+        alert(direction === 'forward' ? 'You are already at the end.' : 'You are already at the beginning.');
+        return;
+    }
+
+    flipToPage(targetIndex);
+}
+
+    // --- GLOBAL VIRTUAL ENGINE STATE ---
+    let current_physical_page = 0; // Tracks active index (0 to diary_pages.length / 2)
+    let is_animating = false;      // Animation block lock
+    const FLIP_ANIMATION_SPEED = 600; // MUST match your CSS 3D flip duration in milliseconds!
+
+    /**
+     * Re-indexes, formats, stacks, and assigns values to the 5 DOM elements 
+     * based on the position of current_physical_page.
+     */
+    function updateDOMWindow() {
+        let pages_preview = document.querySelectorAll(".diary-flip_page");
+        let total_physical_pages = Math.ceil(diary_pages.length / 2);
+
+        // 1. Turn off CSS transition parameters so swapping structural values is invisible
+        pages_preview.forEach(page => { page.style.transition = 'none'; });
+
+        // 2. Loop through the 5 DOM frames and arrange them relative to our center point
+        pages_preview.forEach((page, domIndex) => {
+            // domIndex 2 (the middle item) behaves as our active right-side container
+            let logical_index = current_physical_page + (domIndex - 2);
+
+            // Hide containers out of boundaries
+            if (logical_index < 0 || logical_index >= total_physical_pages) {
+                page.classList.add('display__none');
+                return;
+            }
+
+            page.classList.remove('display__none');
+            page.setAttribute('data-pageindex', logical_index + 1);
+
+            // Set structural conditional classes dynamically
+            page.classList.remove('last__page', 'second_last__page');
+            if (logical_index === total_physical_pages - 1) {
+                page.classList.add('last__page');
+            } else if (logical_index === total_physical_pages - 2) {
+                page.classList.add('second_last__page');
+            }
+
+            // 3. Stacking Calculations (z-index) & Spatial state assignment
+            if (logical_index < current_physical_page) {
+                // Already turned pages (Left stack)
+                page.classList.add('flipped');
+                page.style.zIndex = logical_index + 1; 
             } else {
-                // Keep the active view window visible
-                if (!($(this).hasClass("second_last__page") || $(this).hasClass("last__page") && pageIdx === target_next)) {
-                    $(this).removeClass('display__none');
-                }
+                // Remaining pages (Right stack)
+                page.classList.remove('flipped');
+                page.style.zIndex = total_physical_pages - logical_index; 
+            }
+
+            // 4. Update image assets and semantic attributes
+            let side_index = logical_index * 2;
+            let front_data = diary_pages[side_index] || { page_url: '' };
+            let back_data = diary_pages[side_index + 1] || { page_url: '' };
+
+            page.querySelector(".front-page").setAttribute("src", front_data.page_url);
+            page.querySelector(".back-page").setAttribute("src", back_data.page_url);
+
+            if (front_data.page_type === 'day') {
+                page.querySelector(".front-page").setAttribute("data-date", front_data.date);
+                page.querySelector(".front-page").setAttribute("data-dayname", front_data.day_name);
+            } else {
+                page.querySelector(".front-page").removeAttribute("data-date");
+                page.querySelector(".front-page").removeAttribute("data-dayname");
+            }
+
+            if (back_data.page_type === 'day') {
+                page.querySelector(".back-page").setAttribute("data-date", back_data.date);
+                page.querySelector(".back-page").setAttribute("data-dayname", back_data.day_name);
+            } else {
+                page.querySelector(".back-page").removeAttribute("data-date");
+                page.querySelector(".back-page").removeAttribute("data-dayname");
             }
         });
 
-        // --- 5. CLEAN UP & RESTORE ---
-        // Force a minor DOM layout flush so the browser processes the updates in one clean layout sweep
-        void document.body.offsetHeight; 
-        await sleep(1000);
-        // Remove the safety class so single manual page clicks still work smoothly
-        $diaryContainer.removeClass('diary-flip--instant-jump');
-    
-        // --- HIDE LOADER ---
-        $('#diaryLoader').hide();
-    }
+        // 5. Hard repaint flush so values adapt instantly before transitions restore
+        void document.body.offsetHeight;
 
-    function jumpToDate() {
-        // 1. Grab the date string from the input field
-        const dateString = $('#jumpDate').val();
-
-        // 2. Alert the user if they clicked "Go" without picking a date
-        if (!dateString) {
-            alert('Please select a date first.');
-            return;
-        }
-
-        // 3. Find the page that matches the selected date
-        const page = $('.diary-flip_page').filter(function () {
-            return $(this).find(`img[data-date="${dateString}"]`).length > 0;
-        }).first();
-
-        // 4. Handle case where the date doesn't exist in the diary
-        if (!page.length) {
-            alert('Date not found');
-            return;
-        }
-
-        // 5. Flip to the page (ensuring the index is a number)
-        flipToPage(Number(page.data('pageindex')));
-    }
-
-    
-
-    /**
-     * Navigates directly to a specific page number entered by the user
-     */
-    function jumpToPageNumber() {
-        // 1. Grab the closest input value relative to the nav-group layout
-        const targetPageInput = $('.nav-group input[type="number"]').val();
-        const targetIndex = Math.ceil(Number(targetPageInput) / 2);
-
-        // 2. Alert the user if they clicked "Go" without entering a number
-        if (!targetPageInput || isNaN(targetIndex)) {
-            alert('Please enter a valid page number first.');
-            return;
-        }
-
-        // Dynamic Min/Max bounds check
-        const minPage = 1;
-        const lastPageElement = document.querySelector('.last__page');
-        const maxPage = lastPageElement ? (Number(lastPageElement.getAttribute('data-pageindex'))): $('.diary-flip_page').length;
-
-       // Updated clear error messages for direct jumps
-        if (targetIndex < minPage) {
-            alert(`Invalid page number. The minimum page number you can enter is ${minPage}.`);
-            return;
-        }
-
-        if (targetIndex > maxPage) {
-            alert(`Invalid page number. The maximum page number available in this diary is ${maxPage * 2}.`);
-            return;
-        }
-
-        // 3. Look for the page element matching the page index
-        const targetPage = $(`.diary-flip_page[data-pageindex="${targetIndex}"]`);
-
-        // 4. Handle case where the page number doesn't exist in the DOM
-        if (!targetPage.length) {
-            alert(`Page ${targetPageInput} not found in the diary.`);
-            return;
-        }
-
-        // 5. Trigger the automated navigation loop until the target is reached
-        flipToPage(targetIndex);
-    }
-
-    /**
-     * Skips N pages forward or backward relative to the current active page
-     * @param {string} direction - Either 'forward' or 'backward'
-     */
-    function skipPages(direction) {
-        // 1. Grab the raw value from the skip input
-        const skipValue = $('#skipPageCount').val();
-        const pagesToSkip = Math.ceil(parseInt(skipValue, 10)/2);
-
-        // 2. Validate the user actually put a proper positive number
-        if (!skipValue || isNaN(pagesToSkip) || pagesToSkip <= 0) {
-            alert('Please enter a valid number of pages to skip.');
-            return;
-        }
-
-        // 3. Find out exactly where the diary is positioned right now
-        const currentIndex = getCurrentPageIndex(false);
-        let targetIndex = currentIndex;
-
-        // 4. Calculate the target page index based on direction
-        if (direction === 'forward') {
-            targetIndex = currentIndex + pagesToSkip;
-        } else if (direction === 'backward') {
-            targetIndex = currentIndex - pagesToSkip;
-        }
-
-        // Dynamic Min/Max bounds check
-        const minPage = 1;
-        const lastPageElement = document.querySelector('.last__page');
-        const maxPage = lastPageElement ? Number(lastPageElement.getAttribute('data-pageindex')): $('.diary-flip_page').length;
-
-        // 5. Check if the jump exceeds boundaries and alert the user
-        if (direction === 'forward' && targetIndex > maxPage) {
-            alert(`Cannot skip forward. This jump exceeds the maximum page number (${maxPage * 2}).`);
-            return;
-        }
-
-        if (direction === 'backward' && targetIndex < minPage) {
-            alert(`Cannot skip backward. This jump drops below the minimum page number (${minPage}).`);
-            return;
-        }
-
-        // 6. If the calculated destination is different from where we are, travel!
-        if (targetIndex === currentIndex) {
-            alert(direction === 'forward' ? 'You are already at the end.' : 'You are already at the beginning.');
-            return;
-        }
-
-        flipToPage(targetIndex);
+        // 6. Restore normal CSS animations
+        pages_preview.forEach(page => { page.style.transition = ''; });
     }
 
     function updateDiaryPages(){
@@ -791,168 +784,80 @@
         }
     }
    
-    function renderPages(){
-        
+   /**
+     * Main state handler for arrays and configurations
+     */
+    function renderPages() {
         let diary_pages_original = [];
         let diary_pages_original_2 = [];
         let excludeWeekends = document.getElementById("exclude_weekends").checked;
         let switchWeekends = document.getElementById("switch_weekends").checked;
-        
-      
-        if(excludeWeekends){
+
+        if (excludeWeekends) {
             diary_pages_original = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = diary_pages.filter((page) => page.day_name != "Saturday" && page.day_name != "Sunday");
-        }else if(switchWeekends){
+        } else if (switchWeekends) {
             diary_pages_original_2 = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = diary_pages.filter((page) => page.day_name != "Sunday");
-            let iterate_index = 0;
-            for(let i=0 ; i<diary_pages.length ; ++i){
-                if(diary_pages[i].day_name == "Saturday"){
+            for (let i = 0; i < diary_pages.length; ++i) {
+                if (diary_pages[i].day_name == "Saturday") {
                     let half_weekend_page = sat_sun_half_with_dates.find((page) => page.date == diary_pages[i].date);
                     diary_pages[i].page_url = half_weekend_page.page_url;
                 }
             }
         }
 
-        
-
         remove_neutral_pages();
         neutralize_pages();
-        
+
         let end_date_3 = document.querySelector('#end_date').value;
         let end_date_obj_3 = new Date(end_date_3);
         let current_year = end_date_obj_3.getFullYear().toString();
-        diary_pages.splice(diary_pages.length-1, 0, {page_type:"copyright", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669", year: current_year});
-        if(diary_pages.length % 2 != 0){
-            diary_pages.splice(diary_pages.length-2, 0, {page_type:"blank", page_url:"//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668", year: current_year });
-        }
-
-         diary_pages[diary_pages.length - 1].year = current_year;
-
-        let old_last_page = document.querySelector(".diary-flip_page.last__page");
-        old_last_page?.classList.remove('last__page');
-        let old_second_last_page = document.querySelector(".diary-flip_page.second_last__page");
-        old_second_last_page?.classList.remove('second_last__page');
-        let pages_preview = document.querySelectorAll(".diary-flip_page");
-        let pages_length = diary_pages.length/2;
-        let last_page = pages_preview[pages_length - 1];
-        let second_last_page = pages_preview[pages_length - 2];
-        last_page.classList.add("last__page"); 
-        second_last_page?.classList.add("second_last__page");
-        let side_index = 0;
-        let run_pointer_fix = true;
         
-        for(var i=0; i<pages_length; ++i){    
-            let page = pages_preview[i];
-            page.querySelector(".front-page").setAttribute("src", diary_pages[side_index].page_url);
-            
-            page.querySelector(".back-page").setAttribute("src", diary_pages[side_index + 1].page_url);
-            if(diary_pages[side_index].page_type == 'day'){
-                
-                page.querySelector(".front-page").setAttribute("data-date", diary_pages[side_index].date);
-                page.querySelector(".front-page").setAttribute("data-dayname", diary_pages[side_index].day_name);
-              
-            }
-            if(diary_pages[side_index + 1].page_type == 'day'){
-               
-                page.querySelector(".back-page").setAttribute("data-date", diary_pages[side_index + 1].date);
-                page.querySelector(".back-page").setAttribute("data-dayname", diary_pages[side_index + 1].day_name);
-              
-            }
-            side_index += 2;
-            if(page.classList.contains("flipped") && !page.classList.contains("display__none") && run_pointer_fix){
-                run_pointer_fix = false;
-                let next_page = pages_preview[i+1];
-                if(next_page){
-                    next_page.classList.remove('display__none');
-                }
-                
-                let after_next_page = pages_preview[i+2];
-                if(after_next_page){
-                    after_next_page.classList.remove('display__none');
-                    if(after_next_page.classList.contains('flipped')){
-                        after_next_page.classList.remove('flipped');
-                        let current_zindex = after_next_page.style.zIndex;
-                        after_next_page.style.zIndex = 1000-Number(current_zindex);
-                    }
-                    
-                }
-
-                let after_after_next_page = pages_preview[i+3];
-                if(after_after_next_page){
-                    after_after_next_page.classList.remove('display__none');
-                    if(after_after_next_page.classList.contains('flipped')){
-                        after_after_next_page.classList.remove('flipped');
-                        let current_zindex = after_after_next_page.style.zIndex;
-                        after_after_next_page.style.zIndex =  1000-Number(current_zindex);
-                    }
-                }
-            }
-            
+        diary_pages.splice(diary_pages.length - 1, 0, {
+            page_type: "copyright", 
+            page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/COPYRIGHT_PAGE_2024.png?v=1732746669", 
+            year: current_year
+        });
+        
+        if (diary_pages.length % 2 != 0) {
+            diary_pages.splice(diary_pages.length - 2, 0, {
+                page_type: "blank", 
+                page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/BLANK_LINES.png?v=1732746668", 
+                year: current_year 
+            });
         }
 
-        let preview_pages_length = pages_preview.length;
-        let reverse_fix = false;
-        for(var i=pages_length;i<preview_pages_length;++i){
-            let page = pages_preview[i];
-           
-            page.classList.add('display__none');
-            if(page.classList.contains("flipped")){
-                reverse_fix = true;
-                page.classList.remove("flipped");
-                let current_zindex = page.style.zIndex;
-                page.style.zIndex =  1000-Number(current_zindex);
-            }
-        }
+        diary_pages[diary_pages.length - 1].year = current_year;
 
-        if(reverse_fix){
-            last_page.classList.remove('display__none');
-            if(last_page.classList.contains('flipped')){
-                last_page.classList.remove('flipped');
-                let current_zindex = last_page.style.zIndex;
-                last_page.style.zIndex =  1000-Number(current_zindex);
-            }
-            if(!second_last_page?.classList.contains('flipped')){
-                second_last_page.classList.add('flipped');
-                let current_zindex = second_last_page.style.zIndex;
-                second_last_page.style.zIndex =  1000-Number(current_zindex);
-            }
-            second_last_page?.classList.remove('display__none');
-            let third_last_page = pages_preview[pages_length - 3];
-            if(!third_last_page.classList.contains('flipped')){
-                third_last_page.classList.add('flipped');
-                let current_zindex = third_last_page.style.zIndex;
-                third_last_page.style.zIndex =  1000-Number(current_zindex);
-            }
-            third_last_page.classList.remove('display__none');
-        }
+        // --- VIRTUAL WINDOW HOOK REPLACE ---
+        current_physical_page = 0; 
+        updateDOMWindow();
+        // -----------------------------------
 
-      let pages_limit_div = document.querySelector('.pages-limit__description');
+        let pages_limit_div = document.querySelector('.pages-limit__description');
         let pages_limit = Number(pages_limit_div.getAttribute("data-pageslimit"));
-        if(diary_pages.length > pages_limit){
+        if (diary_pages.length > pages_limit) {
             pages_limit_div.style.display = 'block';
             let pages_number_message = document.querySelector("#no_of_pages");
             pages_number_message.innerHTML = diary_pages.length;
-        }else{
+        } else {
             pages_limit_div.style.display = 'none';
         }
-        
-        
-        if(excludeWeekends){
+
+        if (excludeWeekends) {
             diary_pages_no_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original));
-        }else if(switchWeekends){
+        } else if (switchWeekends) {
             diary_pages_half_weekends = JSON.parse(JSON.stringify(diary_pages));
             diary_pages = JSON.parse(JSON.stringify(diary_pages_original_2));
         }
 
         updatePrice(diary_pages.length);
-    
-        let last_page_element = document.querySelector('.last__page');
-        let last_page_index = Number(last_page_element.getAttribute('data-pageindex')) * 2;
+
+        let last_page_index = diary_pages.length;
         let pn_label = document.querySelector('.pn-label');
         pn_label.innerHTML = `Page Number (1-${last_page_index})`;
-        // loadVisibleImages();
     }
 
   function switchWeekendsPages(){

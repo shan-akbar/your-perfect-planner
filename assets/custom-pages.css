@@ -271,7 +271,10 @@
   background-color: black;
   border-radius: 3px;
   font-weight: bold;
-  padding: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+    touch-action: manipulation; /* Disables double-tap to zoom on these elements */
+    -webkit-tap-highlight-color: transparent; /* Removes the grey tap flash on iOS */
 }
 
 @media(hover:hover){
