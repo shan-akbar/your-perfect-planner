@@ -1,0 +1,212 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "judge_me_reviews_preview_badge_XF9MTp": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "custom_liquid_zyhr9T": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .nb-builder {\n    margin: 24px 0;\n    font-family: 'Poppins', sans-serif;\n  }\n\n  .nb-builder .nb-heading {\n    font-size: 1.35rem;\n    font-weight: 700;\n    margin: 0 0 6px 0;\n    text-transform: uppercase;\n    letter-spacing: 0.05em;\n    color: #ff4545;\n  }\n\n  .nb-description {\n    font-size: 1.3rem;\n    color: #222;\n    margin: 0 0 20px 0;\n    line-height: 1.7;\n  }\n\n  .nb-intro {\n    font-size: 1.2rem;\n    color: #777;\n    margin: 0 0 16px 0;\n    line-height: 1.5;\n  }\n\n  .nb-category {\n    margin-bottom: 18px;\n  }\n\n  .nb-cat-label {\n    font-size: 1.15rem;\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 0.1em;\n    color: #ff9cae;\n    margin: 0 0 8px 0;\n    padding-bottom: 6px;\n    border-bottom: 1px solid #ffe0e5;\n  }\n\n  .nb-checkboxes {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    gap: 8px 24px;\n    margin-top: 8px;\n  }\n\n  .nb-checkboxes label {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    font-size: 1.3rem;\n    cursor: pointer;\n    line-height: 1.3;\n  }\n\n  .nb-checkboxes input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n    cursor: pointer;\n    accent-color: currentColor;\n    flex-shrink: 0;\n  }\n\n  .nb-banner {\n    display: none;\n    background: #f4f4f4;\n    border-left: 3px solid #333;\n    padding: 12px 16px;\n    margin-bottom: 20px;\n    font-size: 1.3rem;\n    border-radius: 2px;\n  }\n\n  .nb-banner.visible {\n    display: block;\n  }\n\n  .nb-banner strong {\n    font-size: 1.4rem;\n  }\n\n  .nb-banner .nb-warning {\n    color: #c0392b;\n    font-size: 1.2rem;\n    margin-top: 4px;\n    display: none;\n  }\n\n  .nb-banner .nb-warning.visible {\n    display: block;\n  }\n\n  .nb-order-label {\n    font-size: 1.35rem;\n    font-weight: 700;\n    margin: 0 0 8px 0;\n    text-transform: uppercase;\n    letter-spacing: 0.05em;\n    display: block;\n    color: #ff4545;\n  }\n\n  .nb-order-sublabel {\n    font-size: 1.2rem;\n    color: #666;\n    margin: 0 0 10px 0;\n  }\n\n  .nb-order-input {\n    width: 100%;\n    padding: 10px 12px;\n    font-size: 1.3rem;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    box-sizing: border-box;\n    font-family: 'Poppins', sans-serif;\n  }\n\n  .nb-order-input:focus {\n    outline: none;\n    border-color: #333;\n  }\n\n  .nb-error {\n    color: #c0392b;\n    font-size: 1.2rem;\n    margin-top: 6px;\n    display: none;\n  }\n\n  .nb-error.visible {\n    display: block;\n  }\n</style>\n\n<div class=\"nb-builder\">\n\n  <p class=\"nb-description\">Build a notebook that's uniquely yours. Choose the pages you want, set the order they repeat, and we'll print and bind it exactly like that.</p>\n\n  <p class=\"nb-heading\">Choose your pages</p>\n  <p class=\"nb-intro\">To view each page, refer to the product images.</p>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Notes &amp; Journaling</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Blank\"> Blank</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Brain Dump\"> Brain Dump</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Bullet Journal\"> Bullet Journal</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Meeting Notes\"> Meeting Notes</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Monthly Reflection\"> Monthly Reflection</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Notes\"> Notes</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Wins\"> Wins</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Planning &amp; Tasks</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Daily Plan\"> Daily Plan</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Focus & Future Tasks To-Do List\"> Focus &amp; Future Tasks To-Do List</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Home & Work To-Do List\"> Home &amp; Work To-Do List</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Monthly Tasks\"> Monthly Tasks</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"The Eisenhower Matrix (Priority Planner)\"> The Eisenhower Matrix (Priority Planner)</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Home &amp; Life</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Birthday Planner\"> Birthday Planner</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Cleaning Planner\"> Cleaning Planner</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Contacts\"> Contacts</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Gift Planner\"> Gift Planner</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Login Details\"> Login Details</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Packing List\"> Packing List</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Reading Log\"> Reading Log</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Shopping List\"> Shopping List</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Trip Overview\"> Trip Overview</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Health &amp; Wellness</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Body Measurements\"> Body Measurements</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Monthly Habit Tracker\"> Monthly Habit Tracker</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Mood Tracker\"> Mood Tracker</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Yearly Habit Tracker\"> Yearly Habit Tracker</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Food</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Meal Ideas\"> Meal Ideas</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Meal Plan\"> Meal Plan</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Recipe\"> Recipe</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Finance &amp; Business</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Business Monthly Overview\"> Business Monthly Overview</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Communication Log\"> Communication Log</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Monthly Budget\"> Monthly Budget</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Yearly Bills\"> Yearly Bills</label>\n    </div>\n  </div>\n\n  <div class=\"nb-category\">\n    <p class=\"nb-cat-label\">Study &amp; School</p>\n    <div class=\"nb-checkboxes\">\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Assessment Checklist\"> Assessment Checklist</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Assignment Planner\"> Assignment Planner</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Assignment Tracker\"> Assignment Tracker</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Semester Timetable\"> Semester Timetable</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Term Planner\"> Term Planner</label>\n      <label><input type=\"checkbox\" class=\"nb-page-check\" value=\"Weekly Study Schedule\"> Weekly Study Schedule</label>\n    </div>\n  </div>\n\n  <div class=\"nb-banner\" id=\"nb-banner\">\n    Each page type will repeat <strong><span id=\"nb-repeat-count\">—</span> times</strong>\n    <div class=\"nb-warning\" id=\"nb-uneven-warning\">\n      Note: 200 pages doesn't divide evenly into your selection. We'll round to the nearest whole repeat.\n    </div>\n  </div>\n\n  <label class=\"nb-order-label\" for=\"nb-order-input\">Specify your page order</label>\n  <p class=\"nb-order-sublabel\">List your selected pages in the order you'd like them to repeat, separated by commas.</p>\n  <input\n    type=\"text\"\n    id=\"nb-order-input\"\n    class=\"nb-order-input\"\n    name=\"properties[Page Order]\"\n    placeholder=\"e.g. Notes, Budget, Habit Tracker\"\n    autocomplete=\"off\"\n  >\n  <p class=\"nb-error\" id=\"nb-error-pages\">Please select at least one page type before adding to cart.</p>\n  <p class=\"nb-error\" id=\"nb-error-order\">Please specify your page order before adding to cart.</p>\n\n  <input type=\"hidden\" name=\"properties[Pages Selected]\" id=\"nb-pages-prop\">\n  <input type=\"hidden\" name=\"properties[Repeats Per Page]\" id=\"nb-repeats-prop\">\n  <input type=\"hidden\" name=\"properties[Total Pages]\" value=\"200\">\n\n</div>\n\n<script>\n  (function () {\n    var TOTAL_PAGES = 200;\n\n    var checkboxes   = document.querySelectorAll('.nb-page-check');\n    var banner       = document.getElementById('nb-banner');\n    var repeatCount  = document.getElementById('nb-repeat-count');\n    var unevenWarn   = document.getElementById('nb-uneven-warning');\n    var pagesProp    = document.getElementById('nb-pages-prop');\n    var repeatsProp  = document.getElementById('nb-repeats-prop');\n    var orderInput   = document.getElementById('nb-order-input');\n    var errorPages   = document.getElementById('nb-error-pages');\n    var errorOrder   = document.getElementById('nb-error-order');\n\n    function getChecked() {\n      return Array.from(checkboxes).filter(function (cb) { return cb.checked; });\n    }\n\n    function updateBanner() {\n      var checked = getChecked();\n      var count   = checked.length;\n\n      if (count === 0) {\n        banner.classList.remove('visible');\n        pagesProp.value   = '';\n        repeatsProp.value = '';\n        return;\n      }\n\n      var repeats      = TOTAL_PAGES / count;\n      var isEven       = Number.isInteger(repeats);\n      var displayReps  = isEven ? repeats : Math.round(repeats);\n\n      repeatCount.textContent = displayReps;\n      banner.classList.add('visible');\n      unevenWarn.classList.toggle('visible', !isEven);\n\n      pagesProp.value   = checked.map(function (cb) { return cb.value; }).join(', ');\n      repeatsProp.value = displayReps + 'x';\n    }\n\n    checkboxes.forEach(function (cb) {\n      cb.addEventListener('change', updateBanner);\n    });\n\n    var form = document.querySelector('form[action=\"/cart/add\"]');\n    if (form) {\n      form.addEventListener('submit', function (e) {\n        var checked      = getChecked();\n        var orderVal     = orderInput.value.trim();\n        var pagesOk      = checked.length > 0;\n        var orderOk      = orderVal.length > 0;\n\n        errorPages.classList.toggle('visible', !pagesOk);\n        errorOrder.classList.toggle('visible', !orderOk);\n\n        if (!pagesOk || !orderOk) {\n          e.preventDefault();\n          e.stopImmediatePropagation();\n        }\n      });\n    }\n\n    updateBanner();\n  })();\n</script>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "afterpay_on_site_messaging_payments_messaging_DPwmnt": {
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
+          "settings": {
+            "text_align": "inherit",
+            "margin_top": 16,
+            "margin_bottom": 16,
+            "color": "",
+            "size": "md",
+            "intro_text": "or",
+            "show_interest_free": true,
+            "payment_amount_is_bold": true,
+            "show_with": true,
+            "logo_type": "badge",
+            "logo_theme": "black-on-mint",
+            "modal_link_style": "circled-info-icon",
+            "modal_theme": "mint",
+            "breakpoint": 749,
+            "text_align_mobile": "inherit",
+            "margin_top_mobile": 16,
+            "margin_bottom_mobile": 16,
+            "show_lower_limit": true,
+            "show_upper_limit": true,
+            "show_if_outside_limits": true,
+            "product": "{{product}}"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_9gUFHt": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping",
+            "icon": "box",
+            "content": "<p>We offer standard shipping from $5.50 and express from $11.95 within Australia. Prices will increase based on the weight of your order. Or spend over $120 to get free shipping within Australia.</p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.</p><p>See our full shipping policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a>.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_QTEC3y": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Care",
+            "icon": "bottle",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_eHyF8d": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Garment Bag",
+            "icon": "heart",
+            "content": "",
+            "page": ""
+          }
+        },
+        "collapsible_tab_ciA8Ah": {
+          "type": "collapsible_tab",
+          "disabled": true,
+          "settings": {
+            "heading": "Pre Order",
+            "icon": "price_tag",
+            "content": "",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "judge_me_reviews_preview_badge_XF9MTp",
+        "price",
+        "custom_liquid_zyhr9T",
+        "variant_picker",
+        "quantity_selector",
+        "afterpay_on_site_messaging_payments_messaging_DPwmnt",
+        "buy_buttons",
+        "description",
+        "collapsible_tab_9gUFHt",
+        "collapsible_tab_QTEC3y",
+        "collapsible_tab_eHyF8d",
+        "collapsible_tab_ciA8Ah",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 8,
+        "padding_bottom": 12
+      }
+    },
+    "1725168709b44473d7": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_H48Wb8": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_H48Wb8"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1725168709b44473d7",
+    "related-products"
+  ]
+}

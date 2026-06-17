@@ -142,7 +142,7 @@
           "type": "accordion",
           "settings": {
             "question": "Do you offer free shipping?",
-            "answer": "<p>At this stage, we offer free shipping for all orders over $99 that are being shipped within Australia. If your order is under $99 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from $11.95.</p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
+            "answer": "<p>At this stage, we offer free shipping for all orders over $110 that are being shipped within Australia. If your order is under $110 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from $11.95.</p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
           }
         },
         "accordion_JETnYg": {
@@ -156,7 +156,7 @@
           "type": "accordion",
           "settings": {
             "question": "What shipping company do you use?",
-            "answer": "<p>All orders are shipped with Australia Post, Sendle, Aramex or Couriers Please (whatever is most economical for the product and receiver location). </p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
+            "answer": "<p>All orders are shipped with Australia Post, Aramex or Couriers Please (whatever is most economical for the product and receiver location). </p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
           }
         },
         "accordion_NjjfzD": {
