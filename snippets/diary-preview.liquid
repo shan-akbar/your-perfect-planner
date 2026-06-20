@@ -1263,22 +1263,30 @@ function skipPages(direction) {
         let updateType = element.getAttribute('data-updatetype');
         let updated_pages = [];
         if(updateType == "plus"){
-            let current_month = 1;
+            let diary_pages_days = diary_pages.filter((page) => page.page_type == "day");
+            let start_date = new Date(diary_pages_days[0].date);
+            let current_month = start_date.getMonth();
+            let previous_month = current_month;
             let day_counter = -1;
             let days_in_current_month = 30;
             let current_year = 0;
             for(var i=0; i<pages_length; ++i){
-                
-                if(day_counter == days_in_current_month){
-                    if(diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month"){
-                        updated_pages.push({page_type: "month", page_url: image_front, year: diary_pages[i].year });
-                        if(image_back){
-                            updated_pages.push({page_type: "month", page_url: image_back, year: diary_pages[i].year });
+
+                if(diary_pages[i].page_type == 'day'){
+
+                 let current_date = new Date(diary_pages[i].date);
+                    current_month = current_date.getMonth();
+                    
+                    if(current_month != previous_month){
+                        if(diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month"){
+                            updated_pages.push({page_type: "month", page_url: image_front, year: diary_pages[i].year });
+                            if(image_back){
+                                updated_pages.push({page_type: "month", page_url: image_back, year: diary_pages[i].year });
+                            }
+                            
+                           previous_month = current_month;
+                          
                         }
-                        
-                        ++current_month
-                        days_in_current_month = daysInMonth(current_month, current_year);
-                        day_counter = 0
                     }
                 }
 
@@ -1286,19 +1294,19 @@ function skipPages(direction) {
                     updated_pages.push(diary_pages[i]);
                 }
 
-                if(diary_pages[i].page_type == 'day'){
-                    let current_date = new Date(diary_pages[i].date);
-                    current_year = current_date.getFullYear();
-                    if(day_counter == -1){
-                        current_month = current_date.getMonth() + 1;
-                        days_in_current_month = daysInMonth(current_month, current_date.getFullYear());
-                        day_counter = current_date.getDate();
-                    }else{
-                        ++day_counter;
-                        current_year = current_date.getFullYear();
-                    }
+                // if(diary_pages[i].page_type == 'day'){
+                //     let current_date = new Date(diary_pages[i].date);
+                //     current_year = current_date.getFullYear();
+                //     if(day_counter == -1){
+                //         current_month = current_date.getMonth() + 1;
+                //         days_in_current_month = daysInMonth(current_month, current_date.getFullYear());
+                //         day_counter = current_date.getDate();
+                //     }else{
+                //         ++day_counter;
+                //         current_year = current_date.getFullYear();
+                //     }
 
-                }
+                // }
             }
         }else{
             let noOfRemoved = 0;
