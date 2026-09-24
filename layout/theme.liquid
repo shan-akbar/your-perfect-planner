@@ -434,5 +434,24 @@
     }
   </script>
  
+{% if product.tags contains 'redirect-to-cover' %}
+<script>
+(function() {
+  var COVER_URL = 'https://yourperfectplanner.com.au/products/planner-cover?_pos=1&_psq=planner+cover&_psid=350e4bd9f&_ss=e&_v=1.0';
+  var origFetch = window.fetch;
+  window.fetch = function(url, options) {
+    var result = origFetch.apply(this, arguments);
+    if (typeof url === 'string' && url.indexOf('cart/add') > -1) {
+      return result.then(function(response) {
+        if (response.ok) window.location.href = COVER_URL;
+        return response;
+      });
+    }
+    return result;
+  };
+})();
+</script>
+{% endif %}
+
   </body>
 </html>

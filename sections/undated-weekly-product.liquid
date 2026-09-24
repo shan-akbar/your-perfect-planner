@@ -26,15 +26,15 @@
     display: none;
   }
   
-  @font-face {
+  /* @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
-  }
+  } */
 
-    @font-face {
+    /* @font-face {
         font-family: 'poopins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
-    }
+    } */
 
     .planner-date__range{
       text-align: center;
@@ -446,7 +446,7 @@
 
               <div class="klaviyo-form-wrapper">
                 {%- render 'loading-spinner' -%}
-                <h2>Pop in your details below so we can help you if you get stuck. (This does not subscribe you to email or SMS marketing)</h2>
+                <h2>Pop in your details below so we can help you if you get stuck.</h2>
 
                 <form id="klaviyo-form">
                   
@@ -1091,21 +1091,7 @@
                         
                      {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                 </div>
-                {% comment %} {%- when 'pages_limit' -%} {% endcomment %}
-                  {% comment %} <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
-                    <div class="danger-icon">
-                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
-                    </div>
-                    <div class="pages-limit__content">
-                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
-                      <p>{{ block.settings.pages_limit_note }}</p>
-                      <input type="checkbox" id="split_diary" name="split_diary" value="false" onclick="splitDiary()">
-                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
-                      <br>
-                      {{ block.settings.other_note }}
-                    </div>
-
-                  </div> {% endcomment %}
+                
               {%- when 'monthly_double_pages'-%}
                 <script>
                 

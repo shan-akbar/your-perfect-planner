@@ -229,12 +229,9 @@
     }
 
     #new-banner-section{
-      {% comment %} width: 100vw; {% endcomment %}
+
       position: relative;
-      {% comment %} left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw; {% endcomment %}
+   
     }
     
     .banner-grid-layout {
@@ -604,7 +601,7 @@
       .new-banner-sect-heading h1{
         font-size: 33px !important;
         color: white !important;
-        {% comment %} margin-top: 13px; {% endcomment %}
+       
       }
       .feature-text-right1 {
         display: flex;
@@ -1177,7 +1174,7 @@
 
 
 <div id="new-banner-section" style="padding: 0;">
-  {% comment %} <div class="new-banner-section-container" style="background-color: {{ section.settings.bg-color }};"> {% endcomment %}
+
   {% if section.settings.heading != blank or section.settings.heading1 != blank %}  
       <div class="heading-area">
         <div class="new-banner-sect-heading">

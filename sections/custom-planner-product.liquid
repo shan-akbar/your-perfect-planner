@@ -26,15 +26,15 @@
     display: none;
   }
   
-  @font-face {
+  /* @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
-  }
+  } */
 
-    @font-face {
+    /* @font-face {
         font-family: 'poopins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
-    }
+    } */
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -348,204 +348,7 @@
           {%- for block in section.blocks -%}
             {%- case block.type -%}
 
-              {% when 'form' %}
-
-              <div class="contact__form build-step__{{ custom_pages_step }} build-step-hide build-step__active" data-buildstep="{{ custom_pages_step }}">
-              <style>
-                .klaviyo-form-wrapper {
-                  max-width: 420px;
-                  margin: 40px auto;
-                  padding: 28px;
-                  border-radius: 18px;
-                  background: #ffffff;
-                  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-                  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-                }
-
-                .klaviyo-form-wrapper .loading__spinner{
-                  top:0;
-                }
-
-                .klaviyo-form-wrapper h2 {
-                  margin-bottom: 20px;
-                  font-size: 15px;
-                  text-align: center;
-                  font-weight: 600;
-                }
-
-                .klaviyo-field {
-                  position: relative;
-                  margin-bottom: 18px;
-                }
-
-                .klaviyo-field input {
-                  width: 100%;
-                  padding: 16px 14px;
-                  border-radius: 12px;
-                  border: 1px solid #ddd;
-                  font-size: 14px;
-                  outline: none;
-                  transition: all 0.25s ease;
-                  background: #fafafa;
-                }
-
-                .klaviyo-field input:focus {
-                  border-color: #000;
-                  background: #fff;
-                  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
-                }
-
-                .klaviyo-field label {
-                  position: absolute;
-                  top: 50%;
-                  left: 14px;
-                  transform: translateY(-50%);
-                  font-size: 13px;
-                  color: #777;
-                  background: #fff;
-                  padding: 0 6px;
-                  transition: 0.2s ease;
-                  pointer-events: none;
-                }
-
-                .klaviyo-field input:focus + label,
-                .klaviyo-field input:not(:placeholder-shown) + label {
-                  top: -8px;
-                  font-size: 11px;
-                  color: #000;
-                }
-
-                .klaviyo-form-wrapper button {
-                  width: 100%;
-                  padding: 14px;
-                  border: none;
-                  border-radius: 12px;
-                  background: #000;
-                  color: #fff;
-                  font-size: 15px;
-                  font-weight: 500;
-                  cursor: pointer;
-                  transition: all 0.25s ease;
-                }
-
-                .klaviyo-form-wrapper button:hover {
-                  background: #333;
-                }
-
-                .klaviyo-form-wrapper button:active {
-                  transform: scale(0.98);
-                }
-
-                #form-message {
-                  margin-top: 14px;
-                  font-size: 13px;
-                  text-align: center;
-                }
-
-                @media (max-width: 480px) {
-                  .klaviyo-form-wrapper {
-                    margin: 20px;
-                    padding: 20px;
-                  }
-                }
-              </style>
-
-              <div class="klaviyo-form-wrapper">
-                {%- render 'loading-spinner' -%}
-                <h2>Pop in your details below so we can help you if you get stuck. (This does not subscribe you to email or SMS marketing)</h2>
-
-                <form id="klaviyo-form">
-                  
-                  <div class="klaviyo-field">
-                    <input type="text" id="name" placeholder=" " required>
-                    <label>Your Name</label>
-                  </div>
-
-                  <div class="klaviyo-field">
-                    <input type="email" id="email" placeholder=" " required>
-                    <label>Your Email</label>
-                  </div>
-
-                  <div class="klaviyo-field">
-                    <input type="tel" id="phone" placeholder=" ">
-                    <label>Your Phone (optional)</label>
-                  </div>
-
-                  <button type="submit" class="form-submit__btn" style="display: none;">Send Message</button>
-                </form>
-
-                <div id="form-message" style="display:none;"></div>
-              </div>
-              </div>
-
-              <script>
-                document.getElementById("klaviyo-form").addEventListener("submit", async function(e) {
-                e.preventDefault();
-
-                const name = document.getElementById("name").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const phone = document.getElementById("phone").value.trim();
-              
-
-                const msgBox = document.getElementById("form-message");
-                // msgBox.innerHTML = "Submitting...";
-
-                try {
-                  let loading_spinner = document.querySelector(".klaviyo-form-wrapper .loading__spinner");
-                  loading_spinner.classList.remove('hidden');
-                  const response = await fetch("https://a.klaviyo.com/client/subscriptions/?company_id=WL27eL", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      "revision": "2023-10-15"
-                    },
-                    body: JSON.stringify({
-                      data: {
-                        type: "subscription",
-                        attributes: {
-                          profile: {
-                            data: {
-                              type: "profile",
-                              attributes: {
-                                email: email,
-                                first_name: name,
-                                phone_number: phone || undefined,
-                              
-                              }
-                            }
-                          }
-                        },
-                        relationships: {
-                          list: {
-                            data: {
-                              type: "list",
-                              id: "X4rhnz" // 👈 replace this
-                            }
-                          }
-                        }
-                      }
-                    })
-                  });
-
-                  if (response.status === 202) {
-                    msgBox.innerHTML = "true";
-                    localStorage.setItem('contactForm', 'true');
-                    
-                 
-                  } else {
-                    const err = await response.text();
-                    throw new Error(err);
-                  }
-
-                } catch (error) {
-                  console.error(error);
-                  msgBox.innerHTML = "false";
-                }
-              });
-               
-              </script>
-              
-              {% assign custom_pages_step = custom_pages_step | plus: 1 %}
+  
 
               {% when 'disclaimer_text' %}
 
@@ -616,22 +419,7 @@
                     </div>
                   {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                   {%- when 'switch_weekends_pages' -%}
-                    {% comment %} <div class="switch_weekends build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
-                      {% if block.settings.heading != blank %}
-                        <h3>{{ block.settings.heading }}</h3>
-                      {% endif %}
-                      <div class="switch-weekends__checkbox">
-                        <input type="checkbox" id="switch_weekends" name="switch_weekends" value="false" autocomplete='off' onclick="switchWeekendsPages()">
-                        <label for="switch_weekends">{{ block.settings.checkbox_label }}</label><br>
-                      </div>
-                      {% if block.settings.other_note != blank %}
-                        <div class="switch-weekends__description">
-                          <span>&#62;</span> {{ block.settings.other_note }}
-                        </div>
-                      {% endif %}
-                    </div> {% endcomment %}
-
-                    {% comment %} {% assign custom_pages_step = custom_pages_step | plus: 1 %} {% endcomment %}
+                   
                   
                 {% when 'planner_custom_pages' %}
                   <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2026">
@@ -1337,21 +1125,7 @@
                 </script>
               
               
-                {% comment %} {%- when 'pages_limit' -%} {% endcomment %}
-                  {% comment %} <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
-                    <div class="danger-icon">
-                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
-                    </div>
-                    <div class="pages-limit__content">
-                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
-                      <p>{{ block.settings.pages_limit_note }}</p>
-                      <input type="checkbox" id="split_diary" name="split_diary" autocomplete='off' value="false" onclick="splitDiary()">
-                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
-                      <br>
-                      {{ block.settings.other_note }}
-                    </div>
-
-                  </div> {% endcomment %}
+                
                 
                 {%- when 'monthly_double_pages'-%}
                   <script>
@@ -2173,7 +1947,7 @@ function bigImg() {
 {% comment %} Code for changing layout to steps {% endcomment %}
 
 <style>
-    /* Description Collapsable  */
+ 
     .product-description-collapsible {
       margin-bottom: 20px;
     }
@@ -2440,7 +2214,7 @@ function bigImg() {
   
   let planner_building_button = document.getElementById("planner_building_button");
 
-  planner_building_button.addEventListener("click", (event) => {
+    planner_building_button.addEventListener("click", (event) => {
     let build_step_wrapper = document.querySelector('.build-step__wrapper');
     let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
     build_step_wrapper.appendChild(diary_preview);
@@ -2449,104 +2223,57 @@ function bigImg() {
         build_step_wrapper.appendChild(build_step);
     }
 
+    let first_step = document.querySelector('.build-step__1');
+    if (first_step) {
+      first_step.classList.add('build-step__active');
+    }
+
     step_modal.style.display = "block";
 
     document.body.style.overflow = 'hidden';
 
   });
 
-
 function processNextStep(){
       let build_step_wrapper = document.querySelector('.build-step__wrapper');
       let current_step = document.querySelector('.build-step__active');
       let current_index = Number(current_step.getAttribute("data-buildstep"));
-      let process_next = true;
-      let formbtn = document.querySelector(".form-submit__btn");
+
+      let next_btn_main = document.querySelector(".build-step__next");
+
+      if(next_btn_main.querySelector('span').innerHTML == "Add to Cart"){
+        let add_to_cart_button = document.querySelector(".product-form__buttons .button");
+        let loading_spinner = next_btn_main.querySelector(".loading__spinner");
+        loading_spinner.classList.remove('hidden');
+        add_to_cart_button.click();
+        return;
+      }
+
+      let next_index = current_index + 1;
+      let next_step = document.querySelector(`.build-step__${next_index}`);
+      next_step.classList.add('build-step__active');
+      current_step.classList.remove('build-step__active');
+      let step_count = document.querySelector('.step-count');
+      step_count.innerHTML = next_index;
+
+      if(next_index == final_step_number){
+        let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
+        diary_preview.classList.add('build-step-media__active');
+        let next_btn = document.querySelector(".build-step__next");
+        next_btn.querySelector('span').innerHTML = "Add to Cart";
+        diary_preview.scrollLeft = diary_preview.scrollWidth;
+        let globalPriceWrap = document.querySelector(".global-price");
+        globalPriceWrap.classList.add('hidden');
+      }
+
       if(current_index == 1){
-          process_next = false;
-          formbtn.click();
-
-          const myInterval = setInterval(() => {
-             let formFilled = localStorage.getItem("contactForm");
-            if(formFilled == "true" ){
-              let loading_spinner = document.querySelector(".klaviyo-form-wrapper .loading__spinner");
-              loading_spinner.classList.add('hidden');
-              let build_step_wrapper = document.querySelector('.build-step__wrapper');
-              let current_step = document.querySelector('.build-step__active');
-              let current_index = Number(current_step.getAttribute("data-buildstep"));
-              let next_index = current_index + 1;
-              let next_step = document.querySelector(`.build-step__${next_index}`);
-              next_step.classList.add('build-step__active');
-              current_step.classList.remove('build-step__active');
-              let step_count = document.querySelector('.step-count');
-              step_count.innerHTML = next_index;
-              
-
-              if(next_index == final_step_number){
-                let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
-                diary_preview.classList.add('build-step-media__active');
-                let next_btn = document.querySelector(".build-step__next");
-                // next_btn.classList.add('build-step-button__disabled');
-                next_btn.querySelector('span').innerHTML = "Add to Cart";
-                diary_preview.scrollLeft = diary_preview.scrollWidth;
-                let globalPriceWrap = document.querySelector(".global-price");
-                globalPriceWrap.classList.add('hidden');
-              }
-                
-              if(current_index == 1){
-                let prev_btn = document.querySelector(".build-step__prev");
-                prev_btn.classList.remove('build-step-button__disabled');
-                let update_date_button = document.querySelector("button.diary-update__button");
-                update_date_button.click();
-              }
-              localStorage.removeItem("contactForm");
-              clearInterval(myInterval);
-            }
-
-          }, 2000);
-      
+        let prev_btn = document.querySelector(".build-step__prev");
+        prev_btn.classList.remove('build-step-button__disabled');
+        let update_date_button = document.querySelector("button.diary-update__button");
+        update_date_button.click();
       }
+}
 
-      if(process_next){
-        let next_btn_main = document.querySelector(".build-step__next");
-
-        if(next_btn_main.querySelector('span').innerHTML == "Add to Cart"){
-          let add_to_cart_button = document.querySelector(".product-form__buttons .button");
-          let loading_spinner = next_btn_main.querySelector(".loading__spinner");
-          loading_spinner.classList.remove('hidden');
-          add_to_cart_button.click();
-          return;
-        }
-      
-        let next_index = current_index + 1;
-        let next_step = document.querySelector(`.build-step__${next_index}`);
-        next_step.classList.add('build-step__active');
-        current_step.classList.remove('build-step__active');
-        let step_count = document.querySelector('.step-count');
-        step_count.innerHTML = next_index;
-        
-
-        if(next_index == final_step_number){
-          let diary_preview = document.querySelector(".product__media-wrapper-2.product__media-wrapper");
-          diary_preview.classList.add('build-step-media__active');
-          let next_btn = document.querySelector(".build-step__next");
-          // next_btn.classList.add('build-step-button__disabled');
-          next_btn.querySelector('span').innerHTML = "Add to Cart";
-          diary_preview.scrollLeft = diary_preview.scrollWidth;
-          let globalPriceWrap = document.querySelector(".global-price");
-          globalPriceWrap.classList.add('hidden');
-        }
-          
-        
-
-        if(current_index == 1){
-          let prev_btn = document.querySelector(".build-step__prev");
-          prev_btn.classList.remove('build-step-button__disabled');
-          let update_date_button = document.querySelector("button.diary-update__button");
-          update_date_button.click();
-        }
-      }
-  }
   function processPrevStep(){
       let build_step_wrapper = document.querySelector('.build-step__wrapper');
       let current_step = document.querySelector('.build-step__active');
@@ -2656,11 +2383,6 @@ function processNextStep(){
   "blocks": [
     {
       "type": "@app"
-    },
-    {
-      "type": "form",
-      "name": "Form",
-      "limit": 1
     },
     {
       "type": "disclaimer_text",

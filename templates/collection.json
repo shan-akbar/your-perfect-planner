@@ -9,12 +9,32 @@
  */
 {
   "sections": {
+    "custom_liquid_tXKQtt": {
+      "type": "custom-liquid",
+      "name": "Collection Menu",
+      "settings": {
+        "custom_liquid": "{% comment %}\n  Your Perfect Planner — Collection Menu (Custom Liquid version)\n\n  HOW TO EDIT THE LIST OF COLLECTIONS\n  Edit the handles below. A handle is the last part of a collection's URL.\n  e.g. if the collection URL is /collections/custom-planners, the handle is \"custom-planners\".\n  Order here = order shown on the site. Add or remove handles as needed (comma separated, no spaces around commas).\n\n  Each circle automatically pulls its image, title and link straight from that collection in Shopify\n  (Products > Collections > [collection] > Image). Nothing else to upload or configure.\n{% endcomment %}\n{% assign ypp_handles = \"planners,adhd-planner,phone-airpod-airtag-cases,built-by-us,notebooks,accessories,custom-undated-planners,journals\" | split: \",\" %}\n\n{% comment %}\n  LINK OVERRIDES\n  Use this if you want a specific circle to link to a PRODUCT instead of its collection page\n  (the circle image and label still come from the collection above, only the click destination changes).\n  List the collection handle on the left, the product handle it should link to on the right, separated by a colon.\n  Multiple overrides are comma separated, e.g. \"adhd-planner:adhd-planner-2026,accessories:some-product-handle\"\n  Leave blank (\"\") if you don't need this.\n{% endcomment %}\n{% assign ypp_link_overrides = \"adhd-planner:adhd-planner\" | split: \",\" %}\n\n<style>\n  @font-face {\n    font-family: 'Wild Mango';\n    src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/WildMango.otf?v=1732748528') format('opentype');\n    font-display: swap;\n  }\n\n  .ypp-collection-menu {\n    background: #ffffff;\n    padding: 0;\n  }\n  .ypp-collection-menu__inner {\n    max-width: 1200px;\n    margin: 0 auto;\n    padding: 0 1.5rem;\n  }\n  .ypp-collection-menu__heading {\n    font-family: 'Wild Mango', serif;\n    font-weight: 400;\n    font-size: 2rem;\n    text-align: center;\n    color: #3a2e2e;\n    margin: 0 0 1.5rem;\n  }\n  .ypp-collection-menu__list {\n    display: flex;\n    align-items: flex-start;\n    justify-content: flex-start;\n    gap: 1.75rem;\n    margin: 0;\n    padding: 0.25rem 0 0.5rem;\n    list-style: none;\n    overflow-x: auto;\n    scroll-snap-type: x proximity;\n    -webkit-overflow-scrolling: touch;\n    scrollbar-width: none;\n  }\n  .ypp-collection-menu__list::-webkit-scrollbar { display: none; }\n  @media screen and (min-width: 990px) {\n    .ypp-collection-menu__list { justify-content: center; gap: 2.5rem; }\n  }\n  .ypp-collection-menu__item { flex: 0 0 auto; scroll-snap-align: start; }\n  .ypp-collection-menu__link {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    gap: 0.6rem;\n    text-decoration: none;\n    width: 76px;\n  }\n  @media screen and (min-width: 990px) {\n    .ypp-collection-menu__link { width: 110px; }\n  }\n  .ypp-collection-menu__circle {\n    display: block;\n    width: 76px;\n    height: 76px;\n    border-radius: 50%;\n    overflow: hidden;\n    background: #ff9cae;\n    border: 2px solid transparent;\n    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;\n  }\n  @media screen and (min-width: 990px) {\n    .ypp-collection-menu__circle { width: 110px; height: 110px; }\n  }\n  .ypp-collection-menu__circle img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    display: block;\n  }\n  .ypp-collection-menu__fallback {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-family: 'Wild Mango', serif;\n    font-size: 1.75rem;\n    color: #ff4545;\n    background: #fdf1f0;\n  }\n  .ypp-collection-menu__link:hover .ypp-collection-menu__circle,\n  .ypp-collection-menu__link:focus-visible .ypp-collection-menu__circle {\n    border-color: #ff4545;\n    transform: translateY(-3px);\n    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);\n  }\n  .ypp-collection-menu__item.is-active .ypp-collection-menu__circle {\n    border-color: #ff4545;\n    box-shadow: 0 0 0 3px rgba(255, 69, 69, 0.15);\n  }\n  .ypp-collection-menu__label {\n    font-family: 'Poppins', sans-serif;\n    font-weight: 700;\n    text-transform: uppercase;\n    font-size: 0.85rem;\n    letter-spacing: 0.04em;\n    text-align: center;\n    color: #3a2e2e;\n    line-height: 1.25;\n  }\n  @media screen and (min-width: 990px) {\n    .ypp-collection-menu__label { font-size: 1rem; }\n  }\n  .ypp-collection-menu__item.is-active .ypp-collection-menu__label { color: #ff4545; }\n\n  @media (prefers-reduced-motion: reduce) {\n    .ypp-collection-menu__circle { transition: none; }\n  }\n</style>\n\n<div class=\"ypp-collection-menu\">\n  <div class=\"ypp-collection-menu__inner\">\n    <ul class=\"ypp-collection-menu__list\" role=\"list\">\n      {%- for handle in ypp_handles -%}\n        {%- assign coll = collections[handle] -%}\n        {%- if coll != blank -%}\n          {%- assign menu_link = coll.url -%}\n          {%- for override in ypp_link_overrides -%}\n            {%- assign override_parts = override | split: ':' -%}\n            {%- if override_parts[0] == handle and override_parts[1] != blank -%}\n              {%- assign override_product = all_products[override_parts[1]] -%}\n              {%- if override_product != blank -%}\n                {%- assign menu_link = override_product.url -%}\n              {%- endif -%}\n            {%- endif -%}\n          {%- endfor -%}\n          {%- assign is_active = false -%}\n          {%- if collection != blank and collection.handle == coll.handle -%}\n            {%- assign is_active = true -%}\n          {%- endif -%}\n          <li class=\"ypp-collection-menu__item {% if is_active %}is-active{% endif %}\">\n            <a href=\"{{ menu_link }}\" class=\"ypp-collection-menu__link\">\n              <span class=\"ypp-collection-menu__circle\">\n                {%- if coll.image -%}\n                  <img\n                    src=\"{{ coll.image | image_url: width: 300 }}\"\n                    srcset=\"{{ coll.image | image_url: width: 150 }} 150w, {{ coll.image | image_url: width: 300 }} 300w\"\n                    sizes=\"(max-width: 749px) 76px, 110px\"\n                    alt=\"{{ coll.image.alt | default: coll.title }}\"\n                    width=\"300\"\n                    height=\"300\"\n                    loading=\"lazy\"\n                  >\n                {%- else -%}\n                  <span class=\"ypp-collection-menu__fallback\">{{ coll.title | slice: 0, 1 }}</span>\n                {%- endif -%}\n              </span>\n              <span class=\"ypp-collection-menu__label\">{{ coll.title }}</span>\n            </a>\n          </li>\n        {%- endif -%}\n      {%- endfor -%}\n    </ul>\n  </div>\n</div>\n\n<script>\n  (function () {\n    var wrapper = document.currentScript.closest('[class$=\"-padding\"]');\n    if (wrapper) {\n      wrapper.style.paddingTop = '16px';\n      wrapper.style.paddingBottom = '16px';\n    }\n  })();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
         "show_collection_description": true,
         "show_collection_image": false,
         "color_scheme": "scheme-1"
+      }
+    },
+    "custom_liquid_6z7Yzw": {
+      "type": "custom-liquid",
+      "name": "Collapsible product description",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-desc-toggle {\n    display: inline;\n    margin-left: 4px;\n    color: #ff9cae;\n    font-family: 'Poppins', sans-serif;\n    font-weight: 700;\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.5px;\n    text-decoration: underline;\n    cursor: pointer;\n    background: none;\n    border: none;\n    outline: none;\n    padding: 0;\n    -webkit-appearance: none;\n    appearance: none;\n  }\n  .ypp-desc-toggle:hover {\n    color: #ff4545;\n  }\n</style>\n\n<script>\n  (function() {\n    var descriptionEl = document.querySelector('.collection-hero__description .rte')\n      || document.querySelector('.collection-description .rte')\n      || document.querySelector('.rte');\n\n    if (!descriptionEl) return;\n\n    // Remove Dawn's auto-applied section padding on THIS Custom Liquid section\n    var thisSection = document.currentScript.closest('[class$=\"-padding\"]');\n    if (thisSection) {\n      thisSection.style.setProperty('padding-top', '0px', 'important');\n      thisSection.style.setProperty('padding-bottom', '0px', 'important');\n    }\n\n    var fullHTML = descriptionEl.innerHTML;\n    var fullText = descriptionEl.textContent.trim();\n\n    var match = fullText.match(/^.*?[.?!]/);\n    var previewText = match ? match[0] : fullText;\n\n    function showPreview() {\n      descriptionEl.innerHTML = '<p>' + previewText +\n        ' <button class=\"ypp-desc-toggle\" id=\"ypp-desc-btn\">Read More</button></p>';\n      document.getElementById('ypp-desc-btn').addEventListener('click', showFull);\n    }\n\n    function showFull() {\n      descriptionEl.innerHTML = fullHTML +\n        '<p><button class=\"ypp-desc-toggle\" id=\"ypp-desc-btn\">Read Less</button></p>';\n      document.getElementById('ypp-desc-btn').addEventListener('click', showPreview);\n    }\n\n    showPreview();\n  })();\n</script>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "product-grid": {
@@ -33,8 +53,8 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "show_quiz-btn": true,
-        "quiz-showbtn-link": "shopify:\/\/pages\/find-your-perfect-planner",
-        "quiz-show-image": "shopify:\/\/shop_images\/DSCF4072_0f4789c9-b496-45f3-8ec3-fc808852c8d2.jpg",
+        "quiz-showbtn-link": "shopify://pages/find-your-perfect-planner",
+        "quiz-show-image": "shopify://shop_images/DSCF4072_0f4789c9-b496-45f3-8ec3-fc808852c8d2.jpg",
         "quiz-show-button-text": "Find Your Perfect Planner",
         "columns_mobile": "2",
         "padding_top": 36,
@@ -43,7 +63,9 @@
     }
   },
   "order": [
+    "custom_liquid_tXKQtt",
     "banner",
+    "custom_liquid_6z7Yzw",
     "product-grid"
   ]
 }

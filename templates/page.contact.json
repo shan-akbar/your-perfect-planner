@@ -68,6 +68,13 @@
             "question": "Do you sell gift cards?",
             "answer": "<p>Yes! Find them <a href=\"/products/your-perfect-planner-gift-card\" title=\"Your Perfect Planner Gift Card\">here</a></p>"
           }
+        },
+        "accordion_fAxc8r": {
+          "type": "accordion",
+          "settings": {
+            "question": "Do you work with UGC creators?",
+            "answer": "<p>Yes, we do! Fill out our application form <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSfXpGJrwViNxbcAdZ3tZkk6HBjd8e3g4ciI4g9Ds8yG8Qs7cA/viewform?usp=header\" target=\"_blank\" title=\"UGC Creator Application Google Form\">here </a>to be added to our database. We review applications every couple of months and will reach out if there's a good fit.</p>"
+          }
         }
       },
       "block_order": [
@@ -77,7 +84,8 @@
         "accordion_EcWt94",
         "accordion_7dYzTE",
         "accordion_jgLgda",
-        "accordion_dfhFdt"
+        "accordion_dfhFdt",
+        "accordion_fAxc8r"
       ],
       "settings": {
         "Heading_text_1": "You're Welcome To Contact Us",
@@ -142,7 +150,7 @@
           "type": "accordion",
           "settings": {
             "question": "Do you offer free shipping?",
-            "answer": "<p>At this stage, we offer free shipping for all orders over $110 that are being shipped within Australia. If your order is under $110 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from $11.95.</p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
+            "answer": "<p>At this stage, we offer free shipping for all orders over $150 that are being shipped within Australia. If your order is under $150 your shipping cost will be calculated based on the weight of your order. Standard shipping starts at $5.50 and express from $11.95.</p><p>Read the full details of our Shipping Policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a></p>"
           }
         },
         "accordion_JETnYg": {

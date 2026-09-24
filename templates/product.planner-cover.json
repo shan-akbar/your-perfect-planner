@@ -38,12 +38,19 @@
             "swatch_shape": "circle"
           }
         },
+        "custom_liquid_r94gFK": {
+          "type": "custom_liquid",
+          "name": "Which cover on which product",
+          "settings": {
+            "custom_liquid": "<div class=\"plannercover-instructions\">\n  <label for=\"cover-pairing-instructions\">\n    Ordering more than one item? Tell us which cover goes with which product\n  </label>\n  <textarea\n    id=\"cover-pairing-instructions\"\n    rows=\"3\"\n    placeholder='e.g. \"Black Cover → Weekly Planner, Original Cover → Notebook\"'\n  ></textarea>\n</div>\n\n<style>\n  .plannercover-instructions {\n    margin: 1.5rem 0;\n  }\n  .plannercover-instructions label {\n    display: block;\n    font: inherit;\n    color: #ff4545;\n    margin-bottom: 0.5rem;\n  }\n  .plannercover-instructions textarea {\n    width: 100%;\n    padding: 0.6rem;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    font: inherit;\n    resize: vertical;\n  }\n</style>\n\n<script>\n  document.addEventListener('submit', function (e) {\n    var form = e.target;\n    if (!(form instanceof HTMLFormElement)) return;\n    if (form.getAttribute('action') === null || form.getAttribute('action').indexOf('/cart/add') === -1) return;\n    if (!form.querySelector('button[name=\"add\"]')) return;\n\n    var sourceField = document.getElementById('cover-pairing-instructions');\n    if (!sourceField) return;\n\n    var hidden = form.querySelector('input[name=\"properties[Cover Pairing Instructions]\"]');\n    if (!hidden) {\n      hidden = document.createElement('input');\n      hidden.type = 'hidden';\n      hidden.name = 'properties[Cover Pairing Instructions]';\n      form.appendChild(hidden);\n    }\n    hidden.value = sourceField.value;\n  }, true); // capture phase: runs before Shopify's own add-to-cart handler reads the form\n</script>"
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
         },
-        "selleasy_lb_upsell_widget_pac_feYXeP": {
-          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-pac/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "selleasy_lb_upsell_widget_ba_LjA64e": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-ba/790c1a03-a71f-4bc1-9869-00dad526d3c2",
           "settings": {}
         },
         "afterpay_on_site_messaging_payments_messaging_DPwmnt": {
@@ -129,8 +136,9 @@
         "judge_me_reviews_preview_badge_XF9MTp",
         "price",
         "variant_picker",
+        "custom_liquid_r94gFK",
         "quantity_selector",
-        "selleasy_lb_upsell_widget_pac_feYXeP",
+        "selleasy_lb_upsell_widget_ba_LjA64e",
         "afterpay_on_site_messaging_payments_messaging_DPwmnt",
         "buy_buttons",
         "description",
@@ -192,18 +200,11 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "178605301586850fe6": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "main",
     "1725168709b44473d7",
-    "related-products",
-    "178605301586850fe6"
+    "related-products"
   ]
 }

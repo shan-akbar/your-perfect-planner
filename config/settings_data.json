@@ -157,23 +157,31 @@
         "disabled": false,
         "settings": {}
       },
-      "2102808784413787648": {
-        "type": "shopify://apps/kbite-back-in-stock-notify-me/blocks/main-app-embed/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
-        "disabled": true,
-        "settings": {}
-      },
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
-        "disabled": true,
+        "disabled": false,
         "settings": {
+          "greeting_message": "Welcome to Your Perfect Planner! If you have any questions, please feel free to message us. We try to respond almost instantly! You'll be chatting with Jess, (this is NOT AI)",
           "button_color": "#ff4545",
           "secondary_color": "#ffffff",
           "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "live_chat",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": "Welcome to Your Perfect Planner! If you have any questions, please feel free to message us. We try to respond almost instantly! You'll be chatting with Jess, (this is NOT AI)"
+          "button_vertical_position": "lowest"
+        }
+      },
+      "2102808784413787648": {
+        "type": "shopify://apps/kbite-back-in-stock-notify-me/blocks/main-app-embed/147a6f7f-6771-4f9b-8dc6-c14e6b24f32c",
+        "disabled": false,
+        "settings": {}
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": false,
+        "settings": {
+          "storefrontAccessToken": "",
+          "scriptInitMode": "immediate"
         }
       }
     },

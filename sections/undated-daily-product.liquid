@@ -26,15 +26,15 @@
     display: none;
   }
   
-  @font-face {
+  /* @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
-  }
+  } */
 
-    @font-face {
+    /* @font-face {
         font-family: 'poopins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
-    }
+    } */
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -492,7 +492,7 @@
 
               <div class="klaviyo-form-wrapper">
                 {%- render 'loading-spinner' -%}
-                <h2>Pop in your details below so we can help you if you get stuck. (This does not subscribe you to email or SMS marketing)</h2>
+                <h2>Pop in your details below so we can help you if you get stuck.</h2>
 
                 <form id="klaviyo-form">
                   
@@ -727,22 +727,9 @@
                     </div>
                   {% assign custom_pages_step = custom_pages_step | plus: 1 %}
                   {%- when 'switch_weekends_pages' -%}
-                    {% comment %} <div class="switch_weekends build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}">
-                      {% if block.settings.heading != blank %}
-                        <h3>{{ block.settings.heading }}</h3>
-                      {% endif %}
-                      <div class="switch-weekends__checkbox">
-                        <input type="checkbox" id="switch_weekends" name="switch_weekends" value="false" autocomplete='off' onclick="switchWeekendsPages()">
-                        <label for="switch_weekends">{{ block.settings.checkbox_label }}</label><br>
-                      </div>
-                      {% if block.settings.other_note != blank %}
-                        <div class="switch-weekends__description">
-                          <span>&#62;</span> {{ block.settings.other_note }}
-                        </div>
-                      {% endif %}
-                    </div> {% endcomment %}
+                
 
-                    {% comment %} {% assign custom_pages_step = custom_pages_step | plus: 1 %} {% endcomment %}
+                
                   
                 {% when 'planner_custom_pages' %}
                   <div class="planner-custom-pages_wrapper build-step__{{ custom_pages_step }} build-step-hide" data-buildstep="{{ custom_pages_step }}" data-pagetype="{{ block.settings.page_type }}" data-defaultyear="2026">
@@ -1448,21 +1435,7 @@
                 </script>
               
               
-                {% comment %} {%- when 'pages_limit' -%} {% endcomment %}
-                  {% comment %} <div class="pages-limit__description" data-splitprice={{ block.settings.split_planner_price }} data-pageslimit="{{ block.settings.pages_limit }}">
-                    <div class="danger-icon">
-                      <img src="https://cdn.shopify.com/s/files/1/0870/1021/4194/files/danger.png?v=1732746305">
-                    </div>
-                    <div class="pages-limit__content">
-                      <p class="current-pages__number">Note: The maximum page limit is 386 and you currently have <span id="no_of_pages"></span> pages.</p>
-                      <p>{{ block.settings.pages_limit_note }}</p>
-                      <input type="checkbox" id="split_diary" name="split_diary" autocomplete='off' value="false" onclick="splitDiary()">
-                      <label for="split_diary">{{ block.settings.checkbox_label }}</label><br>
-                      <br>
-                      {{ block.settings.other_note }}
-                    </div>
-
-                  </div> {% endcomment %}
+                
                 
                 {%- when 'monthly_double_pages'-%}
                   <script>
@@ -1627,13 +1600,7 @@
                   </a>
                 </div>
               {%- when 'price' -%}
-                {% comment %} <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                  {%- render 'price',
-                    product: product, 
-                    use_variant: true,
-                    show_badges: true,
-                    price_class: 'price--large'
-                  -%} {% endcomment %}
+               
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">

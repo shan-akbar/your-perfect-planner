@@ -3,14 +3,14 @@
     src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/YesevaOne-Regular.ttf?v=1732747747);
   }
   
-  @font-face {
+  /* @font-face {
     font-family: Poppins;
     src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1732747766);
-  }
-  @font-face {
+  } */
+  /* @font-face {
     font-family: Poppinsbold;
     src: url(https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1732747766);
-  }
+  } */
   
   .about-container{ 
     width:100%;

@@ -31,19 +31,23 @@
           "type": "price",
           "settings": {}
         },
+        "text_DJrXwW": {
+          "type": "text",
+          "name": "Talia Designs",
+          "settings": {
+            "text": "To order a case with Marigold, Brielle and/or Theo design, please order through <a href=\"https://www.taliadesigns.com.au/\" target=\"_blank\" title=\"Talia Designs\">Talia Designs</a>",
+            "text_style": "body"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "picker_type": "dropdown",
+            "swatch_shape": "square"
           }
         },
         "quantity_selector": {
           "type": "quantity_selector",
-          "settings": {}
-        },
-        "selleasy_lb_upsell_widget_pac_feYXeP": {
-          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-pac/790c1a03-a71f-4bc1-9869-00dad526d3c2",
           "settings": {}
         },
         "afterpay_on_site_messaging_payments_messaging_DPwmnt": {
@@ -128,9 +132,9 @@
         "title",
         "judge_me_reviews_preview_badge_XF9MTp",
         "price",
+        "text_DJrXwW",
         "variant_picker",
         "quantity_selector",
-        "selleasy_lb_upsell_widget_pac_feYXeP",
         "afterpay_on_site_messaging_payments_messaging_DPwmnt",
         "buy_buttons",
         "description",
@@ -192,18 +196,11 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
-    },
-    "178605301586850fe6": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
     "main",
     "1725168709b44473d7",
-    "related-products",
-    "178605301586850fe6"
+    "related-products"
   ]
 }
