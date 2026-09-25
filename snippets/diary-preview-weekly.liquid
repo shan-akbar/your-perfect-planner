@@ -277,6 +277,8 @@
     let diary_pages = [];
     let diary_pages_backup = [];
     let last_index_date = new Date();
+    let current_year = '2026';
+    let next_year = '2026';
     
     diary_pages.push({page_type: 'outer_cover', date: '', year: '2026', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
     diary_pages_backup.push({page_type: 'outer_cover', date: '', year: '2026', page_url: "//cdn.shopify.com/s/files/1/0870/1021/4194/files/Planner_Cover_Front.jpg?v=1732746507"});
@@ -290,11 +292,19 @@
     {% assign skip_date_increment = true %}
     {% assign skip_date_increment_year = false %}
 
+   
+
     let optimized_weekly_url = '';
 
     {% for diary_page in diary_pages_layout_1 %}
         // FIXED: Set image scaling width safely to 800px max layout weight
         optimized_weekly_url = {{ diary_page | image_url: width: 800 | json }};
+
+        if(current_year != next_year){
+           current_date = new Date('2027-01-01');
+        }
+
+        current_year = next_year;
 
         {% if forloop.rindex0 == 1 or forloop.last %}
             last_index_date = current_date;
@@ -311,6 +321,7 @@
             diary_pages.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString(), page_url: optimized_weekly_url});
             diary_pages_backup.push({page_type: {{ page_type | json }}, date: formatDate(current_date), year: current_date.getFullYear().toString(), page_url: optimized_weekly_url});
         {% endif %}
+
         
         {% if double_pages %}
             {% if skip_date_increment %}
@@ -322,6 +333,8 @@
         {% else %}
             current_date.setDate(current_date.getDate() + 7);    
         {% endif %}
+
+        next_year = current_date.getFullYear().toString();
     {% endfor %}
 
     current_date.setDate(current_date.getDate() - 14);
@@ -333,6 +346,7 @@
 <div class="custom-planner__price" data-unitprice="{{ section.settings.unit_page_price }}" data-fixedprice="{{ section.settings.fixed_added_price }}"></div>
 
 <p class="final-step__note">{{ section.settings.final_step_note }}</p>
+<p class="final-step__note2">{{ section.settings.final_step_note_2 }}</p>
 
 <div class="diary-wrapper">
     <div class="diary-travel-loader" id="diaryLoader">
@@ -667,7 +681,9 @@ function skipPages(direction) {
             
             if(diary_pages_backup[i].page_type == 'day'){
                 let current_page_date = new Date(diary_pages_backup[i].date);
+                
                 if(current_page_date >= start_date && current_page_date <= end_date){
+                    
                     updated_pages.push(diary_pages_backup[i]);
                 }
             }else{

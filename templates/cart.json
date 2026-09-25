@@ -9,12 +9,37 @@
  */
 {
   "sections": {
+    "custom_liquid_BQkiKP": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<style>\n  .ypp-cart-notice {\n    display: flex;\n    gap: 12px;\n    align-items: flex-start;\n    background: #fdf1f0;\n    border: 1px solid #fad8da;\n    border-left: 4px solid #ff4545;\n    border-radius: 12px;\n    padding: 16px 20px;\n    margin: 16px 0;\n    font-family: 'Poppins', sans-serif;\n  }\n\n  .ypp-cart-notice--dividers {\n    border-left-color: #ff9cae;\n  }\n\n  .ypp-cart-notice__label {\n    font-family: 'Poppins', sans-serif;\n    font-weight: 700;\n    text-transform: uppercase;\n    font-size: 12px;\n    letter-spacing: 0.5px;\n    color: #ff4545;\n    display: block;\n    margin-bottom: 4px;\n  }\n\n  .ypp-cart-notice__text {\n    font-size: 14px;\n    line-height: 1.5;\n    color: #333333;\n    margin: 0;\n  }\n\n  .ypp-cart-notice__text a {\n    color: #ff4545;\n    font-weight: 600;\n    text-decoration: underline;\n  }\n\n  @media screen and (max-width: 749px) {\n    .ypp-cart-notice {\n      padding: 14px 16px;\n      margin: 12px 0;\n    }\n    .ypp-cart-notice__text {\n      font-size: 13px;\n    }\n  }\n</style>\n\n<div class=\"ypp-cart-notice ypp-cart-notice--split\">\n  <div>\n    <span class=\"ypp-cart-notice__label\">Please note</span>\n    <p class=\"ypp-cart-notice__text\">If your planner has been split in two, you'll need to order two covers, one for each half.</p>\n  </div>\n</div>\n\n{% assign ypp_has_dividers = false %}\n{% for item in cart.items %}\n  {% assign ypp_item_title = item.product.title | downcase %}\n  {% if ypp_item_title contains 'divider' %}\n    {% assign ypp_has_dividers = true %}\n  {% endif %}\n{% endfor %}\n\n{% if ypp_has_dividers %}\n  {% assign ypp_tabs_product = all_products['monthly-tab-stickers'] %}\n  <div class=\"ypp-cart-notice ypp-cart-notice--dividers\">\n    <div>\n      <span class=\"ypp-cart-notice__label\">Please note</span>\n      <p class=\"ypp-cart-notice__text\">Dividers are only suitable for planners with fewer than 320 pages, which excludes most daily planners. We recommend our <a href=\"{{ ypp_tabs_product.url }}\">Monthly Tab Stickers</a> instead.</p>\n    </div>\n  </div>\n{% endif %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "1786263125edea32fc": {
+      "type": "apps",
+      "blocks": {
+        "selleasy_lb_upsell_widget_icuc_tYDDQz": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-icuc/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "selleasy_lb_upsell_widget_icuc_tYDDQz"
+      ],
+      "settings": {
+        "include_margins": true
       }
     },
     "cart-footer": {
@@ -38,24 +63,10 @@
         "padding_top": 20,
         "padding_bottom": 40
       }
-    },
-    "1786263125edea32fc": {
-      "type": "apps",
-      "blocks": {
-        "selleasy_lb_upsell_widget_icuc_tYDDQz": {
-          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-icuc/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "selleasy_lb_upsell_widget_icuc_tYDDQz"
-      ],
-      "settings": {
-        "include_margins": true
-      }
     }
   },
   "order": [
+    "custom_liquid_BQkiKP",
     "cart-items",
     "1786263125edea32fc",
     "cart-footer"

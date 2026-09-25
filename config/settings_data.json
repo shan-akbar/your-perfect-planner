@@ -163,8 +163,6 @@
         "settings": {
           "greeting_message": "Welcome to Your Perfect Planner! If you have any questions, please feel free to message us. We try to respond almost instantly! You'll be chatting with Jess, (this is NOT AI)",
           "button_color": "#ff4545",
-          "secondary_color": "#ffffff",
-          "ternary_color": "#6a6a6a",
           "button_icon": "chat_bubble",
           "button_text": "live_chat",
           "button_horizontal_position": "bottom_right",
@@ -183,6 +181,11 @@
           "storefrontAccessToken": "",
           "scriptInitMode": "immediate"
         }
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {

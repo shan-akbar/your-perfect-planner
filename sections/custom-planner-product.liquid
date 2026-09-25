@@ -26,15 +26,15 @@
     display: none;
   }
   
-  /* @font-face {
+   @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
-  } */
+  } 
 
-    /* @font-face {
-        font-family: 'poopins-bold'; 
+     @font-face {
+        font-family: 'poppins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
-    } */
+    } 
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -371,7 +371,7 @@
                   <input type="date" id="end_date" name="end_date" min="2026-01-01" max="2027-12-31" onchange="handleDateRangeChange()">
                   <br>
                   <span class="date-range__note">{{ block.settings.date_note }}</span>
-                  <p style="font-family:poopins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
+                  <p style="font-family:poppins-bold;font-weight:bold;font-size:17px;color:{{block.settings.body_text_color}};">{{ block.settings.text_message }}</p>
                   <p class="date-range-error__message" style="color:red;display:none;"></p>
                   <button class="diary-update__button" style="display:none;" onclick="updateDiaryPages()" >Update Diary</button>
                 </div>
@@ -1276,7 +1276,7 @@
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
-                  style="color:{{ block.settings.body_text_color }};font-family:poopins-bold;"
+                  style="color:{{ block.settings.body_text_color }};font-family:poppins-bold;"
                 >
                   {{- block.settings.text -}}
                 </p>
@@ -4740,6 +4740,12 @@ function processNextStep(){
       "type": "inline_richtext",
       "id": "final_step_note",
       "label": "Final Step Note",
+      "default": "Check your Planner"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "final_step_note_2",
+      "label": "Final Step Note 2",
       "default": "Check your Planner"
     },
     {

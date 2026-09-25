@@ -26,15 +26,15 @@
     display: none;
   }
   
-  /* @font-face {
+   @font-face {
       font-family: 'poopins-regular'; 
       src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Regular.ttf?v=1720604392');
-  } */
+  } 
 
-    /* @font-face {
-        font-family: 'poopins-bold'; 
+     @font-face {
+        font-family: 'poppins-bold'; 
         src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
-    } */
+    } 
 
     .planner-date__range{
       text-align: center;
@@ -1242,7 +1242,7 @@
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
-                  style="color:{{ block.settings.body_text_color }};font-family:poopins-bold;"
+                  style="color:{{ block.settings.body_text_color }};font-family:poppins-bold;"
                 >
                   {{- block.settings.text -}}
                 </p>
@@ -5123,6 +5123,12 @@ function onyearchange(){
       "type": "inline_richtext",
       "id": "final_step_note",
       "label": "Final Step Note",
+      "default": "Check your Planner"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "final_step_note_2",
+      "label": "Final Step Note 2",
       "default": "Check your Planner"
     },
     {

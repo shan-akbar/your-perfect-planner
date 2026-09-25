@@ -434,6 +434,11 @@ input.page-qty__input::-webkit-inner-spin-button {
   color: #FF4545 !important;
 }
 
+.final-step__note2{
+  text-align: center;
+  color: #000000 !important;
+}
+
 @media(max-width: 1024px){
   .grid__item.product__media-wrapper {
     overflow-x: scroll;

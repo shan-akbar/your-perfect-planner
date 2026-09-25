@@ -4,7 +4,7 @@
 }
 
 @font-face {
-    font-family: 'poopins-bold'; 
+    font-family: 'poppins-bold'; 
     src: url('https://cdn.shopify.com/s/files/1/0870/1021/4194/files/Poppins-Bold.ttf?v=1720611534');
 }
 
@@ -109,7 +109,7 @@
 }
 
 .opening-soon__subtitle{
-    font-family: poopins-bold;
+    font-family: poppins-bold;
     color: #FF9CAE;
     text-align: center;
     font-size: 50px;
@@ -119,7 +119,7 @@
 
 .opening-soon-mobile__subtitle{
     text-align: center;
-    font-family: poopins-bold;
+    font-family: poppins-bold;
     color: #F87C92;
     margin: 39px auto;
     padding: 0 15px;

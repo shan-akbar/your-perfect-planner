@@ -67,18 +67,14 @@
             "text_style": "subtitle"
           }
         },
-        "form_q79jEJ": {
-          "type": "form",
-          "settings": {}
-        },
         "planner_date_range_jYQgGa": {
           "type": "planner_date_range",
           "settings": {
             "additional_information": "<p><strong>Choose your date range</strong></p>",
-            "start_date": "2026-07-01",
-            "end_date": "2027-06-30",
-            "date_note": "NOTE: Default dates are from 01/07/2026 to 30/06/2027",
-            "text_message": "",
+            "start_date": "2027-01-01",
+            "end_date": "2027-12-31",
+            "date_note": "NOTE: Default dates are from 01/01/2027 to 31/12/2027<br>Tip: start your planner in 2026 so you can start using it straight away!",
+            "text_message": "The price will change based on how many pages you choose.",
             "body_text_color": "#ff4545"
           }
         },
@@ -360,6 +356,7 @@
             "has_more_than_1_year_pages_17": false,
             "page_18_image": "shopify://shop_images/CONTACTS.png",
             "has_more_than_1_year_pages_18": false,
+            "page_19_image": "shopify://shop_images/DEBT_PAYOFF_TRACKER.png",
             "has_more_than_1_year_pages_19": false,
             "has_more_than_1_year_pages_20": false
           }
@@ -576,13 +573,13 @@
             "page_8_image": "shopify://shop_images/AUG-1_2027.png",
             "page_8_image_back": "shopify://shop_images/AUG-2_2027.png",
             "page_9_image": "shopify://shop_images/SEP-1_2027.png",
-            "page_9_image_back": "shopify://shop_images/SEP-2_2027.png",
+            "page_9_image_back": "shopify://shop_images/SEP-2_2027_e81c72a4-c7aa-4c9e-beab-bf1dbad83e6a.png",
             "page_10_image": "shopify://shop_images/OCT-1_2027.png",
             "page_10_image_back": "shopify://shop_images/OCT-2_2027.png",
             "page_11_image": "shopify://shop_images/NOV-1_2027.png",
             "page_11_image_back": "shopify://shop_images/NOV-2_2027.png",
             "page_12_image": "shopify://shop_images/DEC-1_2027.png",
-            "page_12_image_back": "shopify://shop_images/DEC-2_2027.png"
+            "page_12_image_back": "shopify://shop_images/DEC-2_2027_c5065071-1f11-4dd6-9c47-c4293347936a.png"
           }
         },
         "multiyear_page_7FaH8F": {
@@ -648,7 +645,6 @@
         "description",
         "text_EJV8iG",
         "text_4WehDr",
-        "form_q79jEJ",
         "planner_date_range_jYQgGa",
         "text_ikgVmi",
         "text_LiE7VN",
@@ -691,6 +687,7 @@
         "unit_page_price": "0.22",
         "fixed_added_price": "34",
         "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, place your order first, then reply to the order confirmation email with what edits you'd like and Jess will be in touch.",
+        "final_step_note_2": "You can choose your planner cover after you add your planner to cart.",
         "help_video_url2": "https://youtu.be/dV8f4VCo_YI?si=1CuNa6JQKPtl1gJ0",
         "contact_note": "<p>Or send us an email or text<br/><strong>Email: </strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\" title=\"mailto:hello@yourperfectplanner.com.au\">hello@yourperfectplanner.com.au</a><br/><strong>Phone: </strong>+61408002468</p>",
         "enable_sticky_info": true,

@@ -33,7 +33,7 @@
   margin: 0;
   word-break: break-word;
   font-weight: bold;
-  font-family: poopins-bold;
+  font-family: poppins-bold;
 }
 
 .accordion .icon-accordion {
@@ -54,7 +54,7 @@
   overflow-x: auto;
   padding: 0 0.6rem;
   font-weight: bold;
-  font-family: poopins-bold;
+  font-family: poppins-bold;
 }
 
 .accordion__content img {

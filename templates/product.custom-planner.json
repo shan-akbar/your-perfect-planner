@@ -67,18 +67,14 @@
             "text_style": "subtitle"
           }
         },
-        "form_UahV4n": {
-          "type": "form",
-          "settings": {}
-        },
         "planner_date_range_jYQgGa": {
           "type": "planner_date_range",
           "settings": {
             "additional_information": "<p><strong>Choose your date range</strong></p>",
-            "start_date": "2026-07-01",
-            "end_date": "2027-06-30",
-            "date_note": "NOTE: Default dates are from 01/07/2026 to 30/06/2027",
-            "text_message": "",
+            "start_date": "2027-01-01",
+            "end_date": "2027-12-31",
+            "date_note": "NOTE: Default dates are from 01/01/2027 to 31/12/2027",
+            "text_message": "The price will change based on how many pages you choose.",
             "body_text_color": "#ff4545"
           }
         },
@@ -185,12 +181,12 @@
             "page_2_image_back": "shopify://shop_images/YEARLY_VIEW_7-12.png",
             "has_more_than_1_year_pages_2": false,
             "page_3_image": "shopify://shop_images/LITTLE_MONTHS_2027_d8289f6c-008b-46b0-b1c7-b8fcaa6a626e.png",
-            "has_more_than_1_year_pages_3": true,
+            "has_more_than_1_year_pages_3": false,
             "page_4_image": "shopify://shop_images/2026_REFLECTION-1.png",
             "page_4_image_back": "shopify://shop_images/2026_REFLECTION-2.png",
             "has_more_than_1_year_pages_4": false,
             "page_5_image": "shopify://shop_images/2027_GOALS_CATEGORIES.png",
-            "has_more_than_1_year_pages_5": true,
+            "has_more_than_1_year_pages_5": false,
             "page_6_image": "shopify://shop_images/2027_GOALS_MONTHLY.png",
             "has_more_than_1_year_pages_6": false,
             "page_7_image": "shopify://shop_images/WINS_f358c152-4ec9-44fc-94d2-a28e2a70f73b.png",
@@ -204,7 +200,7 @@
             "page_11_image": "shopify://shop_images/YEARLY_HABIT_TRACKER.png",
             "has_more_than_1_year_pages_11": false,
             "page_12_image": "shopify://shop_images/52_WEEK_SAVINGS_CHALLENGE_68c02910-18cf-4db9-a290-982c1f452fb8.png",
-            "has_more_than_1_year_pages_12": true,
+            "has_more_than_1_year_pages_12": false,
             "page_13_image": "shopify://shop_images/BIRTHDAY_PLANNER_c3ec799f-f3bb-4aeb-950f-f068c1b5f33f.png",
             "has_more_than_1_year_pages_13": false,
             "page_14_image": "shopify://shop_images/GIFT_PLANNER_bd0a2663-1411-4397-bdf7-3ae0a72727ad.png",
@@ -253,6 +249,7 @@
             "has_more_than_1_year_pages_11": false,
             "page_12_image": "shopify://shop_images/WEEKLY_OVERVIEW.png",
             "has_more_than_1_year_pages_12": false,
+            "page_13_image": "shopify://shop_images/CLIENTS_-_KATIE.png",
             "has_more_than_1_year_pages_13": false,
             "has_more_than_1_year_pages_14": false,
             "has_more_than_1_year_pages_15": false,
@@ -575,13 +572,13 @@
             "page_8_image": "shopify://shop_images/AUG-1_2027.png",
             "page_8_image_back": "shopify://shop_images/AUG-2_2027.png",
             "page_9_image": "shopify://shop_images/SEP-1_2027.png",
-            "page_9_image_back": "shopify://shop_images/SEP-2_2027.png",
+            "page_9_image_back": "shopify://shop_images/SEP-2_2027_e81c72a4-c7aa-4c9e-beab-bf1dbad83e6a.png",
             "page_10_image": "shopify://shop_images/OCT-1_2027.png",
             "page_10_image_back": "shopify://shop_images/OCT-2_2027.png",
             "page_11_image": "shopify://shop_images/NOV-1_2027.png",
             "page_11_image_back": "shopify://shop_images/NOV-2_2027.png",
             "page_12_image": "shopify://shop_images/DEC-1_2027.png",
-            "page_12_image_back": "shopify://shop_images/DEC-2_2027.png"
+            "page_12_image_back": "shopify://shop_images/DEC-2_2027_c5065071-1f11-4dd6-9c47-c4293347936a.png"
           }
         },
         "text_EzKwR6": {
@@ -645,7 +642,6 @@
         "description",
         "text_hqtRGT",
         "text_4WehDr",
-        "form_UahV4n",
         "planner_date_range_jYQgGa",
         "exclude_weekends_9TjqBY",
         "switch_weekends_pages_M9FfNp",
@@ -690,6 +686,7 @@
         "unit_page_price": "0.19",
         "fixed_added_price": "34",
         "final_step_note": "<strong>Check your planner preview</strong> if you'd like to move or change anything, please type your requests in the order notes at checkout or reply to your confirmation email",
+        "final_step_note_2": "You can choose your planner cover after you add your planner to cart.",
         "help_video_url": "https://youtu.be/dV8f4VCo_YI?si=QdGM3ViT4puZPYtP",
         "contact_note": "<p>Or send us an email or text<br/><strong>Email: </strong><a href=\"mailto:hello@yourperfectplanner.com.au\" target=\"_blank\" title=\"mailto:hello@yourperfectplanner.com.au\">hello@yourperfectplanner.com.au</a><br/><strong>Phone: </strong>+61408002468</p>",
         "enable_sticky_info": true,
