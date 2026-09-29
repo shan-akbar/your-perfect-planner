@@ -1234,12 +1234,12 @@ function skipPages(direction) {
         }
         
         if(updateType == 'plus'){
-            let day_page_counter = 0; 
+            let day_page_counter = page_gap; 
             for(var i=0 ; i < pages_length ; ++i){
-                if(day_page_counter == page_gap && diary_pages[i].page_type != "week"){
-                    updated_pages.push({page_type: "week", page_url: image_front, year: diary_pages[i].year });
+                if(day_page_counter == page_gap && diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month" && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "outer_cover"){
+                    updated_pages.push({page_type: "week", page_url: image_front, year: diary_pages[i].year, date: diary_pages[i].date });
                     if(image_back){
-                        updated_pages.push({page_type: "week", page_url: image_back, year: diary_pages[i].year });
+                        updated_pages.push({page_type: "week", page_url: image_back, year: diary_pages[i].year, date: diary_pages[i].date });
                     }
                     day_page_counter = 0;
                 }
@@ -1263,7 +1263,7 @@ function skipPages(direction) {
            
                 for(var i=0; i<pages_length; ++i){
                     if(noOfRemoved < needToRemove){
-                        if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'week'){
+                        if((diary_pages[i].page_url == image_front || diary_pages[i].page_url == image_back)&& diary_pages[i].page_type == 'week' && diary_pages[i].page_type == 'outer_cover'){
                             ++noOfRemoved;
                         }else{
                             if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
@@ -1317,7 +1317,7 @@ function skipPages(direction) {
         if(updateType == "plus"){ 
             for(var i=0; i<pages_length; ++i){
                 
-                if(diary_pages[i].page_type == 'day'){
+                if(diary_pages[i].page_type == 'day' || diary_pages[i].page_type == 'week'){
 
                     let current_date = new Date(diary_pages[i].date);
                     current_month = current_date.getMonth();
@@ -1340,7 +1340,7 @@ function skipPages(direction) {
                         --skip_iteration_count;
                     }
 
-                    if((previous_month != current_month) && !skip_iteration){
+                    if((previous_month != current_month) && !skip_iteration ){
                         updated_pages.push({page_type: "month", page_url: image_front, year: diary_pages[i].year });
                         if(image_back){
                             updated_pages.push({page_type: "month", page_url: image_back , year: diary_pages[i].year});
@@ -1445,7 +1445,7 @@ function skipPages(direction) {
             let page_added = false;
             for(var i=0; i<pages_length; ++i){
                 
-                if(diary_pages[i].page_type == 'day'){
+                if(diary_pages[i].page_type == 'day' || diary_pages[i].page_type == 'week'){
                     
                     let current_date = new Date(diary_pages[i].date);
                     
@@ -1479,10 +1479,12 @@ function skipPages(direction) {
                         page_added = false;
                     }
 
-                    if(day_of_month <= 7 && ( previous_month != current_month) && !skip_iteration){
+                    if(day_of_month <= 7 && ( previous_month != current_month) && !skip_iteration ){
                         image_front = double_monthly_pages[access_index];
                         image_back = double_monthly_pages[access_index + 1];
                         access_index = access_index + 2;
+                      
+                      
                         updated_pages.push({page_type: "month", page_url: image_front, page_side: 1, year: diary_pages[i].year });
                         if(image_back){
                             updated_pages.push({page_type: "month", page_url: image_back, page_side: 2, year: diary_pages[i].year });
