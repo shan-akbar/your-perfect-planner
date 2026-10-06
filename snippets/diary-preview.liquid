@@ -1209,8 +1209,13 @@ function skipPages(direction) {
             let day_page_counter = -1;
             for(var i=0 ; i < pages_length ; ++i){
                 last_day_of_month = isLastDayOfMonth(new Date(diary_pages[i].date));
+
+                if(diary_pages[i].page_type == "day"){
+                    last_day_of_month = false;
+                }
                 
                 if(day_page_counter == 7 && diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month" && diary_pages[i].page_type != "month_double" && !last_day_of_month){
+                   
                     updated_pages.push({page_type: "week", page_url: image_front, year: diary_pages[i].year, date:diary_pages[i].date });
                     if(image_back){
                         updated_pages.push({page_type: "week", page_url: image_back, year: diary_pages[i].year, date:diary_pages[i].date});
@@ -1277,11 +1282,11 @@ function skipPages(direction) {
             let diary_pages_days = diary_pages.filter((page) => page.page_type == "day");
             let start_date = new Date(diary_pages_days[0].date);
             let current_month = start_date.getMonth();
-            let previous_month = -1;
+            let previous_month = 0;
             let day_counter = -1;
             let days_in_current_month = 30;
             let current_year = 0;
-            let monthly_page_added = true;
+            let monthly_page_added = false;
             for(var i=0; i<pages_length; ++i){
 
                
@@ -1289,6 +1294,12 @@ function skipPages(direction) {
                  let current_date = new Date(diary_pages[i].date);
                     current_month = current_date.getMonth();
                     
+                    if(!isNaN(current_month)){
+                        if(current_month != previous_month){
+                            console.log(current_month);
+                            monthly_page_added = false;
+                        }
+                    }
 
                     if(!monthly_page_added && diary_pages[i].page_type != "outer_cover" && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "month_double" && diary_pages[i].page_type != "month" && diary_pages[i].page_type != "neutral_page"){
                         
@@ -1303,9 +1314,7 @@ function skipPages(direction) {
                         
                     }
 
-                    if(current_month != previous_month){
-                        monthly_page_added = false;
-                    }
+                    
                 
 
                 if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
