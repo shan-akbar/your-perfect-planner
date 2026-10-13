@@ -1310,19 +1310,22 @@ function skipPages(direction) {
 
         let diary_pages_days = diary_pages.filter((page) => page.page_type == "day");
         let start_date = new Date(diary_pages_days[0].date);
-        let current_month = start_date.getMonth();
-        let previous_month = current_month;
+        let current_month = 1;
+        let previous_month = 0
         let current_year = start_date.getFullYear();
         let previous_year = start_date.getFullYear();
 
         if(updateType == "plus"){ 
             for(var i=0; i<pages_length; ++i){
-                
-                if(diary_pages[i].page_type == 'day' || diary_pages[i].page_type == 'week'){
 
-                    let current_date = new Date(diary_pages[i].date);
-                    current_month = current_date.getMonth();
-                    current_year = current_date.getFullYear();
+                let current_date = new Date(diary_pages[i].date);
+                
+                
+
+                    if( !isNaN(current_date)){
+                        current_month = current_date.getMonth() + 1;
+                        current_year = current_date.getFullYear();
+                    }
 
                     if(add_in_next_iteration && skip_iteration_count == 0){
                         updated_pages.push({page_type: "month", page_url: image_front, year: diary_pages[i].year });
@@ -1341,7 +1344,7 @@ function skipPages(direction) {
                         --skip_iteration_count;
                     }
 
-                    if((previous_month != current_month) && !skip_iteration ){
+                    if((previous_month != current_month) && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "outer_cover" && diary_pages[i].page_type != "month" && diary_pages[i].page_type != "neutral_page"){
                         updated_pages.push({page_type: "month", page_url: image_front, year: diary_pages[i].year });
                         if(image_back){
                             updated_pages.push({page_type: "month", page_url: image_back , year: diary_pages[i].year});
@@ -1358,7 +1361,7 @@ function skipPages(direction) {
                         add_in_next_iteration = true;
                     }
 
-                }
+                
                 
                 if(diary_pages[i].page_type != "blank" && diary_pages[i].page_type != "copyright"){
                     updated_pages.push(diary_pages[i]);
@@ -1450,42 +1453,31 @@ function skipPages(direction) {
                     
                     let current_date = new Date(diary_pages[i].date);
 
-                    if(diary_pages[i].page_type == 'day'){
+                   
+
+                        if(diary_pages[i].page_type == 'day'){
                     
                         current_month = current_date.getMonth() + 1;
                         day_of_month = current_date.getDate();
                         current_year = current_date.getFullYear();
 
-                    }
+                        }else{
+                            let j = i;
 
-                    if(add_in_next_iteration && skip_iteration_count == 0 && diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month" && !skip_iteration && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "outer_cover"){
-                         image_front = double_monthly_pages[access_index];
-                        image_back = double_monthly_pages[access_index + 1];
-                        access_index = access_index + 2;
-
-                        updated_pages.push({page_type: "month", page_url: image_front, page_side: 1, year: diary_pages[i].year });
-                        if(image_back){
-                            updated_pages.push({page_type: "month", page_url: image_back, page_side: 2, year: diary_pages[i].year });
+                            while (j < pages_length && diary_pages[j].page_type !== 'day') {
+                                
+                                j++;
+                            }
+                            if(diary_pages[j]){
+                                current_date = new Date(diary_pages[j].date);
+                                current_month = current_date.getMonth() + 1;
+                                day_of_month = current_date.getDate();
+                                current_year = current_date.getFullYear();
+                            }
                         }
-
-                        
-                        
-                        previous_month = current_month;
-                        skip_iteration = false;
-                        add_in_next_iteration = false;
-                        skip_iteration_count = page_gap;
-                    }
                     
-                    if(year_changed && (previous_month != current_month)){
-                        skip_iteration = true;
-                        --skip_iteration_count;
-                    }
 
-                    if(current_month != previous_month){
-                        page_added = false;
-                    }
-
-                    if(day_of_month <= 7 && ( previous_month != current_month) && !skip_iteration && diary_pages[i].page_type != "week" && diary_pages[i].page_type != "month" && !skip_iteration && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "outer_cover"){
+                    if(day_of_month <= 7 && ( previous_month != current_month) && diary_pages[i].page_type != "inner_cover_front" && diary_pages[i].page_type != "outer_cover"){
                         image_front = double_monthly_pages[access_index];
                         image_back = double_monthly_pages[access_index + 1];
                         access_index = access_index + 2;
@@ -1498,16 +1490,7 @@ function skipPages(direction) {
 
                     }
 
-                    
-
-                    if(current_year != previous_year){
-                        year_changed = true;
-                        previous_year = current_year;
-                    }
-
-                    if(skip_iteration){
-                        add_in_next_iteration = true;
-                    }
+                
                     
                 
 
