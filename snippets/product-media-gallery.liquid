@@ -1,15 +1,123 @@
 {% comment %}
   Renders a product media gallery. Should be used with 'media-gallery.js'
   Also see 'product-media-modal'
-
-  Accepts:
-  - product: {Object} Product liquid object
-  - variant_images: {Array} Product images associated with a variant
-  - is_duplicate: {Boolean} Prevents rendering uneeded elements and duplicate ids for subsequent instances
-
-  Usage:
-  {% render 'product-media-gallery', is_duplicate: true %}
 {% endcomment %}
+
+<style>
+  /* Custom CSS to float the arrows around the main image */
+  slider-component#GalleryViewer-{{ section.id }}{{ id_append }} {
+    position: relative;
+    display: block;
+  }
+  
+  #GalleryViewer-{{ section.id }}{{ id_append }} .custom-floating-arrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between;
+    z-index: 10; /* Increased to prevent images/zoom from blocking clicks */
+    padding: 0 1rem;
+    pointer-events: none; /* Allows clicking on the image between the arrows */
+  }
+
+  #GalleryViewer-{{ section.id }}{{ id_append }} .custom-floating-arrows .slider-button {
+    pointer-events: auto; /* Re-enables clicking on the buttons */
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  #GalleryViewer-{{ section.id }}{{ id_append }} .custom-floating-arrows .slider-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+  }
+
+.custom-floating-arrows .slider-button[disabled] .icon {
+    color: unset;
+    cursor: pointer;
+}
+.custom-floating-arrows  .slider-button .icon {
+   height:0.8rem;
+}
+
+
+  #GalleryViewer-{{ section.id }}{{ id_append }} .custom-floating-arrows .slider-counter {
+    display: none !important; /* Hides the "1 / 5" text between the arrows */
+  }
+.main-product-slider-btn .slider-button{
+    border: 1px solid #808080;
+    border-radius: 100%;
+}
+.main-product-slider-btn  .slider-button .icon {
+    height: .8rem;
+    color: #808080;
+    cursor: pointer;
+}
+  @media screen and (min-width: 990px) {
+    #GalleryViewer-{{ section.id }}{{ id_append }} .custom-floating-arrows {
+      display: flex !important; 
+    }
+
+    /* Force the main gallery to slide horizontally so JS arrows work on desktop */
+    #Slider-Gallery-{{ section.id }}{{ id_append }} {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      scroll-snap-type: x mandatory !important;
+      scroll-behavior: smooth !important;
+      scrollbar-width: none;
+    }
+    
+    #Slider-Gallery-{{ section.id }}{{ id_append }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    #Slider-Gallery-{{ section.id }}{{ id_append }} .product__media-item {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      scroll-snap-align: start !important;
+      display: block !important;
+    }
+  }
+
+  @media screen and (max-width:768px){
+  .custom-floating-arrows{
+  padding: 0 2rem;
+}
+  .custom-floating-arrows .slider-button{
+           width: 30px !important;
+        height: 30px !important;
+}
+.custom-floating-arrows .slider-button .icon {
+    height: 0.7rem;
+}
+.main-product-slider-btn .slider-button{
+
+    width: 30px !important;
+    height: 30px !important;
+
+}.main-product-slider-btn .slider-button .icon {
+    height: .5rem;
+   
+}
+.main-product-slider-btn{
+margin-left:0 !important;
+margin-right:0 !important;}
+  }
+
+
+</style>
 
 {%- liquid
   if section.settings.hide_variants and variant_images.size == product.media.size
@@ -23,10 +131,6 @@
 
   if media_count == 1 or single_media_visible
     assign single_media_visible_mobile = true
-  endif
-
-  if media_count == 0 or single_media_visible_mobile or section.settings.mobile_thumbnails == 'show' or section.settings.mobile_thumbnails == 'columns' and media_count < 3
-    assign hide_mobile_slider = true
   endif
 
   if section.settings.media_size == 'large'
@@ -120,33 +224,37 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
+    
     {%- unless is_duplicate -%}
-      <div class="slider-buttons no-js-hidden quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
-        <button
-          type="button"
-          class="slider-button slider-button--prev"
-          name="previous"
-          aria-label="{{ 'general.slider.previous_slide' | t }}"
-        >
-          {% render 'icon-caret' %}
-        </button>
-        <div class="slider-counter caption">
-          <span class="slider-counter--current">1</span>
-          <span aria-hidden="true"> / </span>
-          <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-          <span class="slider-counter--total">{{ media_count }}</span>
+      {%- if media_count > 1 -%}
+        <div class="slider-buttons custom-floating-arrows no-js-hidden quick-add-hidden">
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="slider-counter--total">{{ media_count }}</span>
+          </div>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            {% render 'icon-caret' %}
+          </button>
         </div>
-        <button
-          type="button"
-          class="slider-button slider-button--next"
-          name="next"
-          aria-label="{{ 'general.slider.next_slide' | t }}"
-        >
-          {% render 'icon-caret' %}
-        </button>
-      </div>
+      {%- endif -%}
     {%- endunless -%}
   </slider-component>
+  
   {%- if first_3d_model -%}
     <button
       class="button button--full-width product__xr-button"
@@ -161,13 +269,11 @@
       {{ 'products.product.xr_button' | t }}
     </button>
   {%- endif -%}
-  {%- if media_count > 1
-    and section.settings.gallery_layout contains 'thumbnail'
-    or section.settings.mobile_thumbnails == 'show'
-  -%}
+  
+  {%- if media_count > 1 and section.settings.gallery_layout contains 'thumbnail' or section.settings.mobile_thumbnails == 'show' -%}
     <slider-component
       id="GalleryThumbnails-{{ section.id }}{{ id_append }}"
-      class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
+      class="thumbnail-slider main-product-slider-btn slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
     >
       <button
         type="button"

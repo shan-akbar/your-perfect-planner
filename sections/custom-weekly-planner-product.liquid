@@ -1,3 +1,10 @@
+<style>
+     @media screen and (max-width:1024px){
+      .custom-product__media-wrapper-3{
+                overflow-x: clip !important;
+      }
+    }
+</style>
 <section
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
@@ -287,7 +294,7 @@
       <div class="grid__item product__media-wrapper-2 product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
         {% render 'diary-preview-weekly', blocks: section.blocks %}
       </div>
-      <div class="grid__item product__media-wrapper-3 product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
+      <div class="grid__item product__media-wrapper-3 custom-product__media-wrapper-3 product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
