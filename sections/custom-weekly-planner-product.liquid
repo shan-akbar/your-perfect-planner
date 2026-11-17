@@ -2322,6 +2322,9 @@ function onyearchange(){
 
     step_modal.style.display = "block";
     document.body.style.overflow = 'hidden';
+
+    let header_wrapper = document.querySelector(".shopify-section-group-header-group.section-header");
+    header_wrapper.classList.add("builder_loaded");
     
   });
 
@@ -2336,6 +2339,7 @@ function onyearchange(){
         let add_to_cart_button = document.querySelector(".product-form__buttons .button");
         let loading_spinner = next_btn_main.querySelector(".loading__spinner");
         loading_spinner.classList.remove('hidden');
+        next_btn_main.classList.add('button-disabled');
         add_to_cart_button.click();
         return;
       }

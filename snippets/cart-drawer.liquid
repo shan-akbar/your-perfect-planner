@@ -12,10 +12,110 @@
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <style>
-  .drawer {
-    visibility: hidden;
+      .drawer {
+        visibility: hidden;
+      }
+      .drawer__inner{
+        width:60rem !important;
+      }
+
+    {% comment %} note box  {% endcomment %}
+    .ypp-cart-notice {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        background: #fdf1f0;
+        border: 1px solid #fad8da;
+        border-left: 4px solid #ff4545;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin: 16px 0;
+        font-family: 'Poppins', sans-serif;
+    }.ypp-cart-notice__label {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        color: #ff4545;
+        display: block;
+        margin-bottom: 4px;
+    }.ypp-cart-notice__text {
+        font-size: 14px;
+        line-height: 1.5;
+        font-family: var(--font-heading-family);
+        color: #333333;
+        margin: 0;
+    }
+    .cart-drawer .cart__checkout-button {
+        max-width: none;
+        background: #FF4545;
+            border-radius: 9px;
+    }
+    .drawer__heading{
+        font-family: var(--font-heading-family);
+        font-weight: 900;
+      }
+    {% comment %} end note box  {% endcomment %}
+      {% comment %} progress__bar  {% endcomment %}
+      .cart-progress__title {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .cart-progress__track {
+        display: block;
+        width: 100%;
+        height: 10px;
+        background: #ffe3e9;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+      .cart-progress__bar {
+        display: block !important;
+        height: 10px !important;
+        min-width: 6px;
+        background-color: #FF9CAE !important;
+        border-radius: 999px;
+        transition: width 0.4s ease;
+      }
+
+      .empty-drawer-custom{
+           background: #FF4545;
+            border-radius: 9px;
+      }
+      .cart__empty-text{
+      font-weight:600;
+      }
+      .drawer__contents {
+
+      padding-right: 15px;
   }
+     @media screen and (max-width:768px){
+
+      .drawer__inner {
+         width: 100% !important;
+         max-width: 100% !important;
+       }
+       #CartDrawer-CartItems{
+         padding-right:12px;
+       }
+       .is-empty{
+        width:100%;
+      }
+      #CartDrawer{
+       width:100%;
+      }
+      }
 </style>
+
+{% assign final_discount_percent = 20 %}
+{% assign discount_title = "Buy 2 planners, get 20% off" %}
+{% assign discount_applied =  false %}
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
@@ -40,7 +140,7 @@
               >
                 {% render 'icon-close' %}
               </button>
-              <a href="{{ routes.all_products_collection_url }}" class="button">
+              <a href="{{ routes.all_products_collection_url }}" class="button empty-drawer-custom">
                 {{ 'general.continue_shopping' | t }}
               </a>
 
@@ -82,7 +182,65 @@
           method="post"
         >
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
+            {% comment %} note box  {% endcomment %}
+            <div class="ypp-cart-notice ypp-cart-notice--split">
+              <div>
+                <span class="ypp-cart-notice__label">Please note</span>
+                <p class="ypp-cart-notice__text">
+                  If your planner has been split in two, you'll need to order two covers, one for each half.
+                </p>
+              </div>
+            </div>
+            {% comment %}end note box  {% endcomment %}
+            {% assign custom_planner_count = 0 %}
             {%- if cart != empty -%}
+              
+              {%- comment -%} Calculate the true total based on custom prices for both footer & progress bar {%- endcomment -%}
+              {%- assign custom_total_price = 0 -%}
+              {%- for item in cart.items -%}
+                {%- assign item_custom_price = 0 -%}
+                {%- for property in item.properties -%}
+                  {%- if property.first == '_custom_price' -%}
+                    {% assign custom_planner_count = custom_planner_count |  plus: 1 %}
+                    {%- assign item_custom_price = property.last | times: 100 -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+
+
+                {%- if item_custom_price > 0 -%}
+                  {%- assign item_line_total = item_custom_price | times: item.quantity -%}
+                {%- else -%}
+                  {%- assign item_line_total = item.final_line_price -%}
+                {%- endif -%}
+
+                {%- assign custom_total_price = custom_total_price | plus: item_line_total -%}
+              {%- endfor -%}
+
+              {% if custom_planner_count > 1 %}
+                {% assign discount_applied =  true %}
+              {% endif %}
+
+              {% comment %} progress bar  {% endcomment %}
+              {%- liquid
+                assign progress_goal = 150
+                assign goal_cents = progress_goal | times: 100
+                assign progress_percent = custom_total_price | times: 100 | divided_by: goal_cents | at_most: 100
+                assign amount_left = goal_cents | minus: custom_total_price
+              -%}
+              <div class="cart-progress" role="status">
+                <p class="cart-progress__text">
+                  {%- if custom_total_price >= goal_cents -%}
+                    🎉 You've unlocked <strong>free shipping!</strong>
+                  {%- else -%}
+                    Add <strong>{{ amount_left | money }}</strong> more to get <strong>free shipping</strong>
+                  {%- endif -%}
+                </p>
+                <div class="cart-progress__track">
+                  <div class="cart-progress__bar" style="width: {{ progress_percent }}%;"></div>
+                </div>
+              </div>
+              {% comment %} end progress bar  {% endcomment %}
               <div class="drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
                   <thead role="rowgroup">
@@ -114,6 +272,12 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
+                      {%- assign custom_price = 0 -%}
+                      {%- for property in item.properties -%}
+                        {%- if property.first == '_custom_price' -%}
+                          {%- assign custom_price = property.last | times: 100 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
                       <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
@@ -139,7 +303,11 @@
                             {{- item.product.title | escape -}}
                           </a>
 
-                          {%- if item.original_price != item.final_price -%}
+                          {% if custom_price > 0 %}
+                            <div class="product-option">
+                              {{ custom_price | money }}
+                            </div>
+                          {% elsif item.original_price != item.final_price %}
                             <div class="cart-item__discounted-prices">
                               <span class="visually-hidden">
                                 {{ 'products.product.price.regular_price' | t }}
@@ -154,11 +322,11 @@
                                 {{ item.final_price | money }}
                               </strong>
                             </div>
-                          {%- else -%}
+                          {% else %}
                             <div class="product-option">
                               {{ item.original_price | money }}
                             </div>
-                          {%- endif -%}
+                          {% endif %}
 
                           {%- if item.product.has_only_default_variant == false
                             or item.properties.size != 0
@@ -212,7 +380,13 @@
                             {%- for discount in item.line_level_discount_allocations -%}
                               <li class="discounts__discount">
                                 {%- render 'icon-discount' -%}
+
+                                {% if discount.discount_application.title == "Buy 2 planners, get 20% off" %}
+                                  {% assign discount_applied = true %}  
+                                {% endif %}
+                                
                                 {{ discount.discount_application.title }}
+                                
                               </li>
                             {%- endfor -%}
                           </ul>
@@ -221,7 +395,12 @@
                         <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
                           {%- render 'loading-spinner' -%}
                           <div class="cart-item__price-wrapper">
-                            {%- if item.original_line_price != item.final_line_price -%}
+                            
+                            {% if custom_price > 0 %}
+                              <span class="price price--end">
+                                {{ custom_price | times: item.quantity | money }}
+                              </span>
+                            {% elsif item.original_line_price != item.final_line_price %}
                               <div class="cart-item__discounted-prices">
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
@@ -236,11 +415,11 @@
                                   {{ item.final_line_price | money }}
                                 </span>
                               </div>
-                            {%- else -%}
+                            {% else %}
                               <span class="price price--end">
                                 {{ item.original_line_price | money }}
                               </span>
-                            {%- endif -%}
+                            {% endif %}
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
                               <div class="unit-price caption">
@@ -484,20 +663,45 @@
                 {%- endfor -%}
               </ul>
             {%- endif -%}
+
+            {% if discount_applied %}
+              <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+               
+                  <li class="discounts__discount discounts__discount--end">
+                    {%- render 'icon-discount' -%}
+                    {{ discount_title }}
+                    (-{{ custom_total_price | times: 0.20 | money }})
+                  </li>
+            
+              </ul>
+            {% endif %}
           </div>
+
+          <style>
+            .discounted-final__price p{
+              margin: 0 !important;
+            }
+          </style>
 
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+            {% if discount_applied %}
+              <div class="discounted-final__price">
+                <p class="totals__total-value price-line-through" style="text-decoration:line-through;">{{ custom_total_price | money }}</p>
+                <p class="totals__total-value price-line-through">{{ custom_total_price | times: 0.80 | money }}</p>
+              </div>
+            {% else %}
+              <p class="totals__total-value">{{ custom_total_price | money }}</p>
+            {% endif %}
           </div>
 
           <div style="background-color: #fdf1f0; border-left: 4px solid #ff4545; border-radius: 8px; padding: 12px 16px; margin: 16px 0; font-family: 'Poppins', sans-serif; font-size: 14px; color: #333; display: flex; align-items: center; gap: 10px;">
-  <span style="font-size: 18px;">🕐</span>
-  <span>
-    <strong style="color: #ff4545;">Current processing time: 1–2 business days</strong>
-    — we'll get your order made, packed and on its way quickly! 🎉
-  </span>
-</div>
+            <span style="font-size: 18px;">🕐</span>
+            <span>
+              <strong style="color: #ff4545;">Current processing time: 1–2 business days</strong>
+              — we'll get your order made, packed and on its way quickly! 🎉
+            </span>
+          </div>
 
           <small class="tax-note caption-large rte">
             {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
@@ -522,16 +726,28 @@
           </noscript>
 
           <button
-            type="submit"
+            type="button"
             id="CartDrawer-Checkout"
             class="cart__checkout-button button"
             name="checkout"
             form="CartDrawer-Form"
+            onclick="customCheckout()"
             {% if cart == empty %}
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            <span>{{ 'sections.cart.checkout' | t }}</span>
+            <div class="loading__spinner hidden">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
           </button>
         </div>
       </div>

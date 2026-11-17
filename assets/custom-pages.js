@@ -57,3 +57,4 @@ function handlePrevPage(e) {
         is_animating = false;
     }, FLIP_ANIMATION_SPEED);
 }
+
