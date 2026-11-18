@@ -184,7 +184,7 @@
     async function customAddToCart(){
         let target = this.event.target;
         let spinner = target.querySelector(".loading__spinner");
-        let cartDrawer = document.querySelector('cart-drawer');
+        let cartNotification = document.querySelector('cart-notification');
         spinner.classList.remove('hidden');
         let diary_pages_final = [];
         let exclude_weekends = document.getElementById("exclude_weekends")?.checked;
@@ -271,7 +271,7 @@
                  }
                 }
             ],
-            'sections': cartDrawer.getSectionsToRender().map((section) => section.id)
+            'sections': cartNotification.getSectionsToRender().map((section) => section.id)
             })
         });
 
@@ -279,7 +279,7 @@
         
         let parsedResponse = jsonResponse.items[0];
         parsedResponse.sections = jsonResponse.sections;
-        cartDrawer.renderContents(parsedResponse);
+        cartNotification.renderContents(parsedResponse);
         spinner.classList.add('hidden');
         window.location.href = "/products/planner-cover";
     }

@@ -8,10 +8,6 @@
   font-size: 15px;
 }
 
-.button-disabled{
-  pointer-events: none !important;
-}
-
 .announcement-bar-section{
   display: none !important;
 }

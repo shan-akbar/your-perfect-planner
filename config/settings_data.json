@@ -125,7 +125,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "drawer",
+    "cart_type": "notification",
     "cart_warning_note": "If your planner is split in two, please ensure you’ve purchased 2 sets of acrylic covers.",
     "show_vendor": false,
     "show_cart_note": true,
