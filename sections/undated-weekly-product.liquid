@@ -2707,6 +2707,7 @@ function onyearchange(){
           let add_to_cart_button = document.querySelector(".product-form__buttons .button");
           let loading_spinner = next_btn_main.querySelector(".loading__spinner");
           loading_spinner.classList.remove('hidden');
+          next_btn_main.classList.add('button-disabled');
           add_to_cart_button.click();
           return;
         }
