@@ -24,7 +24,7 @@
           "settings": {}
         },
         "judge_me_reviews_preview_badge_XF9MTp": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "price": {
@@ -32,7 +32,7 @@
           "settings": {}
         },
         "afterpay_on_site_messaging_payments_messaging_DPwmnt": {
-          "type": "shopify:\/\/apps\/afterpay-on-site-messaging\/blocks\/payments-messaging\/f45a5524-d177-4475-bf59-281efd2215a8",
+          "type": "shopify://apps/afterpay-on-site-messaging/blocks/payments-messaging/f45a5524-d177-4475-bf59-281efd2215a8",
           "settings": {
             "text_align": "inherit",
             "margin_top": 16,
@@ -71,7 +71,7 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
+            "show_dynamic_checkout": false,
             "show_gift_card_recipient": true
           }
         },
@@ -84,7 +84,7 @@
           "settings": {
             "heading": "Prompt Inspiration",
             "icon": "lightning_bolt",
-            "content": "<ul><li>Mind Dump: What’s been on my mind lately?<\/li><li>Self Discovery: What advice would I give my yesterday self?<\/li><li>Weekly Wins: What’s something simple that made me smile?<\/li><li>Affirmation of the Day: A positive reminder I need right now.<\/li><li>Today's win<\/li><li>What did I learn today?<\/li><li>What am I proud of myself for?<\/li><li>How did I feel today?<\/li><li>What's something I did today that my future self will thank me for<\/li><\/ul>",
+            "content": "<ul><li>Mind Dump: What’s been on my mind lately?</li><li>Self Discovery: What advice would I give my yesterday self?</li><li>Weekly Wins: What’s something simple that made me smile?</li><li>Affirmation of the Day: A positive reminder I need right now.</li><li>Today's win</li><li>What did I learn today?</li><li>What am I proud of myself for?</li><li>How did I feel today?</li><li>What's something I did today that my future self will thank me for</li></ul>",
             "page": ""
           }
         },
@@ -93,7 +93,7 @@
           "settings": {
             "heading": "Shipping",
             "icon": "box",
-            "content": "<p>We offer standard shipping from $5.50 and express from $11.95 within Australia. Prices will increase based on the weight of your order. Or spend over $120 to get free shipping within Australia.<\/p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.<\/p><p>See our full shipping policy <a href=\"\/policies\/shipping-policy\" title=\"Shipping Policy\">here<\/a>.<\/p>",
+            "content": "<p>We offer standard shipping from $5.50 and express from $11.95 within Australia. Prices will increase based on the weight of your order. Or spend over $120 to get free shipping within Australia.</p><p>Click and collect is also available for free. Pick up location is at Tumbi Umbi NSW 2261. Orders must be picked up within 14 days from when it's ready.</p><p>See our full shipping policy <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">here</a>.</p>",
             "page": ""
           }
         },
@@ -161,8 +161,13 @@
       "type": "apps",
       "blocks": {
         "judge_me_reviews_review_widget_H48Wb8": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [
